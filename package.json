@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "cp public/CNAME out/CNAME 2>/dev/null || true",
     "start": "next start",
     "lint": "next lint"
   },
