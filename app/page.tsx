@@ -390,12 +390,15 @@ export default function Home() {
             </svg>
           </button>
           {/* WeChat QR Code Popup */}
-          <div className="absolute right-full top-0 mr-2 w-48 h-48 bg-white rounded-lg shadow-xl overflow-hidden transform origin-right transition-all duration-300 scale-x-0 group-hover:scale-x-100 flex items-center justify-center">
+          <div className="absolute right-full top-0 mr-2 w-56 bg-white rounded-lg shadow-xl overflow-hidden transform origin-right transition-all duration-300 scale-x-0 group-hover:scale-x-100">
             <div className="p-4 text-center">
-              <div className="text-gray-800 text-sm mb-2">WeChat QR Code</div>
-              <div className="w-32 h-32 bg-gray-200 flex items-center justify-center mx-auto">
-                <span className="text-gray-500 text-xs">QR Code Here</span>
-              </div>
+              <div className="text-gray-800 text-sm font-semibold mb-3">Scan WeChat QR Code</div>
+              <img 
+                src="/wechat-qrcode.jpg" 
+                alt="WeChat QR Code" 
+                className="w-44 h-44 mx-auto object-contain"
+              />
+              <div className="text-gray-500 text-xs mt-2">Add me on WeChat</div>
             </div>
           </div>
         </div>
