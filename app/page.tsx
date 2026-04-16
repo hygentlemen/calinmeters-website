@@ -270,14 +270,14 @@ export default function Home() {
                   <span className="text-2xl">💬</span>
                   <div>
                     <h4 className="font-semibold">WhatsApp / WeChat</h4>
-                    <p className="text-primary-100">+86 18661076788</p>
+                    <p className="text-primary-100">+8613713788753</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <span className="text-2xl">📧</span>
                   <div>
                     <h4 className="font-semibold">Email</h4>
-                    <p className="text-primary-100">contact@calinmeters.com</p>
+                    <p className="text-primary-100">Scott@szcalinmeter.com</p>
                   </div>
                 </div>
               </div>
