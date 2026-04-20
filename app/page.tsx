@@ -56,8 +56,12 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Smart Electricity Meters */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
-              <div className="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
-                <span className="text-6xl">⚡</span>
+              <div className="h-48 bg-gray-100 flex items-center justify-center">
+                <img 
+                  src="/images/products/electricity/single-phase.jpg" 
+                  alt="Smart Electricity Meters" 
+                  className="w-full h-full object-contain p-4"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Smart Electricity Meters</h3>
@@ -70,8 +74,12 @@ export default function Home() {
 
             {/* Smart Water Meters */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
-              <div className="h-48 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
-                <span className="text-6xl">💧</span>
+              <div className="h-48 bg-gray-100 flex items-center justify-center">
+                <img 
+                  src="/images/products/water/prepaid-water-meter.jpg" 
+                  alt="Smart Water Meters" 
+                  className="w-full h-full object-contain p-4"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Smart Water Meters</h3>
@@ -84,8 +92,12 @@ export default function Home() {
 
             {/* Smart Gas Meters */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
-              <div className="h-48 bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
-                <span className="text-6xl">🔥</span>
+              <div className="h-48 bg-gray-100 flex items-center justify-center">
+                <img 
+                  src="/images/products/gas/prepaid-gas-meter.jpg" 
+                  alt="Smart Gas Meters" 
+                  className="w-full h-full object-contain p-4"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Smart Gas Meters</h3>
@@ -185,8 +197,12 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-primary-600 to-primary-800 rounded-2xl h-96 flex items-center justify-center text-white text-6xl">
-              🏭
+            <div className="rounded-2xl h-96 overflow-hidden shadow-xl">
+              <img 
+                src="/images/company/factory.jpg" 
+                alt="Calin Meters Factory" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -203,7 +219,10 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <article className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-lg transition">
               <div className="h-48 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
-                <span className="text-4xl">🔥</span>
+                <div className="text-center text-white">
+                  <div className="text-4xl mb-2">🔥</div>
+                  <div className="text-sm opacity-90">Gas Meter Innovation</div>
+                </div>
               </div>
               <div className="p-6">
                 <div className="text-sm text-primary-600 mb-2">March 13, 2026</div>
@@ -215,7 +234,10 @@ export default function Home() {
 
             <article className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-lg transition">
               <div className="h-48 bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
-                <span className="text-4xl">🌐</span>
+                <div className="text-center text-white">
+                  <div className="text-4xl mb-2">🌐</div>
+                  <div className="text-sm opacity-90">IoT Technology</div>
+                </div>
               </div>
               <div className="p-6">
                 <div className="text-sm text-primary-600 mb-2">March 12, 2026</div>
@@ -227,7 +249,10 @@ export default function Home() {
 
             <article className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-lg transition">
               <div className="h-48 bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center">
-                <span className="text-4xl">💧</span>
+                <div className="text-center text-white">
+                  <div className="text-4xl mb-2">💧</div>
+                  <div className="text-sm opacity-90">Water Metering</div>
+                </div>
               </div>
               <div className="p-6">
                 <div className="text-sm text-primary-600 mb-2">March 10, 2026</div>
