@@ -1,9 +1,8 @@
 'use client';
 
 import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
+import BannerCarousel from '@/components/BannerCarousel';
 import ProductsSection from '@/components/ProductsSection';
-import CertificatesSection from '@/components/CertificatesSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import AboutSection from '@/components/AboutSection';
 import FaqSection from '@/components/FaqSection';
@@ -16,9 +15,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white relative">
       <Navbar />
-      <Hero />
+      <BannerCarousel />
       <ProductsSection />
-      <CertificatesSection />
       <FeaturesSection />
       <AboutSection />
       <FaqSection />

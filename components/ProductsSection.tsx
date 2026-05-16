@@ -47,9 +47,10 @@ function VariantCard({ variant }: { variant: ProductVariant }) {
 
 function CategorySection({ category }: { category: ProductCategory }) {
   const [imgError, setImgError] = useState(false);
+  const anchorId = category.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
 
   return (
-    <div className="mb-12 last:mb-0">
+    <div id={anchorId} className="mb-12 last:mb-0">
       {/* Category Header */}
       <div className="flex items-center gap-4 mb-6">
         <div className="w-16 h-16 rounded-lg bg-gray-100 overflow-hidden shrink-0">
