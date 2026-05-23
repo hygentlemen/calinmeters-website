@@ -8,18 +8,17 @@ const slides = [
     alt: 'Smart Prepaid Metering Solutions',
   },
   {
-    image: '/images/banners/banner-factory.jpg',
-    alt: 'Our Manufacturing Facility',
+    image: '/images/banners/banner-field.jpg',
+    alt: 'Field Applications',
   },
   {
-    image: '/images/banners/banner-field.jpg',
-    alt: 'Global Field Applications',
+    image: '/images/banners/banner-factory.jpg',
+    alt: 'Manufacturing Facility',
   },
 ];
 
 export default function BannerCarousel() {
   const [current, setCurrent] = useState(0);
-  const [loaded, setLoaded] = useState<boolean[]>([]);
 
   const goTo = useCallback((i: number) => {
     setCurrent(i);
@@ -39,17 +38,8 @@ export default function BannerCarousel() {
     return () => clearInterval(timer);
   }, [goNext]);
 
-  // Track loaded images
-  const handleLoad = (i: number) => {
-    setLoaded((prev) => {
-      const next = [...prev];
-      next[i] = true;
-      return next;
-    });
-  };
-
   return (
-    <section className="relative w-full h-[400px] md:h-[600px] overflow-hidden bg-gray-900">
+    <section className="relative w-full h-[400px] md:h-[600px] overflow-hidden bg-gray-100">
       {/* Slides */}
       {slides.map((slide, i) => (
         <div
@@ -58,16 +48,10 @@ export default function BannerCarousel() {
             i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}
         >
-          {!loaded[i] && i !== 0 && (
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
-              <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin" />
-            </div>
-          )}
           <img
             src={slide.image}
             alt={slide.alt}
             className="w-full h-full object-cover"
-            onLoad={() => handleLoad(i)}
           />
         </div>
       ))}
