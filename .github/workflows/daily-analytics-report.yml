@@ -13,6 +13,9 @@ on:
 jobs:
   report:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -31,15 +34,26 @@ jobs:
           GA_PROPERTY_ID: ${{ secrets.GA_PROPERTY_ID }}
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
+          GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
         run: |
           missing=0
-          for name in GA_PROPERTY_ID GSC_SITE_URL GOOGLE_SERVICE_ACCOUNT_JSON; do
+          for name in GA_PROPERTY_ID GSC_SITE_URL; do
             if [ -z "${!name}" ]; then
               echo "::error title=Missing GitHub Secret::$name is required for the daily analytics report."
               missing=1
             fi
           done
+
+          if [ -z "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
+            for name in GOOGLE_WORKLOAD_IDENTITY_PROVIDER GOOGLE_SERVICE_ACCOUNT_EMAIL; do
+              if [ -z "${!name}" ]; then
+                echo "::error title=Missing GitHub Secret::$name is required when GOOGLE_SERVICE_ACCOUNT_JSON is not used."
+                missing=1
+              fi
+            done
+          fi
 
           if [ -z "$FEISHU_WEBHOOK_URL" ]; then
             echo "::warning title=Feishu webhook not configured::FEISHU_WEBHOOK_URL is optional. The report will be saved as a GitHub Actions artifact, but it will not be pushed to Feishu."
@@ -48,6 +62,13 @@ jobs:
           if [ "$missing" -ne 0 ]; then
             exit 1
           fi
+
+      - name: Authenticate to Google Cloud
+        if: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON == '' }}
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ secrets.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
 
       - name: Generate daily analytics report
         env:

@@ -47,12 +47,37 @@ Give the service account email read access to:
 - The GA4 property.
 - The Search Console property.
 
+### Recommended: keyless GitHub OIDC
+
+If service account key creation is disabled by this organization policy:
+
+```text
+iam.disableServiceAccountKeyCreation
+```
+
+use Workload Identity Federation instead of JSON keys.
+
 Add these GitHub repository secrets:
 
 | Secret | Value |
 | --- | --- |
 | `GA_PROPERTY_ID` | GA4 numeric property ID, not the `G-...` measurement ID |
 | `GSC_SITE_URL` | Search Console property URL, such as `https://calinmeters.com/` |
+| `GOOGLE_WORKLOAD_IDENTITY_PROVIDER` | Workload Identity Provider resource name |
+| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | Service account email |
+
+The Workload Identity Provider value looks like:
+
+```text
+projects/123456789/locations/global/workloadIdentityPools/github-pool/providers/github-provider
+```
+
+### Alternative: JSON key
+
+If your Google organization allows service account keys, you can use this secret instead of Workload Identity Federation:
+
+| Secret | Value |
+| --- | --- |
 | `GOOGLE_SERVICE_ACCOUNT_JSON` | Full service account JSON, or base64 encoded JSON |
 
 ## 4. Optional Feishu delivery

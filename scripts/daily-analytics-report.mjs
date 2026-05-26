@@ -2,7 +2,7 @@ import { google } from 'googleapis';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const required = ['GA_PROPERTY_ID', 'GSC_SITE_URL', 'GOOGLE_SERVICE_ACCOUNT_JSON'];
+const required = ['GA_PROPERTY_ID', 'GSC_SITE_URL'];
 const missing = required.filter((key) => !process.env[key]);
 
 if (missing.length > 0) {
@@ -14,15 +14,19 @@ const timeZone = process.env.REPORT_TIMEZONE || 'Asia/Shanghai';
 const reportDate = process.env.REPORT_DATE || getYesterday(timeZone);
 const gaProperty = `properties/${process.env.GA_PROPERTY_ID}`;
 const gscSiteUrl = process.env.GSC_SITE_URL;
-const serviceAccount = parseServiceAccount(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
 
-const auth = new google.auth.GoogleAuth({
-  credentials: serviceAccount,
+const authConfig = {
   scopes: [
     'https://www.googleapis.com/auth/analytics.readonly',
     'https://www.googleapis.com/auth/webmasters.readonly',
   ],
-});
+};
+
+if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+  authConfig.credentials = parseServiceAccount(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+}
+
+const auth = new google.auth.GoogleAuth(authConfig);
 
 const analyticsData = google.analyticsdata({ version: 'v1beta', auth });
 const searchConsole = google.searchconsole({ version: 'v1', auth });
