@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { productCategories, type ProductVariant, type ProductCategory } from '@/data/products';
+import { trackEvent } from '@/components/GoogleAnalytics';
 
 function VariantCard({ variant }: { variant: ProductVariant }) {
   const [imgError, setImgError] = useState(false);
@@ -30,6 +31,15 @@ function VariantCard({ variant }: { variant: ProductVariant }) {
                 href={spec.pdf}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent('file_download', {
+                    file_name: spec.pdf.split('/').pop(),
+                    file_extension: 'pdf',
+                    link_url: spec.pdf,
+                    product_id: variant.id,
+                    product_name: variant.name,
+                  })
+                }
                 className="inline-flex items-center gap-1 text-xs text-primary-600 hover:text-primary-700 font-medium"
               >
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -7,9 +7,11 @@
     "build": "next build",
     "postbuild": "cp public/CNAME out/CNAME 2>/dev/null || true",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "report:daily": "node scripts/daily-analytics-report.mjs"
   },
   "dependencies": {
+    "googleapis": "^172.0.0",
     "next": "14.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
