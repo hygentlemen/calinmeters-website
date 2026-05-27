@@ -47,7 +47,26 @@ Give the service account email read access to:
 - The GA4 property.
 - The Search Console property.
 
-### Recommended: keyless GitHub OIDC
+### Option A: OAuth refresh token
+
+This is the simplest option when Google UI does not accept a service account email as a GA4 or Search Console user.
+
+Use the same Google account that already has access to GA4 and Search Console, then add these GitHub repository secrets:
+
+| Secret | Value |
+| --- | --- |
+| `GOOGLE_OAUTH_CLIENT_ID` | OAuth client ID |
+| `GOOGLE_OAUTH_CLIENT_SECRET` | OAuth client secret |
+| `GOOGLE_OAUTH_REFRESH_TOKEN` | Refresh token for a Google account with GA4 and Search Console access |
+
+The required OAuth scopes are:
+
+```text
+https://www.googleapis.com/auth/analytics.readonly
+https://www.googleapis.com/auth/webmasters.readonly
+```
+
+### Option B: keyless GitHub OIDC
 
 If service account key creation is disabled by this organization policy:
 
@@ -72,7 +91,7 @@ The Workload Identity Provider value looks like:
 projects/123456789/locations/global/workloadIdentityPools/github-pool/providers/github-provider
 ```
 
-### Alternative: JSON key
+### Option C: JSON key
 
 If your Google organization allows service account keys, you can use this secret instead of Workload Identity Federation:
 

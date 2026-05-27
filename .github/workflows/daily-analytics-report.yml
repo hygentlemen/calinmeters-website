@@ -34,6 +34,9 @@ jobs:
           GA_PROPERTY_ID: ${{ secrets.GA_PROPERTY_ID }}
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_OAUTH_CLIENT_ID: ${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
+          GOOGLE_OAUTH_CLIENT_SECRET: ${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
+          GOOGLE_OAUTH_REFRESH_TOKEN: ${{ secrets.GOOGLE_OAUTH_REFRESH_TOKEN }}
           GOOGLE_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
           GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
@@ -46,7 +49,14 @@ jobs:
             fi
           done
 
-          if [ -z "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
+          if [ -n "$GOOGLE_OAUTH_CLIENT_ID" ] || [ -n "$GOOGLE_OAUTH_CLIENT_SECRET" ] || [ -n "$GOOGLE_OAUTH_REFRESH_TOKEN" ]; then
+            for name in GOOGLE_OAUTH_CLIENT_ID GOOGLE_OAUTH_CLIENT_SECRET GOOGLE_OAUTH_REFRESH_TOKEN; do
+              if [ -z "${!name}" ]; then
+                echo "::error title=Incomplete Google OAuth Secrets::$name is required when using OAuth refresh token authentication."
+                missing=1
+              fi
+            done
+          elif [ -z "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
             for name in GOOGLE_WORKLOAD_IDENTITY_PROVIDER GOOGLE_SERVICE_ACCOUNT_EMAIL; do
               if [ -z "${!name}" ]; then
                 echo "::error title=Missing GitHub Secret::$name is required when GOOGLE_SERVICE_ACCOUNT_JSON is not used."
@@ -64,7 +74,7 @@ jobs:
           fi
 
       - name: Authenticate to Google Cloud
-        if: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON == '' }}
+        if: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON == '' && secrets.GOOGLE_OAUTH_REFRESH_TOKEN == '' }}
         uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: ${{ secrets.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
@@ -75,6 +85,9 @@ jobs:
           GA_PROPERTY_ID: ${{ secrets.GA_PROPERTY_ID }}
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_OAUTH_CLIENT_ID: ${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
+          GOOGLE_OAUTH_CLIENT_SECRET: ${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
+          GOOGLE_OAUTH_REFRESH_TOKEN: ${{ secrets.GOOGLE_OAUTH_REFRESH_TOKEN }}
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
           REPORT_DATE: ${{ github.event.inputs.report_date }}
           REPORT_TIMEZONE: Asia/Shanghai

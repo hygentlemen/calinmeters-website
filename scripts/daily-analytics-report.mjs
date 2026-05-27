@@ -14,19 +14,12 @@ const timeZone = process.env.REPORT_TIMEZONE || 'Asia/Shanghai';
 const reportDate = process.env.REPORT_DATE || getYesterday(timeZone);
 const gaProperty = `properties/${process.env.GA_PROPERTY_ID}`;
 const gscSiteUrl = process.env.GSC_SITE_URL;
+const scopes = [
+  'https://www.googleapis.com/auth/analytics.readonly',
+  'https://www.googleapis.com/auth/webmasters.readonly',
+];
 
-const authConfig = {
-  scopes: [
-    'https://www.googleapis.com/auth/analytics.readonly',
-    'https://www.googleapis.com/auth/webmasters.readonly',
-  ],
-};
-
-if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
-  authConfig.credentials = parseServiceAccount(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
-}
-
-const auth = new google.auth.GoogleAuth(authConfig);
+const auth = createAuthClient();
 
 const analyticsData = google.analyticsdata({ version: 'v1beta', auth });
 const searchConsole = google.searchconsole({ version: 'v1', auth });
@@ -91,6 +84,29 @@ function parseServiceAccount(value) {
   const raw = value.trim();
   const json = raw.startsWith('{') ? raw : Buffer.from(raw, 'base64').toString('utf8');
   return JSON.parse(json);
+}
+
+function createAuthClient() {
+  if (process.env.GOOGLE_OAUTH_CLIENT_ID && process.env.GOOGLE_OAUTH_CLIENT_SECRET && process.env.GOOGLE_OAUTH_REFRESH_TOKEN) {
+    const oauth2Client = new google.auth.OAuth2(
+      process.env.GOOGLE_OAUTH_CLIENT_ID,
+      process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+    );
+
+    oauth2Client.setCredentials({
+      refresh_token: process.env.GOOGLE_OAUTH_REFRESH_TOKEN,
+    });
+
+    return oauth2Client;
+  }
+
+  const authConfig = { scopes };
+
+  if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+    authConfig.credentials = parseServiceAccount(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+  }
+
+  return new google.auth.GoogleAuth(authConfig);
 }
 
 async function runGaReport({ dimensions = [], metrics = [], limit = 10, dimensionFilter }) {
