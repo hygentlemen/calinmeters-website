@@ -1,10 +1,4 @@
-'use client';
-
-import { useState } from 'react';
-
 export default function SocialSidebar() {
-  const [showQR, setShowQR] = useState(false);
-
   return (
     <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-0">
       {/* WhatsApp */}
@@ -25,25 +19,23 @@ export default function SocialSidebar() {
         <button
           className="bg-green-600 hover:bg-green-700 text-white p-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
           title="WeChat"
-          onClick={() => setShowQR(!showQR)}
+          aria-label="WeChat QR Code"
         >
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.045c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.134-.007-.268-.008-.407-.032zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z" />
           </svg>
         </button>
-        {showQR && (
-          <div className="absolute right-full top-0 mr-2 w-56 bg-white rounded-lg shadow-xl overflow-hidden">
-            <div className="p-4 text-center">
-              <div className="text-gray-800 text-sm font-semibold mb-3">Scan WeChat QR Code</div>
-              <img
-                src="/wechat-qrcode.jpg"
-                alt="WeChat QR Code"
-                className="w-44 h-44 mx-auto object-contain"
-              />
-              <div className="text-gray-500 text-xs mt-2">Add me on WeChat</div>
-            </div>
+        <div className="pointer-events-none absolute right-full top-1/2 mr-3 w-56 origin-right -translate-y-1/2 translate-x-3 scale-95 overflow-hidden rounded-lg bg-white opacity-0 shadow-xl ring-1 ring-black/5 transition-all duration-300 ease-out group-hover:pointer-events-auto group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100">
+          <div className="p-4 text-center">
+            <div className="mb-3 text-sm font-semibold text-gray-800">Scan WeChat QR Code</div>
+            <img
+              src="/wechat-qrcode.jpg?v=20260529"
+              alt="WeChat QR Code"
+              className="mx-auto h-44 w-44 object-contain"
+            />
+            <div className="mt-2 text-xs text-gray-500">Add me on WeChat</div>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Email */}

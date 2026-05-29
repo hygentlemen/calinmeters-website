@@ -1,8 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { productCategories, type ProductVariant, type ProductCategory } from '@/data/products';
 import { trackEvent } from '@/components/GoogleAnalytics';
+
+const imageVersion = '20260529';
+
+function versionedImage(src: string) {
+  return `${src}?v=${imageVersion}`;
+}
 
 function getCategoryCount(category: ProductCategory) {
   if (category.subCategories) {
@@ -38,12 +44,12 @@ function VariantCard({ variant }: { variant: ProductVariant }) {
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-lg">
-      <div className="h-56 bg-slate-50 flex items-center justify-center p-6">
+      <div className="h-60 overflow-hidden bg-slate-50 flex items-center justify-center p-2">
         {!imgError ? (
           <img
-            src={variant.image}
+            src={versionedImage(variant.image)}
             alt={variant.name}
-            className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.03]"
+            className="h-full w-full scale-[1.35] object-contain transition duration-300 group-hover:scale-[1.45]"
             onError={() => setImgError(true)}
           />
         ) : (
@@ -113,12 +119,12 @@ function CategoryOverviewCard({
         active ? 'border-primary-500 shadow-md ring-1 ring-primary-100' : 'border-slate-200 hover:border-primary-200'
       }`}
     >
-      <div className="flex h-44 items-center justify-center bg-slate-50 p-6">
+      <div className="flex h-64 items-center justify-center overflow-hidden bg-slate-50 p-2">
         {!imgError ? (
           <img
-            src={category.image}
+            src={versionedImage(category.image)}
             alt={category.name}
-            className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.04]"
+            className="h-full w-full scale-[1.25] object-contain transition duration-300 group-hover:scale-[1.35]"
             onError={() => setImgError(true)}
           />
         ) : (
@@ -155,7 +161,7 @@ function ProductDetailSection({ category }: { category: ProductCategory }) {
           <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white p-2">
           {!imgError ? (
             <img
-              src={category.image}
+              src={versionedImage(category.image)}
               alt={category.name}
                 className="h-full w-full object-contain"
               onError={() => setImgError(true)}
@@ -204,7 +210,14 @@ function ProductDetailSection({ category }: { category: ProductCategory }) {
 
 export default function ProductsSection() {
   const [activeCategoryName, setActiveCategoryName] = useState(productCategories[0]?.name ?? '');
+  const detailsRef = useRef<HTMLDivElement>(null);
   const activeCategory = productCategories.find((cat) => cat.name === activeCategoryName) ?? productCategories[0];
+  const selectCategory = (categoryName: string) => {
+    setActiveCategoryName(categoryName);
+    window.setTimeout(() => {
+      detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+  };
 
   return (
     <section id="products" className="bg-[#f6f8fb] py-20">
@@ -224,7 +237,7 @@ export default function ProductsSection() {
             <button
               key={cat.name}
               type="button"
-              onClick={() => setActiveCategoryName(cat.name)}
+              onClick={() => selectCategory(cat.name)}
               className={`shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition ${
                 activeCategoryName === cat.name
                   ? 'border-primary-600 bg-primary-600 text-white shadow-sm'
@@ -242,12 +255,14 @@ export default function ProductsSection() {
               key={cat.name}
               category={cat}
               active={activeCategoryName === cat.name}
-              onSelect={() => setActiveCategoryName(cat.name)}
+              onSelect={() => selectCategory(cat.name)}
             />
           ))}
         </div>
 
-        {activeCategory && <ProductDetailSection category={activeCategory} />}
+        <div ref={detailsRef} className="scroll-mt-24">
+          {activeCategory && <ProductDetailSection category={activeCategory} />}
+        </div>
       </div>
     </section>
   );
