@@ -6,6 +6,8 @@ const slides = [
   {
     image: '/images/banners/banner-product.jpg',
     alt: 'Smart Prepaid Metering Solutions',
+    headline: 'Smart Prepaid Metering Solutions',
+    subline: 'Electricity · Water · Gas',
   },
   {
     image: '/images/banners/banner-field.jpg',
@@ -53,6 +55,18 @@ export default function BannerCarousel() {
             alt={slide.alt}
             className="w-full h-full object-cover"
           />
+          {slide.headline && (
+            <div className="absolute inset-x-0 top-0 z-10 h-32 md:h-44 bg-gradient-to-b from-[#f8fafc] via-[#f8fafc]/95 to-[#f8fafc]/0">
+              <div className="mx-auto mt-5 md:mt-9 w-[min(92vw,760px)] text-center">
+                <h1 className="text-2xl md:text-4xl font-semibold leading-tight text-slate-950 drop-shadow-[0_1px_0_rgba(255,255,255,0.85)]">
+                  {slide.headline}
+                </h1>
+                <p className="mt-1 md:mt-2 text-sm md:text-base font-medium text-slate-600">
+                  {slide.subline}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       ))}
 
