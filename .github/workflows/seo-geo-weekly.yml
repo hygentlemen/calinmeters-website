@@ -75,12 +75,16 @@ jobs:
           } > reports/seo-geo/weekly-notice.txt
 
       - name: Send Feishu weekly notice
-        if: ${{ secrets.FEISHU_WEBHOOK_URL != '' }}
         env:
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
         run: |
           node - <<'NODE'
           const fs = require('node:fs');
+
+          if (!process.env.FEISHU_WEBHOOK_URL) {
+            console.log('FEISHU_WEBHOOK_URL is not configured. Skipping Feishu notice.');
+            process.exit(0);
+          }
 
           const text = fs.readFileSync('reports/seo-geo/weekly-notice.txt', 'utf8');
           const response = await fetch(process.env.FEISHU_WEBHOOK_URL, {
