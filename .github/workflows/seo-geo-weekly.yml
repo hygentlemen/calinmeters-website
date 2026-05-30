@@ -1,0 +1,66 @@
+name: Weekly SEO/GEO Execution
+
+on:
+  schedule:
+    # 09:15 Asia/Shanghai every Monday.
+    - cron: "15 1 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  create-weekly-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate weekly SEO/GEO task
+        env:
+          REPORT_TIMEZONE: Asia/Shanghai
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+        run: npm run seo-geo:weekly
+
+      - name: Ensure labels exist
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create seo --color 0E8A16 --description "Search engine optimization" --force
+          gh label create geo --color 1D76DB --description "Generative engine optimization" --force
+          gh label create recurring --color C5DEF5 --description "Recurring execution task" --force
+
+      - name: Create weekly issue if missing
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="$(cat reports/seo-geo/weekly-title.txt)"
+          existing="$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number // empty')"
+
+          if [ -n "$existing" ]; then
+            echo "Weekly SEO/GEO issue already exists: #$existing"
+            exit 0
+          fi
+
+          gh issue create \
+            --title "$title" \
+            --body-file reports/seo-geo/weekly-body.md \
+            --label seo \
+            --label geo \
+            --label recurring
+
+      - name: Upload weekly task artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-geo-weekly-task
+          path: reports/seo-geo/*.md

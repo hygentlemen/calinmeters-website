@@ -8,7 +8,8 @@
     "postbuild": "cp public/CNAME out/CNAME 2>/dev/null || true",
     "start": "next start",
     "lint": "next lint",
-    "report:daily": "node scripts/daily-analytics-report.mjs"
+    "report:daily": "node scripts/daily-analytics-report.mjs",
+    "seo-geo:weekly": "node scripts/seo-geo-weekly-issue.mjs"
   },
   "dependencies": {
     "googleapis": "^172.0.0",
