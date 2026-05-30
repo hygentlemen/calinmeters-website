@@ -17,6 +17,17 @@ This roadmap keeps SEO and GEO work continuous, measurable, and easy for any exe
 - Major content changes should mention target keyword, buyer intent, and expected page outcome.
 - If Codex, OpenClaw, Hermes, Claude Code, or another agent executes the task, it should comment on the issue with what it changed and what remains.
 
+## Weekly Handoff
+
+The weekly GitHub Action creates one Issue and sends a short Feishu notice with the Issue link. The Feishu notice is only a reminder, not the working document.
+
+To ask Codex to execute the task, say either:
+
+- `执行本周 SEO/GEO 任务`
+- `执行 GitHub issue #<number>`
+
+Codex can then read the Issue from GitHub, perform the checks or website changes, push commits if needed, and comment back on the Issue with evidence.
+
 ## Phase 1: Technical Foundation
 
 - Confirm sitemap, robots.txt, canonical URLs, redirects, and HTTPS.

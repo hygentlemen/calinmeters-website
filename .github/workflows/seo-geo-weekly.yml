@@ -29,7 +29,6 @@ jobs:
       - name: Generate weekly SEO/GEO task
         env:
           REPORT_TIMEZONE: Asia/Shanghai
-          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
         run: npm run seo-geo:weekly
 
       - name: Ensure labels exist
@@ -45,22 +44,61 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           title="$(cat reports/seo-geo/weekly-title.txt)"
-          existing="$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number // empty')"
+          existing_number="$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number // empty')"
+          existing_url="$(gh issue list --state open --search "$title in:title" --json url --jq '.[0].url // empty')"
 
-          if [ -n "$existing" ]; then
-            echo "Weekly SEO/GEO issue already exists: #$existing"
-            exit 0
+          if [ -n "$existing_number" ]; then
+            issue_number="$existing_number"
+            issue_url="$existing_url"
+            echo "Weekly SEO/GEO issue already exists: #$issue_number"
+          else
+            issue_url="$(gh issue create \
+              --title "$title" \
+              --body-file reports/seo-geo/weekly-body.md \
+              --label seo \
+              --label geo \
+              --label recurring)"
+            issue_number="$(basename "$issue_url")"
           fi
 
-          gh issue create \
-            --title "$title" \
-            --body-file reports/seo-geo/weekly-body.md \
-            --label seo \
-            --label geo \
-            --label recurring
+          {
+            echo "CalinMeters SEO/GEO weekly task is ready."
+            echo ""
+            echo "$title"
+            echo "$issue_url"
+            echo ""
+            echo "How to execute:"
+            echo "1. Tell Codex: execute this week's SEO/GEO task."
+            echo "2. Or tell Codex: execute GitHub issue #$issue_number."
+            echo ""
+            echo "You do not need to copy the full checklist. Codex can read the issue directly from GitHub."
+          } > reports/seo-geo/weekly-notice.txt
+
+      - name: Send Feishu weekly notice
+        if: ${{ secrets.FEISHU_WEBHOOK_URL != '' }}
+        env:
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+
+          const text = fs.readFileSync('reports/seo-geo/weekly-notice.txt', 'utf8');
+          const response = await fetch(process.env.FEISHU_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              msg_type: 'text',
+              content: { text },
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Failed to send Feishu webhook: ${response.status} ${await response.text()}`);
+          }
+          NODE
 
       - name: Upload weekly task artifact
         uses: actions/upload-artifact@v4
         with:
           name: seo-geo-weekly-task
-          path: reports/seo-geo/*.md
+          path: reports/seo-geo/*

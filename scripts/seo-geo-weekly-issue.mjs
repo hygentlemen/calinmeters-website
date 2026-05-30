@@ -22,28 +22,6 @@ await fs.writeFile(path.join(outDir, `weekly-${formatDate(weekStart)}.md`), body
 console.log(title);
 console.log(`Weekly SEO/GEO issue body written to ${path.join(outDir, 'weekly-body.md')}`);
 
-async function sendFeishu(markdown) {
-  if (!process.env.FEISHU_WEBHOOK_URL) return;
-
-  const text = markdown.length > 3500 ? `${markdown.slice(0, 3500)}\n\n...` : markdown;
-  const response = await fetch(process.env.FEISHU_WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      msg_type: 'text',
-      content: {
-        text,
-      },
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to send Feishu webhook: ${response.status} ${await response.text()}`);
-  }
-}
-
-await sendFeishu(`# ${title}\n\nA new weekly SEO/GEO execution issue will be created in GitHub.\n\n${body}`);
-
 function getLocalDate(timeZoneName) {
   const formatter = new Intl.DateTimeFormat('en-CA', {
     timeZone: timeZoneName,
