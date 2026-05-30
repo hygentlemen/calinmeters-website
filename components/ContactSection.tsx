@@ -1,6 +1,48 @@
 'use client';
 
+import { FormEvent, useState } from 'react';
+
+const recipientEmail = 'scott@szcalinmeter.com';
+
 export default function ContactSection() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      setStatus('Please complete your name, email, and message before sending.');
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      setStatus('Please enter a valid email address.');
+      return;
+    }
+
+    const subject = `Website inquiry from ${trimmedName}`;
+    const body = [
+      `Name: ${trimmedName}`,
+      `Email: ${trimmedEmail}`,
+      '',
+      'Message:',
+      trimmedMessage,
+      '',
+      `Source page: ${window.location.href}`,
+      `Submitted at: ${new Date().toLocaleString()}`,
+    ].join('\n');
+
+    window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setStatus(`Your email app is opening. If nothing happens, please email ${recipientEmail} directly.`);
+  };
+
   return (
     <section id="contact" className="py-20 bg-gradient-to-r from-primary-700 to-primary-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,35 +88,51 @@ export default function ContactSection() {
                 </svg>
                 <div>
                   <h4 className="font-semibold">Email</h4>
-                  <p className="text-primary-100">Scott@szcalinmeter.com</p>
+                  <p className="text-primary-100">{recipientEmail}</p>
                 </div>
               </div>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur rounded-xl p-8">
             <h3 className="text-2xl font-bold mb-6">Send us a Message</h3>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <input
                   type="text"
+                  name="name"
                   placeholder="Your Name"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  autoComplete="name"
                   className="w-full px-4 py-3 rounded-lg bg-white/20 placeholder-white/60 border border-white/30 focus:outline-none focus:border-white"
                 />
               </div>
               <div>
                 <input
                   type="email"
+                  name="email"
                   placeholder="Your Email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  autoComplete="email"
                   className="w-full px-4 py-3 rounded-lg bg-white/20 placeholder-white/60 border border-white/30 focus:outline-none focus:border-white"
                 />
               </div>
               <div>
                 <textarea
+                  name="message"
                   placeholder="Your Message"
+                  value={message}
+                  onChange={(event) => setMessage(event.target.value)}
                   rows={4}
                   className="w-full px-4 py-3 rounded-lg bg-white/20 placeholder-white/60 border border-white/30 focus:outline-none focus:border-white"
                 />
               </div>
+              {status && (
+                <p className="rounded-lg bg-white/15 px-4 py-3 text-sm text-primary-50" role="status" aria-live="polite">
+                  {status}
+                </p>
+              )}
               <button
                 type="submit"
                 className="w-full bg-white text-primary-700 py-3 rounded-lg font-semibold hover:bg-primary-50 transition"
