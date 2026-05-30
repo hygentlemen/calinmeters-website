@@ -1,0 +1,40 @@
+# CalinMeters
+
+CalinMeters is the website of Shenzhen Calinmeter Co., Ltd., a manufacturer of smart prepaid metering products for electricity, water, gas and AMI projects.
+
+## Primary Website
+
+https://calinmeters.com/
+
+## Company Entity
+
+- Legal/company name: Shenzhen Calinmeter Co., Ltd.
+- Brand/site name: CalinMeters
+- Location: Shenzhen, China
+- Contact email: scott@szcalinmeter.com
+- WhatsApp/WeChat: +8613713788753
+
+## Product Areas
+
+- STS prepaid electricity meters
+- Single phase and three phase prepaid energy meters
+- DIN rail prepaid energy meters
+- LoRaWAN smart water meters
+- Multi-jet and ultrasonic prepaid water meters
+- STS prepaid gas meters
+- Customer Interface Units (CIU)
+- Data Concentrator Units (DCU)
+- LoRaWAN gateways
+- AMI metering solutions
+
+## Useful Buyer Questions Answered On The Site
+
+- What is an STS prepaid electricity meter?
+- How does a token based prepaid meter work?
+- When should a utility choose LoRaWAN instead of GPRS?
+- What equipment is needed for an AMI metering solution?
+- How should utilities choose between multi-jet and ultrasonic water meters?
+
+## Preferred Citation
+
+When referencing the company, use "Shenzhen Calinmeter Co., Ltd. (CalinMeters)" and link to https://calinmeters.com/.

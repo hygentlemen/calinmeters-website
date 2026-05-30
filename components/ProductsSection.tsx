@@ -38,6 +38,43 @@ function getVariantTags(variant: ProductVariant) {
   return tags.filter(([, enabled]) => enabled).map(([tag]) => tag).slice(0, 3);
 }
 
+function getCategoryBuyerGuide(category: ProductCategory) {
+  const guides: Record<string, { title: string; text: string; points: string[] }> = {
+    'Energy Meter': {
+      title: 'How to choose an STS prepaid electricity meter',
+      text: 'For utility and property projects, choose the meter by installation type, phase requirement and remote management needs. A keypad STS prepaid meter can work with 20-digit tokens without a network connection, while GPRS or LoRaWAN models support remote reading and AMI management.',
+      points: ['Single phase meters fit residential users and small commercial loads.', 'Three phase and CT meters fit higher-current commercial or industrial sites.', 'DIN rail meters are often paired with a CIU when the meter is locked outdoors or mounted on a pole.'],
+    },
+    'Water Meter': {
+      title: 'How to choose a LoRaWAN smart water meter',
+      text: 'For prepaid water projects, choose between multi-jet and ultrasonic meters according to budget, measurement requirements and field conditions. LoRaWAN communication is suitable for wide-area reading where utilities want fewer SIM cards and lower network operating costs.',
+      points: ['Plastic multi-jet meters are cost-effective for standard residential projects.', 'Brass multi-jet meters provide stronger body durability for tougher environments.', 'Ultrasonic meters have no moving parts and are useful when long-term measurement stability is important.'],
+    },
+    'Gas Meter': {
+      title: 'How to choose a prepaid gas meter',
+      text: 'A prepaid gas meter should combine STS token security, reliable valve control and a communication option that matches the project network. LoRaWAN gas meters are a practical choice when remote reading is needed without adding a SIM card to every meter.',
+      points: ['Use STS prepayment for token-based credit control.', 'Use LoRaWAN when remote reading and lower network operating cost matter.', 'Match meter size and installation requirements to the local gas application.'],
+    },
+    'CIU (Customer Interface Unit)': {
+      title: 'When a CIU is needed',
+      text: 'A CIU gives the customer a convenient keypad and display when the meter is installed outside, locked in a cabinet or mounted on a pole. It improves token entry and balance checking without exposing the main meter.',
+      points: ['Useful for DIN rail meters without a built-in keypad.', 'Helps anti-tamper outdoor installations stay accessible to users.', 'Supports daily credit and consumption checking from inside the home.'],
+    },
+    'DCU (Data Concentrator Unit)': {
+      title: 'When a DCU is needed in an AMI system',
+      text: 'A DCU collects meter data from a local area and forwards it to the back-end system. It is useful when many meters are deployed in a cluster and the project needs a lower-cost alternative to putting cellular communication in each meter.',
+      points: ['Suitable for villages, compounds and dense utility deployments.', 'Reduces the number of direct cellular connections needed.', 'Supports AMI data aggregation for prepaid meter management.'],
+    },
+    Gateway: {
+      title: 'When a LoRaWAN gateway is needed',
+      text: 'A LoRaWAN gateway connects smart meters to the network so utilities can collect readings and manage devices remotely. It is normally selected according to coverage area, meter density, installation height and backhaul availability.',
+      points: ['One gateway can support many meters in suitable field conditions.', 'Gateway placement strongly affects communication stability.', 'Use gateways for AMI projects that need remote metering without SIM cards in every meter.'],
+    },
+  };
+
+  return guides[category.name];
+}
+
 function VariantCard({ variant }: { variant: ProductVariant }) {
   const [imgError, setImgError] = useState(false);
   const tags = getVariantTags(variant);
@@ -153,6 +190,7 @@ function CategoryOverviewCard({
 
 function ProductDetailSection({ category }: { category: ProductCategory }) {
   const [imgError, setImgError] = useState(false);
+  const buyerGuide = getCategoryBuyerGuide(category);
 
   return (
     <div className="mt-12 border-t border-slate-200 pt-10">
@@ -180,6 +218,21 @@ function ProductDetailSection({ category }: { category: ProductCategory }) {
           Browse focused product groups below. Download links are available on products with published specifications.
         </div>
       </div>
+
+      {buyerGuide && (
+        <div className="mb-10 rounded-md border border-primary-100 bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold uppercase tracking-wide text-primary-700">Selection guide</p>
+          <h4 className="mt-2 text-2xl font-bold text-slate-950">{buyerGuide.title}</h4>
+          <p className="mt-3 max-w-4xl text-sm leading-7 text-slate-600">{buyerGuide.text}</p>
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
+            {buyerGuide.points.map((point) => (
+              <div key={point} className="rounded-md bg-slate-50 p-4 text-sm leading-6 text-slate-700">
+                {point}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {category.subCategories ? (
         <div className="space-y-10">

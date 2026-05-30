@@ -10,10 +10,12 @@ import NewsSection from '@/components/NewsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import SocialSidebar from '@/components/SocialSidebar';
+import StructuredData from '@/components/StructuredData';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white relative">
+      <StructuredData />
       <Navbar />
       <BannerCarousel />
       <ProductsSection />

@@ -21,6 +21,10 @@ export const faqCategories: FaqCategory[] = [
         answer: 'No. The basic technology used in prepaid meters is STS (Standard Transfer Specification), a secure message system that does not require internet. The sales point encrypts credit information to generate a 20-digit token, which the user enters via the meter keypad to recharge. A SIM card is only needed for remote meter reading or remote management functions.',
       },
       {
+        question: 'What is an STS prepaid electricity meter?',
+        answer: 'An STS prepaid electricity meter is a meter that uses the Standard Transfer Specification to accept secure 20-digit recharge tokens. It is commonly used by utilities, landlords, and property operators that need token-based credit control without requiring every meter to stay online.',
+      },
+      {
         question: 'What is the expected battery lifetime for Calin meters?',
         answer: 'For both ultrasonic and multi-jet meters, the expected battery lifetime is 5-10 years. Our ultrasonic meters contain double the battery capacity of multi-jet models. The actual lifespan depends heavily on usage patterns — frequent valve operations (opening/closing) consume more battery. Battery replacement is simple for both meter types when needed.',
       },
@@ -40,6 +44,10 @@ export const faqCategories: FaqCategory[] = [
       {
         question: 'How many meters can be managed by one gateway?',
         answer: 'We recommend managing up to 500 meters per LoRaWAN gateway. The communication distance between gateway and meters is up to 2 kilometers by line of sight.',
+      },
+      {
+        question: 'When should a utility choose LoRaWAN instead of GPRS for smart meters?',
+        answer: 'LoRaWAN is often preferred when a project has many meters in one service area and wants lower communication operating cost without a SIM card in every meter. GPRS is useful when cellular coverage is available and each meter needs direct wide-area connectivity.',
       },
       {
         question: 'How is the gateway powered?',
@@ -91,6 +99,10 @@ export const faqCategories: FaqCategory[] = [
       {
         question: 'What is a DCU (Data Concentrator Unit)?',
         answer: 'A DCU is not a meter but a separate data device that acts as a gateway between meters and the back-end system. DCUs are used for cluster installations — for example, in a village with many households. Using a DCU is more cost-effective than putting a SIM card in each meter, as meters with SIM cards are more costly than those without.',
+      },
+      {
+        question: 'What equipment is needed for an AMI metering solution?',
+        answer: 'A typical AMI metering solution includes smart prepaid meters, CIUs when users need a separate keypad or display, DCUs or LoRaWAN gateways for data collection, and a back-end vending or meter management platform for token, reading, and device operations.',
       },
       {
         question: 'Can ultrasonic meters work without a CIU?',
