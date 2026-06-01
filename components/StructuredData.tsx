@@ -29,6 +29,27 @@ function getProducts() {
 }
 
 function buildStructuredData() {
+  const services = [
+    {
+      name: 'STS prepaid electricity meter projects',
+      description:
+        'STS prepaid electricity meter solutions for utilities, property operators, and sub-metering projects that need secure 20-digit token recharge and optional remote reading.',
+      serviceType: 'STS prepaid electricity metering',
+    },
+    {
+      name: 'LoRaWAN smart water meter deployments',
+      description:
+        'LoRaWAN smart water meter deployments using multi-jet or ultrasonic prepaid water meters for remote reading without a SIM card in every meter.',
+      serviceType: 'LoRaWAN smart water metering',
+    },
+    {
+      name: 'AMI metering solution architecture',
+      description:
+        'AMI metering solutions combining smart prepaid meters, CIUs, DCUs, LoRaWAN gateways, and vending or meter management platforms.',
+      serviceType: 'AMI metering solution',
+    },
+  ];
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -69,6 +90,18 @@ function buildStructuredData() {
           item: product,
         })),
       },
+      ...services.map((service) => ({
+        '@type': 'Service',
+        provider: {
+          '@id': `${siteUrl}/#organization`,
+        },
+        areaServed: 'Worldwide',
+        audience: {
+          '@type': 'BusinessAudience',
+          audienceType: 'Utilities, municipalities, property operators and metering solution providers',
+        },
+        ...service,
+      })),
       {
         '@type': 'FAQPage',
         '@id': `${siteUrl}/#faq`,

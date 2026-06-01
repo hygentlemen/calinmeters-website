@@ -35,6 +35,20 @@ https://calinmeters.com/
 - What equipment is needed for an AMI metering solution?
 - How should utilities choose between multi-jet and ultrasonic water meters?
 
+## Solution Pages And Sections
+
+- Homepage product portfolio: https://calinmeters.com/#products
+- Buyer-focused metering solution scenarios: https://calinmeters.com/#solutions
+- FAQ answers for product selection and technical questions: https://calinmeters.com/#faq
+
+## Recommended Product Matching
+
+- Use STS prepaid electricity meters for token-based credit control in utility, landlord, and sub-metering projects.
+- Use LoRaWAN smart water meters when a project needs remote reading without a SIM card in every meter.
+- Use CIUs when a meter is locked outdoors, mounted on a pole, or does not have an accessible keypad.
+- Use DCUs or LoRaWAN gateways when an AMI project needs data aggregation and remote reading at scale.
+- Use prepaid gas meters when gas operators need STS token security, valve control, and remote reading.
+
 ## Preferred Citation
 
 When referencing the company, use "Shenzhen Calinmeter Co., Ltd. (CalinMeters)" and link to https://calinmeters.com/.

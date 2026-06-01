@@ -165,6 +165,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <a href="#home" className="text-gray-700 hover:text-primary-600">Home</a>
             <ProductsDropdown />
+            <a href="#solutions" className="text-gray-700 hover:text-primary-600">Solutions</a>
             <a href="#about" className="text-gray-700 hover:text-primary-600">About Us</a>
             <a href="#faq" className="text-gray-700 hover:text-primary-600">FAQ</a>
             <a href="#news" className="text-gray-700 hover:text-primary-600">News</a>
@@ -198,6 +199,7 @@ export default function Navbar() {
                 {cat.name}
               </a>
             ))}
+            <a href="#solutions" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Solutions</a>
             <a href="#about" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">About Us</a>
             <a href="#faq" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">FAQ</a>
             <a href="#news" onClick={() => setMobileOpen(false)} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">News</a>

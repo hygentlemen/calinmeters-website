@@ -3,6 +3,7 @@
 import Navbar from '@/components/Navbar';
 import BannerCarousel from '@/components/BannerCarousel';
 import ProductsSection from '@/components/ProductsSection';
+import SolutionsSection from '@/components/SolutionsSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import AboutSection from '@/components/AboutSection';
 import FaqSection from '@/components/FaqSection';
@@ -19,6 +20,7 @@ export default function Home() {
       <Navbar />
       <BannerCarousel />
       <ProductsSection />
+      <SolutionsSection />
       <FeaturesSection />
       <AboutSection />
       <FaqSection />
