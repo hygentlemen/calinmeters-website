@@ -24,47 +24,60 @@ const auth = createAuthClient();
 const analyticsData = google.analyticsdata({ version: 'v1beta', auth });
 const searchConsole = google.searchconsole({ version: 'v1', auth });
 
-const [overview, countries, pages, downloads, searchQueries, searchCountries, searchPages] = await Promise.all([
-  runGaReport({
-    metrics: ['activeUsers', 'sessions', 'screenPageViews', 'eventCount'],
-  }),
-  runGaReport({
-    dimensions: ['country'],
-    metrics: ['activeUsers', 'sessions', 'screenPageViews'],
-    limit: 15,
-  }),
-  runGaReport({
-    dimensions: ['pagePathPlusQueryString'],
-    metrics: ['screenPageViews', 'activeUsers', 'averageSessionDuration'],
-    limit: 20,
-  }),
-  runDownloadsReport(),
-  runSearchConsole(['query'], 20),
-  runSearchConsole(['country'], 15),
-  runSearchConsole(['page'], 20),
-]);
+try {
+  const [overview, countries, pages, downloads, searchQueries, searchCountries, searchPages] = await Promise.all([
+    runGaReport({
+      metrics: ['activeUsers', 'sessions', 'screenPageViews', 'eventCount'],
+    }),
+    runGaReport({
+      dimensions: ['country'],
+      metrics: ['activeUsers', 'sessions', 'screenPageViews'],
+      limit: 15,
+    }),
+    runGaReport({
+      dimensions: ['pagePathPlusQueryString'],
+      metrics: ['screenPageViews', 'activeUsers', 'averageSessionDuration'],
+      limit: 20,
+    }),
+    runDownloadsReport(),
+    runSearchConsole(['query'], 20),
+    runSearchConsole(['country'], 15),
+    runSearchConsole(['page'], 20),
+  ]);
 
-const report = renderReport({
-  date: reportDate,
-  overview,
-  countries,
-  pages,
-  downloads,
-  searchQueries,
-  searchCountries,
-  searchPages,
-});
+  const report = renderReport({
+    date: reportDate,
+    overview,
+    countries,
+    pages,
+    downloads,
+    searchQueries,
+    searchCountries,
+    searchPages,
+  });
 
-const outDir = path.resolve('reports');
-await fs.mkdir(outDir, { recursive: true });
-const outFile = path.join(outDir, `daily-analytics-${reportDate}.md`);
-await fs.writeFile(outFile, report);
+  const outFile = await writeReport(`daily-analytics-${reportDate}.md`, report);
 
-console.log(report);
-console.log(`\nReport written to ${outFile}`);
+  console.log(report);
+  console.log(`\nReport written to ${outFile}`);
 
-if (process.env.FEISHU_WEBHOOK_URL) {
-  await sendFeishu(report);
+  if (process.env.FEISHU_WEBHOOK_URL) {
+    await sendFeishu(report);
+  }
+} catch (error) {
+  const message = renderFailureNotice(error);
+  await writeReport(`daily-analytics-${reportDate}-failure.md`, message);
+  console.error(message);
+
+  if (process.env.FEISHU_WEBHOOK_URL) {
+    try {
+      await sendFeishu(message);
+    } catch (feishuError) {
+      console.error(`Failed to send Feishu failure notice: ${formatError(feishuError)}`);
+    }
+  }
+
+  process.exit(1);
 }
 
 function getYesterday(timeZoneName) {
@@ -256,6 +269,40 @@ function formatCell(value, column) {
   if (column === 'ctr') return `${(Number(value) * 100).toFixed(2)}%`;
   if (column === 'position' || column === 'averageSessionDuration') return Number(value).toFixed(2);
   return String(value).replaceAll('|', '\\|');
+}
+
+async function writeReport(fileName, content) {
+  const outDir = path.resolve('reports');
+  await fs.mkdir(outDir, { recursive: true });
+  const outFile = path.join(outDir, fileName);
+  await fs.writeFile(outFile, content);
+  return outFile;
+}
+
+function renderFailureNotice(error) {
+  return `# CalinMeters Website Daily Report Failed - ${reportDate}
+
+The daily analytics report could not be generated.
+
+## Failure
+
+${formatError(error)}
+
+## Likely Fix
+
+If the error contains \`invalid_grant\` or \`Token has been expired or revoked\`, create a new Google OAuth refresh token, update the \`GOOGLE_OAUTH_REFRESH_TOKEN\` GitHub Secret, and rerun the workflow for ${reportDate}.
+`;
+}
+
+function formatError(error) {
+  const parts = [
+    error?.message,
+    error?.response?.data?.error,
+    error?.response?.data?.error_description,
+    error?.cause?.message,
+  ].filter(Boolean);
+
+  return parts.length > 0 ? [...new Set(parts)].join('\n') : String(error);
 }
 
 async function sendFeishu(markdown) {
