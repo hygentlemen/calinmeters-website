@@ -48,6 +48,24 @@ function buildStructuredData() {
         'AMI metering solutions combining smart prepaid meters, CIUs, DCUs, LoRaWAN gateways, and vending or meter management platforms.',
       serviceType: 'AMI metering solution',
     },
+    {
+      name: 'Prepaid meter selection for Africa utility projects',
+      description:
+        'Prepaid meter selection for Africa utility and sub-metering projects using STS prepaid electricity meters, split keypad meters, CIUs, and optional AMI communication devices.',
+      serviceType: 'Prepaid meter for Africa',
+    },
+    {
+      name: 'Smart metering selection for Southeast Asia projects',
+      description:
+        'Smart prepaid meter selection for Southeast Asia projects using LoRaWAN smart water meters, STS prepaid electricity meters, prepaid gas meters, and AMI network devices.',
+      serviceType: 'Prepaid meter for Southeast Asia',
+    },
+    {
+      name: 'Smart metering solution for utilities',
+      description:
+        'Smart metering solution planning for utilities that need prepaid meters, token-based recharge, remote reading, CIUs, DCUs, LoRaWAN gateways, and API-ready vending integration.',
+      serviceType: 'Smart metering solution for utilities',
+    },
   ];
 
   return {

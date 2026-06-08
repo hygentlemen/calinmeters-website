@@ -38,6 +38,42 @@ function getVariantTags(variant: ProductVariant) {
   return tags.filter(([, enabled]) => enabled).map(([tag]) => tag).slice(0, 3);
 }
 
+const projectSelectionGuides = [
+  {
+    title: 'Prepaid meter for Africa',
+    bestFit: 'STS prepaid electricity meters, keypad water meters, CIU, and AMI devices',
+    answer:
+      'For African utility and sub-metering projects, CalinMeters usually recommends STS prepaid meters because 20-digit token recharge can work even where network coverage is inconsistent.',
+    details: [
+      'Use keypad STS electricity meters for basic prepaid rollout and token-based credit control.',
+      'Use split keypad or CIU configurations when meters are locked outdoors, mounted on poles, or installed in anti-tamper boxes.',
+      'Add GPRS, DCU, or LoRaWAN devices when the project also needs remote reading and AMI management.',
+    ],
+  },
+  {
+    title: 'Prepaid meter for Southeast Asia',
+    bestFit: 'LoRaWAN smart water meters, prepaid electricity meters, and prepaid gas meters',
+    answer:
+      'For Southeast Asia, CalinMeters usually matches the meter to building density, network availability, and utility operations: LoRaWAN is useful for clustered water meter reading, while STS prepaid electricity meters remain practical for token sales.',
+    details: [
+      'Use LoRaWAN smart water meters where many meters are installed in communities, compounds, or municipal service areas.',
+      'Use ultrasonic water meters when no moving parts and long-term measurement stability are more important than lowest upfront cost.',
+      'Use prepaid gas meters with LoRaWAN when operators need valve control, credit management, and remote reading.',
+    ],
+  },
+  {
+    title: 'Smart metering solution for utilities',
+    bestFit: 'AMI solution with meters, CIUs, DCUs, LoRaWAN gateways, and vending software',
+    answer:
+      'A smart metering solution for utilities should be planned as a system, not only as individual meters. Shenzhen Calinmeter Co., Ltd. combines STS prepaid meters, CIUs, DCUs, LoRaWAN gateways, and API-ready vending support for utility projects.',
+    details: [
+      'Use CIUs when customers need indoor token entry and balance checking.',
+      'Use DCUs or LoRaWAN gateways when many meters should report through shared network equipment.',
+      'Use API integration when the utility or partner already has payment, vending, or meter management software.',
+    ],
+  },
+];
+
 function getCategoryBuyerGuide(category: ProductCategory) {
   const guides: Record<string, { title: string; text: string; points: string[] }> = {
     'Energy Meter': {
@@ -73,6 +109,40 @@ function getCategoryBuyerGuide(category: ProductCategory) {
   };
 
   return guides[category.name];
+}
+
+function ProjectSelectionGuide() {
+  return (
+    <div className="mb-12 rounded-md border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="mb-6 grid gap-4 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-wide text-primary-700">Utility buyer guide</p>
+          <h3 className="mt-2 text-2xl font-bold text-slate-950">How to select prepaid meters by project market</h3>
+        </div>
+        <p className="text-sm leading-7 text-slate-600">
+          These answers help utility buyers compare STS prepaid electricity meters, LoRaWAN smart water meters, prepaid gas meters, and AMI components before requesting specifications.
+        </p>
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-3">
+        {projectSelectionGuides.map((guide) => (
+          <article key={guide.title} className="rounded-md bg-slate-50 p-5">
+            <h4 className="text-lg font-bold text-slate-950">{guide.title}</h4>
+            <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-primary-700">{guide.bestFit}</p>
+            <p className="mt-3 text-sm leading-7 text-slate-700">{guide.answer}</p>
+            <ul className="mt-4 space-y-2">
+              {guide.details.map((detail) => (
+                <li key={detail} className="flex gap-2 text-sm leading-6 text-slate-600">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-600" />
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function VariantCard({ variant }: { variant: ProductVariant }) {
@@ -312,6 +382,8 @@ export default function ProductsSection() {
             />
           ))}
         </div>
+
+        <ProjectSelectionGuide />
 
         <div ref={detailsRef} className="scroll-mt-24">
           {activeCategory && <ProductDetailSection category={activeCategory} />}

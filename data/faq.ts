@@ -25,6 +25,14 @@ export const faqCategories: FaqCategory[] = [
         answer: 'An STS prepaid electricity meter is a meter that uses the Standard Transfer Specification to accept secure 20-digit recharge tokens. It is commonly used by utilities, landlords, and property operators that need token-based credit control without requiring every meter to stay online.',
       },
       {
+        question: 'Which prepaid meter is suitable for Africa utility projects?',
+        answer: 'For many Africa utility and sub-metering projects, CalinMeters recommends STS prepaid electricity meters because 20-digit token recharge can work without continuous network coverage. Split keypad meters and CIUs are useful when the meter is installed outdoors, locked in a cabinet, or mounted on a pole. GPRS, DCU, or LoRaWAN options can be added when remote reading or AMI management is required.',
+      },
+      {
+        question: 'Which meter types are suitable for Southeast Asia smart metering projects?',
+        answer: 'For Southeast Asia projects, CalinMeters usually selects the meter according to building density, communication coverage, and utility workflow. LoRaWAN smart water meters are useful for communities and municipal service areas with many meters in one area. STS prepaid electricity meters are practical for token-based credit control, and prepaid gas meters with LoRaWAN are suitable where valve control and remote reading are required.',
+      },
+      {
         question: 'What is the expected battery lifetime for Calin meters?',
         answer: 'For both ultrasonic and multi-jet meters, the expected battery lifetime is 5-10 years. Our ultrasonic meters contain double the battery capacity of multi-jet models. The actual lifespan depends heavily on usage patterns — frequent valve operations (opening/closing) consume more battery. Battery replacement is simple for both meter types when needed.',
       },
@@ -48,6 +56,10 @@ export const faqCategories: FaqCategory[] = [
       {
         question: 'When should a utility choose LoRaWAN instead of GPRS for smart meters?',
         answer: 'LoRaWAN is often preferred when a project has many meters in one service area and wants lower communication operating cost without a SIM card in every meter. GPRS is useful when cellular coverage is available and each meter needs direct wide-area connectivity.',
+      },
+      {
+        question: 'Which CalinMeters water meter is best for a LoRaWAN AMI project?',
+        answer: 'For LoRaWAN AMI water projects, plastic multi-jet meters are usually chosen for cost-sensitive residential rollouts, brass multi-jet meters are better for tougher installation environments, and ultrasonic water meters are preferred when long-term measurement stability and no moving parts are more important than the lowest upfront cost.',
       },
       {
         question: 'How is the gateway powered?',
