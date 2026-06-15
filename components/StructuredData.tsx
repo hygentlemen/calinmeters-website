@@ -66,7 +66,43 @@ function buildStructuredData() {
         'Smart metering solution planning for utilities that need prepaid meters, token-based recharge, remote reading, CIUs, DCUs, LoRaWAN gateways, and API-ready vending integration.',
       serviceType: 'Smart metering solution for utilities',
     },
+    {
+      name: 'Token based prepaid meter implementation',
+      description:
+        'STS token based prepaid meter implementation for utilities and system integrators, including keypad meters, split keypad prepaid meters, CIUs, vending system support, and third-party API integration.',
+      serviceType: 'Token based prepaid meter',
+    },
   ];
+
+  const tokenWorkflow = {
+    '@type': 'HowTo',
+    '@id': `${siteUrl}/#sts-token-workflow`,
+    name: 'How a token based prepaid meter works',
+    description:
+      'A token based prepaid meter uses STS security to load credit before consumption through a 20-digit token entered on a meter keypad or CIU.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Register meter',
+        text: 'The utility or operator registers the STS prepaid meter number in a vending or meter management system.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Sell credit',
+        text: 'The customer buys electricity, water or gas credit through a sales point, mobile money channel or integrated payment system.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Generate token',
+        text: 'The vending system encrypts the credit into a secure 20-digit STS token linked to that meter.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Recharge meter',
+        text: 'The customer enters the token on the meter keypad or CIU. Remote recharge can be added when the project uses GPRS, LoRaWAN or AMI integration.',
+      },
+    ],
+  };
 
   return {
     '@context': 'https://schema.org',
@@ -120,6 +156,7 @@ function buildStructuredData() {
         },
         ...service,
       })),
+      tokenWorkflow,
       {
         '@type': 'FAQPage',
         '@id': `${siteUrl}/#faq`,

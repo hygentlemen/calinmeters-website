@@ -71,6 +71,14 @@ export const faqCategories: FaqCategory[] = [
     topic: 'STS Tokens & Vending',
     items: [
       {
+        question: 'How does a token based prepaid meter work?',
+        answer: 'A token based prepaid meter uses STS security to load credit before consumption. The operator registers the meter in a vending system, the customer buys credit, the system generates a secure 20-digit token, and the customer enters that token on the meter keypad or CIU. Remote recharge can also be supported when the project uses GPRS, LoRaWAN, or AMI integration.',
+      },
+      {
+        question: 'When should a utility choose a split keypad prepaid meter?',
+        answer: 'A split keypad prepaid meter is useful when the main meter is installed outdoors, locked in a cabinet, mounted on a pole, or placed where the customer should not access the wiring compartment. The CIU gives the customer an indoor keypad for token entry, balance checking, and consumption information while the main meter remains protected.',
+      },
+      {
         question: 'Do prepaid meter tokens have an expiry date?',
         answer: 'Tokens for prepaid meters do not have an expiry date. They remain valid indefinitely. However, if a user enters 50 new tokens after losing one, the lost token would no longer work. This scenario is rare, as most users contact their service provider to reprint lost tokens.',
       },
@@ -81,6 +89,10 @@ export const faqCategories: FaqCategory[] = [
       {
         question: 'Do you provide the management system or can we use our own?',
         answer: 'We are manufacturers focused on meters and solutions. Most of our clients have their own software. We provide API to allow partners to build their own platform. Alternatively, we also offer our own vending system if needed.',
+      },
+      {
+        question: 'Can CalinMeters integrate with a third-party payment or vending platform?',
+        answer: 'Yes. Shenzhen Calinmeter Co., Ltd. can support API integration for partners that already operate payment, vending, or meter management software. This is useful for utilities and system integrators that want to keep their existing customer platform while adding STS prepaid meters, CIUs, DCUs, LoRaWAN gateways, or AMI devices.',
       },
     ],
   },

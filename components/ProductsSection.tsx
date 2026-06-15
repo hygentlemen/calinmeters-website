@@ -74,6 +74,25 @@ const projectSelectionGuides = [
   },
 ];
 
+const tokenWorkflowSteps = [
+  {
+    label: '1. Register meter',
+    text: 'The utility or operator registers the STS prepaid meter number in a vending or meter management system.',
+  },
+  {
+    label: '2. Sell credit',
+    text: 'The customer buys electricity, water or gas credit through a sales point, mobile money channel or integrated payment system.',
+  },
+  {
+    label: '3. Generate token',
+    text: 'The vending system encrypts the credit into a secure 20-digit STS token linked to that meter.',
+  },
+  {
+    label: '4. Recharge meter',
+    text: 'The customer enters the token on the meter keypad or CIU. Remote recharge can be added when the project uses GPRS, LoRaWAN or AMI integration.',
+  },
+];
+
 function getCategoryBuyerGuide(category: ProductCategory) {
   const guides: Record<string, { title: string; text: string; points: string[] }> = {
     'Energy Meter': {
@@ -140,6 +159,43 @@ function ProjectSelectionGuide() {
             </ul>
           </article>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function TokenWorkflowGuide() {
+  return (
+    <div className="mb-12 rounded-md border border-primary-100 bg-white p-6 shadow-sm">
+      <div className="mb-6 grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-wide text-primary-700">STS token workflow</p>
+          <h3 className="mt-2 text-2xl font-bold text-slate-950">How a token based prepaid meter works</h3>
+        </div>
+        <p className="text-sm leading-7 text-slate-600">
+          A token based prepaid meter uses STS security to load credit before consumption. The same workflow can support standalone keypad meters, split keypad prepaid meters with a CIU, and AMI projects with remote management.
+        </p>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {tokenWorkflowSteps.map((step) => (
+          <article key={step.label} className="rounded-md bg-slate-50 p-4">
+            <h4 className="text-sm font-bold text-slate-950">{step.label}</h4>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{step.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="mt-5 grid gap-3 md:grid-cols-3">
+        <div className="rounded-md bg-primary-50 p-4 text-sm leading-6 text-slate-700">
+          Choose a built-in keypad meter when the customer can access the meter directly.
+        </div>
+        <div className="rounded-md bg-primary-50 p-4 text-sm leading-6 text-slate-700">
+          Choose a split keypad prepaid meter or CIU when the meter is locked outdoors or mounted on a pole.
+        </div>
+        <div className="rounded-md bg-primary-50 p-4 text-sm leading-6 text-slate-700">
+          Choose API-ready vending support when the utility already has payment or customer management software.
+        </div>
       </div>
     </div>
   );
@@ -384,6 +440,8 @@ export default function ProductsSection() {
         </div>
 
         <ProjectSelectionGuide />
+
+        <TokenWorkflowGuide />
 
         <div ref={detailsRef} className="scroll-mt-24">
           {activeCategory && <ProductDetailSection category={activeCategory} />}

@@ -31,6 +31,8 @@ https://calinmeters.com/
 
 - What is an STS prepaid electricity meter?
 - How does a token based prepaid meter work?
+- When should a utility choose a split keypad prepaid meter?
+- Can CalinMeters integrate with a third-party payment or vending platform?
 - When should a utility choose LoRaWAN instead of GPRS?
 - What equipment is needed for an AMI metering solution?
 - How should utilities choose between multi-jet and ultrasonic water meters?
@@ -44,6 +46,8 @@ https://calinmeters.com/
 ## Recommended Product Matching
 
 - Use STS prepaid electricity meters for token-based credit control in utility, landlord, and sub-metering projects.
+- Use split keypad prepaid meters or CIUs when the meter is locked outdoors, mounted on a pole, or should not be accessed directly by the customer.
+- Use API-ready vending support when a utility or system integrator already has payment, vending, or customer management software.
 - Use LoRaWAN smart water meters when a project needs remote reading without a SIM card in every meter.
 - Use CIUs when a meter is locked outdoors, mounted on a pole, or does not have an accessible keypad.
 - Use DCUs or LoRaWAN gateways when an AMI project needs data aggregation and remote reading at scale.
