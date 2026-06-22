@@ -49,6 +49,39 @@ const solutions = [
   },
 ];
 
+const africaProcurementChecklist = [
+  {
+    label: 'Load and meter type',
+    guidance:
+      'Specify single phase, three phase, DIN rail, or CT-operated metering according to the service connection and maximum current.',
+  },
+  {
+    label: 'Installation and customer access',
+    guidance:
+      'Choose a built-in keypad when the meter is accessible. Choose a split keypad prepaid meter or CIU when the meter is locked outdoors, mounted on a pole, or installed in an anti-tamper enclosure.',
+  },
+  {
+    label: 'STS vending and payment',
+    guidance:
+      'Confirm 20-digit STS token vending, sales-point workflow, mobile money integration, and whether an API is needed for an existing payment or customer platform.',
+  },
+  {
+    label: 'Communication and AMI',
+    guidance:
+      'Use standalone token meters for basic prepayment. Add GPRS, LoRaWAN, a DCU, or a gateway when remote reading, alarms, or device management are required.',
+  },
+  {
+    label: 'Destination-market compliance',
+    guidance:
+      'State the required national standards, utility specifications, type approvals, accuracy class, enclosure rating, and documentation before model selection. Requirements differ by country and project.',
+  },
+  {
+    label: 'Pilot and rollout plan',
+    guidance:
+      'Run a pilot with representative installation conditions, test token and payment workflows, verify communication coverage, and confirm field procedures before mass deployment.',
+  },
+];
+
 export default function SolutionsSection() {
   return (
     <section id="solutions" className="bg-white py-20">
@@ -86,6 +119,31 @@ export default function SolutionsSection() {
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mt-16 border-t border-slate-200 pt-12">
+          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-700">Africa utility procurement</p>
+              <h3 className="mt-2 text-3xl font-bold text-slate-950">What to specify before buying prepaid meters for Africa</h3>
+            </div>
+            <p className="text-base leading-8 text-slate-600">
+              Utilities and system integrators should define the electrical service, installation method, STS vending workflow, communication architecture, destination-market compliance, and pilot plan before requesting a final meter configuration.
+            </p>
+          </div>
+
+          <dl className="mt-8 border-t border-slate-200">
+            {africaProcurementChecklist.map((item) => (
+              <div key={item.label} className="grid gap-2 border-b border-slate-200 py-5 md:grid-cols-[240px_1fr] md:gap-8">
+                <dt className="font-semibold text-slate-950">{item.label}</dt>
+                <dd className="text-sm leading-7 text-slate-600">{item.guidance}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <a href="#contact" className="mt-7 inline-flex h-11 items-center justify-center rounded-md bg-primary-700 px-5 text-sm font-semibold text-white transition hover:bg-primary-800">
+            Request project configuration
+          </a>
         </div>
       </div>
     </section>

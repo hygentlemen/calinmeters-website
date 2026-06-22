@@ -53,6 +53,7 @@ function buildStructuredData() {
       description:
         'Prepaid meter selection for Africa utility and sub-metering projects using STS prepaid electricity meters, split keypad meters, CIUs, and optional AMI communication devices.',
       serviceType: 'Prepaid meter for Africa',
+      areaServed: 'Africa',
     },
     {
       name: 'Smart metering selection for Southeast Asia projects',
@@ -104,6 +105,46 @@ function buildStructuredData() {
     ],
   };
 
+  const africaProcurementWorkflow = {
+    '@type': 'HowTo',
+    '@id': `${siteUrl}/#africa-prepaid-meter-procurement`,
+    name: 'How to specify prepaid meters for an Africa utility project',
+    description:
+      'A procurement checklist for utilities and system integrators selecting STS prepaid electricity meters, split keypad meters, vending integration, and AMI communication for projects in Africa.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Define load and meter type',
+        text: 'Specify the electrical service, phase requirement, maximum current, and whether the project needs DIN rail or CT-operated metering.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Define installation and customer access',
+        text: 'Choose a built-in keypad for accessible meters or a split keypad prepaid meter and CIU for protected outdoor installations.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Define STS vending and payment',
+        text: 'Confirm the 20-digit STS token workflow, sales channels, mobile money integration, and any third-party vending API requirements.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Define communication and AMI scope',
+        text: 'Select standalone prepayment or add GPRS, LoRaWAN, DCU, or gateway equipment for remote reading and management.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Confirm destination-market compliance',
+        text: 'Identify the required national standards, utility specifications, type approvals, accuracy class, enclosure rating, and project documentation.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Validate with a pilot',
+        text: 'Test representative installations, token and payment workflows, communication coverage, and field procedures before mass rollout.',
+      },
+    ],
+  };
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -149,7 +190,7 @@ function buildStructuredData() {
         provider: {
           '@id': `${siteUrl}/#organization`,
         },
-        areaServed: 'Worldwide',
+        areaServed: service.areaServed ?? 'Worldwide',
         audience: {
           '@type': 'BusinessAudience',
           audienceType: 'Utilities, municipalities, property operators and metering solution providers',
@@ -157,6 +198,7 @@ function buildStructuredData() {
         ...service,
       })),
       tokenWorkflow,
+      africaProcurementWorkflow,
       {
         '@type': 'FAQPage',
         '@id': `${siteUrl}/#faq`,

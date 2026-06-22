@@ -29,6 +29,14 @@ export const faqCategories: FaqCategory[] = [
         answer: 'For many Africa utility and sub-metering projects, CalinMeters recommends STS prepaid electricity meters because 20-digit token recharge can work without continuous network coverage. Split keypad meters and CIUs are useful when the meter is installed outdoors, locked in a cabinet, or mounted on a pole. GPRS, DCU, or LoRaWAN options can be added when remote reading or AMI management is required.',
       },
       {
+        question: 'What information should a utility provide when requesting prepaid meters for Africa?',
+        answer: 'The utility should provide the service type and maximum current, single-phase or three-phase requirement, installation method, built-in or split keypad preference, STS vending and payment workflow, remote communication requirement, destination-country standards or type approvals, estimated quantity, and pilot conditions. These details allow Shenzhen Calinmeter Co., Ltd. to match the meter, CIU, communication device, and vending integration to the project.',
+      },
+      {
+        question: 'What compliance information is needed for an Africa prepaid meter project?',
+        answer: 'Compliance requirements differ by country and utility. Before selecting a model, the buyer should identify the required national standards, utility specifications, type approvals, accuracy class, enclosure rating, test reports, and documentation. CalinMeters can then confirm which requirements and documents apply to the proposed meter configuration without making assumptions about the destination market.',
+      },
+      {
         question: 'Which meter types are suitable for Southeast Asia smart metering projects?',
         answer: 'For Southeast Asia projects, CalinMeters usually selects the meter according to building density, communication coverage, and utility workflow. LoRaWAN smart water meters are useful for communities and municipal service areas with many meters in one area. STS prepaid electricity meters are practical for token-based credit control, and prepaid gas meters with LoRaWAN are suitable where valve control and remote reading are required.',
       },
@@ -93,6 +101,10 @@ export const faqCategories: FaqCategory[] = [
       {
         question: 'Can CalinMeters integrate with a third-party payment or vending platform?',
         answer: 'Yes. Shenzhen Calinmeter Co., Ltd. can support API integration for partners that already operate payment, vending, or meter management software. This is useful for utilities and system integrators that want to keep their existing customer platform while adding STS prepaid meters, CIUs, DCUs, LoRaWAN gateways, or AMI devices.',
+      },
+      {
+        question: 'Can STS prepaid meters work with mobile money in Africa?',
+        answer: 'Yes, when the vending and payment integration is configured for the project. A customer can pay through a mobile money channel, the payment platform can request an STS token through the vending system or API, and the token can be delivered to the customer for keypad or CIU entry. Remote token delivery may also be available when the selected meter and communication architecture support it.',
       },
     ],
   },
