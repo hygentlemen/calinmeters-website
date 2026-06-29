@@ -25,6 +25,18 @@ export const faqCategories: FaqCategory[] = [
         answer: 'An STS prepaid electricity meter is a meter that uses the Standard Transfer Specification to accept secure 20-digit recharge tokens. It is commonly used by utilities, landlords, and property operators that need token-based credit control without requiring every meter to stay online.',
       },
       {
+        question: 'When should a project use a three-phase prepaid electricity meter?',
+        answer: 'A three-phase prepaid electricity meter is normally used for three-phase commercial, industrial, or utility service connections. The buyer should confirm the nominal voltage, maximum current or CT ratio, installation method, accuracy requirement, communication coverage, and destination-market standards before selecting a model.',
+      },
+      {
+        question: 'What is the difference between the CA368 GPRS and standalone STS models?',
+        answer: 'Both CA368 models support STS 20-digit token prepayment for three-phase service connections. The CA368 GPRS model adds direct cellular communication for remote reading, monitoring, and meter management. The standalone CA368 STS model uses keypad token entry without requiring always-on remote communication, which is suitable when secure prepayment is needed but direct cellular management is not.',
+      },
+      {
+        question: 'What information is needed for a CA368 three-phase meter quotation?',
+        answer: 'Provide the nominal voltage, maximum current or CT ratio, installation and wiring requirement, GPRS or standalone communication preference, vending or API requirement, estimated quantity, target deployment conditions, and required destination-country standards or utility specifications.',
+      },
+      {
         question: 'Which prepaid meter is suitable for Africa utility projects?',
         answer: 'For many Africa utility and sub-metering projects, CalinMeters recommends STS prepaid electricity meters because 20-digit token recharge can work without continuous network coverage. Split keypad meters and CIUs are useful when the meter is installed outdoors, locked in a cabinet, or mounted on a pole. GPRS, DCU, or LoRaWAN options can be added when remote reading or AMI management is required.',
       },

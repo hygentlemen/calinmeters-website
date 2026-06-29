@@ -3,6 +3,25 @@ import { productCategories } from '@/data/products';
 
 const siteUrl = 'https://calinmeters.com';
 
+function getProductProperties(name: string, description: string) {
+  const text = `${name} ${description}`.toLowerCase();
+  const properties = [];
+
+  if (text.includes('lorawan') || text.includes('lora wan')) {
+    properties.push({ '@type': 'PropertyValue', name: 'Communication', value: 'LoRaWAN' });
+  } else if (text.includes('gprs')) {
+    properties.push({ '@type': 'PropertyValue', name: 'Communication', value: 'GPRS' });
+  } else if (text.includes('sts')) {
+    properties.push({ '@type': 'PropertyValue', name: 'Communication', value: 'Standalone token operation' });
+  }
+
+  if (text.includes('sts')) {
+    properties.push({ '@type': 'PropertyValue', name: 'Prepayment method', value: 'STS 20-digit token' });
+  }
+
+  return properties;
+}
+
 function getProducts() {
   return productCategories.flatMap((category) => {
     const variants = category.subCategories
@@ -11,6 +30,9 @@ function getProducts() {
 
     return variants.map((variant) => ({
       '@type': 'Product',
+      '@id': `${siteUrl}/#product-${variant.id}`,
+      url: `${siteUrl}/#product-${variant.id}`,
+      sku: variant.id.toUpperCase(),
       name: variant.name,
       description: variant.description,
       image: `${siteUrl}${variant.image}`,
@@ -24,6 +46,7 @@ function getProducts() {
         url: siteUrl,
       },
       category: category.name,
+      additionalProperty: getProductProperties(variant.name, variant.description),
     }));
   });
 }

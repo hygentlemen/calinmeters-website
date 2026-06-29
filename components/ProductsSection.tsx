@@ -93,6 +93,21 @@ const tokenWorkflowSteps = [
   },
 ];
 
+const threePhaseComparison = [
+  {
+    model: 'CA368 Smart STS Prepaid Three Phase Energy Meter (GPRS)',
+    communication: 'GPRS',
+    bestFor: 'Utilities and commercial projects that need direct remote reading, monitoring, and meter management.',
+    tokenOperation: 'STS 20-digit token entry remains available while GPRS adds remote data and management functions.',
+  },
+  {
+    model: 'CA368 STS Prepaid Three Phase Energy Meter',
+    communication: 'Standalone STS',
+    bestFor: 'Commercial or utility connections that need secure token prepayment without always-on remote communication.',
+    tokenOperation: 'Customers enter 20-digit STS tokens directly on the meter keypad.',
+  },
+];
+
 function getCategoryBuyerGuide(category: ProductCategory) {
   const guides: Record<string, { title: string; text: string; points: string[] }> = {
     'Energy Meter': {
@@ -201,12 +216,55 @@ function TokenWorkflowGuide() {
   );
 }
 
+function ThreePhaseEnergyGuide() {
+  return (
+    <div className="mb-10 border-y border-slate-200 py-8">
+      <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-wide text-primary-700">Three phase buyer guide</p>
+          <h4 className="mt-2 text-2xl font-bold text-slate-950">CA368 GPRS or standalone STS: which model fits the project?</h4>
+        </div>
+        <p className="text-sm leading-7 text-slate-600">
+          Both CA368 models support STS prepaid electricity metering for three-phase service connections. The main selection decision is whether the project needs direct GPRS communication or only secure keypad token operation.
+        </p>
+      </div>
+
+      <div className="mt-6 overflow-x-auto">
+        <table className="w-full min-w-[760px] border-collapse text-left text-sm">
+          <thead>
+            <tr className="border-y border-slate-200 bg-slate-50 text-slate-950">
+              <th className="px-4 py-3 font-semibold">Model</th>
+              <th className="px-4 py-3 font-semibold">Communication</th>
+              <th className="px-4 py-3 font-semibold">Best fit</th>
+              <th className="px-4 py-3 font-semibold">Token operation</th>
+            </tr>
+          </thead>
+          <tbody>
+            {threePhaseComparison.map((item) => (
+              <tr key={item.model} className="border-b border-slate-200 align-top">
+                <td className="px-4 py-4 font-semibold text-slate-950">{item.model}</td>
+                <td className="px-4 py-4 text-slate-700">{item.communication}</td>
+                <td className="px-4 py-4 leading-6 text-slate-600">{item.bestFor}</td>
+                <td className="px-4 py-4 leading-6 text-slate-600">{item.tokenOperation}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p className="mt-5 text-sm leading-7 text-slate-600">
+        Before requesting a quotation, provide the nominal voltage, maximum current or CT ratio, installation method, communication coverage, vending or API requirement, estimated quantity, and destination-market standards or utility specifications.
+      </p>
+    </div>
+  );
+}
+
 function VariantCard({ variant }: { variant: ProductVariant }) {
   const [imgError, setImgError] = useState(false);
   const tags = getVariantTags(variant);
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-lg">
+    <article id={`product-${variant.id}`} className="group flex h-full scroll-mt-24 flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-lg">
       <div className="h-60 overflow-hidden bg-slate-50 flex items-center justify-center p-2">
         {!imgError ? (
           <img
@@ -238,7 +296,7 @@ function VariantCard({ variant }: { variant: ProductVariant }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() =>
-                  trackEvent('file_download', {
+                  trackEvent('specification_download', {
                     file_name: spec.pdf.split('/').pop(),
                     file_extension: 'pdf',
                     link_url: spec.pdf,
@@ -359,6 +417,8 @@ function ProductDetailSection({ category }: { category: ProductCategory }) {
           </div>
         </div>
       )}
+
+      {category.name === 'Energy Meter' && <ThreePhaseEnergyGuide />}
 
       {category.subCategories ? (
         <div className="space-y-10">

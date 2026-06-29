@@ -66,7 +66,7 @@ export const productCategories: ProductCategory[] = [
           {
             id: 'ca368-gprs',
             name: 'CA368 Smart STS Prepaid Three Phase Energy Meter (GPRS)',
-            description: 'Three-phase STS prepaid meter with GPRS for commercial and industrial applications.',
+            description: 'Three-phase STS prepaid electricity meter for commercial, industrial, and utility service connections, with GPRS communication for remote reading and management.',
             image: '/images/products/electricity/ca368-gprs-1.png',
             specs: [
               { label: 'Specification (PDF)', pdf: '/specs/energy-meter/CA368-GPRS.pdf' },
@@ -75,7 +75,7 @@ export const productCategories: ProductCategory[] = [
           {
             id: 'ca368-sts',
             name: 'CA368 STS Prepaid Three Phase Energy Meter',
-            description: 'Three-phase STS prepaid energy meter with keypad interface for token-based prepayment.',
+            description: 'Standalone three-phase STS prepaid electricity meter with keypad token entry for projects that do not require always-on remote communication.',
             image: '/images/products/electricity/ca368-sts-1.png',
             specs: [
               { label: 'Specification (PDF)', pdf: '/specs/energy-meter/CA368-STS.pdf' },

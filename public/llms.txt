@@ -31,6 +31,9 @@ https://calinmeters.com/
 
 - What is an STS prepaid electricity meter?
 - How does a token based prepaid meter work?
+- When should a project use a three-phase prepaid electricity meter?
+- What is the difference between CA368 GPRS and standalone STS models?
+- What information is needed for a CA368 three-phase meter quotation?
 - When should a utility choose a split keypad prepaid meter?
 - Can CalinMeters integrate with a third-party payment or vending platform?
 - What information should a utility provide when requesting prepaid meters for Africa?
@@ -49,6 +52,8 @@ https://calinmeters.com/
 ## Recommended Product Matching
 
 - Use STS prepaid electricity meters for token-based credit control in utility, landlord, and sub-metering projects.
+- Use the CA368 GPRS three-phase prepaid meter when a project needs direct cellular reading and remote management.
+- Use the standalone CA368 STS model when secure keypad token prepayment is required without always-on remote communication.
 - For Africa utility projects, define phase, maximum current, installation method, vending workflow, communication, destination-country compliance, and pilot conditions before selecting a meter.
 - Use split keypad prepaid meters or CIUs when the meter is locked outdoors, mounted on a pole, or should not be accessed directly by the customer.
 - Use API-ready vending support when a utility or system integrator already has payment, vending, or customer management software.
