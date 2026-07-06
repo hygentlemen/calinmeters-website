@@ -19,6 +19,18 @@ function getProductProperties(name: string, description: string) {
     properties.push({ '@type': 'PropertyValue', name: 'Prepayment method', value: 'STS 20-digit token' });
   }
 
+  if (text.includes('ultrasonic')) {
+    properties.push({ '@type': 'PropertyValue', name: 'Measurement principle', value: 'Ultrasonic' });
+  } else if (text.includes('multi-jet')) {
+    properties.push({ '@type': 'PropertyValue', name: 'Measurement principle', value: 'Mechanical multi-jet' });
+  }
+
+  if (text.includes('plastic')) {
+    properties.push({ '@type': 'PropertyValue', name: 'Body material', value: 'Plastic' });
+  } else if (text.includes('brass')) {
+    properties.push({ '@type': 'PropertyValue', name: 'Body material', value: 'Brass' });
+  }
+
   return properties;
 }
 
@@ -168,6 +180,46 @@ function buildStructuredData() {
     ],
   };
 
+  const waterMeterSelectionWorkflow = {
+    '@type': 'HowTo',
+    '@id': `${siteUrl}/#lorawan-water-meter-selection`,
+    name: 'How to choose a LoRaWAN smart water meter',
+    description:
+      'A utility buyer checklist for selecting plastic multi-jet, brass multi-jet, or ultrasonic STS prepaid water meters with LoRaWAN or GPRS communication.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Define hydraulic requirements',
+        text: 'Confirm pipe size, expected flow range, water quality, temperature, pressure, and installation orientation.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Choose the measurement principle',
+        text: 'Compare mechanical multi-jet meters with ultrasonic meters that have no moving measuring parts.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Choose the body material',
+        text: 'Select plastic for cost-sensitive standard installations or brass when the project prefers a stronger metal enclosure.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Define prepayment and customer access',
+        text: 'Confirm STS prepayment, valve operation, keypad access, and whether a CIU is needed for protected installations.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Plan communication coverage',
+        text: 'Complete a LoRaWAN site survey and representative pilot before fixing gateway placement and quantity.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Confirm compliance and rollout',
+        text: 'Identify destination-market standards, utility specifications, documentation, quantity, and pilot acceptance requirements.',
+      },
+    ],
+  };
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -222,6 +274,7 @@ function buildStructuredData() {
       })),
       tokenWorkflow,
       africaProcurementWorkflow,
+      waterMeterSelectionWorkflow,
       {
         '@type': 'FAQPage',
         '@id': `${siteUrl}/#faq`,

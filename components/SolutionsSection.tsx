@@ -49,6 +49,30 @@ const solutions = [
   },
 ];
 
+const waterMeterComparison = [
+  {
+    type: 'Plastic multi-jet prepaid water meter',
+    principle: 'Mechanical multi-jet',
+    communication: 'LoRaWAN',
+    bestFor: 'Cost-sensitive residential and community rollouts with standard installation conditions.',
+    selectionNote: 'Confirm pipe size, flow range, water quality, installation orientation, valve requirement, and enclosure conditions.',
+  },
+  {
+    type: 'Brass multi-jet prepaid water meter',
+    principle: 'Mechanical multi-jet',
+    communication: 'LoRaWAN',
+    bestFor: 'Projects that prefer a stronger metal body for tougher installation environments.',
+    selectionNote: 'Confirm pipe size, flow range, water quality, body-material requirement, valve operation, and local compliance documents.',
+  },
+  {
+    type: 'Ultrasonic prepaid water meter',
+    principle: 'Ultrasonic, no moving measuring parts',
+    communication: 'LoRaWAN or GPRS',
+    bestFor: 'Projects that prioritize no moving measuring parts and long-term measurement stability over the lowest initial cost.',
+    selectionNote: 'Confirm flow range, installation conditions, keypad or CIU access, communication coverage, battery expectations, and pilot requirements.',
+  },
+];
+
 const africaProcurementChecklist = [
   {
     label: 'Load and meter type',
@@ -119,6 +143,51 @@ export default function SolutionsSection() {
               </div>
             </article>
           ))}
+        </div>
+
+        <div id="lorawan-water-meter-guide" className="mt-16 scroll-mt-24 border-t border-slate-200 pt-12">
+          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-700">LoRaWAN water meter selection</p>
+              <h3 className="mt-2 text-3xl font-bold text-slate-950">Plastic, brass, or ultrasonic: which smart water meter fits the project?</h3>
+            </div>
+            <p className="text-base leading-8 text-slate-600">
+              Shenzhen Calinmeter Co., Ltd. supplies STS prepaid water meters for utility and community projects. Select the meter by measurement principle, body material, field conditions, communication coverage, lifecycle expectations, and destination-market requirements.
+            </p>
+          </div>
+
+          <div className="mt-8 overflow-x-auto">
+            <table className="w-full min-w-[900px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-y border-slate-200 bg-slate-50 text-slate-950">
+                  <th className="px-4 py-3 font-semibold">Meter type</th>
+                  <th className="px-4 py-3 font-semibold">Measurement principle</th>
+                  <th className="px-4 py-3 font-semibold">Communication</th>
+                  <th className="px-4 py-3 font-semibold">Best fit</th>
+                  <th className="px-4 py-3 font-semibold">Confirm before quotation</th>
+                </tr>
+              </thead>
+              <tbody>
+                {waterMeterComparison.map((item) => (
+                  <tr key={item.type} className="border-b border-slate-200 align-top">
+                    <td className="px-4 py-4 font-semibold text-slate-950">{item.type}</td>
+                    <td className="px-4 py-4 leading-6 text-slate-700">{item.principle}</td>
+                    <td className="px-4 py-4 text-slate-700">{item.communication}</td>
+                    <td className="px-4 py-4 leading-6 text-slate-600">{item.bestFor}</td>
+                    <td className="px-4 py-4 leading-6 text-slate-600">{item.selectionNote}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-5 text-sm leading-7 text-slate-600">
+            For LoRaWAN projects, complete a site survey before rollout. Gateway placement, building materials, terrain, meter-box location, and local radio conditions affect practical coverage, so a pilot is more reliable than choosing equipment from a distance figure alone.
+          </p>
+
+          <a href="#contact" className="mt-7 inline-flex h-11 items-center justify-center rounded-md bg-primary-700 px-5 text-sm font-semibold text-white transition hover:bg-primary-800">
+            Request water meter configuration
+          </a>
         </div>
 
         <div className="mt-16 border-t border-slate-200 pt-12">

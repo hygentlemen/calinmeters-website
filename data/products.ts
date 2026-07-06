@@ -108,7 +108,7 @@ export const productCategories: ProductCategory[] = [
           {
             id: 'water-multi-jet-plastic',
             name: 'Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Plastic)',
-            description: 'Cost-effective plastic multi-jet water meter with STS prepayment and LoRaWAN communication.',
+            description: 'Plastic-body multi-jet water meter with STS prepayment and LoRaWAN communication for cost-sensitive residential and community rollouts.',
             image: '/images/products/water/multi-jet-plastic-1.png',
             specs: [
               { label: 'Specification (PDF)', pdf: '/specs/water-meter/Multi-Jet-Plastic.pdf' },
@@ -122,7 +122,7 @@ export const productCategories: ProductCategory[] = [
           {
             id: 'water-multi-jet-brass',
             name: 'Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Brass)',
-            description: 'Durable brass multi-jet water meter with STS prepayment and LoRaWAN connectivity.',
+            description: 'Brass-body multi-jet water meter with STS prepayment and LoRaWAN communication for projects that prefer a stronger metal enclosure in tougher installation environments.',
             image: '/images/products/water/multi-jet-brass-1.png',
             specs: [
               { label: 'Specification (PDF)', pdf: '/specs/water-meter/Multi-Jet-Brass.pdf' },
@@ -136,7 +136,7 @@ export const productCategories: ProductCategory[] = [
           {
             id: 'water-ultrasonic',
             name: 'Smart STS Prepaid Ultrasonic Water Meter - LoRa WAN GPRS',
-            description: 'High-precision ultrasonic water meter with no moving parts, STS prepaid, LoRaWAN and GPRS.',
+            description: 'STS prepaid ultrasonic water meter with no moving measuring parts and LoRaWAN or GPRS communication for remote utility metering projects.',
             image: '/images/products/water/ultrasonic-1.png',
             specs: [
               { label: 'Specification (PDF)', pdf: '/specs/water-meter/Ultrasonic.pdf' },

@@ -82,6 +82,18 @@ export const faqCategories: FaqCategory[] = [
         answer: 'For LoRaWAN AMI water projects, plastic multi-jet meters are usually chosen for cost-sensitive residential rollouts, brass multi-jet meters are better for tougher installation environments, and ultrasonic water meters are preferred when long-term measurement stability and no moving parts are more important than the lowest upfront cost.',
       },
       {
+        question: 'What is the difference between multi-jet and ultrasonic prepaid water meters?',
+        answer: 'A multi-jet water meter uses a mechanical measuring mechanism and is often selected for familiar operation and lower initial cost. Plastic-body models suit cost-sensitive standard installations, while brass-body models provide a stronger metal enclosure. An ultrasonic meter has no moving measuring parts and is selected when long-term measurement stability is more important than the lowest initial cost. All project choices should be confirmed against flow range, water quality, installation conditions, communication, battery, and destination-market requirements.',
+      },
+      {
+        question: 'What information is needed for a LoRaWAN smart water meter quotation?',
+        answer: 'Provide the pipe size, expected flow range, water quality and temperature, installation orientation, plastic or brass body preference, multi-jet or ultrasonic preference, valve and STS prepayment requirement, keypad or CIU requirement, communication method, estimated meter density, gateway or backhaul plan, quantity, and required destination-country standards or utility specifications.',
+      },
+      {
+        question: 'How should a utility plan LoRaWAN coverage for smart water meters?',
+        answer: 'Start with a site survey and pilot rather than relying only on a quoted maximum distance. Building materials, terrain, meter boxes, installation height, underground locations, local interference, gateway placement, and backhaul availability all affect practical coverage. Test representative meter locations before fixing the gateway quantity and rollout plan.',
+      },
+      {
         question: 'How is the gateway powered?',
         answer: 'The gateway is powered by grid power, not by battery.',
       },
