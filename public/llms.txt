@@ -37,6 +37,9 @@ https://calinmeters.com/
 - What is the difference between plastic multi-jet, brass multi-jet, and ultrasonic prepaid water meters?
 - What information is needed for a LoRaWAN smart water meter quotation?
 - How should a utility plan LoRaWAN gateway coverage for water meters?
+- How should a utility choose a prepaid gas meter?
+- Why use LoRaWAN for a prepaid gas meter project?
+- What information is needed for a prepaid gas meter quotation?
 - When should a utility choose a split keypad prepaid meter?
 - Can CalinMeters integrate with a third-party payment or vending platform?
 - What information should a utility provide when requesting prepaid meters for Africa?
@@ -69,6 +72,8 @@ https://calinmeters.com/
 - Use CIUs when a meter is locked outdoors, mounted on a pole, or does not have an accessible keypad.
 - Use DCUs or LoRaWAN gateways when an AMI project needs data aggregation and remote reading at scale.
 - Use prepaid gas meters when gas operators need STS token security, valve control, and remote reading.
+- Before selecting a prepaid gas meter, define the gas service, meter size and flow range, valve workflow, customer recharge access, LoRaWAN network, destination-market compliance, and pilot acceptance criteria.
+- Validate LoRaWAN gas meter coverage with representative meter locations before fixing gateway placement and quantity.
 
 ## Preferred Citation
 

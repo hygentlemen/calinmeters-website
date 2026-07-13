@@ -73,6 +73,34 @@ const waterMeterComparison = [
   },
 ];
 
+const gasMeterProcurementChecklist = [
+  {
+    label: 'Gas service and meter sizing',
+    guidance:
+      'Define the gas type, service pressure, required meter size, expected flow range, installation orientation, and environmental conditions before selecting a configuration.',
+  },
+  {
+    label: 'Prepayment and valve operation',
+    guidance:
+      'Confirm the STS token workflow, credit rules, valve close and reopen process, emergency-credit policy, and the customer support procedure for failed recharge or valve events.',
+  },
+  {
+    label: 'Customer recharge access',
+    guidance:
+      'Specify how customers will receive and enter 20-digit STS tokens and whether the installation needs a separate customer interface for convenient indoor access.',
+  },
+  {
+    label: 'LoRaWAN network design',
+    guidance:
+      'Document meter density, building materials, meter location, gateway placement, backhaul, and expected reporting interval. Validate representative locations with a site survey and pilot.',
+  },
+  {
+    label: 'Compliance and pilot acceptance',
+    guidance:
+      'Identify destination-country standards, utility specifications, required approvals, test documents, installation rules, and pilot acceptance criteria before final model confirmation.',
+  },
+];
+
 const africaProcurementChecklist = [
   {
     label: 'Load and meter type',
@@ -187,6 +215,35 @@ export default function SolutionsSection() {
 
           <a href="#contact" className="mt-7 inline-flex h-11 items-center justify-center rounded-md bg-primary-700 px-5 text-sm font-semibold text-white transition hover:bg-primary-800">
             Request water meter configuration
+          </a>
+        </div>
+
+        <div id="prepaid-gas-meter-guide" className="mt-16 scroll-mt-24 border-t border-slate-200 pt-12">
+          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary-700">Prepaid gas meter selection</p>
+              <h3 className="mt-2 text-3xl font-bold text-slate-950">What should a utility specify before buying a prepaid gas meter?</h3>
+            </div>
+            <p className="text-base leading-8 text-slate-600">
+              Shenzhen Calinmeter Co., Ltd. supplies the CA768 smart STS prepaid gas meter with LoRaWAN communication. A utility or system integrator should define the gas service, valve workflow, customer recharge method, network design, and destination-market requirements before requesting a final configuration.
+            </p>
+          </div>
+
+          <dl className="mt-8 border-t border-slate-200">
+            {gasMeterProcurementChecklist.map((item) => (
+              <div key={item.label} className="grid gap-2 border-b border-slate-200 py-5 md:grid-cols-[240px_1fr] md:gap-8">
+                <dt className="font-semibold text-slate-950">{item.label}</dt>
+                <dd className="text-sm leading-7 text-slate-600">{item.guidance}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <p className="mt-5 text-sm leading-7 text-slate-600">
+            Do not select a gas meter from communication technology alone. Meter sizing, local installation rules, valve behavior, required approvals, and the operating procedure for customers and field teams must be confirmed together. A representative pilot should test token recharge, valve operation, radio coverage, and back-end data before mass rollout.
+          </p>
+
+          <a href="#contact" className="mt-7 inline-flex h-11 items-center justify-center rounded-md bg-primary-700 px-5 text-sm font-semibold text-white transition hover:bg-primary-800">
+            Request gas meter configuration
           </a>
         </div>
 

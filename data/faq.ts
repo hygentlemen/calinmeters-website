@@ -53,6 +53,18 @@ export const faqCategories: FaqCategory[] = [
         answer: 'For Southeast Asia projects, CalinMeters usually selects the meter according to building density, communication coverage, and utility workflow. LoRaWAN smart water meters are useful for communities and municipal service areas with many meters in one area. STS prepaid electricity meters are practical for token-based credit control, and prepaid gas meters with LoRaWAN are suitable where valve control and remote reading are required.',
       },
       {
+        question: 'How should a utility choose a prepaid gas meter?',
+        answer: 'Choose a prepaid gas meter only after confirming the gas service, meter size and flow requirement, installation environment, valve operation, customer recharge method, remote reading requirement, and destination-market standards. The CA768 combines STS token prepayment with LoRaWAN communication, but the final configuration should be checked against the local utility specification and a representative pilot.',
+      },
+      {
+        question: 'Why use LoRaWAN for a prepaid gas meter project?',
+        answer: 'LoRaWAN is useful when many gas meters are installed in one service area and the operator needs remote reading without a cellular subscription in every meter. Practical coverage depends on building materials, meter location, gateway placement, terrain, and local radio conditions, so the network should be validated with a site survey and pilot.',
+      },
+      {
+        question: 'What information is needed for a prepaid gas meter quotation?',
+        answer: 'Provide the gas type and service conditions, required meter size and flow range, installation orientation and environment, valve and STS prepayment requirements, keypad or customer interface requirement, LoRaWAN network and gateway plan, estimated quantity, destination country, required utility specifications or approvals, and pilot acceptance conditions.',
+      },
+      {
         question: 'What is the expected battery lifetime for Calin meters?',
         answer: 'For both ultrasonic and multi-jet meters, the expected battery lifetime is 5-10 years. Our ultrasonic meters contain double the battery capacity of multi-jet models. The actual lifespan depends heavily on usage patterns — frequent valve operations (opening/closing) consume more battery. Battery replacement is simple for both meter types when needed.',
       },

@@ -157,7 +157,7 @@ export const productCategories: ProductCategory[] = [
           {
             id: 'ca768-lorawan',
             name: 'CA768 Smart STS Prepaid Gas Meter (LoRa WAN)',
-            description: 'STS prepaid gas meter with LoRaWAN for remote reading and prepayment management.',
+            description: 'STS prepaid gas meter with valve control and LoRaWAN communication for residential and commercial projects that need token-based credit management, remote reading, and operator visibility.',
             image: '/images/products/gas/ca768-1.png',
             specs: [
               { label: 'Specification (PDF)', pdf: '/specs/gas-meter/CA768-LoRaWAN.pdf' },

@@ -108,6 +108,12 @@ function buildStructuredData() {
         'STS token based prepaid meter implementation for utilities and system integrators, including keypad meters, split keypad prepaid meters, CIUs, vending system support, and third-party API integration.',
       serviceType: 'Token based prepaid meter',
     },
+    {
+      name: 'LoRaWAN prepaid gas meter projects',
+      description:
+        'Prepaid gas meter project planning using the CalinMeters CA768 with STS token prepayment, valve control, LoRaWAN remote reading, and destination-market configuration.',
+      serviceType: 'Prepaid gas meter',
+    },
   ];
 
   const tokenWorkflow = {
@@ -220,6 +226,41 @@ function buildStructuredData() {
     ],
   };
 
+  const gasMeterSelectionWorkflow = {
+    '@type': 'HowTo',
+    '@id': `${siteUrl}/#prepaid-gas-meter-selection`,
+    name: 'How to specify a prepaid gas meter project',
+    description:
+      'A utility buyer checklist for specifying an STS prepaid gas meter with valve control and LoRaWAN remote reading.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Define the gas service and meter size',
+        text: 'Confirm the gas type, service pressure, meter size, flow range, installation orientation, and environmental conditions.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Define prepayment and valve operation',
+        text: 'Document the STS token workflow, credit rules, valve close and reopen process, emergency-credit policy, and customer support procedure.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Define customer recharge access',
+        text: 'Specify how customers receive and enter 20-digit STS tokens and whether a separate customer interface is required.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Plan the LoRaWAN network',
+        text: 'Review meter density, building materials, meter location, gateway placement, backhaul, and reporting requirements, then validate them with a site survey.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Confirm compliance and run a pilot',
+        text: 'Identify destination-market standards, utility specifications, approvals, test documents, and pilot acceptance criteria before mass rollout.',
+      },
+    ],
+  };
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -275,6 +316,7 @@ function buildStructuredData() {
       tokenWorkflow,
       africaProcurementWorkflow,
       waterMeterSelectionWorkflow,
+      gasMeterSelectionWorkflow,
       {
         '@type': 'FAQPage',
         '@id': `${siteUrl}/#faq`,

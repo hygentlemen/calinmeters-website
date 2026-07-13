@@ -1,6 +1,6 @@
 export default function SocialSidebar() {
   return (
-    <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-0">
+    <div className="fixed right-0 top-1/2 z-50 hidden -translate-y-1/2 transform flex-col gap-0 xl:flex">
       {/* WhatsApp */}
       <a
         href="https://wa.me/8613713788753"
