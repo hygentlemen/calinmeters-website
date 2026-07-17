@@ -35,6 +35,7 @@ The site now has a crawlable SEO/GEO architecture for the three primary topics:
 - GA4 and `specification_download` tracking retained.
 - `robots.txt`, `sitemap.xml`, `llms.txt` and `CNAME` retained.
 - Daily analytics and weekly SEO/GEO GitHub Actions retained.
+- A manually dispatched Search Console sitemap-submission workflow validates the public sitemap, submits it through the official API and reads back its status.
 
 ## Verified Baseline
 

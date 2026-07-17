@@ -22,6 +22,7 @@ npm run lint
 npm run typecheck
 npm run build
 npm run verify:seo
+npm run gsc:submit-sitemap
 ```
 
 `npm run build` exports the site, preserves `CNAME` and generates `out/sitemap.xml` from the exported HTML. `npm run verify:seo` validates route coverage, metadata, canonicals, H1s, JSON-LD, sitemap parity, internal links and local image/PDF references.
@@ -52,6 +53,7 @@ Do not duplicate product names or PDF paths in route files. Do not add certifica
 - Specification clicks emit `specification_download` events.
 - Daily GA4/Search Console reporting runs through `.github/workflows/daily-analytics-report.yml`.
 - The weekly SEO/GEO work item runs through `.github/workflows/seo-geo-weekly.yml`.
+- Sitemap submission is available through the manually dispatched `.github/workflows/search-console-submit.yml` workflow.
 
 Production report workflows use GitHub Secrets documented in `docs/ANALYTICS-AUTOMATION.md`. Never commit OAuth credentials, webhook URLs, keys or tokens.
 
