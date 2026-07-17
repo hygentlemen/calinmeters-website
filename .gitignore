@@ -6,6 +6,7 @@
 # Testing
 /coverage
 /reports/
+/.playwright-cli/
 
 # Next.js
 /.next/

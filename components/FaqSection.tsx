@@ -1,14 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { faqCategories } from '@/data/faq';
 
 function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
+  const answerId = useId();
+
   return (
     <div className="border border-gray-200 rounded-lg overflow-hidden">
       <button
-        onClick={() => setOpen(!open)}
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        aria-expanded={open}
+        aria-controls={answerId}
         className="w-full flex items-center justify-between px-5 py-4 text-left bg-white hover:bg-gray-50 transition"
       >
         <span className="font-medium text-gray-900 pr-4">{question}</span>
@@ -17,12 +22,13 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {open && (
-        <div className="px-5 pb-4 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-3">
+        <div id={answerId} className="px-5 pb-4 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-3">
           {answer}
         </div>
       )}
@@ -46,7 +52,9 @@ export default function FaqSection() {
           {faqCategories.map((cat, i) => (
             <button
               key={cat.topic}
+              type="button"
               onClick={() => setActiveTopic(i)}
+              aria-pressed={activeTopic === i}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
                 activeTopic === i
                   ? 'bg-primary-600 text-white'

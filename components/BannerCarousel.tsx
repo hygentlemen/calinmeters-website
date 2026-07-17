@@ -76,20 +76,22 @@ export default function BannerCarousel() {
 
       {/* Arrow buttons */}
       <button
+        type="button"
         onClick={goPrev}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition"
         aria-label="Previous slide"
       >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
       <button
+        type="button"
         onClick={goNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition"
         aria-label="Next slide"
       >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>
@@ -99,12 +101,19 @@ export default function BannerCarousel() {
         {slides.map((_, i) => (
           <button
             key={i}
+            type="button"
             onClick={() => goTo(i)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              i === current ? 'bg-white scale-110' : 'bg-white/40 hover:bg-white/60'
-            }`}
+            className="group flex h-11 w-11 items-center justify-center rounded-full"
             aria-label={`Go to slide ${i + 1}`}
-          />
+            aria-current={i === current ? 'true' : undefined}
+          >
+            <span
+              aria-hidden="true"
+              className={`h-3 w-3 rounded-full transition-all ${
+                i === current ? 'scale-110 bg-white' : 'bg-white/40 group-hover:bg-white/60'
+              }`}
+            />
+          </button>
         ))}
       </div>
     </section>

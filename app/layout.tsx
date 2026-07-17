@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: [{ url: '/logo.jpg', type: 'image/jpeg' }],
+    shortcut: ['/logo.jpg'],
+  },
   openGraph: {
     title: 'CalinMeters - STS Prepaid Electricity, Water and Gas Meters',
     description: 'Compare STS prepaid electricity, water and gas meters, published model specifications and utility project selection guidance.',
