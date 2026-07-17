@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://calinmeters.com'),
@@ -12,14 +9,6 @@ export const metadata: Metadata = {
     template: '%s | CalinMeters',
   },
   description: 'Shenzhen Calinmeter Co., Ltd. manufactures STS prepaid electricity meters, LoRaWAN smart water meters, prepaid gas meters, CIU, DCU and AMI metering solutions for utilities.',
-  keywords: [
-    'STS prepaid electricity meter',
-    'smart prepaid meter manufacturer',
-    'LoRaWAN smart water meter',
-    'prepaid gas meter',
-    'AMI metering solution',
-    'token based prepaid meter',
-  ],
   alternates: {
     canonical: '/',
   },
@@ -52,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <GoogleAnalytics />
         {children}
       </body>

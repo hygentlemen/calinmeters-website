@@ -4,15 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  async rewrites() {
-    return []
-  },
-  async redirects() {
-    return []
-  },
-  async headers() {
-    return []
-  }
+  trailingSlash: true
 }
 
 module.exports = nextConfig
