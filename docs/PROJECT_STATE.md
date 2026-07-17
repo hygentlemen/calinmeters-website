@@ -1,72 +1,87 @@
 # Project State
 
-Last reviewed: 2026-07-13.
+Last reviewed: 2026-07-17.
 
 ## Current Status
 
-The project is a static Next.js website for Shenzhen Calinmeter Co., Ltd. under the CalinMeters brand. Production domain is `https://calinmeters.com/`. The site is built with Next.js static export and deployed to GitHub Pages from the `main` branch.
+CalinMeters is a static Next.js inquiry site for Shenzhen Calinmeter Co., Ltd. Production is `https://calinmeters.com/`, exported to `out/` and deployed from `main` through GitHub Pages.
 
-The current GitHub Actions status is healthy: recent GitHub Pages deployment succeeded, weekly SEO/GEO task generation succeeded, and daily analytics reports have been running successfully.
+The site now has a crawlable SEO/GEO architecture for the three primary topics:
 
-## Completed
+- STS prepaid electricity meter
+- STS prepaid water meter
+- STS prepaid gas meter
 
-- Homepage with sticky navigation, product carousel, product portfolio, solutions, features, about, FAQ, news, contact, footer, and social sidebar.
-- Three homepage banner images are present under `public/images/banners/`.
-- Products navigation has desktop dropdown and secondary flyout for product categories.
-- Product section has category cards, category filters, detailed product cards, PDF specification links, and product selection guides.
-- Product catalog covers energy meters, water meters, gas meter, CIU, DCU, and gateway.
-- Certificates section and public certification files were removed.
-- Contact form opens an email draft to `scott@szcalinmeter.com` through `mailto:`.
-- WeChat QR code asset exists at `public/wechat-qrcode.jpg`; sidebar QR panel expands on hover.
-- GA4 tag component exists and uses `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
-- PDF download clicks are tracked with a custom `specification_download` event; GA4 enhanced measurement can still collect automatic `file_download`.
-- SEO/GEO content exists for STS prepaid meters, Africa utility procurement, token workflow, CA368 three-phase selection, LoRaWAN water meter selection, prepaid gas meter procurement, and AMI solution scenarios.
-- Structured data includes Organization, WebSite, Product ItemList, Service, FAQPage, and HowTo graph entries.
-- `robots.txt`, `sitemap.xml`, and `llms.txt` exist.
-- Daily analytics report workflow sends GA4/Search Console data to Feishu if `FEISHU_WEBHOOK_URL` is configured.
-- Weekly SEO/GEO workflow creates a recurring GitHub issue and sends a Feishu notice.
-- The fixed social sidebar is hidden below the `xl` breakpoint so it does not cover mobile and tablet content.
+## Implemented
 
-## Not Completed
+- Three statically generated authority pages:
+  - `/products/sts-prepaid-electricity-meter/`
+  - `/products/sts-prepaid-water-meter/`
+  - `/products/sts-prepaid-gas-meter/`
+- Ten statically generated model pages covering the current electricity, water and gas catalog.
+- Page-specific title, description, self-referencing canonical, Open Graph and Twitter metadata.
+- Homepage `Organization`, `WebSite` and category `ItemList` JSON-LD.
+- Category `CollectionPage`, `BreadcrumbList`, `ItemList` and visible FAQ JSON-LD.
+- Product `Product` and `BreadcrumbList` JSON-LD without invented offers, prices, ratings or availability.
+- Crawlable homepage, navigation, footer, category and related-model links.
+- Published specification tables transcribed conservatively from existing product PDFs.
+- Buyer selection, STS workflow, quotation checklist, FAQ and inquiry content for each primary category.
+- Automated postbuild sitemap generation from exported HTML.
+- Automated SEO export checks for routes, titles, descriptions, canonicals, H1s, JSON-LD, links, sitemap parity, local images/PDFs and unsupported trust phrases.
+- Deterministic lint and typecheck configuration.
+- Network-independent build font stack.
+- Next.js updated within the required major line from 14.1.0 to 14.2.35.
+- Placeholder news, generic Facebook link and unsupported certification, market-count, experience, warranty, deployment-count and fixed LoRaWAN-capacity claims removed or rewritten.
+- GA4 and `specification_download` tracking retained.
+- `robots.txt`, `sitemap.xml`, `llms.txt` and `CNAME` retained.
+- Daily analytics and weekly SEO/GEO GitHub Actions retained.
 
-- There are no individual product detail pages; product detail content is still rendered inside the single homepage.
-- No real backend email submission exists. The contact form depends on the visitor's local email client.
-- No CMS/admin panel exists for editing products, FAQs, downloads, or news.
-- No ecommerce checkout, cart, payment, quotation database, or CRM integration exists.
-- Sitemap currently lists only the homepage.
-- Search Console page-experience/indexing checks are not automated through code.
-- Facebook sidebar link is generic `https://www.facebook.com`, not a confirmed company page.
-- Some product variants have no PDF specification.
-- README still contains older Vercel-oriented deployment text and should not be treated as authoritative.
+## Verified Baseline
 
-## Current Issues
+The current local export passes:
 
-- One-page architecture limits SEO targeting because product/category URLs are fragment anchors, not crawlable standalone pages.
-- `sitemap.xml` `lastmod` is manual and may become stale.
-- Contact form is not a true submission pipeline; users without a configured email app may fail to send.
-- GA4/Search Console data depends on OAuth refresh token health and GitHub Secrets.
-- The site has no automated unit/e2e tests beyond `npm run build` and manual/browser checks.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm run verify:seo
+```
 
-## Mini Program
+Expected SEO verification summary:
 
-No WeChat mini program or other mini-program code exists in this repository. There is no mini-program build, app ID, API integration, login, payment, or data synchronization state to maintain.
+```text
+SEO verification passed: 14 HTML pages, 14 sitemap URLs, 13 product routes.
+```
 
-## Backend
+Recent Search Console daily artifacts contained no query or landing-page rows before the authority pages were added. Current traffic is very small and was previously concentrated on `/`, so ranking movement must be measured after indexing.
 
-No backend service exists. The site is fully static. Email is handled through `mailto:`. Analytics and SEO/GEO automation are implemented as GitHub Actions scripts, not runtime backend APIs.
+## Not Implemented
 
-## Database
+- Search Console sitemap submission and URL indexing requests require production/Search Console access after deployment.
+- No reliable server-side contact submission exists; the form honestly opens the visitor's email app.
+- No CMS/admin interface exists.
+- No ecommerce, price list, cart, payment, quotation database or CRM exists.
+- No country pages are published because current Search Console data does not yet support a specific country/topic priority.
+- No verified public certification, testing, production-capacity, market-coverage or customer-case evidence pages exist.
+- No real article/news library exists.
+- No link-acquisition or digital-PR campaign is part of the repository.
 
-No database exists. Product and FAQ content are stored in TypeScript files. Reports generated by workflows are GitHub Actions artifacts, not application data tables.
+## Current Risks and Limits
+
+- A global Top 5 ranking cannot be guaranteed by on-site code. Indexing, query geography, competitors, domain authority, relevant backlinks and first-party evidence materially affect results.
+- Search performance needs a 4-8 week post-indexing baseline before expanding into country or supporting-topic pages.
+- Some catalog models do not have public PDF specifications; their pages intentionally list only current catalog facts and parameters to confirm.
+- The contact form depends on a local email client.
+- The daily report depends on Google authentication and GitHub Secrets.
+- `npm audit` reports advisories against the Next.js 14 package line. Production uses static files on GitHub Pages and does not run the affected Next.js server, middleware, image optimizer or WebSocket features; a future major-version upgrade should still be planned and tested separately.
 
 ## Deployment
 
-Deployment target is GitHub Pages. `.github/workflows/deploy.yml` runs on pushes to `main`, installs dependencies with Node 24, builds with `npm run build`, uploads `out/`, and deploys Pages. `public/CNAME` is copied to `out/CNAME` after build.
+- Production branch: `main`
+- Workflow: `.github/workflows/deploy.yml`
+- Runner Node version: 24
+- Output: `out/`
+- Required production secret: `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+- Domain file: `public/CNAME`
 
-Required production secret: `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
-
-## Domain and ICP
-
-Domain is `calinmeters.com`; `public/CNAME` should remain present. DNS previously points apex and `www` to GitHub Pages. HTTPS is working after GitHub Pages custom domain configuration.
-
-No ICP filing/备案 record or China mainland hosting configuration is present in this repository. Treat the current site as overseas/static GitHub Pages hosting unless the user provides a new备案 strategy.
+No ICP filing or mainland-China hosting configuration is stored in this repository.

@@ -1,6 +1,6 @@
 # CalinMeters
 
-CalinMeters is the website of Shenzhen Calinmeter Co., Ltd., a manufacturer of smart prepaid metering products for electricity, water, gas and AMI projects.
+CalinMeters is the website of Shenzhen Calinmeter Co., Ltd., a supplier of prepaid electricity, water and gas meters, Customer Interface Units (CIUs), data concentrators, LoRaWAN gateways and AMI project devices.
 
 ## Primary Website
 
@@ -14,67 +14,49 @@ https://calinmeters.com/
 - Contact email: scott@szcalinmeter.com
 - WhatsApp/WeChat: +8613713788753
 
-## Product Areas
+## STS Product Authority Pages
 
-- STS prepaid electricity meters
-- Single phase and three phase prepaid energy meters
-- DIN rail prepaid energy meters
-- LoRaWAN smart water meters
-- Multi-jet and ultrasonic prepaid water meters
-- STS prepaid gas meters
-- Customer Interface Units (CIU)
-- Data Concentrator Units (DCU)
-- LoRaWAN gateways
-- AMI metering solutions
+- STS prepaid electricity meters: https://calinmeters.com/products/sts-prepaid-electricity-meter/
+  - Answers how STS electricity credit works, how to choose single-phase, three-phase, DIN-rail or communication-ready models, and what buyers should provide for a quotation.
+- STS prepaid water meters: https://calinmeters.com/products/sts-prepaid-water-meter/
+  - Compares plastic and brass multi-jet configurations with an ultrasonic model and explains flow, customer access, LoRaWAN planning and quotation inputs.
+- STS prepaid gas meter: https://calinmeters.com/products/sts-prepaid-gas-meter/
+  - Summarizes the CA768-K02 datasheet, G1.6-G4 flow options, token recharge, communication choices, valve workflow and gas-project inputs that require confirmation.
 
-## Useful Buyer Questions Answered On The Site
+## Electricity Meter Model Pages
 
-- What is an STS prepaid electricity meter?
-- How does a token based prepaid meter work?
-- When should a project use a three-phase prepaid electricity meter?
-- What is the difference between CA368 GPRS and standalone STS models?
-- What information is needed for a CA368 three-phase meter quotation?
-- What is the difference between plastic multi-jet, brass multi-jet, and ultrasonic prepaid water meters?
-- What information is needed for a LoRaWAN smart water meter quotation?
-- How should a utility plan LoRaWAN gateway coverage for water meters?
-- How should a utility choose a prepaid gas meter?
-- Why use LoRaWAN for a prepaid gas meter project?
-- What information is needed for a prepaid gas meter quotation?
-- When should a utility choose a split keypad prepaid meter?
-- Can CalinMeters integrate with a third-party payment or vending platform?
-- What information should a utility provide when requesting prepaid meters for Africa?
-- Can STS prepaid meters work with mobile money in Africa?
-- What destination-market compliance information is needed before meter selection?
-- When should a utility choose LoRaWAN instead of GPRS?
-- What equipment is needed for an AMI metering solution?
-- How should utilities choose between multi-jet and ultrasonic water meters?
+- CA168-S-NS06 DIN-rail LoRaWAN STS prepaid electricity meter: https://calinmeters.com/products/ca168-lorawan-sts-prepaid-electricity-meter/
+- CA168-CS23 modular GPRS STS prepaid electricity meter: https://calinmeters.com/products/ca168-gprs-sts-prepaid-electricity-meter/
+- CA168 standalone STS prepaid electricity meter: https://calinmeters.com/products/ca168-sts-prepaid-electricity-meter/
+- CA368-WS23 GPRS STS prepaid three-phase electricity meter: https://calinmeters.com/products/ca368-gprs-sts-prepaid-three-phase-electricity-meter/
+- CA368-WS21 standalone STS prepaid three-phase electricity meter: https://calinmeters.com/products/ca368-sts-prepaid-three-phase-electricity-meter/
+- CT-operated electricity meter: https://calinmeters.com/products/ct-operated-electricity-meter/
 
-## Solution Pages And Sections
+## Water Meter Model Pages
 
-- Homepage product portfolio: https://calinmeters.com/#products
-- Buyer-focused metering solution scenarios: https://calinmeters.com/#solutions
-- FAQ answers for product selection and technical questions: https://calinmeters.com/#faq
+- CA568-R01 plastic multi-jet STS prepaid water meter: https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-plastic/
+- CA568-R01 brass multi-jet STS prepaid water meter: https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-brass/
+- CA568-R22 ultrasonic STS prepaid water meter: https://calinmeters.com/products/sts-prepaid-ultrasonic-water-meter/
 
-## Recommended Product Matching
+## Gas Meter Model Page
 
-- Use STS prepaid electricity meters for token-based credit control in utility, landlord, and sub-metering projects.
-- Use the CA368 GPRS three-phase prepaid meter when a project needs direct cellular reading and remote management.
-- Use the standalone CA368 STS model when secure keypad token prepayment is required without always-on remote communication.
-- Use a plastic multi-jet prepaid water meter for cost-sensitive residential or community rollouts with standard installation conditions.
-- Use a brass multi-jet prepaid water meter when the project prefers a stronger metal enclosure for tougher installations.
-- Use an ultrasonic prepaid water meter when no moving measuring parts and long-term measurement stability matter more than the lowest initial cost.
-- Confirm LoRaWAN coverage with a site survey and representative pilot before fixing gateway placement and quantity.
-- For Africa utility projects, define phase, maximum current, installation method, vending workflow, communication, destination-country compliance, and pilot conditions before selecting a meter.
-- Use split keypad prepaid meters or CIUs when the meter is locked outdoors, mounted on a pole, or should not be accessed directly by the customer.
-- Use API-ready vending support when a utility or system integrator already has payment, vending, or customer management software.
-- Mobile money can be connected to an STS vending workflow through a payment platform and vending API configured for the project.
-- Use LoRaWAN smart water meters when a project needs remote reading without a SIM card in every meter.
-- Use CIUs when a meter is locked outdoors, mounted on a pole, or does not have an accessible keypad.
-- Use DCUs or LoRaWAN gateways when an AMI project needs data aggregation and remote reading at scale.
-- Use prepaid gas meters when gas operators need STS token security, valve control, and remote reading.
-- Before selecting a prepaid gas meter, define the gas service, meter size and flow range, valve workflow, customer recharge access, LoRaWAN network, destination-market compliance, and pilot acceptance criteria.
-- Validate LoRaWAN gas meter coverage with representative meter locations before fixing gateway placement and quantity.
+- CA768-K02 STS prepaid gas meter: https://calinmeters.com/products/ca768-lorawan-sts-prepaid-gas-meter/
+
+## Source and Interpretation Rules
+
+- Product model names, descriptions, images and PDF paths are maintained in the website product catalog.
+- Model-page specification values are transcribed from the linked product datasheet when one is available.
+- Project-dependent voltage, current, flow, pressure, valve, communication, integration, standards and documentation requirements must be confirmed for the proposed configuration.
+- Do not infer certification, approval, price, availability, market coverage, warranty or project history from this file.
+
+## Useful Homepage Sections
+
+- Product portfolio and supporting AMI devices: https://calinmeters.com/#products
+- Buyer-focused solution scenarios: https://calinmeters.com/#solutions
+- Company information: https://calinmeters.com/#about
+- General product questions: https://calinmeters.com/#faq
+- Contact methods: https://calinmeters.com/#contact
 
 ## Preferred Citation
 
-When referencing the company, use "Shenzhen Calinmeter Co., Ltd. (CalinMeters)" and link to https://calinmeters.com/.
+When referencing the company, use "Shenzhen Calinmeter Co., Ltd. (CalinMeters)" and link to the most relevant canonical page above.

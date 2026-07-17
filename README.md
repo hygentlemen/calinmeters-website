@@ -1,145 +1,77 @@
-# Calin Meters Website
+# CalinMeters Website
 
-Professional website for Calin Meters - smart prepaid meters manufacturer.
+Static English-language inquiry site for Shenzhen Calinmeter Co., Ltd. (CalinMeters): [https://calinmeters.com/](https://calinmeters.com/).
 
-## Tech Stack
+## Stack and Deployment
 
-- **Framework**: Next.js 14
-- **Styling**: Tailwind CSS
-- **Language**: TypeScript
-- **Deployment**: Vercel
+- Next.js 14 App Router
+- React 18 and TypeScript
+- Tailwind CSS
+- Static export through `output: 'export'`
+- GitHub Pages deployment from `main` through `.github/workflows/deploy.yml`
+- Production output directory: `out/`
 
-## Getting Started
+Do not switch deployment to Vercel without an explicit infrastructure decision. `public/CNAME` is required for the production domain.
 
-### Installation
-
-```bash
-npm install
-```
-
-### Development
+## Local Commands
 
 ```bash
+npm ci
 npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the website.
-
-### Build for Production
-
-```bash
+npm run lint
+npm run typecheck
 npm run build
+npm run verify:seo
 ```
 
-### Preview Production Build
+`npm run build` exports the site, preserves `CNAME` and generates `out/sitemap.xml` from the exported HTML. `npm run verify:seo` validates route coverage, metadata, canonicals, H1s, JSON-LD, sitemap parity, internal links and local image/PDF references.
 
-```bash
-npm start
+## SEO/GEO Page Architecture
+
+The homepage is the company and product-portfolio hub. Three canonical authority pages own the primary search topics:
+
+- `/products/sts-prepaid-electricity-meter/`
+- `/products/sts-prepaid-water-meter/`
+- `/products/sts-prepaid-gas-meter/`
+
+Ten model pages are statically generated from the product catalog. Category and model routes are implemented in `app/products/[slug]/page.tsx` through `generateStaticParams`.
+
+## Content Sources
+
+- `data/products.ts`: product identity, model, slug, description, images, PDF links and published specifications
+- `data/faq.ts`: FAQ questions and answers
+- `data/seoPages.ts`: category-page buyer guidance that references product IDs and FAQ questions
+- `public/specs/`: downloadable product datasheets
+- `public/llms.txt`: canonical GEO discovery map
+
+Do not duplicate product names or PDF paths in route files. Do not add certification, approval, price, market, production-capacity, project-history or warranty claims without a reviewable source.
+
+## Analytics and Automation
+
+- GA4 uses `NEXT_PUBLIC_GA_MEASUREMENT_ID` during the production build.
+- Specification clicks emit `specification_download` events.
+- Daily GA4/Search Console reporting runs through `.github/workflows/daily-analytics-report.yml`.
+- The weekly SEO/GEO work item runs through `.github/workflows/seo-geo-weekly.yml`.
+
+Production report workflows use GitHub Secrets documented in `docs/ANALYTICS-AUTOMATION.md`. Never commit OAuth credentials, webhook URLs, keys or tokens.
+
+## Repository Layout
+
+```text
+app/                    App Router pages, layout and global CSS
+components/             Homepage, catalog, analytics and structured-data UI
+data/                   Product, FAQ and authority-page content sources
+lib/                    Site identity and catalog lookup helpers
+public/                 Images, PDFs, CNAME and search discovery files
+scripts/                Postbuild, SEO verification and reporting scripts
+.github/workflows/      GitHub Pages, analytics and weekly SEO automation
+docs/                   Project state, decisions, plans and handoff
 ```
 
-## Deploy to Vercel
+## Release Checklist
 
-### Option 1: Vercel Dashboard (Recommended)
-
-1. Push this repository to GitHub
-2. Go to [vercel.com](https://vercel.com)
-3. Click "New Project"
-4. Import your repository
-5. Configure project settings:
-   - Framework Preset: Next.js
-   - Root Directory: `./`
-6. Click "Deploy"
-
-### Option 2: Vercel CLI
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Login to Vercel
-vercel login
-
-# Deploy
-vercel
-```
-
-## Domain Configuration
-
-1. Deploy to Vercel first
-2. In Vercel dashboard, go to your project
-3. Go to "Settings" → "Domains"
-4. Add `www.calinmeters.com`
-5. Follow Vercel's instructions to update DNS records
-
-## Content Structure
-
-### Main Sections
-
-- **Home**: Hero section with product overview
-- **Products**: Smart electricity, water, and gas meters
-- **About Us**: Company information and experience
-- **News**: Industry insights and updates
-- **Contact**: Contact form and information
-
-### Adding Product Images
-
-1. Copy product images from `/Volumes/My Passport/表计/产品图片及使用说明/`
-2. Place them in `/public/images/products/`
-3. Update the product cards in `app/page.tsx`
-
-### Adding Company Logo
-
-1. Copy logo from `/Volumes/My Passport/表计/宣传资料/Logo.jpg`
-2. Place in `/public/logo.png`
-3. Update navigation in `app/page.tsx`
-
-## SEO Optimization
-
-The website is already optimized for search engines with:
-
-- Semantic HTML structure
-- Proper meta tags
-- Responsive design
-- Fast page loads
-
-To further improve SEO:
-
-1. Add unique title and description to each page
-2. Create a sitemap.xml
-3. Add schema.org markup
-4. Create individual product pages
-
-## Folder Structure
-
-```
-calinmeters-website/
-├── app/
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── public/
-│   ├── images/
-│   └── logo.png
-├── package.json
-├── next.config.js
-├── tailwind.config.ts
-└── tsconfig.json
-```
-
-## Customization
-
-### Colors
-
-Edit `tailwind.config.ts` to change the color scheme.
-
-### Content
-
-Edit `app/page.tsx` to update text, products, and sections.
-
-### Adding New Pages
-
-Create new directories in `app/` with `page.tsx` files.
-
-## License
-
-Copyright © 2025 Calin Meters. All rights reserved.
+1. Run lint, typecheck, build and SEO verification.
+2. Check homepage plus electricity, water and gas category/model samples on desktop and mobile.
+3. Push to `main` to deploy through GitHub Pages.
+4. Confirm production canonical URLs and `sitemap.xml`.
+5. Submit the sitemap and request indexing for the three authority pages in Google Search Console.

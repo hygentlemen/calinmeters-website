@@ -2,33 +2,33 @@
 
 This is a rolling plan. Update it after reviewing actual Search Console and GA4 data.
 
-## Week 1: Technical SEO Baseline
+## Week 1 After Deployment: Indexing Baseline
 
-- Review Search Console indexing and page experience.
-- Confirm sitemap, robots.txt, and canonical behavior.
-- Check GA4 download and contact tracking.
-- Pick one product page for title/meta/heading cleanup.
+- Confirm all 14 canonical URLs in the production sitemap.
+- Submit the sitemap and request indexing for the three category authority pages.
+- Check GA4 specification-download and contact events.
+- Record deployment and first crawl dates in the weekly issue.
 
-## Week 2: Energy Meter Depth
+## Week 2: Crawl and Snippet Review
 
-- Improve Single Phase Energy Meter section.
-- Add FAQ content around STS prepaid meters and token entry.
-- Add answer-style copy for "What is an STS prepaid electricity meter?"
-- Review PDF download visibility.
+- Review indexing status, selected canonicals and crawl errors.
+- Check titles/descriptions rendered for the three authority pages.
+- Confirm internal links and PDF downloads from representative model pages.
+- Fix only observed technical or snippet problems; do not add speculative country pages.
 
-## Week 3: Water Meter Depth
+## Week 3: First-Party Evidence
 
-- Improve Water Meter category copy.
-- Add FAQ content around LoRaWAN smart water meters.
-- Add selection guidance for utility water metering projects.
-- Strengthen image alt text and internal links.
+- Collect one reviewable source for product testing, project process or engineering capability.
+- Add missing model datasheets only after document review.
+- Identify one original diagram/photo/case asset that can be published with permission.
+- Keep unsupported certification, market, capacity and warranty claims unpublished.
 
-## Week 4: Gas Meter and AMI System
+## Week 4: Query and Conversion Review
 
-- Improve Gas Meter copy.
-- Add AMI explanation covering CIU, DCU, and gateway roles.
-- Create or improve answer content for "What equipment is needed for an AMI metering system?"
-- Review lead paths from product cards to contact.
+- Compare impressions, clicks, CTR and average position by query/country/page.
+- Review authority-page to model/PDF/contact engagement.
+- Choose the next content improvement from observed demand.
+- Defer regional or supporting pages if the data is still too sparse.
 
 ## Monthly Review
 
@@ -37,3 +37,4 @@ This is a rolling plan. Update it after reviewing actual Search Console and GA4 
 - Countries with rising impressions or traffic.
 - Product pages with visits but weak contact/download behavior.
 - Next month page priorities.
+- Relevant backlinks and referring domains acquired.

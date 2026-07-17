@@ -30,35 +30,38 @@ Codex can then read the Issue from GitHub, perform the checks or website changes
 
 ## Phase 1: Technical Foundation
 
-- Confirm sitemap, robots.txt, canonical URLs, redirects, and HTTPS.
-- Improve page titles, meta descriptions, headings, image alt text, and internal links.
-- Add structured data for Organization, Product, BreadcrumbList, and FAQ where applicable.
-- Confirm PDF downloads and contact actions are trackable in GA4.
+- Status: implemented locally on 2026-07-17; production verification remains after deployment.
+- Sitemap generation, robots declaration, self-canonicals, titles, descriptions, H1s, image alt text and crawlable internal links are automated or verified.
+- Organization, WebSite, CollectionPage, Product, BreadcrumbList, ItemList and visible FAQ structured data are scoped to the appropriate pages.
+- PDF downloads and contact actions emit GA4 events when the production measurement ID is configured.
 
 ## Phase 2: Product Page Depth
 
-- Expand product pages around buyer questions, not generic marketing claims.
-- Each product page should explain:
-  - Meter type and model name
-  - Communication method
-  - Application scenario
-  - Utility/customer fit
-  - Key specifications
-  - Related downloads
-  - FAQ
+- Status: implemented for three category authority pages and ten model pages on 2026-07-17.
+- Continue improving only from product documents, engineering input, approved customer evidence and measured buyer demand.
+- Keep model identity, communication, applications, published specifications, related downloads and quotation-confirmation fields aligned with `data/products.ts`.
 
 ## Phase 3: GEO Readiness
 
-- Write concise answer-style sections that AI search engines can quote.
-- Use stable entity names and consistent terminology.
-- Add comparison, selection, and use-case content for utility buyers.
-- Avoid vague claims unless supported by visible evidence.
+- Status: initial implementation complete.
+- Three category pages provide concise direct answers, comparison/selection guidance, workflows, quotation checklists and visible FAQ answers.
+- `llms.txt`, structured data and preferred company naming use stable canonical URLs and consistent entities.
+- The next improvement is first-party evidence, not more generic prose.
 
 ## Phase 4: Market Expansion
 
-- Build country/region-oriented content when Search Console shows demand.
-- Prioritize Africa, Southeast Asia, Latin America, and utility procurement queries when data supports them.
-- Create pages around AMI systems, prepaid metering, LoRaWAN water metering, and STS token workflows.
+- Status: intentionally deferred until production pages are indexed and have 4-8 weeks of data.
+- Build country/region-oriented content only when Search Console shows demand and the company can add specific first-party value.
+- Prioritize Africa, Southeast Asia, Latin America and utility procurement queries only when query/country/page evidence supports them.
+- Create AMI, LoRaWAN and STS workflow support pages only when they answer a distinct intent without competing with the three category owners.
+
+## Current Next Actions
+
+1. Deploy and verify the production export.
+2. Submit the sitemap and request indexing for the three authority pages.
+3. Establish a 4-8 week Search Console baseline by query, country, device and landing page.
+4. Add reviewable technical/company/customer evidence.
+5. Earn relevant industry, partner and distributor citations outside the repository.
 
 ## Success Metrics
 

@@ -1,32 +1,33 @@
 # TODO
 
-## P0
+## P0 - Production Indexing and Measurement
 
-1. Create standalone category pages for Energy Meter, Water Meter, Gas Meter, CIU, DCU, and Gateway using `data/products.ts` as the source.
-2. Create standalone product detail pages for each product variant with stable URLs, canonical metadata, product copy, images, and PDF links.
-3. Update `public/sitemap.xml` to include category and product URLs with current `lastmod`.
-4. Add BreadcrumbList structured data for new category/product pages.
-5. Verify new pages with `npm run build` and production browser checks after deployment.
+1. Deploy the 2026-07-17 authority/model page release through the existing GitHub Pages workflow.
+2. Verify the three authority pages, representative model pages, `robots.txt` and `sitemap.xml` on the production domain.
+3. Submit `https://calinmeters.com/sitemap.xml` in Google Search Console.
+4. Request indexing for the three authority pages.
+5. Record the deployment date in the weekly SEO/GEO issue.
+6. Monitor the three primary query clusters by country, device and landing page for 4-8 weeks.
 
-## P1
+## P1 - Evidence and Conversion
 
-1. Replace the `mailto:`-only contact form with a reliable submission flow, such as Formspree, Basin, Cloudflare Worker, or another approved endpoint.
-2. Keep a no-database fallback message showing `scott@szcalinmeter.com` if the submission endpoint fails.
-3. Replace generic Facebook URL with the real company Facebook page or remove the Facebook button.
-4. Add missing product PDFs or hide empty specification actions for products without files.
-5. Refresh `public/sitemap.xml` automatically during build instead of editing it manually.
+1. Collect reviewable sources for any certification, test capability, production capacity, market coverage, warranty or customer project statement before publishing it.
+2. Create buyer evidence pages only from approved source documents and customer permissions.
+3. Replace the mail-client-only form with an approved reliable submission endpoint and keep direct email/WhatsApp fallbacks.
+4. Add missing model specification PDFs or keep the current honest confirmation state.
+5. Add real inquiry-click reporting to the daily analytics summary.
 
-## P2
+## P2 - Demand-Led Content Expansion
 
-1. Update `README.md` so it matches the current GitHub Pages deployment instead of Vercel.
-2. Add an SEO check script that verifies title, description, canonical, sitemap, robots, GA tag, and JSON-LD presence in `out/index.html`.
-3. Add a link-check script for all PDF/image assets referenced by `data/products.ts`.
-4. Add a weekly workflow step that posts the latest daily analytics artifact link into the SEO/GEO issue.
+1. Select the first country or regional page from actual Search Console impressions, not assumptions.
+2. Publish original field content: installation photos, commissioning steps, network survey examples, pilot criteria and engineering answers.
+3. Add real crawlable articles only when subject matter and source evidence are available.
+4. Build relevant industry citations, distributor links, partner references and digital PR outside the repository.
+5. Review whether CIU, DCU and gateway products merit standalone pages based on search and buyer behavior.
 
-## P3
+## P3 - Platform Maintenance
 
-1. Add alt-text review for every product and banner image.
-2. Add actual news/article pages or remove the news section if it remains static.
-3. Add region-focused landing content for Southeast Asia if Search Console shows related impressions.
-4. Add FAQ schema tests to catch invalid JSON-LD after FAQ edits.
-5. Review mobile navigation anchors after standalone pages are introduced.
+1. Plan and test a future Next.js major-version upgrade; current production is static export, but the Next.js 14 package line receives audit advisories.
+2. Add automated accessibility and performance checks after the route architecture stabilizes.
+3. Review Search Console page experience and Core Web Vitals after production traffic reaches a useful level.
+4. Keep the product/FAQ/SEO registries and generated sitemap in parity through `npm run verify:seo`.
