@@ -192,3 +192,12 @@ export const faqCategories: FaqCategory[] = [
     ],
   },
 ];
+
+export const allFaqItems = faqCategories.flatMap((category) => category.items);
+
+export function getFaqItemsByQuestions(questions: string[]) {
+  return questions.flatMap((question) => {
+    const item = allFaqItems.find((candidate) => candidate.question === question);
+    return item ? [item] : [];
+  });
+}
