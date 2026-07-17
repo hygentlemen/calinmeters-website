@@ -84,5 +84,11 @@ function formatError(error) {
     error?.cause?.message,
   ].filter((value) => typeof value === 'string' && value.length > 0);
 
-  return parts.length > 0 ? [...new Set(parts)].join('\n') : String(error);
+  const message = parts.length > 0 ? [...new Set(parts)].join('\n') : String(error);
+
+  if (message.toLowerCase().includes('insufficient authentication scopes')) {
+    return `${message}\nThe configured Google OAuth refresh token is read-only. Replace GOOGLE_OAUTH_REFRESH_TOKEN with a token authorized for https://www.googleapis.com/auth/webmasters, then rerun the workflow.`;
+  }
+
+  return message;
 }

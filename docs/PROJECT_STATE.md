@@ -58,7 +58,8 @@ Recent Search Console daily artifacts contained no query or landing-page rows be
 
 ## Not Implemented
 
-- Search Console sitemap submission and URL indexing requests require production/Search Console access after deployment.
+- Search Console sitemap submission was attempted on 2026-07-17. The site property is available, but the current GitHub OAuth refresh token has read-only Search Console scope. Replace it with a token authorized for `https://www.googleapis.com/auth/webmasters`, then rerun `Submit Search Console Sitemap`.
+- Individual URL indexing requests still require Search Console UI access; Google does not provide a general-purpose indexing API for ordinary product pages.
 - No reliable server-side contact submission exists; the form honestly opens the visitor's email app.
 - No CMS/admin interface exists.
 - No ecommerce, price list, cart, payment, quotation database or CRM exists.

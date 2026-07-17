@@ -40,7 +40,7 @@ npm run verify:seo
 
 GA4 使用 `NEXT_PUBLIC_GA_MEASUREMENT_ID`。PDF 自定义事件是 `specification_download`，型号页会带 `source_page`。日报和每周 SEO/GEO Issue 工作流保持不变。
 
-Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动提交。它复用日报的 Google OAuth/服务账号 Secrets，先验证公开 sitemap，再调用官方 Sitemaps API 并读取提交状态。
+Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动提交。它复用日报的 Google OAuth/服务账号 Secrets，先验证公开 sitemap，再调用官方 Sitemaps API 并读取提交状态。2026-07-17 首次运行确认当前 `GOOGLE_OAUTH_REFRESH_TOKEN` 只有只读 scope；需要生成包含 `https://www.googleapis.com/auth/webmasters` 的 token 后重跑。
 
 ## 上线后的首要工作
 
