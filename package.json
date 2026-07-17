@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "cp public/CNAME out/CNAME 2>/dev/null || true",
+    "postbuild": "node scripts/postbuild.mjs",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "verify:seo": "node scripts/verify-seo.mjs",
     "report:daily": "node scripts/daily-analytics-report.mjs",
     "seo-geo:weekly": "node scripts/seo-geo-weekly-issue.mjs"
   },

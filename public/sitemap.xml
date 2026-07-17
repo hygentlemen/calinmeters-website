@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://calinmeters.com/</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://calinmeters.com/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/sts-prepaid-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/sts-prepaid-water-meter/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/sts-prepaid-gas-meter/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/ca168-lorawan-sts-prepaid-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/ca168-gprs-sts-prepaid-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/ca168-sts-prepaid-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/ca368-gprs-sts-prepaid-three-phase-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/ca368-sts-prepaid-three-phase-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/ct-operated-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-plastic/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-brass/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/sts-prepaid-ultrasonic-water-meter/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://calinmeters.com/products/ca768-lorawan-sts-prepaid-gas-meter/</loc><lastmod>2026-07-17</lastmod></url>
 </urlset>
