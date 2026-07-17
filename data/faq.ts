@@ -14,7 +14,7 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         question: 'What is the difference between brass and plastic water meters?',
-        answer: 'Brass meters offer higher impact resistance, excellent aging resistance (over 20 years lifespan vs 5-10 years for plastic), more stable measurement accuracy over time, and more reliable sealing. Plastic meters are more cost-effective but may experience oxidation, hardening, or embrittlement long-term, especially in high-temperature or direct sunlight environments.',
+        answer: 'Brass provides a metal meter body and is often specified where buyers prefer higher impact resistance. Plastic reduces body weight and can suit cost-sensitive standard installations. The correct choice still depends on water conditions, pipe size, installation environment, utility specifications, lifecycle plan, and the exact body configuration offered for the model.',
       },
       {
         question: 'Does a prepaid meter have to come with a SIM card?',
@@ -66,7 +66,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         question: 'What is the expected battery lifetime for Calin meters?',
-        answer: 'For both ultrasonic and multi-jet meters, the expected battery lifetime is 5-10 years. Our ultrasonic meters contain double the battery capacity of multi-jet models. The actual lifespan depends heavily on usage patterns — frequent valve operations (opening/closing) consume more battery. Battery replacement is simple for both meter types when needed.',
+        answer: 'The published CA568-R22 ultrasonic datasheet states two ER26500 cells with 19000 mAh total capacity and describes battery life of up to 10 years. Actual service life depends on reporting intervals, communication coverage, valve operations, temperature, battery configuration, and field maintenance, so the project should confirm the operating assumptions and replacement procedure.',
       },
     ],
   },
@@ -75,15 +75,15 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         question: 'What is the difference between LoRa and LoRaWAN?',
-        answer: 'LoRaWAN is an enhanced and optimized version of LoRa technology. Key differences: LoRaWAN has better connectivity and penetration (1-1.5 km vs LoRa less than 1 km), real-time data granularity (hourly vs 24-hour latency), and can manage over 500 meters per gateway versus 200-300 for LoRa.',
+        answer: 'LoRa is the radio modulation used for long-range, low-power links. LoRaWAN is a network protocol built around LoRa radios and defines how end devices, gateways and network servers communicate. Coverage, reporting interval and gateway capacity are not fixed universal values; they depend on the radio plan, payloads, duty-cycle rules, terrain, building materials and network design.',
       },
       {
         question: 'What causes signal noise in PLC communication?',
-        answer: 'PLC (Power Line Communication) signal noise can be caused by: electromagnetic interference from motors and switching power supplies, design flaws like impedance mismatch or aging infrastructure leading to signal reflection, interference from other frequency bands, and inherent environmental noise. LoRaWAN is recommended as an alternative as it operates in a cleaner electromagnetic environment with frequency-hopping capabilities that automatically switch channels to maintain stable connectivity.',
+        answer: 'PLC (Power Line Communication) performance can be affected by motors, switching power supplies, impedance changes, aging wiring, signal reflection and other electrical noise. The project should test the actual network. LoRaWAN may be evaluated as an alternative where a radio network is practical, but its coverage must also be validated through a site survey and pilot.',
       },
       {
         question: 'How many meters can be managed by one gateway?',
-        answer: 'We recommend managing up to 500 meters per LoRaWAN gateway. The communication distance between gateway and meters is up to 2 kilometers by line of sight.',
+        answer: 'There is no single gateway count or distance that applies to every deployment. Capacity and coverage depend on payload size, reporting frequency, channel plan, local duty-cycle rules, spreading factors, building materials, terrain, interference, gateway placement and backhaul. Use a network calculation followed by a representative site survey and pilot.',
       },
       {
         question: 'When should a utility choose LoRaWAN instead of GPRS for smart meters?',
@@ -124,19 +124,19 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         question: 'Do prepaid meter tokens have an expiry date?',
-        answer: 'Tokens for prepaid meters do not have an expiry date. They remain valid indefinitely. However, if a user enters 50 new tokens after losing one, the lost token would no longer work. This scenario is rare, as most users contact their service provider to reprint lost tokens.',
+        answer: 'Token acceptance depends on the meter state, vending configuration, token sequence and key-management lifecycle. Do not assume that every unused token remains valid indefinitely. If a token is rejected or lost, the customer should contact the responsible utility or vending operator so the transaction can be checked against that meter.',
       },
       {
         question: 'How does the vending system work?',
-        answer: 'Our vending system is a web browser-based platform. You log in, select the meter number, and generate tokens. The system is flexible and compatible with third-party payment gateways like mobile money. When a customer purchases a token, it can be automatically sent remotely to the meter, so the customer does not need to enter the token manually.',
+        answer: 'A vending system registers meters, accepts a credit-sale request and generates the token used by the customer. Browser access, payment integration, mobile-money delivery, API behavior and remote token loading are project-specific. Confirm the required workflow, responsibilities and supported interfaces before selecting the final system architecture.',
       },
       {
         question: 'Do you provide the management system or can we use our own?',
-        answer: 'We are manufacturers focused on meters and solutions. Most of our clients have their own software. We provide API to allow partners to build their own platform. Alternatively, we also offer our own vending system if needed.',
+        answer: 'CalinMeters can review either a supplier-provided vending option or integration with the buyer’s existing platform. The available API, key-management boundary, payment connection, security responsibilities and supported meter functions must be confirmed for the proposed configuration.',
       },
       {
         question: 'Can CalinMeters integrate with a third-party payment or vending platform?',
-        answer: 'Yes. Shenzhen Calinmeter Co., Ltd. can support API integration for partners that already operate payment, vending, or meter management software. This is useful for utilities and system integrators that want to keep their existing customer platform while adding STS prepaid meters, CIUs, DCUs, LoRaWAN gateways, or AMI devices.',
+        answer: 'Third-party payment or vending integration can be reviewed for a project. The buyer should provide the existing platform, required API operations, authentication method, token-delivery workflow, key-management boundary, supported devices and acceptance tests so compatibility can be confirmed in writing.',
       },
       {
         question: 'Can STS prepaid meters work with mobile money in Africa?',
@@ -145,15 +145,15 @@ export const faqCategories: FaqCategory[] = [
     ],
   },
   {
-    topic: 'Sales & Warranty',
+    topic: 'Commercial Terms',
     items: [
       {
         question: 'What are your payment terms?',
-        answer: 'We usually take a deposit as advance payment, then manufacture, and before shipment we collect the balance. For large quantity orders, we offer batch-by-batch rolling payment terms — you can divide large orders into batches, pay per batch as you withdraw, and we maintain reserve stock for continuous supply.',
+        answer: 'Payment terms are quotation- and contract-specific. Request the proposed deposit, balance, shipment, batch-delivery and banking terms in writing for the current order before making a commercial decision.',
       },
       {
         question: 'What is your warranty policy?',
-        answer: 'Meters are free from defects in material and workmanship for 18 months from the date of confirmed receipt. We ship 0.2% of the main order as free replacements. Before warranty expiry, after the provided free replacements are consumed, Calin will continue to provide free replacements for any confirmed defective meters due to quality issues.',
+        answer: 'Warranty coverage depends on the selected product, configuration and sales contract. Ask CalinMeters for the written warranty period, start date, exclusions, failure-confirmation process, spare-unit arrangement and replacement responsibility that apply to the specific quotation.',
       },
       {
         question: 'Can you share the price list?',
@@ -187,7 +187,7 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         question: 'How mature is the ultrasonic water meter technology?',
-        answer: 'After implementing improvements to address initial field issues, our ultrasonic meters (with over 1,000 units deployed) have operated successfully for more than a year without customer complaints. They share similar electronic components with our mature multi-jet meters but feature simpler mechanical structures. We recommend conducting pilot tests before large-scale deployment.',
+        answer: 'Ultrasonic water metering uses a no-moving-parts measuring principle, but product maturity for a specific project should be assessed through the published specifications, test documentation, installation requirements and a representative pilot. Validate flow performance, communication, battery assumptions, valve operations and maintenance procedures before large-scale deployment.',
       },
     ],
   },

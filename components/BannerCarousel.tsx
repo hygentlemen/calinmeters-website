@@ -1,21 +1,22 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 
 const slides = [
   {
     image: '/images/banners/banner-product.jpg',
-    alt: 'Smart Prepaid Metering Solutions',
-    headline: 'Smart Prepaid Metering Solutions',
-    subline: 'Electricity · Water · Gas',
+    alt: 'CalinMeters prepaid electricity, water and gas meter products',
+    headline: 'STS Prepaid Electricity, Water and Gas Meter Solutions',
+    subline: 'Product selection for utility and metering projects',
   },
   {
     image: '/images/banners/banner-field.jpg',
-    alt: 'Field Applications',
+    alt: 'Metering products installed for field applications',
   },
   {
     image: '/images/banners/banner-factory.jpg',
-    alt: 'Manufacturing Facility',
+    alt: 'CalinMeters manufacturing facility',
   },
 ];
 
@@ -41,19 +42,22 @@ export default function BannerCarousel() {
   }, [goNext]);
 
   return (
-    <section className="relative w-full h-[400px] md:h-[600px] overflow-hidden bg-gray-100">
+    <section id="home" aria-label="CalinMeters product overview" className="relative h-[400px] w-full overflow-hidden bg-gray-100 md:h-[600px]">
       {/* Slides */}
       {slides.map((slide, i) => (
         <div
-          key={i}
+          key={slide.image}
           className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
             i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}
         >
-          <img
+          <Image
             src={slide.image}
             alt={slide.alt}
-            className="w-full h-full object-cover"
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            className="object-cover"
           />
           {slide.headline && (
             <div className="absolute inset-x-0 top-0 z-10 h-32 md:h-44 bg-gradient-to-b from-[#f8fafc] via-[#f8fafc]/95 to-[#f8fafc]/0">

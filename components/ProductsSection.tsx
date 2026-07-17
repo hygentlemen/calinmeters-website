@@ -1,8 +1,11 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { productCategories, type ProductVariant, type ProductCategory } from '@/data/products';
 import { trackEvent } from '@/components/GoogleAnalytics';
+import { productPath } from '@/lib/site';
 
 const imageVersion = '20260529';
 
@@ -267,9 +270,12 @@ function VariantCard({ variant }: { variant: ProductVariant }) {
     <article id={`product-${variant.id}`} className="group flex h-full scroll-mt-24 flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-lg">
       <div className="h-60 overflow-hidden bg-slate-50 flex items-center justify-center p-2">
         {!imgError ? (
-          <img
+          <Image
             src={versionedImage(variant.image)}
             alt={variant.name}
+            width={640}
+            height={480}
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
             className="h-full w-full scale-[1.35] object-contain transition duration-300 group-hover:scale-[1.45]"
             onError={() => setImgError(true)}
           />
@@ -285,10 +291,22 @@ function VariantCard({ variant }: { variant: ProductVariant }) {
             </span>
           ))}
         </div>
-        <h5 className="text-base font-semibold leading-snug text-slate-950">{variant.name}</h5>
+        <h5 className="text-base font-semibold leading-snug text-slate-950">
+          {variant.slug ? (
+            <Link href={productPath(variant.slug)} className="hover:text-primary-700">{variant.name}</Link>
+          ) : variant.name}
+        </h5>
         <p className="mt-2 min-h-10 text-sm leading-6 text-slate-600">{variant.description}</p>
-        {variant.specs.length > 0 && (
-          <div className="mt-auto pt-5">
+        {(variant.slug || variant.specs.length > 0) && (
+          <div className="mt-auto flex flex-wrap gap-2 pt-5">
+            {variant.slug && (
+              <Link
+                href={productPath(variant.slug)}
+                className="inline-flex h-10 items-center justify-center rounded-md bg-primary-700 px-3 text-sm font-semibold text-white transition hover:bg-primary-800"
+              >
+                Product details
+              </Link>
+            )}
             {variant.specs.map((spec, i) => (
               <a
                 key={i}
@@ -333,42 +351,47 @@ function CategoryOverviewCard({
   const summary = getCategorySummary(category);
 
   return (
-    <button
-      type="button"
-      onClick={onSelect}
+    <article
       className={`group flex h-full flex-col overflow-hidden rounded-md border bg-white text-left transition hover:-translate-y-0.5 hover:shadow-lg ${
         active ? 'border-primary-500 shadow-md ring-1 ring-primary-100' : 'border-slate-200 hover:border-primary-200'
       }`}
     >
-      <div className="flex h-64 items-center justify-center overflow-hidden bg-slate-50 p-2">
-        {!imgError ? (
-          <img
-            src={versionedImage(category.image)}
-            alt={category.name}
-            className="h-full w-full scale-[1.25] object-contain transition duration-300 group-hover:scale-[1.35]"
-            onError={() => setImgError(true)}
-          />
+      <button type="button" onClick={onSelect} className="flex flex-1 flex-col text-left">
+        <div className="flex h-64 w-full items-center justify-center overflow-hidden bg-slate-50 p-2">
+          {!imgError ? (
+            <Image
+              src={versionedImage(category.image)}
+              alt={category.name}
+              width={640}
+              height={480}
+              sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+              className="h-full w-full scale-[1.25] object-contain transition duration-300 group-hover:scale-[1.35]"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div className="text-center text-sm text-slate-400">Product Image</div>
+          )}
+        </div>
+        <div className="flex flex-1 flex-col p-5 pb-3">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <h3 className="text-xl font-bold text-slate-950">{category.name}</h3>
+            <span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">{productCount} items</span>
+          </div>
+          <p className="text-sm leading-6 text-slate-600">{category.description}</p>
+          {summary && <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-primary-700">{summary}</p>}
+        </div>
+      </button>
+      <div className="px-5 pb-5">
+        {category.slug ? (
+          <Link href={productPath(category.slug)} className="inline-flex min-h-10 items-center font-semibold text-primary-700 hover:text-primary-900">
+            Explore the category guide
+            <span aria-hidden="true" className="ml-1.5">→</span>
+          </Link>
         ) : (
-          <div className="text-slate-400 text-sm text-center">Product Image</div>
+          <button type="button" onClick={onSelect} className="inline-flex min-h-10 items-center font-semibold text-primary-700 hover:text-primary-900">View products</button>
         )}
       </div>
-      <div className="flex flex-1 flex-col p-5">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <h3 className="text-xl font-bold text-slate-950">{category.name}</h3>
-          <span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
-            {productCount} items
-          </span>
-        </div>
-        <p className="text-sm leading-6 text-slate-600">{category.description}</p>
-        {summary && <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-primary-700">{summary}</p>}
-        <span className="mt-5 inline-flex items-center text-sm font-semibold text-primary-700">
-          View products
-          <svg className="ml-1.5 h-4 w-4 transition group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </span>
-      </div>
-    </button>
+    </article>
   );
 }
 
@@ -382,10 +405,12 @@ function ProductDetailSection({ category }: { category: ProductCategory }) {
         <div className="flex items-center gap-5">
           <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white p-2">
           {!imgError ? (
-            <img
+            <Image
               src={versionedImage(category.image)}
               alt={category.name}
-                className="h-full w-full object-contain"
+              width={160}
+              height={160}
+              className="h-full w-full object-contain"
               onError={() => setImgError(true)}
             />
           ) : (

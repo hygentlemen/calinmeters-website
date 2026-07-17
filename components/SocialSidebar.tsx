@@ -1,9 +1,12 @@
+import Image from 'next/image';
+import { site } from '@/lib/site';
+
 export default function SocialSidebar() {
   return (
     <div className="fixed right-0 top-1/2 z-50 hidden -translate-y-1/2 transform flex-col gap-0 xl:flex">
       {/* WhatsApp */}
       <a
-        href="https://wa.me/8613713788753"
+        href={site.whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="bg-green-500 hover:bg-green-600 text-white p-3 flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer"
@@ -28,9 +31,11 @@ export default function SocialSidebar() {
         <div className="pointer-events-none absolute right-full top-1/2 mr-3 w-56 origin-right -translate-y-1/2 translate-x-3 scale-95 overflow-hidden rounded-lg bg-white opacity-0 shadow-xl ring-1 ring-black/5 transition-all duration-300 ease-out group-hover:pointer-events-auto group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100">
           <div className="p-4 text-center">
             <div className="mb-3 text-sm font-semibold text-gray-800">Scan WeChat QR Code</div>
-            <img
-              src="/wechat-qrcode.jpg?v=20260529"
+            <Image
+              src="/wechat-qrcode.jpg"
               alt="WeChat QR Code"
+              width={176}
+              height={176}
               className="mx-auto h-44 w-44 object-contain"
             />
             <div className="mt-2 text-xs text-gray-500">Add me on WeChat</div>
@@ -41,7 +46,7 @@ export default function SocialSidebar() {
       {/* Email */}
       <div className="relative group">
         <a
-          href="mailto:Scott@szcalinmeter.com"
+          href={`mailto:${site.email}`}
           className="bg-red-500 hover:bg-red-600 text-white p-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
           title="Email"
         >
@@ -50,7 +55,7 @@ export default function SocialSidebar() {
           </svg>
         </a>
         <div className="absolute right-full top-1/2 transform -translate-y-1/2 mr-2 bg-white text-gray-800 px-4 py-2 rounded-lg shadow-xl whitespace-nowrap transition-all duration-300 scale-x-0 origin-right group-hover:scale-x-100">
-          Scott@szcalinmeter.com
+          {site.email}
         </div>
       </div>
 
@@ -64,19 +69,6 @@ export default function SocialSidebar() {
       >
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-        </svg>
-      </a>
-
-      {/* Facebook */}
-      <a
-        href="https://www.facebook.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-blue-700 hover:bg-blue-800 text-white p-3 flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer"
-        title="Facebook"
-      >
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
         </svg>
       </a>
     </div>

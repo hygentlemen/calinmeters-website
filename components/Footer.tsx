@@ -1,44 +1,47 @@
-'use client';
+import Link from 'next/link';
+import { targetProductCategories } from '@/lib/catalog';
+import { productPath, site } from '@/lib/site';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+    <footer className="bg-slate-950 py-12 text-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 grid gap-9 md:grid-cols-4">
           <div>
-            <h3 className="text-xl font-bold mb-4">Shenzhen Calinmeter Co., Ltd.</h3>
-            <p className="text-gray-400">Smart prepaid meters for electricity, water, and gas.</p>
+            <h2 className="text-xl font-bold">{site.legalName}</h2>
+            <p className="mt-4 text-sm leading-7 text-slate-400">Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.</p>
           </div>
           <div>
-            <h4 className="font-semibold mb-4">Products</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li><a href="#products" className="hover:text-white">Electricity Meters</a></li>
-              <li><a href="#products" className="hover:text-white">Water Meters</a></li>
-              <li><a href="#products" className="hover:text-white">Gas Meters</a></li>
-              <li><a href="#products" className="hover:text-white">IoT Solutions</a></li>
+            <h2 className="font-semibold">Product guides</h2>
+            <ul className="mt-4 space-y-3 text-sm text-slate-400">
+              {targetProductCategories.map((category) => (
+                <li key={category.slug}>
+                  <Link href={productPath(category.slug)} className="hover:text-white">{category.description}</Link>
+                </li>
+              ))}
+              <li><Link href="/#products" className="hover:text-white">All products and AMI devices</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li><a href="#about" className="hover:text-white">About Us</a></li>
-              <li><a href="#news" className="hover:text-white">News</a></li>
-              <li><a href="#contact" className="hover:text-white">Contact</a></li>
+            <h2 className="font-semibold">Company</h2>
+            <ul className="mt-4 space-y-3 text-sm text-slate-400">
+              <li><Link href="/#solutions" className="hover:text-white">Solutions</Link></li>
+              <li><Link href="/#about" className="hover:text-white">About</Link></li>
+              <li><Link href="/#faq" className="hover:text-white">FAQ</Link></li>
+              <li><Link href="/#contact" className="hover:text-white">Contact</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4">Follow Us</h4>
-            <div className="flex space-x-4">
-              <a href="https://www.linkedin.com/in/qiscott/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                </svg>
-              </a>
-            </div>
+            <h2 className="font-semibold">Direct contact</h2>
+            <ul className="mt-4 space-y-3 text-sm text-slate-400">
+              <li><a href={`mailto:${site.email}`} className="hover:text-white">{site.email}</a></li>
+              <li><a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">WhatsApp: {site.phone}</a></li>
+              <li><a href="https://www.linkedin.com/in/qiscott/" target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn</a></li>
+            </ul>
           </div>
         </div>
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Shenzhen Calinmeter Co., Ltd. All rights reserved.</p>
+        <div className="border-t border-slate-800 pt-8 text-center text-sm text-slate-400">
+          <p>&copy; {new Date().getFullYear()} {site.legalName}. All rights reserved.</p>
         </div>
       </div>
     </footer>

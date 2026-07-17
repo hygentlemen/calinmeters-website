@@ -1,8 +1,10 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { trackEvent } from '@/components/GoogleAnalytics';
+import { site } from '@/lib/site';
 
-const recipientEmail = 'scott@szcalinmeter.com';
+const recipientEmail = site.email;
 
 export default function ContactSection() {
   const [name, setName] = useState('');
@@ -70,7 +72,7 @@ export default function ContactSection() {
                 </svg>
                 <div>
                   <h4 className="font-semibold">Phone</h4>
-                  <p className="text-primary-100">+8613713788753</p>
+                  <a href={`tel:${site.phone}`} className="text-primary-100 underline-offset-4 hover:underline">{site.phone}</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -79,7 +81,15 @@ export default function ContactSection() {
                 </svg>
                 <div>
                   <h4 className="font-semibold">WhatsApp / WeChat</h4>
-                  <p className="text-primary-100">+8613713788753</p>
+                  <a
+                    href={site.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackEvent('contact_click', { method: 'whatsapp', source_page: window.location.pathname })}
+                    className="text-primary-100 underline-offset-4 hover:underline"
+                  >
+                    {site.phone}
+                  </a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -88,43 +98,59 @@ export default function ContactSection() {
                 </svg>
                 <div>
                   <h4 className="font-semibold">Email</h4>
-                  <p className="text-primary-100">{recipientEmail}</p>
+                  <a
+                    href={`mailto:${recipientEmail}`}
+                    onClick={() => trackEvent('contact_click', { method: 'email', source_page: window.location.pathname })}
+                    className="text-primary-100 underline-offset-4 hover:underline"
+                  >
+                    {recipientEmail}
+                  </a>
                 </div>
               </div>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur rounded-xl p-8">
             <h3 className="text-2xl font-bold mb-6">Send us a Message</h3>
+            <p className="mb-5 text-sm leading-6 text-primary-100">This form opens your email application. It does not upload or store your message on this website.</p>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
+                <label htmlFor="contact-name" className="sr-only">Your name</label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="name"
                   placeholder="Your Name"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                   autoComplete="name"
+                  required
                   className="w-full px-4 py-3 rounded-lg bg-white/20 placeholder-white/60 border border-white/30 focus:outline-none focus:border-white"
                 />
               </div>
               <div>
+                <label htmlFor="contact-email" className="sr-only">Your email</label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   placeholder="Your Email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   autoComplete="email"
+                  required
                   className="w-full px-4 py-3 rounded-lg bg-white/20 placeholder-white/60 border border-white/30 focus:outline-none focus:border-white"
                 />
               </div>
               <div>
+                <label htmlFor="contact-message" className="sr-only">Your project requirements</label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   placeholder="Your Message"
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
                   rows={4}
+                  required
                   className="w-full px-4 py-3 rounded-lg bg-white/20 placeholder-white/60 border border-white/30 focus:outline-none focus:border-white"
                 />
               </div>
@@ -137,7 +163,7 @@ export default function ContactSection() {
                 type="submit"
                 className="w-full bg-white text-primary-700 py-3 rounded-lg font-semibold hover:bg-primary-50 transition"
               >
-                Send Message
+                Open Email App
               </button>
             </form>
           </div>
