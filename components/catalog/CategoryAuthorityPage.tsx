@@ -6,6 +6,7 @@ import type { CatalogProduct } from '@/lib/catalog';
 import { productPath } from '@/lib/site';
 import { Breadcrumbs } from '@/components/catalog/Breadcrumbs';
 import { InquiryCta } from '@/components/catalog/InquiryCta';
+import { ProductPdfLink } from '@/components/catalog/ProductPdfLink';
 
 interface CategoryAuthorityPageProps {
   seo: CategorySeoPage;
@@ -98,6 +99,73 @@ export function CategoryAuthorityPage({ seo, products, faqs }: CategoryAuthority
           {products.map((entry) => <ProductCard key={entry.product.id} entry={entry} />)}
         </div>
       </section>
+
+      {seo.comparisonTitle && seo.comparisonAnswer && (
+        <section aria-labelledby="comparison-heading" className="border-y border-slate-200 bg-white py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary-700">Model comparison</p>
+            <h2 id="comparison-heading" className="mt-2 max-w-4xl text-3xl font-bold text-slate-950">{seo.comparisonTitle}</h2>
+            <p className="mt-4 max-w-4xl leading-8 text-slate-600">{seo.comparisonAnswer}</p>
+            <div className="mt-8 overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+              <table className="min-w-[900px] w-full border-collapse text-left">
+                <thead className="bg-slate-950 text-white">
+                  <tr>
+                    <th scope="col" className="px-5 py-4 text-sm font-semibold">Model and configuration</th>
+                    <th scope="col" className="px-5 py-4 text-sm font-semibold">Published parameters</th>
+                    <th scope="col" className="px-5 py-4 text-sm font-semibold">Buyer fit</th>
+                    <th scope="col" className="px-5 py-4 text-sm font-semibold">Specification</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200">
+                  {products.map(({ product, subCategoryName }) => {
+                    const specification = product.specs[0];
+
+                    return (
+                      <tr key={product.id} className="align-top">
+                        <th scope="row" className="px-5 py-5 font-normal">
+                          {product.slug ? (
+                            <Link href={productPath(product.slug)} className="font-bold text-slate-950 hover:text-primary-700">
+                              {product.model ?? product.name}
+                            </Link>
+                          ) : (
+                            <span className="font-bold text-slate-950">{product.model ?? product.name}</span>
+                          )}
+                          <span className="mt-1 block text-sm leading-6 text-slate-600">{subCategoryName ?? product.name}</span>
+                        </th>
+                        <td className="px-5 py-5">
+                          <ul className="space-y-2 text-sm leading-6 text-slate-600">
+                            {product.verifiedSpecs?.slice(0, 3).map((spec) => (
+                              <li key={spec.label}>
+                                <span className="font-semibold text-slate-800">{spec.label}:</span> {spec.value}
+                              </li>
+                            ))}
+                          </ul>
+                        </td>
+                        <td className="px-5 py-5 text-sm leading-6 text-slate-600">{product.applications?.[0] ?? product.description}</td>
+                        <td className="px-5 py-5">
+                          {specification ? (
+                            <ProductPdfLink
+                              productId={product.id}
+                              productName={product.name}
+                              href={specification.pdf}
+                              label="Download PDF"
+                            />
+                          ) : (
+                            <span className="text-sm text-slate-500">Request current specification</span>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-sm leading-6 text-slate-500">
+              Published values are transcribed from the current model datasheets. Confirm the final size, flow range, communication frequency, installation conditions and destination requirements in the quotation and pilot.
+            </p>
+          </div>
+        </section>
+      )}
 
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

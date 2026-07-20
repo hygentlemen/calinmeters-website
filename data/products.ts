@@ -267,7 +267,7 @@ export const productCategories: ProductCategory[] = [
             model: 'CA568-R01',
             name: 'Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Plastic)',
             description: 'Plastic-body multi-jet water meter with STS prepayment and LoRaWAN communication for cost-sensitive residential and community rollouts.',
-            image: '/images/products/water/multi-jet-plastic-1.png',
+            image: '/images/products/water/multi-jet-plastic-1.webp',
             specs: [
               { label: 'Specification (PDF)', pdf: '/specs/water-meter/Multi-Jet-Plastic.pdf' },
             ],
@@ -308,7 +308,7 @@ export const productCategories: ProductCategory[] = [
             model: 'CA568-R01',
             name: 'Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Brass)',
             description: 'Brass-body multi-jet water meter with STS prepayment and LoRaWAN communication for projects that prefer a stronger metal enclosure in tougher installation environments.',
-            image: '/images/products/water/multi-jet-brass-1.png',
+            image: '/images/products/water/multi-jet-brass-1.webp',
             specs: [
               { label: 'Specification (PDF)', pdf: '/specs/water-meter/Multi-Jet-Brass.pdf' },
             ],
@@ -349,7 +349,7 @@ export const productCategories: ProductCategory[] = [
             model: 'CA568-R22',
             name: 'Smart STS Prepaid Ultrasonic Water Meter - LoRa WAN GPRS',
             description: 'STS prepaid ultrasonic water meter with no moving measuring parts and LoRaWAN or GPRS communication for remote utility metering projects.',
-            image: '/images/products/water/ultrasonic-1.png',
+            image: '/images/products/water/ultrasonic-1.webp',
             specs: [
               { label: 'Specification (PDF)', pdf: '/specs/water-meter/Ultrasonic.pdf' },
             ],

@@ -13,6 +13,10 @@ export const faqCategories: FaqCategory[] = [
     topic: 'Product Selection',
     items: [
       {
+        question: 'What is an STS prepaid water meter?',
+        answer: 'An STS prepaid water meter uses a registered 20-digit token to load purchased water credit. The customer enters the token on the meter keypad or a Customer Interface Unit, and the meter applies the credit under the configured valve and tariff rules. LoRaWAN or another supported communication option can add remote reading, but the STS token workflow and the communications network perform separate roles.',
+      },
+      {
         question: 'What is the difference between brass and plastic water meters?',
         answer: 'Brass provides a metal meter body and is often specified where buyers prefer higher impact resistance. Plastic reduces body weight and can suit cost-sensitive standard installations. The correct choice still depends on water conditions, pipe size, installation environment, utility specifications, lifecycle plan, and the exact body configuration offered for the model.',
       },

@@ -12,6 +12,8 @@ export interface CategorySeoPage {
   h1: string;
   directAnswer: string;
   intro: string;
+  comparisonTitle?: string;
+  comparisonAnswer?: string;
   selectionTitle: string;
   selectionSteps: CategorySeoStep[];
   workflowTitle: string;
@@ -117,6 +119,9 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'An STS prepaid water meter controls water credit through a 20-digit token entered on a keypad or Customer Interface Unit. CalinMeters offers multi-jet and ultrasonic configurations with optional remote reading. Selection depends on pipe size, flow range, body material, measurement principle, valve workflow, customer access, communications and local utility requirements.',
     intro:
       'The CalinMeters water range includes plastic-body and brass-body multi-jet configurations plus an ultrasonic model with no moving measuring parts. Compare only the published parameters below, then validate water conditions, communication coverage and operating procedures through a representative pilot.',
+    comparisonTitle: 'Plastic, brass or ultrasonic: which prepaid water meter fits the project?',
+    comparisonAnswer:
+      'Choose the plastic multi-jet model for cost-sensitive residential or community installations in its published DN15-DN25 range. Choose the brass multi-jet model when the project specifies a metal body or sizes up to DN50. Choose the ultrasonic model when no moving measuring parts, a published R250 range ratio and remote-reading architecture matter more than the lowest initial cost.',
     selectionTitle: 'How to select an STS prepaid water meter',
     selectionSteps: [
       {
@@ -172,6 +177,7 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'Quantity, destination requirements and pilot acceptance criteria',
     ],
     faqQuestions: [
+      'What is an STS prepaid water meter?',
       'What is the difference between brass and plastic water meters?',
       'What is the difference between multi-jet and ultrasonic prepaid water meters?',
       'What information is needed for a LoRaWAN smart water meter quotation?',

@@ -70,6 +70,7 @@ Keep CalinMeters SEO and GEO work moving every week. This issue is intentionally
 ## Required Evidence
 
 - [ ] Link the latest daily analytics report artifact or paste the key Search Console / GA4 numbers.
+- [ ] Link the latest Search Console URL Inspection artifact or record why it is unavailable.
 - [ ] Record top search queries, top countries, top landing pages, and downloads.
 - [ ] Note what changed this week and what should be watched next week.
 - [ ] If code/content changed, link the commit or PR.

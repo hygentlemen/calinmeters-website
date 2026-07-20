@@ -36,6 +36,7 @@ The site now has a crawlable SEO/GEO architecture for the three primary topics:
 - `robots.txt`, `sitemap.xml`, `llms.txt` and `CNAME` retained.
 - Daily analytics and weekly SEO/GEO GitHub Actions retained.
 - A manually dispatched Search Console sitemap-submission workflow validates the public sitemap, submits it through the official API and reads back its status.
+- A scheduled and manually dispatched Search Console URL Inspection workflow records Google index coverage, crawl, canonical, sitemap and rich-result status for the three authority pages using read-only credentials.
 
 ## Verified Baseline
 

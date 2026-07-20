@@ -1,0 +1,51 @@
+name: Search Console URL Inspection
+
+on:
+  schedule:
+    # 08:45 Asia/Shanghai every Monday, before the weekly SEO/GEO issue.
+    - cron: "45 0 * * 1"
+  workflow_dispatch:
+    inputs:
+      inspection_urls:
+        description: "Comma-separated canonical URLs to inspect."
+        required: false
+        default: "https://calinmeters.com/products/sts-prepaid-electricity-meter/,https://calinmeters.com/products/sts-prepaid-water-meter/,https://calinmeters.com/products/sts-prepaid-gas-meter/"
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-urls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Inspect canonical authority pages
+        env:
+          GOOGLE_OAUTH_CLIENT_ID: ${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}
+          GOOGLE_OAUTH_CLIENT_SECRET: ${{ secrets.GOOGLE_OAUTH_CLIENT_SECRET }}
+          GOOGLE_OAUTH_REFRESH_TOKEN: ${{ secrets.GOOGLE_OAUTH_REFRESH_TOKEN }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          GSC_INSPECTION_URLS: ${{ github.event.inputs.inspection_urls }}
+          REPORT_TIMEZONE: Asia/Shanghai
+        run: npm run gsc:inspect
+
+      - name: Upload inspection report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: search-console-url-inspection
+          path: reports/search-console/*
+          if-no-files-found: warn

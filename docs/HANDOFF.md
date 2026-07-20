@@ -42,6 +42,8 @@ GA4 使用 `NEXT_PUBLIC_GA_MEASUREMENT_ID`。PDF 自定义事件是 `specificati
 
 Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动提交。它复用日报的 Google OAuth/服务账号 Secrets，先验证公开 sitemap，再调用官方 Sitemaps API 并读取提交状态。2026-07-17 首次运行确认当前 `GOOGLE_OAUTH_REFRESH_TOKEN` 只有只读 scope；需要生成包含 `https://www.googleapis.com/auth/webmasters` 的 token 后重跑。
 
+`Search Console URL Inspection` 工作流每周一 08:45（Asia/Shanghai）自动检查三个 STS 权威页，也可手动传入逗号分隔 URL。它使用现有只读 scope，报告 Google 当前已知版本的 coverage、robots、抓取、canonical、sitemap 和富结果状态；不执行实时测试，也不能提交普通产品页索引请求。
+
 ## 上线后的首要工作
 
 1. 确认 GitHub Pages 部署成功。
