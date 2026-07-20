@@ -44,7 +44,7 @@ jobs:
 
       - name: Upload inspection report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: search-console-url-inspection
           path: reports/search-console/*

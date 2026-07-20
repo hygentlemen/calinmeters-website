@@ -60,6 +60,7 @@ Recent Search Console daily artifacts contained no query or landing-page rows be
 ## Not Implemented
 
 - Search Console sitemap submission was attempted on 2026-07-17. The site property is available, but the current GitHub OAuth refresh token has read-only Search Console scope. Replace it with a token authorized for `https://www.googleapis.com/auth/webmasters`, then rerun `Submit Search Console Sitemap`.
+- Search Console URL Inspection on 2026-07-20 returned `URL is unknown to Google` for all three STS authority pages, with no crawl time, canonical or known sitemap yet. Prioritize sitemap submission and manual indexing requests before expanding content.
 - Individual URL indexing requests still require Search Console UI access; Google does not provide a general-purpose indexing API for ordinary product pages.
 - No reliable server-side contact submission exists; the form honestly opens the visitor's email app.
 - No CMS/admin interface exists.

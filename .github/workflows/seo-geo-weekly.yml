@@ -102,7 +102,7 @@ jobs:
           NODE
 
       - name: Upload weekly task artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: seo-geo-weekly-task
           path: reports/seo-geo/*
