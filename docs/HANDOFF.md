@@ -40,7 +40,7 @@ npm run verify:seo
 
 GA4 使用 `NEXT_PUBLIC_GA_MEASUREMENT_ID`。PDF 自定义事件是 `specification_download`，型号页会带 `source_page`。日报和每周 SEO/GEO Issue 工作流保持不变。
 
-Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动提交。它复用日报的 Google OAuth/服务账号 Secrets，先验证公开 sitemap，再调用官方 Sitemaps API 并读取提交状态。2026-07-21 已轮换同时包含 `https://www.googleapis.com/auth/analytics.readonly` 与 `https://www.googleapis.com/auth/webmasters` 的 OAuth token；工作流运行 `29835929486` 成功提交 `https://calinmeters.com/sitemap.xml`，回读结果为 `errors=0`、`warnings=0`，当时 `isPending=true`。
+Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动提交。它复用日报的 Google OAuth/服务账号 Secrets，先验证公开 sitemap，再调用官方 Sitemaps API 并读取提交状态。2026-07-21 已轮换同时包含 `https://www.googleapis.com/auth/analytics.readonly` 与 `https://www.googleapis.com/auth/webmasters` 的 OAuth token；工作流运行 `29835929486` 成功提交 `https://calinmeters.com/sitemap.xml`，回读结果为 `errors=0`、`warnings=0`，当时 `isPending=true`。该 token 在 OAuth 应用临时切换到 Testing 时签发，随后应用已恢复 In production；Google 对 Testing 状态签发的测试用户授权仍规定 7 天有效期，因此需要在 2026-07-28 前通过生产状态的未验证应用提示重新签发长期 token。
 
 `Search Console URL Inspection` 工作流每周一 08:45（Asia/Shanghai）自动检查三个 STS 权威页，也可手动传入逗号分隔 URL。它使用现有只读 scope，报告 Google 当前已知版本的 coverage、robots、抓取、canonical、sitemap 和富结果状态；不执行实时测试，也不能提交普通产品页索引请求。
 

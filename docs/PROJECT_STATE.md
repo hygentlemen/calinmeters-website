@@ -57,11 +57,12 @@ SEO verification passed: 14 HTML pages, 14 sitemap URLs, 13 product routes.
 
 Recent Search Console daily artifacts contained no query or landing-page rows before the authority pages were added. Current traffic is very small and was previously concentrated on `/`, so ranking movement must be measured after indexing.
 
-On 2026-07-21, the repository OAuth credentials were rotated with GA4 read-only and Search Console write scopes. `Submit Search Console Sitemap` run `29835929486` successfully submitted `https://calinmeters.com/sitemap.xml`; the API readback reported zero errors, zero warnings and pending Google processing.
+On 2026-07-21, the repository OAuth credentials were rotated with GA4 read-only and Search Console write scopes. `Submit Search Console Sitemap` run `29835929486` successfully submitted `https://calinmeters.com/sitemap.xml`; the API readback reported zero errors, zero warnings and pending Google processing. The token was issued while the OAuth app was temporarily in Testing before it was restored to In production, so replace it with a production-issued token before 2026-07-28 to avoid Google's seven-day test-user authorization expiry.
 
 ## Not Implemented
 
 - Search Console URL Inspection on 2026-07-20 returned `URL is unknown to Google` for all three STS authority pages, with no crawl time, canonical or known sitemap yet. The sitemap was submitted on 2026-07-21; prioritize manual indexing requests and monitor the next inspection before expanding content.
+- The working OAuth token was issued in Testing and must be replaced through the production consent flow before 2026-07-28. Google displays an unverified-app interstitial for the sensitive Analytics scope; the signed-in account owner must explicitly continue through that safety screen before automation can exchange and store the long-lived token.
 - Individual URL indexing requests still require Search Console UI access; Google does not provide a general-purpose indexing API for ordinary product pages.
 - No reliable server-side contact submission exists; the form honestly opens the visitor's email app.
 - No CMS/admin interface exists.
