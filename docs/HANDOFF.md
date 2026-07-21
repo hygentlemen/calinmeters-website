@@ -40,7 +40,7 @@ npm run verify:seo
 
 GA4 使用 `NEXT_PUBLIC_GA_MEASUREMENT_ID`。PDF 自定义事件是 `specification_download`，型号页会带 `source_page`。日报和每周 SEO/GEO Issue 工作流保持不变。
 
-Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动提交。它复用日报的 Google OAuth/服务账号 Secrets，先验证公开 sitemap，再调用官方 Sitemaps API 并读取提交状态。2026-07-17 首次运行确认当前 `GOOGLE_OAUTH_REFRESH_TOKEN` 只有只读 scope；需要生成包含 `https://www.googleapis.com/auth/webmasters` 的 token 后重跑。
+Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动提交。它复用日报的 Google OAuth/服务账号 Secrets，先验证公开 sitemap，再调用官方 Sitemaps API 并读取提交状态。2026-07-21 已轮换同时包含 `https://www.googleapis.com/auth/analytics.readonly` 与 `https://www.googleapis.com/auth/webmasters` 的 OAuth token；工作流运行 `29835929486` 成功提交 `https://calinmeters.com/sitemap.xml`，回读结果为 `errors=0`、`warnings=0`，当时 `isPending=true`。
 
 `Search Console URL Inspection` 工作流每周一 08:45（Asia/Shanghai）自动检查三个 STS 权威页，也可手动传入逗号分隔 URL。它使用现有只读 scope，报告 Google 当前已知版本的 coverage、robots、抓取、canonical、sitemap 和富结果状态；不执行实时测试，也不能提交普通产品页索引请求。
 
@@ -48,7 +48,7 @@ Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动
 
 1. 确认 GitHub Pages 部署成功。
 2. 检查生产域名上的三个权威页、代表性型号页、robots 和 sitemap。
-3. 在 Search Console 提交 sitemap，并请求索引三个权威页。
+3. 确认 Search Console 完成 sitemap 处理，并请求索引三个权威页。
 4. 用 4-8 周数据建立 query/country/page 基线。
 5. 只根据真实 impressions 选择首个国家页或支持主题。
 6. 收集可公开验证的公司证据和相关行业外链；站内改造不能单独保证全球 Top 5。

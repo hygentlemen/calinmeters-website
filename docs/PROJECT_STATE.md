@@ -57,10 +57,11 @@ SEO verification passed: 14 HTML pages, 14 sitemap URLs, 13 product routes.
 
 Recent Search Console daily artifacts contained no query or landing-page rows before the authority pages were added. Current traffic is very small and was previously concentrated on `/`, so ranking movement must be measured after indexing.
 
+On 2026-07-21, the repository OAuth credentials were rotated with GA4 read-only and Search Console write scopes. `Submit Search Console Sitemap` run `29835929486` successfully submitted `https://calinmeters.com/sitemap.xml`; the API readback reported zero errors, zero warnings and pending Google processing.
+
 ## Not Implemented
 
-- Search Console sitemap submission was attempted on 2026-07-17. The site property is available, but the current GitHub OAuth refresh token has read-only Search Console scope. Replace it with a token authorized for `https://www.googleapis.com/auth/webmasters`, then rerun `Submit Search Console Sitemap`.
-- Search Console URL Inspection on 2026-07-20 returned `URL is unknown to Google` for all three STS authority pages, with no crawl time, canonical or known sitemap yet. Prioritize sitemap submission and manual indexing requests before expanding content.
+- Search Console URL Inspection on 2026-07-20 returned `URL is unknown to Google` for all three STS authority pages, with no crawl time, canonical or known sitemap yet. The sitemap was submitted on 2026-07-21; prioritize manual indexing requests and monitor the next inspection before expanding content.
 - Individual URL indexing requests still require Search Console UI access; Google does not provide a general-purpose indexing API for ordinary product pages.
 - No reliable server-side contact submission exists; the form honestly opens the visitor's email app.
 - No CMS/admin interface exists.

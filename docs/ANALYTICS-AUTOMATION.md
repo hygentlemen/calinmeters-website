@@ -63,8 +63,10 @@ The required OAuth scopes are:
 
 ```text
 https://www.googleapis.com/auth/analytics.readonly
-https://www.googleapis.com/auth/webmasters.readonly
+https://www.googleapis.com/auth/webmasters
 ```
+
+The Search Console write scope is required by the sitemap-submission workflow and also covers the read operations used by reporting and URL inspection.
 
 ### Option B: keyless GitHub OIDC
 

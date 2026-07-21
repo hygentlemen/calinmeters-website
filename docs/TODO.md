@@ -4,7 +4,7 @@
 
 1. Deploy the 2026-07-17 authority/model page release through the existing GitHub Pages workflow.
 2. Verify the three authority pages, representative model pages, `robots.txt` and `sitemap.xml` on the production domain.
-3. Replace `GOOGLE_OAUTH_REFRESH_TOKEN` with a token that includes `https://www.googleapis.com/auth/webmasters`, then rerun `Submit Search Console Sitemap`. The 2026-07-17 attempt proved the current token is read-only.
+3. Done 2026-07-21: rotated `GOOGLE_OAUTH_REFRESH_TOKEN` with GA4 read-only and Search Console write scopes; `Submit Search Console Sitemap` run `29835929486` completed with zero errors and warnings.
 4. Request indexing for the three authority pages.
 5. Record the deployment date in the weekly SEO/GEO issue.
 6. Monitor the three primary query clusters by country, device and landing page for 4-8 weeks.
