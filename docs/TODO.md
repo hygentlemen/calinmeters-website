@@ -4,7 +4,7 @@
 
 1. Deploy the 2026-07-17 authority/model page release through the existing GitHub Pages workflow.
 2. Verify the three authority pages, representative model pages, `robots.txt` and `sitemap.xml` on the production domain.
-3. Sitemap done 2026-07-21: `Submit Search Console Sitemap` run `29835929486` completed with zero errors and warnings. Replace the Testing-issued token through the production consent flow before 2026-07-28 so the credential is not limited to seven days.
+3. Done 2026-07-21: reissued the production OAuth token with GA4 read-only and Search Console write scopes; `Submit Search Console Sitemap` run `29838520351` completed with zero errors and warnings.
 4. Request indexing for the three authority pages.
 5. Record the deployment date in the weekly SEO/GEO issue.
 6. Monitor the three primary query clusters by country, device and landing page for 4-8 weeks.
