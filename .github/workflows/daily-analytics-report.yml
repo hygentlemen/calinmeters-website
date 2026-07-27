@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate deterministic report fixture
+        run: npm run report:daily -- --fixture
+
       - name: Check report configuration
         env:
           GA_PROPERTY_ID: ${{ secrets.GA_PROPERTY_ID }}

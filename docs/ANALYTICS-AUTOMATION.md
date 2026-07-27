@@ -140,3 +140,9 @@ Each report includes:
 - Search landing pages
 
 Reports are uploaded as GitHub Actions artifacts under `reports/*.md`.
+
+## 7. French inquiry privacy
+
+French inquiry analytics record only interface language, product category, product ID, buyer-type selection and source-page group. Names, companies, email addresses, phone or WhatsApp numbers, country free text, technical requirements and inquiry notes must not be sent to GA4.
+
+The Cloudflare inquiry Worker does not persist inquiry payloads. Its custom error log contains only a fixed event name, HTTP method and endpoint path; it must never include inquiry fields, raw IP addresses, Turnstile tokens, provider responses or secret values.

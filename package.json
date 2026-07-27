@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "verify:i18n": "tsx scripts/verify-i18n.ts",
     "verify:seo": "node scripts/verify-seo.mjs",
+    "verify": "npm run verify:i18n && npm run typecheck && npm run build && npm run verify:seo",
     "report:daily": "node scripts/daily-analytics-report.mjs",
     "gsc:inspect": "node scripts/search-console-url-inspection.mjs",
     "gsc:submit-sitemap": "node scripts/submit-search-console-sitemap.mjs",
@@ -30,6 +32,7 @@
     "eslint-config-next": "^14.2.35",
     "postcss": "8.4.33",
     "tailwindcss": "3.4.1",
+    "tsx": "4.23.1",
     "typescript": "5.3.3"
   }
 }

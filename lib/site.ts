@@ -15,3 +15,7 @@ export function absoluteUrl(path = '/') {
 export function productPath(slug: string) {
   return `/products/${slug}/`;
 }
+
+export function frenchProductPath(slug: string) {
+  return `/fr/produits/${slug}/`;
+}

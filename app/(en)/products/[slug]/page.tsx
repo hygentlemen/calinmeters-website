@@ -16,6 +16,7 @@ import {
   getRelatedProducts,
   type CatalogProduct,
 } from '@/lib/catalog';
+import { alternateLanguages } from '@/lib/i18n';
 import { absoluteUrl, productPath, site } from '@/lib/site';
 
 interface CatalogRouteProps {
@@ -38,7 +39,10 @@ export function generateMetadata({ params }: CatalogRouteProps): Metadata {
     return {
       title: seo.title,
       description: seo.description,
-      alternates: { canonical: path },
+      alternates: {
+        canonical: path,
+        languages: alternateLanguages(path),
+      },
       robots: { index: true, follow: true },
       openGraph: {
         title: seo.title,
@@ -71,7 +75,10 @@ export function generateMetadata({ params }: CatalogRouteProps): Metadata {
   return {
     title,
     description: product.description,
-    alternates: { canonical: path },
+    alternates: {
+      canonical: path,
+      languages: alternateLanguages(path),
+    },
     robots: { index: true, follow: true },
     openGraph: {
       title,
@@ -204,7 +211,7 @@ export default function CatalogRoute({ params }: CatalogRouteProps) {
     return (
       <div className="min-h-screen bg-white">
         {structuredData && <JsonLd data={structuredData} />}
-        <Navbar />
+        <Navbar languageHref={alternateLanguages(productPath(params.slug))?.fr} />
         <CategoryAuthorityPage seo={seo} products={products} faqs={faqs} />
         <Footer />
         <SocialSidebar />
@@ -220,7 +227,7 @@ export default function CatalogRoute({ params }: CatalogRouteProps) {
   return (
     <div className="min-h-screen bg-white">
       {structuredData && <JsonLd data={structuredData} />}
-      <Navbar />
+      <Navbar languageHref={alternateLanguages(productPath(params.slug))?.fr} />
       <ProductDetailPage entry={entry} relatedProducts={getRelatedProducts(entry)} />
       <Footer />
       <SocialSidebar />

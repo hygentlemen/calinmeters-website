@@ -7,6 +7,7 @@ interface ProductPdfLinkProps {
   productName: string;
   href: string;
   label: string;
+  locale?: 'en' | 'fr';
 }
 
 export function ProductPdfLink({
@@ -14,6 +15,7 @@ export function ProductPdfLink({
   productName,
   href,
   label,
+  locale = 'en',
 }: ProductPdfLinkProps) {
   return (
     <a
@@ -21,12 +23,17 @@ export function ProductPdfLink({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() =>
-        trackEvent('specification_download', {
+        trackEvent(locale === 'fr' ? 'fr_specification_download' : 'specification_download', {
           file_name: href.split('/').pop(),
           file_extension: 'pdf',
           link_url: href,
           product_id: productId,
-          product_name: productName,
+          ...(locale === 'fr'
+            ? {
+                interface_language: 'fr',
+                product_category: productId.startsWith('water-') ? 'water' : 'electricity',
+              }
+            : { product_name: productName }),
           source_page: window.location.pathname,
         })
       }
