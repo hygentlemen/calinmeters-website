@@ -193,9 +193,9 @@ export function CategoryAuthorityPage({
               </table>
             </div>
             <p className="mt-4 text-sm leading-6 text-slate-500">
-              {isFrench
+              {seo.comparisonNote ?? (isFrench
                 ? 'Les valeurs publiées sont traduites à partir des fiches techniques actuelles. Confirmez dans le devis et le pilote le dimensionnement final, la plage de débit, la fréquence de communication, les conditions de pose et les exigences de destination.'
-                : 'Published values are transcribed from the current model datasheets. Confirm the final size, flow range, communication frequency, installation conditions and destination requirements in the quotation and pilot.'}
+                : 'Published values are transcribed from the current model datasheets. Confirm the final configuration, communication, installation conditions and destination requirements in the quotation and pilot.')}
             </p>
           </div>
         </section>

@@ -16,6 +16,8 @@ export const frenchCategorySeoPages: Record<string, FrenchCategorySeoPage> = {
     comparisonTitle: 'Monophasé, triphasé ou rail DIN : quel compteur choisir ?',
     comparisonAnswer:
       "Choisissez un modèle monophasé pour un raccordement monophasé dont la tension et le courant correspondent à la configuration proposée. Utilisez un modèle triphasé quatre fils pour les services triphasés pris en charge. Un compteur sur rail DIN avec CIU séparée peut convenir lorsque le compteur principal doit rester dans un coffret protégé et que le client saisit ses jetons à l'intérieur.",
+    comparisonNote:
+      'Les valeurs publiées sont traduites à partir des fiches techniques actuelles. Confirmez dans le devis et le pilote la phase, la tension, le courant ou le rapport de transformation, le câblage, la communication, les conditions de pose et les exigences de destination.',
     selectionTitle: 'Comment choisir un compteur électrique prépayé STS',
     selectionSteps: [
       {
@@ -101,6 +103,8 @@ export const frenchCategorySeoPages: Record<string, FrenchCategorySeoPage> = {
     comparisonTitle: 'Plastique, laiton ou ultrasonique : quel modèle choisir ?',
     comparisonAnswer:
       "Le modèle multijet en plastique couvre les diamètres publiés DN15 à DN25 et peut convenir aux installations sensibles au coût. Le multijet en laiton fournit un corps métallique et des diamètres publiés jusqu'au DN50. Le modèle ultrasonique utilise un principe de mesure sans pièce mobile et indique un rapport de plage R250. Le choix final doit suivre les conditions hydrauliques et les exigences du projet.",
+    comparisonNote:
+      'Les valeurs publiées sont traduites à partir des fiches techniques actuelles. Confirmez dans le devis et le pilote le diamètre final, la plage de débit, la fréquence de communication, les conditions de pose et les exigences de destination.',
     selectionTitle: "Comment choisir un compteur d'eau prépayé STS",
     selectionSteps: [
       {

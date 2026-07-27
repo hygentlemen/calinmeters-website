@@ -14,6 +14,7 @@ export interface CategorySeoPage {
   intro: string;
   comparisonTitle?: string;
   comparisonAnswer?: string;
+  comparisonNote?: string;
   selectionTitle: string;
   selectionSteps: CategorySeoStep[];
   workflowTitle: string;
@@ -37,6 +38,12 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'An STS prepaid electricity meter measures energy and deducts credit loaded through a secure 20-digit token. Utilities can use standalone keypad models where continuous connectivity is not required, or select GPRS and LoRaWAN options for remote reading. The correct model depends on phase, current, installation, CIU access, vending integration and destination requirements.',
     intro:
       'Shenzhen Calinmeter Co., Ltd. (CalinMeters) supplies single-phase, three-phase and DIN-rail electricity meters for prepaid deployments. Use this page to compare the published models, understand the token and communication choices, and prepare the technical information needed for a quotation or pilot.',
+    comparisonTitle:
+      'Single-phase, three-phase, DIN-rail or CT-operated: which prepaid meter fits?',
+    comparisonAnswer:
+      'Choose a direct-connected single-phase model when the service voltage and current match the published configuration. Use a three-phase four-wire model for supported commercial or utility service connections. A DIN-rail meter with a separate Customer Interface Unit can keep the main meter inside a protected cabinet while the customer enters tokens indoors. Select standalone STS when local token entry is sufficient, or evaluate GPRS or LoRaWAN when the operator also needs remote reading.',
+    comparisonNote:
+      'Published values are transcribed from the current model datasheets. Confirm the final phase, voltage, current or CT ratio, wiring, communication option, installation conditions and destination requirements in the quotation and pilot.',
     selectionTitle: 'How to select an STS prepaid electricity meter',
     selectionSteps: [
       {
@@ -97,6 +104,7 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'What is the difference between the CA368 GPRS and standalone STS models?',
       'When should a utility choose a split keypad prepaid meter?',
       'Does a prepaid meter have to come with a SIM card?',
+      'How does a token based prepaid meter work?',
     ],
     productIds: [
       'ca168-lorawan',
@@ -122,6 +130,8 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
     comparisonTitle: 'Plastic, brass or ultrasonic: which prepaid water meter fits the project?',
     comparisonAnswer:
       'Choose the plastic multi-jet model for cost-sensitive residential or community installations in its published DN15-DN25 range. Choose the brass multi-jet model when the project specifies a metal body or sizes up to DN50. Choose the ultrasonic model when no moving measuring parts, a published R250 range ratio and remote-reading architecture matter more than the lowest initial cost.',
+    comparisonNote:
+      'Published values are transcribed from the current model datasheets. Confirm the final size, flow range, communication frequency, installation conditions and destination requirements in the quotation and pilot.',
     selectionTitle: 'How to select an STS prepaid water meter',
     selectionSteps: [
       {
