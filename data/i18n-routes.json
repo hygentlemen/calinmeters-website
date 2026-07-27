@@ -1,0 +1,43 @@
+[
+  { "en": "/", "fr": "/fr/" },
+  {
+    "en": "/products/sts-prepaid-electricity-meter/",
+    "fr": "/fr/produits/compteur-electricite-prepaye-sts/"
+  },
+  {
+    "en": "/products/sts-prepaid-water-meter/",
+    "fr": "/fr/produits/compteur-eau-prepaye-sts/"
+  },
+  {
+    "en": "/products/ca168-lorawan-sts-prepaid-electricity-meter/",
+    "fr": "/fr/produits/ca168-compteur-electricite-prepaye-sts-lorawan/"
+  },
+  {
+    "en": "/products/ca168-gprs-sts-prepaid-electricity-meter/",
+    "fr": "/fr/produits/ca168-compteur-electricite-prepaye-sts-gprs/"
+  },
+  {
+    "en": "/products/ca168-sts-prepaid-electricity-meter/",
+    "fr": "/fr/produits/ca168-compteur-electricite-prepaye-sts/"
+  },
+  {
+    "en": "/products/ca368-gprs-sts-prepaid-three-phase-electricity-meter/",
+    "fr": "/fr/produits/ca368-compteur-electricite-prepaye-triphase-gprs/"
+  },
+  {
+    "en": "/products/ca368-sts-prepaid-three-phase-electricity-meter/",
+    "fr": "/fr/produits/ca368-compteur-electricite-prepaye-triphase-sts/"
+  },
+  {
+    "en": "/products/sts-prepaid-multi-jet-water-meter-plastic/",
+    "fr": "/fr/produits/ca568-compteur-eau-prepaye-multijet-plastique/"
+  },
+  {
+    "en": "/products/sts-prepaid-multi-jet-water-meter-brass/",
+    "fr": "/fr/produits/ca568-compteur-eau-prepaye-multijet-laiton/"
+  },
+  {
+    "en": "/products/sts-prepaid-ultrasonic-water-meter/",
+    "fr": "/fr/produits/ca568-compteur-eau-prepaye-ultrasonique/"
+  }
+]

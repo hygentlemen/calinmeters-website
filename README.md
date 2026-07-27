@@ -1,6 +1,6 @@
 # CalinMeters Website
 
-Static English-language inquiry site for Shenzhen Calinmeter Co., Ltd. (CalinMeters): [https://calinmeters.com/](https://calinmeters.com/).
+Static English/French inquiry site for Shenzhen Calinmeter Co., Ltd. (CalinMeters): [https://calinmeters.com/](https://calinmeters.com/).
 
 ## Stack and Deployment
 
@@ -22,6 +22,7 @@ npm run lint
 npm run typecheck
 npm run build
 npm run verify:seo
+npm run verify
 npm run gsc:submit-sitemap
 ```
 
@@ -37,6 +38,8 @@ The homepage is the company and product-portfolio hub. Three canonical authority
 
 Ten model pages are statically generated from the product catalog. Category and model routes are implemented in `app/products/[slug]/page.tsx` through `generateStaticParams`.
 
+The French release adds `/fr/`, two authority pages and eight model pages under `/fr/produits/`. `data/i18n-routes.json` is the single registry for reciprocal language switching, metadata alternates and sitemap hreflang entries. French pages remain `noindex,follow` until the professional technical-copy review in `docs/FRENCH-COPY-REVIEW.md` is signed off.
+
 ## Content Sources
 
 - `data/products.ts`: product identity, model, slug, description, images, PDF links and published specifications
@@ -50,6 +53,8 @@ Do not duplicate product names or PDF paths in route files. Do not add certifica
 ## Analytics and Automation
 
 - GA4 uses `NEXT_PUBLIC_GA_MEASUREMENT_ID` during the production build.
+- The French inquiry form uses the public repository variables `NEXT_PUBLIC_INQUIRY_ENDPOINT` and `NEXT_PUBLIC_TURNSTILE_SITE_KEY`.
+- `TURNSTILE_SECRET_KEY`, `RESEND_API_KEY` and `RATE_LIMIT_KEY_SECRET` exist only as Cloudflare Worker secrets; never expose them to the website build.
 - Specification clicks emit `specification_download` events.
 - Daily GA4/Search Console reporting runs through `.github/workflows/daily-analytics-report.yml`.
 - The weekly SEO/GEO work item runs through `.github/workflows/seo-geo-weekly.yml`.
@@ -73,7 +78,7 @@ docs/                   Project state, decisions, plans and handoff
 ## Release Checklist
 
 1. Run lint, typecheck, build and SEO verification.
-2. Check homepage plus electricity, water and gas category/model samples on desktop and mobile.
+2. Check English and French homepages plus electricity, water and gas category/model samples on desktop and mobile.
 3. Push to `main` to deploy through GitHub Pages.
 4. Confirm production canonical URLs and `sitemap.xml`.
 5. Submit the sitemap and request indexing for the three authority pages in Google Search Console.

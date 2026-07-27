@@ -31,3 +31,10 @@ yarn-error.log*
 
 # Vercel
 .vercel
+
+# Cloudflare inquiry Worker
+/workers/inquiry/node_modules/
+/workers/inquiry/.wrangler/
+/workers/inquiry/.dev.vars*
+/workers/inquiry/.env*
+/workers/inquiry/coverage/

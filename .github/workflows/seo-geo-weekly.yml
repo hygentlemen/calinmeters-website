@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate deterministic weekly fixture
+        run: npm run seo-geo:weekly -- --fixture
+
       - name: Generate weekly SEO/GEO task
         env:
           REPORT_TIMEZONE: Asia/Shanghai

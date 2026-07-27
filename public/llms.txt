@@ -42,6 +42,22 @@ https://calinmeters.com/
 
 - CA768-K02 STS prepaid gas meter: https://calinmeters.com/products/ca768-lorawan-sts-prepaid-gas-meter/
 
+## Pages en français
+
+- Accueil français : https://calinmeters.com/fr/
+- Guide des compteurs électriques prépayés STS : https://calinmeters.com/fr/produits/compteur-electricite-prepaye-sts/
+- Guide des compteurs d'eau prépayés STS : https://calinmeters.com/fr/produits/compteur-eau-prepaye-sts/
+- CA168-S-NS06 sur rail DIN avec LoRaWAN : https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-lorawan/
+- CA168-CS23 avec GPRS : https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-gprs/
+- CA168 monophasé autonome : https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts/
+- CA368-WS23 triphasé avec GPRS : https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-gprs/
+- CA368-WS21 triphasé autonome : https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-sts/
+- CA568-R01 multijet en plastique : https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-plastique/
+- CA568-R01 multijet en laiton : https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-laiton/
+- CA568-R22 ultrasonique : https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-ultrasonique/
+
+Les pages françaises couvrent la sélection de compteurs prépayés STS d'électricité et d'eau, les caractéristiques publiées vérifiées et les informations à fournir pour un devis. Les fiches techniques PDF liées restent en anglais. Ces pages ne constituent pas une preuve de certification, d'homologation, de déploiement dans un pays ou de garantie.
+
 ## Source and Interpretation Rules
 
 - Product model names, descriptions, images and PDF paths are maintained in the website product catalog.

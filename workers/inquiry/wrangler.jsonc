@@ -1,0 +1,38 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "calinmeters-inquiry",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-27",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": true,
+  "vars": {
+    "ALLOWED_ORIGINS": "https://calinmeters.com",
+    "INQUIRY_RECIPIENT": "scott@szcalinmeter.com",
+    "RESEND_FROM": "CalinMeters Website <website@calinmeters.com>",
+    "LOCAL_TURNSTILE_TEST_MODE": "false",
+    "TURNSTILE_EXPECTED_ACTION": "fr_inquiry",
+    "TURNSTILE_EXPECTED_HOSTNAME": "calinmeters.com"
+  },
+  "secrets": {
+    "required": [
+      "TURNSTILE_SECRET_KEY",
+      "RESEND_API_KEY",
+      "RATE_LIMIT_KEY_SECRET"
+    ]
+  },
+  "ratelimits": [
+    {
+      "name": "INQUIRY_RATE_LIMITER",
+      "namespace_id": "42601",
+      "simple": {
+        "limit": 10,
+        "period": 60
+      }
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}

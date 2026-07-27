@@ -1,17 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://calinmeters.com/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/sts-prepaid-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/sts-prepaid-water-meter/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/sts-prepaid-gas-meter/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/ca168-lorawan-sts-prepaid-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/ca168-gprs-sts-prepaid-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/ca168-sts-prepaid-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/ca368-gprs-sts-prepaid-three-phase-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/ca368-sts-prepaid-three-phase-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/ct-operated-electricity-meter/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-plastic/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-brass/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/sts-prepaid-ultrasonic-water-meter/</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://calinmeters.com/products/ca768-lorawan-sts-prepaid-gas-meter/</loc><lastmod>2026-07-17</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://calinmeters.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-gprs/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/ca168-gprs-sts-prepaid-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-gprs/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/ca168-gprs-sts-prepaid-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-lorawan/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/ca168-lorawan-sts-prepaid-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-lorawan/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/ca168-lorawan-sts-prepaid-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/ca168-sts-prepaid-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/ca168-sts-prepaid-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-gprs/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/ca368-gprs-sts-prepaid-three-phase-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-gprs/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/ca368-gprs-sts-prepaid-three-phase-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-sts/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/ca368-sts-prepaid-three-phase-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-sts/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/ca368-sts-prepaid-three-phase-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-laiton/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-brass/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-laiton/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-brass/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-plastique/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-plastic/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-plastique/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-plastic/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-ultrasonique/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/sts-prepaid-ultrasonic-water-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-ultrasonique/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/sts-prepaid-ultrasonic-water-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/produits/compteur-eau-prepaye-sts/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/sts-prepaid-water-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/compteur-eau-prepaye-sts/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/sts-prepaid-water-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/fr/produits/compteur-electricite-prepaye-sts/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/sts-prepaid-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/compteur-electricite-prepaye-sts/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/sts-prepaid-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/ca168-gprs-sts-prepaid-electricity-meter/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/ca168-gprs-sts-prepaid-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-gprs/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/ca168-gprs-sts-prepaid-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/ca168-lorawan-sts-prepaid-electricity-meter/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/ca168-lorawan-sts-prepaid-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-lorawan/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/ca168-lorawan-sts-prepaid-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/ca168-sts-prepaid-electricity-meter/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/ca168-sts-prepaid-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/ca168-sts-prepaid-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/ca368-gprs-sts-prepaid-three-phase-electricity-meter/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/ca368-gprs-sts-prepaid-three-phase-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-gprs/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/ca368-gprs-sts-prepaid-three-phase-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/ca368-sts-prepaid-three-phase-electricity-meter/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/ca368-sts-prepaid-three-phase-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-sts/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/ca368-sts-prepaid-three-phase-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/ca768-lorawan-sts-prepaid-gas-meter/</loc>
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/ct-operated-electricity-meter/</loc>
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/sts-prepaid-electricity-meter/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/sts-prepaid-electricity-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/compteur-electricite-prepaye-sts/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/sts-prepaid-electricity-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/sts-prepaid-gas-meter/</loc>
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-brass/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-brass/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-laiton/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-brass/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-plastic/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-plastic/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-plastique/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-plastic/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/sts-prepaid-ultrasonic-water-meter/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/sts-prepaid-ultrasonic-water-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-ultrasonique/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/sts-prepaid-ultrasonic-water-meter/" />
+  </url>
+  <url>
+    <loc>https://calinmeters.com/products/sts-prepaid-water-meter/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://calinmeters.com/products/sts-prepaid-water-meter/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://calinmeters.com/fr/produits/compteur-eau-prepaye-sts/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://calinmeters.com/products/sts-prepaid-water-meter/" />
+  </url>
 </urlset>

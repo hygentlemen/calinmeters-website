@@ -7,11 +7,12 @@ export interface BreadcrumbItem {
 
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
+  locale?: 'en' | 'fr';
 }
 
-export function Breadcrumbs({ items }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, locale = 'en' }: BreadcrumbsProps) {
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+    <nav aria-label={locale === 'fr' ? 'Fil d’Ariane' : 'Breadcrumb'} className="text-sm text-slate-500">
       <ol className="flex flex-wrap items-center gap-2">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
