@@ -3,8 +3,8 @@ import { rateLimitKey, verifyTurnstile } from '../src/security';
 
 const env = {
   TURNSTILE_SECRET_KEY: 'secret',
-  TURNSTILE_EXPECTED_ACTION: 'fr_inquiry',
-  TURNSTILE_EXPECTED_HOSTNAME: 'calinmeters.com',
+  TURNSTILE_EXPECTED_ACTION: 'fr_inquiry,en_inquiry',
+  TURNSTILE_EXPECTED_HOSTNAME: 'calinmeters.com,www.calinmeters.com',
   LOCAL_TURNSTILE_TEST_MODE: 'false',
 };
 
@@ -14,6 +14,17 @@ describe('verifyTurnstile', () => {
       success: true,
       hostname: 'calinmeters.com',
       action: 'fr_inquiry',
+      'error-codes': [],
+    }), { status: 200 }));
+    await expect(verifyTurnstile('token', '203.0.113.10', env, fetchImpl))
+      .resolves.toEqual({ ok: true });
+  });
+
+  it('accepts each configured action and hostname', async () => {
+    const fetchImpl = vi.fn().mockResolvedValue(new Response(JSON.stringify({
+      success: true,
+      hostname: 'www.calinmeters.com',
+      action: 'en_inquiry',
       'error-codes': [],
     }), { status: 200 }));
     await expect(verifyTurnstile('token', '203.0.113.10', env, fetchImpl))

@@ -166,7 +166,8 @@ export function ProductDetailPage({
         <InquiryCta
           topic={isFrench ? `${product.model ?? product.name} pour votre projet de comptage` : `${product.model ?? product.name} for your metering project`}
           locale={locale}
-          productId={isFrench ? product.id : undefined}
+          productId={product.id}
+          productName={product.model ?? product.name}
           description={isFrench
             ? "Envoyez les conditions de fonctionnement, l'installation, la communication, la quantité et les exigences de destination. Les caractéristiques publiées pourront être comparées à la configuration proposée."
             : 'Send the operating conditions, installation, communication, quantity and destination requirements. The published specifications can then be checked against the proposed project configuration.'}

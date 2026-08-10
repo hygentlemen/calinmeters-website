@@ -36,7 +36,7 @@ npm run verify:seo
 
 ## 联系和分析
 
-英文联系表单仍只打开访客本地邮件客户端。法语询盘表单在生产 Worker 和 Turnstile 变量配置后会安全提交；变量缺失时仅显示 email/WhatsApp 降级通道。主要邮箱 `scott@szcalinmeter.com`，WhatsApp/WeChat `+8613713788753`。
+英文和法语询盘表单在生产 Worker 和 Turnstile 变量配置后都会安全提交；变量缺失时仅显示 email/WhatsApp 降级通道。公开邮箱 `info@calinmeters.com`，WhatsApp/WeChat `+8613713788753`。
 
 GA4 使用 `NEXT_PUBLIC_GA_MEASUREMENT_ID`。英文 PDF 自定义事件是 `specification_download`；法语站另外记录受控的询盘、联系方式、PDF 与语言切换事件。日报和每周 SEO/GEO Issue 工作流包含 30/90 天法语分段。
 
@@ -53,14 +53,16 @@ Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动
 5. 只根据真实 impressions 选择首个国家页或支持主题。
 6. 收集可公开验证的公司证据和相关行业外链；站内改造不能单独保证全球 Top 5。
 
-## French inquiry Worker
+## Inquiry Worker
 
-法语询盘接口是独立的 Cloudflare Worker，主站仍由 GitHub Pages 部署。
+英文和法语询盘接口共用独立的 Cloudflare Worker，主站仍由 GitHub Pages 部署。
 
 - Worker package: `workers/inquiry`
 - Public contract: `POST /v1/inquiries`
-- Allowed production origin: `https://calinmeters.com`
-- Delivery recipient: `scott@szcalinmeter.com`
+- Allowed production origins: `https://calinmeters.com`, `https://www.calinmeters.com`
+- Delivery recipient: `tom.qi@qq.com`
+- Resend sender: `Calin Meter Website <info@calinmeters.com>`
+- Reply-To: the validated customer email from each inquiry
 - Worker secrets live in Cloudflare: `TURNSTILE_SECRET_KEY`, `RESEND_API_KEY`, `RATE_LIMIT_KEY_SECRET`
 - GitHub deployment secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
 - Never log inquiry payloads or copy secret values into repository files.
@@ -68,8 +70,8 @@ Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动
 
 Production provisioning remains an operator step:
 
-1. Create a managed Turnstile widget named `CalinMeters French Inquiry`, restrict it to `calinmeters.com`, and set its action to `fr_inquiry`.
-2. Verify the `calinmeters.com` sending domain in Resend before using `CalinMeters Website <website@calinmeters.com>`.
+1. Create a managed Turnstile widget named `CalinMeters Inquiry`, restrict it to `calinmeters.com` and `www.calinmeters.com`; the Worker accepts the `en_inquiry` and `fr_inquiry` actions.
+2. Verify the `calinmeters.com` sending domain in Resend before using `Calin Meter Website <info@calinmeters.com>`.
 3. From `workers/inquiry`, authenticate with `npx wrangler login`, verify the account using `npx wrangler whoami`, then add each Worker secret through `npx wrangler secret put`.
 4. Add repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`; restrict the API token to Worker deployment.
 5. After deployment, append `/v1/inquiries` to the Worker URL and use it as `NEXT_PUBLIC_INQUIRY_ENDPOINT`; use the managed Turnstile public sitekey as `NEXT_PUBLIC_TURNSTILE_SITE_KEY`.

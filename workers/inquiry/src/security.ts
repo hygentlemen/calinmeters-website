@@ -9,6 +9,10 @@ type TurnstileEnv = {
   LOCAL_TURNSTILE_TEST_MODE: string;
 };
 
+function configuredValues(value: string) {
+  return value.split(',').map((item) => item.trim()).filter(Boolean);
+}
+
 function isTurnstileResponse(value: unknown): value is {
   success: boolean;
   hostname?: string;
@@ -57,8 +61,8 @@ export async function verifyTurnstile(
     }
 
     return result.success
-      && result.hostname === env.TURNSTILE_EXPECTED_HOSTNAME
-      && result.action === env.TURNSTILE_EXPECTED_ACTION
+      && configuredValues(env.TURNSTILE_EXPECTED_HOSTNAME).includes(result.hostname ?? '')
+      && configuredValues(env.TURNSTILE_EXPECTED_ACTION).includes(result.action ?? '')
       ? { ok: true }
       : { ok: false, code: 'turnstile_failed' };
   } catch {

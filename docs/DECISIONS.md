@@ -43,8 +43,9 @@
 
 ## Contact Handling
 
-- Primary recipient email: `scott@szcalinmeter.com`.
-- Current form behavior opens a `mailto:` draft instead of storing or sending through a backend.
+- Public contact email: `info@calinmeters.com`.
+- English and French inquiry forms post to the separate Cloudflare Worker, which sends validated inquiries to `tom.qi@qq.com` through Resend.
+- The validated customer email is used only as Reply-To; Worker secrets remain outside the static site build.
 - No customer inquiry database exists.
 
 ## Data Model
