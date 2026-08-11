@@ -2,6 +2,12 @@ import { google } from 'googleapis';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+import {
+  buildDailyReportData,
+  buildFeishuCard,
+  formatDailyReport,
+} from './daily-report-formatter.mjs';
+
 const FIXTURE_MODE = process.argv.includes('--fixture');
 const FRENCH_PREFIX = '/fr/';
 const SITE_ORIGIN = 'https://calinmeters.com';
@@ -14,12 +20,6 @@ const FRENCH_ACTION_EVENTS = [
   'fr_specification_download',
   'language_switch',
 ];
-const FRENCH_ERROR_RESULTS = new Set([
-  'validation_error',
-  'challenge_error',
-  'rate_limited',
-  'server_error',
-]);
 const localeRoutes = JSON.parse(
   await fs.readFile(new URL('../data/i18n-routes.json', import.meta.url), 'utf8'),
 );
@@ -38,11 +38,11 @@ const scopes = [
 
 const timeZone = process.env.REPORT_TIMEZONE || 'Asia/Shanghai';
 const reportDate = FIXTURE_MODE
-  ? '2026-07-24'
+  ? '2026-08-09'
   : process.env.REPORT_DATE || getYesterday(timeZone);
 
 if (FIXTURE_MODE) {
-  const report = renderReport(createFixtureData());
+  const report = formatDailyReport(buildDailyReportData(createFixtureData()));
   assertFixtureReport(report);
   console.log(report);
   console.log('\nFixture validation passed.');
@@ -65,6 +65,7 @@ async function generateLiveReport() {
   const auth = createAuthClient();
   const analyticsData = google.analyticsdata({ version: 'v1beta', auth });
   const searchConsole = google.searchconsole({ version: 'v1', auth });
+  const gaToday = makeWindow(reportDate, 1);
   const ga30 = makeWindow(reportDate, 30);
   const ga90 = makeWindow(reportDate, 90);
   const gscEndDate = addIsoDays(reportDate, -SEARCH_CONSOLE_DELAY_DAYS);
@@ -72,160 +73,49 @@ async function generateLiveReport() {
   const gsc90 = makeWindow(gscEndDate, 90);
 
   try {
-    const [
-      overview,
-      countries,
-      pages,
-      downloads,
-      searchQueries,
-      searchCountries,
-      searchPages,
-      frenchTraffic30,
-      frenchTraffic90,
-      frenchOrganicLanding30,
-      frenchOrganicLanding90,
-      frenchInquiry30,
-      frenchInquiry90,
-      frenchActions30,
-      frenchActions90,
-      frenchSearchPage30,
-      frenchSearchPage90,
-      frenchSearchPageQuery30,
-      frenchSearchPageQuery90,
-      frenchSearchCountryQuery30,
-      frenchSearchCountryQuery90,
-    ] = await Promise.all([
-      runGaReport({
-        analyticsData,
-        gaProperty,
-        metrics: ['activeUsers', 'sessions', 'screenPageViews', 'eventCount'],
-      }),
-      runGaReport({
-        analyticsData,
-        gaProperty,
-        dimensions: ['country'],
-        metrics: ['activeUsers', 'sessions', 'screenPageViews'],
-        limit: 15,
-      }),
-      runGaReport({
-        analyticsData,
-        gaProperty,
-        dimensions: ['pagePathPlusQueryString'],
-        metrics: ['screenPageViews', 'activeUsers', 'averageSessionDuration'],
-        limit: 20,
-      }),
-      runDownloadsReport({ analyticsData, gaProperty }),
-      runSearchConsole({
-        searchConsole,
-        gscSiteUrl,
-        dimensions: ['query'],
-        rowLimit: 20,
-      }),
-      runSearchConsole({
-        searchConsole,
-        gscSiteUrl,
-        dimensions: ['country'],
-        rowLimit: 15,
-      }),
-      runSearchConsole({
-        searchConsole,
-        gscSiteUrl,
-        dimensions: ['page'],
-        rowLimit: 20,
-      }),
-      runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: ga30 }),
-      runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: ga90 }),
-      runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga30 }),
-      runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga90 }),
-      runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: ga30 }),
-      runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: ga90 }),
-      runFrenchActionReport({ analyticsData, gaProperty, dateRange: ga30 }),
-      runFrenchActionReport({ analyticsData, gaProperty, dateRange: ga90 }),
-      runFrenchSearchReport({
-        searchConsole,
-        gscSiteUrl,
-        dimensions: ['page'],
-        rowLimit: 25_000,
-        dateRange: gsc30,
-      }),
-      runFrenchSearchReport({
-        searchConsole,
-        gscSiteUrl,
-        dimensions: ['page'],
-        rowLimit: 25_000,
-        dateRange: gsc90,
-      }),
-      runFrenchSearchReport({
-        searchConsole,
-        gscSiteUrl,
-        dimensions: ['page', 'query'],
-        rowLimit: 250,
-        dateRange: gsc30,
-      }),
-      runFrenchSearchReport({
-        searchConsole,
-        gscSiteUrl,
-        dimensions: ['page', 'query'],
-        rowLimit: 500,
-        dateRange: gsc90,
-      }),
-      runFrenchSearchReport({
-        searchConsole,
-        gscSiteUrl,
-        dimensions: ['country', 'query'],
-        rowLimit: 250,
-        dateRange: gsc30,
-      }),
-      runFrenchSearchReport({
-        searchConsole,
-        gscSiteUrl,
-        dimensions: ['country', 'query'],
-        rowLimit: 500,
-        dateRange: gsc90,
-      }),
+    const [ga4Result, gscResult] = await Promise.allSettled([
+      collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }),
+      collectGscData({ searchConsole, gscSiteUrl, gsc30, gsc90 }),
     ]);
 
-    const report = renderReport({
-      date: reportDate,
-      overview,
-      countries,
-      pages,
-      downloads,
-      searchQueries,
-      searchCountries,
-      searchPages,
-      french: {
-        ga30,
-        ga90,
-        gsc30,
-        gsc90,
-        traffic30: frenchTraffic30,
-        traffic90: frenchTraffic90,
-        organicLanding30: frenchOrganicLanding30,
-        organicLanding90: frenchOrganicLanding90,
-        inquiry30: frenchInquiry30,
-        inquiry90: frenchInquiry90,
-        actions30: frenchActions30,
-        actions90: frenchActions90,
-        searchPage30: frenchSearchPage30,
-        searchPage90: frenchSearchPage90,
-        searchPageQuery30: frenchSearchPageQuery30,
-        searchPageQuery90: frenchSearchPageQuery90,
-        searchCountryQuery30: frenchSearchCountryQuery30,
-        searchCountryQuery90: frenchSearchCountryQuery90,
-      },
-    });
+    if (ga4Result.status === 'rejected') {
+      console.error(`GA4 data collection failed: ${formatError(ga4Result.reason)}`);
+    }
+    if (gscResult.status === 'rejected') {
+      console.error(`GSC data collection failed: ${formatError(gscResult.reason)}`);
+    }
+    if (ga4Result.status === 'rejected' && gscResult.status === 'rejected') {
+      throw new AggregateError(
+        [ga4Result.reason, gscResult.reason],
+        'GA4 and GSC data collection both failed.',
+      );
+    }
 
-    const outFile = await writeReport(`daily-analytics-${reportDate}.md`, report);
+    const rawData = buildRawReportData({
+      ga4Result,
+      gscResult,
+      gaToday,
+      ga30,
+      ga90,
+      gsc30,
+      gsc90,
+    });
+    const report = formatDailyReport(buildDailyReportData(rawData));
+    const [outFile, rawFile] = await Promise.all([
+      writeReport(`daily-analytics-${reportDate}.md`, report),
+      writeRawReport(`daily-analytics-${reportDate}.raw.json`, rawData),
+    ]);
 
     console.log(report);
     console.log(`\nReport written to ${outFile}`);
+    console.log(`Raw aggregate data written to ${rawFile}`);
 
     if (process.env.FEISHU_WEBHOOK_URL) {
       await sendFeishu(report);
     }
   } catch (error) {
-    const message = renderFailureNotice(error);
+    console.error(`Daily report generation failed: ${formatError(error)}`);
+    const message = renderFailureNotice();
     await writeReport(`daily-analytics-${reportDate}-failure.md`, message);
     console.error(message);
 
@@ -239,6 +129,252 @@ async function generateLiveReport() {
 
     process.exitCode = 1;
   }
+}
+
+async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }) {
+  const [
+    overview,
+    devices,
+    countries,
+    pages,
+    downloads,
+    frenchTrafficToday,
+    frenchTraffic30,
+    frenchTraffic90,
+    frenchOrganicLandingToday,
+    frenchOrganicLanding30,
+    frenchOrganicLanding90,
+    frenchInquiryToday,
+    frenchInquiry30,
+    frenchInquiry90,
+    frenchActionsToday,
+    frenchActions30,
+    frenchActions90,
+  ] = await Promise.all([
+    runGaReport({
+      analyticsData,
+      gaProperty,
+      metrics: ['activeUsers', 'sessions', 'screenPageViews', 'eventCount'],
+    }),
+    runGaReport({
+      analyticsData,
+      gaProperty,
+      dimensions: ['deviceCategory'],
+      metrics: ['activeUsers'],
+      limit: 10,
+    }),
+    runGaReport({
+      analyticsData,
+      gaProperty,
+      dimensions: ['country'],
+      metrics: ['activeUsers', 'sessions', 'screenPageViews'],
+      limit: 15,
+    }),
+    runGaReport({
+      analyticsData,
+      gaProperty,
+      dimensions: ['pagePathPlusQueryString'],
+      metrics: ['screenPageViews', 'activeUsers', 'averageSessionDuration'],
+      limit: 20,
+    }),
+    runDownloadsReport({ analyticsData, gaProperty }),
+    runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: gaToday }),
+    runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: ga30 }),
+    runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: ga90 }),
+    runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: gaToday }),
+    runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga30 }),
+    runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga90 }),
+    runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: gaToday }),
+    runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: ga30 }),
+    runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: ga90 }),
+    runFrenchActionReport({ analyticsData, gaProperty, dateRange: gaToday }),
+    runFrenchActionReport({ analyticsData, gaProperty, dateRange: ga30 }),
+    runFrenchActionReport({ analyticsData, gaProperty, dateRange: ga90 }),
+  ]);
+
+  return {
+    overview,
+    devices,
+    countries,
+    pages,
+    downloads,
+    french: {
+      trafficToday: frenchTrafficToday,
+      traffic30: frenchTraffic30,
+      traffic90: frenchTraffic90,
+      organicLandingToday: frenchOrganicLandingToday,
+      organicLanding30: frenchOrganicLanding30,
+      organicLanding90: frenchOrganicLanding90,
+      inquiryToday: frenchInquiryToday,
+      inquiry30: frenchInquiry30,
+      inquiry90: frenchInquiry90,
+      actionsToday: frenchActionsToday,
+      actions30: frenchActions30,
+      actions90: frenchActions90,
+    },
+  };
+}
+
+async function collectGscData({ searchConsole, gscSiteUrl, gsc30, gsc90 }) {
+  const [
+    searchOverview,
+    searchQueries,
+    searchCountries,
+    searchPages,
+    frenchSearchPage30,
+    frenchSearchPage90,
+    frenchSearchPageQuery30,
+    frenchSearchPageQuery90,
+    frenchSearchCountryQuery30,
+    frenchSearchCountryQuery90,
+  ] = await Promise.all([
+    runSearchConsole({ searchConsole, gscSiteUrl, dimensions: [], rowLimit: 1 }),
+    runSearchConsole({ searchConsole, gscSiteUrl, dimensions: ['query'], rowLimit: 20 }),
+    runSearchConsole({ searchConsole, gscSiteUrl, dimensions: ['country'], rowLimit: 15 }),
+    runSearchConsole({ searchConsole, gscSiteUrl, dimensions: ['page'], rowLimit: 20 }),
+    runFrenchSearchReport({
+      searchConsole,
+      gscSiteUrl,
+      dimensions: ['page'],
+      rowLimit: 25_000,
+      dateRange: gsc30,
+    }),
+    runFrenchSearchReport({
+      searchConsole,
+      gscSiteUrl,
+      dimensions: ['page'],
+      rowLimit: 25_000,
+      dateRange: gsc90,
+    }),
+    runFrenchSearchReport({
+      searchConsole,
+      gscSiteUrl,
+      dimensions: ['page', 'query'],
+      rowLimit: 250,
+      dateRange: gsc30,
+    }),
+    runFrenchSearchReport({
+      searchConsole,
+      gscSiteUrl,
+      dimensions: ['page', 'query'],
+      rowLimit: 500,
+      dateRange: gsc90,
+    }),
+    runFrenchSearchReport({
+      searchConsole,
+      gscSiteUrl,
+      dimensions: ['country', 'query'],
+      rowLimit: 250,
+      dateRange: gsc30,
+    }),
+    runFrenchSearchReport({
+      searchConsole,
+      gscSiteUrl,
+      dimensions: ['country', 'query'],
+      rowLimit: 500,
+      dateRange: gsc90,
+    }),
+  ]);
+
+  return {
+    searchOverview,
+    searchQueries,
+    searchCountries,
+    searchPages,
+    french: {
+      searchPage30: frenchSearchPage30,
+      searchPage90: frenchSearchPage90,
+      searchPageQuery30: frenchSearchPageQuery30,
+      searchPageQuery90: frenchSearchPageQuery90,
+      searchCountryQuery30: frenchSearchCountryQuery30,
+      searchCountryQuery90: frenchSearchCountryQuery90,
+    },
+  };
+}
+
+function buildRawReportData({ ga4Result, gscResult, gaToday, ga30, ga90, gsc30, gsc90 }) {
+  const ga4 = ga4Result.status === 'fulfilled' ? ga4Result.value : {};
+  const gsc = gscResult.status === 'fulfilled' ? gscResult.value : {};
+  const searchPage30 = gsc.french?.searchPage30 || [];
+  const searchPage90 = gsc.french?.searchPage90 || [];
+
+  return {
+    date: reportDate,
+    sourceStatus: {
+      ga4: ga4Result.status === 'fulfilled' ? 'available' : 'unavailable',
+      gsc: gscResult.status === 'fulfilled' ? 'available' : 'unavailable',
+    },
+    overview: ga4.overview || [],
+    devices: ga4.devices || [],
+    countries: ga4.countries || [],
+    pages: ga4.pages || [],
+    downloads: ga4.downloads || [],
+    searchOverview: gsc.searchOverview || [],
+    searchQueries: gsc.searchQueries || [],
+    searchCountries: gsc.searchCountries || [],
+    searchPages: gsc.searchPages || [],
+    french: {
+      gaToday,
+      ga30,
+      ga90,
+      gsc30,
+      gsc90,
+      trafficToday: ga4.french?.trafficToday || [],
+      traffic30: ga4.french?.traffic30 || [],
+      traffic90: ga4.french?.traffic90 || [],
+      organicLandingToday: ga4.french?.organicLandingToday || [],
+      organicLanding30: ga4.french?.organicLanding30 || [],
+      organicLanding90: ga4.french?.organicLanding90 || [],
+      inquiryToday: ga4.french?.inquiryToday || emptyControlledReport(),
+      inquiry30: ga4.french?.inquiry30 || emptyControlledReport(),
+      inquiry90: ga4.french?.inquiry90 || emptyControlledReport(),
+      actionsToday: ga4.french?.actionsToday || emptyControlledReport(),
+      actions30: ga4.french?.actions30 || emptyControlledReport(),
+      actions90: ga4.french?.actions90 || emptyControlledReport(),
+      searchPage30,
+      searchPage90,
+      searchPageQuery30: gsc.french?.searchPageQuery30 || [],
+      searchPageQuery90: gsc.french?.searchPageQuery90 || [],
+      searchCountryQuery30: gsc.french?.searchCountryQuery30 || [],
+      searchCountryQuery90: gsc.french?.searchCountryQuery90 || [],
+      priorityCoverage30: gscResult.status === 'fulfilled' ? buildPriorityCoverage(searchPage30) : [],
+      priorityCoverage90: gscResult.status === 'fulfilled' ? buildPriorityCoverage(searchPage90) : [],
+    },
+  };
+}
+
+function emptyControlledReport() {
+  return { controlledDimensionsAvailable: false, rows: [] };
+}
+
+function buildPriorityCoverage(rows) {
+  const grouped = new Map(
+    FRENCH_PRIORITY_PAGES.map((page) => [
+      normalizeCanonical(page),
+      { page, clicks: 0, impressions: 0, weightedPosition: 0 },
+    ]),
+  );
+
+  for (const row of rows) {
+    const group = grouped.get(normalizeCanonical(row.page));
+    if (!group) continue;
+    const impressions = Number(row.impressions || 0);
+    group.clicks += Number(row.clicks || 0);
+    group.impressions += impressions;
+    group.weightedPosition += Number(row.position || 0) * impressions;
+  }
+
+  return [...grouped.values()].map((row) => ({
+    page: row.page,
+    clicks: row.clicks,
+    impressions: row.impressions,
+    ctr: row.impressions > 0 ? row.clicks / row.impressions : 0,
+    position: row.impressions > 0 ? row.weightedPosition / row.impressions : 0,
+  }));
+}
+
+function normalizeCanonical(value = '') {
+  return value.endsWith('/') ? value : `${value}/`;
 }
 
 function getYesterday(timeZoneName) {
@@ -607,390 +743,8 @@ async function runFrenchSearchReport({
   });
 }
 
-function renderReport(data) {
-  const overviewRow = data.overview[0] || {};
-
-  return `# CalinMeters Website Daily Report - ${data.date}
-
-## Overview
-
-| Metric | Value |
-| --- | ---: |
-| Active users | ${overviewRow.activeUsers || 0} |
-| Sessions | ${overviewRow.sessions || 0} |
-| Page views | ${overviewRow.screenPageViews || 0} |
-| Events | ${overviewRow.eventCount || 0} |
-
-${renderFrenchComparison(data.french)}
-
-## Search Keywords
-
-${table(data.searchQueries, ['query', 'clicks', 'impressions', 'ctr', 'position'])}
-
-## Search Countries
-
-${table(data.searchCountries, ['country', 'clicks', 'impressions', 'ctr', 'position'])}
-
-## Website Traffic by Country
-
-${table(data.countries, ['country', 'activeUsers', 'sessions', 'screenPageViews'])}
-
-## Most Viewed Pages
-
-${table(data.pages, ['pagePathPlusQueryString', 'screenPageViews', 'activeUsers', 'averageSessionDuration'])}
-
-## File Downloads
-
-${table(data.downloads, Object.keys(data.downloads[0] || { pagePathPlusQueryString: '', eventCount: '', activeUsers: '' }))}
-
-## Search Landing Pages
-
-${table(data.searchPages, ['page', 'clicks', 'impressions', 'ctr', 'position'])}
-
-${renderFrenchAnalyticsWindow({
-  label: '30 Days',
-  dateRange: data.french.ga30,
-  traffic: data.french.traffic30,
-  organicLanding: data.french.organicLanding30,
-  inquiry: data.french.inquiry30,
-  actions: data.french.actions30,
-})}
-
-${renderFrenchAnalyticsWindow({
-  label: '90 Days',
-  dateRange: data.french.ga90,
-  traffic: data.french.traffic90,
-  organicLanding: data.french.organicLanding90,
-  inquiry: data.french.inquiry90,
-  actions: data.french.actions90,
-})}
-
-${renderFrenchSearchWindow({
-  label: '30 Days',
-  dateRange: data.french.gsc30,
-  pageSummary: data.french.searchPage30,
-  pageQuery: data.french.searchPageQuery30,
-  countryQuery: data.french.searchCountryQuery30,
-})}
-
-${renderFrenchSearchWindow({
-  label: '90 Days',
-  dateRange: data.french.gsc90,
-  pageSummary: data.french.searchPage90,
-  pageQuery: data.french.searchPageQuery90,
-  countryQuery: data.french.searchCountryQuery90,
-})}
-`;
-}
-
-function renderFrenchComparison(french) {
-  const rows = [
-    buildFrenchComparisonRow({
-      window: '30 days',
-      traffic: french.traffic30,
-      organicLanding: french.organicLanding30,
-      inquiry: french.inquiry30,
-      actions: french.actions30,
-      searchRows: french.searchPage30,
-    }),
-    buildFrenchComparisonRow({
-      window: '90 days',
-      traffic: french.traffic90,
-      organicLanding: french.organicLanding90,
-      inquiry: french.inquiry90,
-      actions: french.actions90,
-      searchRows: french.searchPage90,
-    }),
-  ];
-
-  return `## French Acquisition Comparison
-
-${table(rows, [
-  'window',
-  'activeUsers',
-  'sessions',
-  'engagedSessions',
-  'engagementRate',
-  'organicLandingSessions',
-  'quoteStarts',
-  'quoteSubmitAttempts',
-  'successfulSubmits',
-  'errorResults',
-  'whatsappClicks',
-  'emailClicks',
-  'specificationDownloads',
-  'languageSwitches',
-  'searchClicks',
-  'searchImpressions',
-  'searchCtr',
-  'searchPosition',
-])}`;
-}
-
-function buildFrenchComparisonRow({
-  window,
-  traffic,
-  organicLanding,
-  inquiry,
-  actions,
-  searchRows,
-}) {
-  const trafficRow = traffic[0] || {};
-  const inquirySummary = summarizeInquiryEvents(inquiry.rows);
-  const searchSummary = summarizeSearchRows(searchRows);
-
-  return {
-    window,
-    activeUsers: trafficRow.activeUsers || 0,
-    sessions: trafficRow.sessions || 0,
-    engagedSessions: trafficRow.engagedSessions || 0,
-    engagementRate: trafficRow.engagementRate || 0,
-    organicLandingSessions: sumColumn(organicLanding, 'sessions'),
-    quoteStarts: inquirySummary.starts,
-    quoteSubmitAttempts: inquirySummary.submitAttempts,
-    successfulSubmits: inquiry.controlledDimensionsAvailable ? inquirySummary.successes : '-',
-    errorResults: inquiry.controlledDimensionsAvailable ? inquirySummary.errors : '-',
-    whatsappClicks: sumFrenchAction(actions.rows, 'fr_whatsapp_click'),
-    emailClicks: sumFrenchAction(actions.rows, 'fr_email_click'),
-    specificationDownloads: sumFrenchAction(actions.rows, 'fr_specification_download'),
-    languageSwitches: sumFrenchAction(actions.rows, 'language_switch'),
-    searchClicks: searchSummary.clicks,
-    searchImpressions: searchSummary.impressions,
-    searchCtr: searchSummary.ctr,
-    searchPosition: searchSummary.position,
-  };
-}
-
-function renderFrenchAnalyticsWindow({
-  label,
-  dateRange,
-  traffic,
-  organicLanding,
-  inquiry,
-  actions,
-}) {
-  const trafficRow = traffic[0] || {};
-  const inquirySummary = summarizeInquiryEvents(inquiry.rows);
-  const pageTypes = summarizeLandingTypes(organicLanding);
-  const customDimensionNote = inquiry.controlledDimensionsAvailable
-    ? 'Controlled GA4 event dimensions are available.'
-    : 'Controlled GA4 event dimensions are not registered yet; event totals are shown without product category, product ID, buyer type, or result.';
-
-  return `## French Acquisition - ${label}
-
-GA4 window: ${dateRange.startDate} to ${dateRange.endDate}
-
-### French Traffic
-
-| Metric | Value |
-| --- | ---: |
-| Active users | ${trafficRow.activeUsers || 0} |
-| Sessions | ${trafficRow.sessions || 0} |
-| Engaged sessions | ${trafficRow.engagedSessions || 0} |
-| Engagement rate | ${formatCell(trafficRow.engagementRate || 0, 'engagementRate')} |
-| Organic landing sessions | ${sumColumn(organicLanding, 'sessions')} |
-
-### French Organic Landing Pages
-
-${table(organicLanding, ['landingPagePlusQueryString', 'activeUsers', 'sessions', 'engagedSessions', 'engagementRate'])}
-
-### French Organic Landing Page Types
-
-${table(pageTypes, ['pageType', 'activeUsers', 'sessions', 'engagedSessions', 'engagementRate'])}
-
-### French Inquiry Funnel
-
-| Metric | Value |
-| --- | ---: |
-| fr_quote_start | ${inquirySummary.starts} |
-| fr_quote_submit attempts | ${inquirySummary.submitAttempts} |
-| Successful submits | ${inquiry.controlledDimensionsAvailable ? inquirySummary.successes : '-'} |
-| Error results | ${inquiry.controlledDimensionsAvailable ? inquirySummary.errors : '-'} |
-
-${customDimensionNote}
-
-${table(inquiry.rows, ['eventName', 'productCategory', 'productId', 'buyerType', 'result', 'eventCount'])}
-
-### French Contact, PDF and Language Actions
-
-${table(actions.rows, ['eventName', 'productId', 'eventCount'])}`;
-}
-
-function renderFrenchSearchWindow({
-  label,
-  dateRange,
-  pageSummary,
-  pageQuery,
-  countryQuery,
-}) {
-  const priorityCoverage = buildPriorityCoverage(pageSummary);
-
-  return `## French Search Performance - ${label}
-
-Search Console complete-data window: ${dateRange.startDate} to ${dateRange.endDate}. The end date is delayed ${SEARCH_CONSOLE_DELAY_DAYS} days to avoid partial data.
-
-### Priority French Landing Page Coverage
-
-${table(priorityCoverage, ['page', 'clicks', 'impressions', 'ctr', 'position'])}
-
-### French Pages and Queries
-
-${table(pageQuery, ['page', 'query', 'clicks', 'impressions', 'ctr', 'position'])}
-
-### French Queries by Country
-
-${table(countryQuery, ['country', 'query', 'clicks', 'impressions', 'ctr', 'position'])}
-
-Country is analysis context only. It does not authorize or automatically create a public country page.`;
-}
-
-function summarizeLandingTypes(rows) {
-  const groups = new Map([
-    ['homepage', emptyLandingSummary('homepage')],
-    ['category', emptyLandingSummary('category')],
-    ['product', emptyLandingSummary('product')],
-  ]);
-
-  for (const row of rows) {
-    const group = groups.get(classifyFrenchPath(row.landingPagePlusQueryString));
-    const sessions = Number(row.sessions || 0);
-    group.activeUsers += Number(row.activeUsers || 0);
-    group.sessions += sessions;
-    group.engagedSessions += Number(row.engagedSessions || 0);
-  }
-
-  return [...groups.values()].map((group) => ({
-    ...group,
-    engagementRate: group.sessions > 0 ? group.engagedSessions / group.sessions : 0,
-  }));
-}
-
-function emptyLandingSummary(pageType) {
-  return {
-    pageType,
-    activeUsers: 0,
-    sessions: 0,
-    engagedSessions: 0,
-  };
-}
-
-function classifyFrenchPath(value = '') {
-  const pathname = value.split('?')[0];
-  if (pathname === '/fr' || pathname === '/fr/') return 'homepage';
-  if (
-    pathname === '/fr/produits/compteur-electricite-prepaye-sts/' ||
-    pathname === '/fr/produits/compteur-eau-prepaye-sts/'
-  ) {
-    return 'category';
-  }
-  return 'product';
-}
-
-function summarizeInquiryEvents(rows) {
-  return rows.reduce(
-    (summary, row) => {
-      const count = Number(row.eventCount || 0);
-      if (row.eventName === 'fr_quote_start') summary.starts += count;
-      if (row.eventName === 'fr_quote_submit') {
-        summary.submitAttempts += count;
-        if (row.result.toLowerCase() === 'success') summary.successes += count;
-        if (FRENCH_ERROR_RESULTS.has(row.result.toLowerCase())) summary.errors += count;
-      }
-      return summary;
-    },
-    { starts: 0, submitAttempts: 0, successes: 0, errors: 0 },
-  );
-}
-
-function sumFrenchAction(rows, eventName) {
-  return rows
-    .filter((row) => row.eventName === eventName)
-    .reduce((total, row) => total + Number(row.eventCount || 0), 0);
-}
-
-function summarizeSearchRows(rows) {
-  const summary = rows.reduce(
-    (result, row) => {
-      const impressions = Number(row.impressions || 0);
-      result.clicks += Number(row.clicks || 0);
-      result.impressions += impressions;
-      result.weightedPosition += Number(row.position || 0) * impressions;
-      return result;
-    },
-    { clicks: 0, impressions: 0, weightedPosition: 0 },
-  );
-
-  return {
-    clicks: summary.clicks,
-    impressions: summary.impressions,
-    ctr: summary.impressions > 0 ? summary.clicks / summary.impressions : 0,
-    position: summary.impressions > 0 ? summary.weightedPosition / summary.impressions : 0,
-  };
-}
-
-function buildPriorityCoverage(rows) {
-  const grouped = new Map(
-    FRENCH_PRIORITY_PAGES.map((page) => [
-      normalizeCanonical(page),
-      {
-        page,
-        clicks: 0,
-        impressions: 0,
-        weightedPosition: 0,
-      },
-    ]),
-  );
-
-  for (const row of rows) {
-    const group = grouped.get(normalizeCanonical(row.page));
-    if (!group) continue;
-    const impressions = Number(row.impressions || 0);
-    group.clicks += Number(row.clicks || 0);
-    group.impressions += impressions;
-    group.weightedPosition += Number(row.position || 0) * impressions;
-  }
-
-  return [...grouped.values()].map((row) => ({
-    page: row.page,
-    clicks: row.clicks,
-    impressions: row.impressions,
-    ctr: row.impressions > 0 ? row.clicks / row.impressions : 0,
-    position: row.impressions > 0 ? row.weightedPosition / row.impressions : 0,
-  }));
-}
-
-function normalizeCanonical(value = '') {
-  return value.endsWith('/') ? value : `${value}/`;
-}
-
-function sumColumn(rows, column) {
-  return rows.reduce((total, row) => total + Number(row[column] || 0), 0);
-}
-
-function table(rows, columns) {
-  if (!rows || rows.length === 0) return '_No data._';
-
-  const header = `| ${columns.join(' | ')} |`;
-  const separator = `| ${columns.map(() => '---').join(' | ')} |`;
-  const body = rows
-    .map((row) => `| ${columns.map((column) => formatCell(row[column], column)).join(' | ')} |`)
-    .join('\n');
-
-  return `${header}\n${separator}\n${body}`;
-}
-
-function formatCell(value, column) {
-  if (value === undefined || value === null || value === '') return '-';
-  if (column === 'ctr' || column === 'engagementRate' || column === 'searchCtr') {
-    return `${(Number(value) * 100).toFixed(2)}%`;
-  }
-  if (column === 'position' || column === 'searchPosition' || column === 'averageSessionDuration') {
-    return Number(value).toFixed(2);
-  }
-  return String(value).replaceAll('|', '\\|').replaceAll('\n', ' ');
-}
-
 function createFixtureData() {
+  const gaToday = makeWindow(reportDate, 1);
   const ga30 = makeWindow(reportDate, 30);
   const ga90 = makeWindow(reportDate, 90);
   const gsc30 = makeWindow(addIsoDays(reportDate, -SEARCH_CONSOLE_DELAY_DAYS), 30);
@@ -1027,20 +781,29 @@ function createFixtureData() {
 
   return {
     date: reportDate,
+    sourceStatus: { ga4: 'available', gsc: 'available' },
     overview: [{ activeUsers: '19', sessions: '24', screenPageViews: '45', eventCount: '78' }],
+    devices: [
+      { deviceCategory: 'desktop', activeUsers: '12' },
+      { deviceCategory: 'mobile', activeUsers: '7' },
+    ],
     countries: [{ country: 'Senegal', activeUsers: '4', sessions: '5', screenPageViews: '11' }],
     pages: [{ pagePathPlusQueryString: '/', screenPageViews: '14', activeUsers: '10', averageSessionDuration: '63.2' }],
-    downloads: [{ pagePathPlusQueryString: '/products/ca168-sts/', eventCount: '2', activeUsers: '2' }],
+    downloads: [{ fileName: '/specs/energy-meter/CA168.pdf', eventCount: '2', activeUsers: '2' }],
+    searchOverview: [{ clicks: 2, impressions: 40, ctr: 0.05, position: 7.2 }],
     searchQueries: [{ query: 'sts prepaid meter', clicks: 2, impressions: 40, ctr: 0.05, position: 7.2 }],
     searchCountries: [{ country: 'sen', clicks: 1, impressions: 12, ctr: 0.0833, position: 6.4 }],
     searchPages: [{ page: 'https://calinmeters.com/', clicks: 2, impressions: 32, ctr: 0.0625, position: 8.1 }],
     french: {
+      gaToday,
       ga30,
       ga90,
       gsc30,
       gsc90,
+      trafficToday: [{ activeUsers: '3', sessions: '3', engagedSessions: '3', engagementRate: '1' }],
       traffic30: [{ activeUsers: '8', sessions: '11', engagedSessions: '7', engagementRate: '0.6364' }],
       traffic90: [{ activeUsers: '14', sessions: '22', engagedSessions: '15', engagementRate: '0.6818' }],
+      organicLandingToday: [],
       organicLanding30: [
         {
           landingPagePlusQueryString: '/fr/',
@@ -1087,6 +850,10 @@ function createFixtureData() {
           engagementRate: '0.75',
         },
       ],
+      inquiryToday: {
+        controlledDimensionsAvailable: true,
+        rows: [inquiry30.rows[1]],
+      },
       inquiry30,
       inquiry90: {
         controlledDimensionsAvailable: true,
@@ -1100,6 +867,13 @@ function createFixtureData() {
             result: 'success',
             eventCount: '3',
           },
+        ],
+      },
+      actionsToday: {
+        controlledDimensionsAvailable: true,
+        rows: [
+          { eventName: 'fr_whatsapp_click', productId: '', eventCount: '1' },
+          { eventName: 'language_switch', productId: '', eventCount: '2' },
         ],
       },
       actions30: {
@@ -1230,34 +1004,36 @@ function createFixtureData() {
 
 function assertFixtureReport(report) {
   if (FRENCH_PRIORITY_PAGES.length !== 11) {
-    throw new Error(
-      `Fixture expected 11 French priority routes, received ${FRENCH_PRIORITY_PAGES.length}.`,
-    );
+    throw new Error(`Fixture expected 11 French priority routes, received ${FRENCH_PRIORITY_PAGES.length}.`);
   }
 
   const requiredText = [
-    'French Acquisition - 30 Days',
-    'French Acquisition - 90 Days',
-    'French Acquisition Comparison',
-    'French Organic Landing Pages',
-    'fr_quote_start',
-    'fr_quote_submit',
-    'Successful submits',
-    'Error results',
-    'productCategory',
-    'productId',
-    'buyerType',
-    'result',
-    'French Search Performance - 30 Days',
-    'French Search Performance - 90 Days',
-    'Priority French Landing Page Coverage',
-    'French Queries by Country',
-    ...FRENCH_PRIORITY_PAGES,
+    '# CalinMeters 网站日报',
+    '数据状态：',
+    '## 核心指标',
+    '## 热门搜索词',
+    '## 热门页面',
+    '## 国家/地区',
+    '## 设备',
+    '## 法语市场',
+    '## 转化',
+    '## PDF 下载',
+    '**提示：**',
   ];
   const missing = requiredText.filter((text) => !report.includes(text));
 
   if (missing.length > 0) {
-    throw new Error(`Fixture report is missing required French reporting fields: ${missing.join(', ')}`);
+    throw new Error(`Fixture report is missing required summary sections: ${missing.join(', ')}`);
+  }
+
+  const bannedText = ['| ---', '_No data._', 'activeUsers', 'pagePathPlusQueryString', 'fr_quote_submit'];
+  const present = bannedText.filter((text) => report.includes(text));
+  if (present.length > 0) {
+    throw new Error(`Fixture report contains banned technical output: ${present.join(', ')}`);
+  }
+
+  if (report.split('\n').filter(Boolean).length > 45) {
+    throw new Error('Fixture report exceeds the 45-line summary target.');
   }
 }
 
@@ -1269,18 +1045,17 @@ async function writeReport(fileName, content) {
   return outFile;
 }
 
-function renderFailureNotice(error) {
-  return `# CalinMeters Website Daily Report Failed - ${reportDate}
+async function writeRawReport(fileName, content) {
+  return writeReport(fileName, `${JSON.stringify(content, null, 2)}\n`);
+}
 
-The daily analytics report could not be generated.
+function renderFailureNotice() {
+  return `# CalinMeters 网站日报生成失败 | ${reportDate}
 
-## Failure
+**数据日期：** ${reportDate}
+**数据状态：** ❌ GA4 / GSC 数据获取失败
 
-${formatError(error)}
-
-## Likely Fix
-
-If the error contains \`invalid_grant\` or \`Token has been expired or revoked\`, create a new Google OAuth refresh token, update the \`GOOGLE_OAUTH_REFRESH_TOKEN\` GitHub Secret, and rerun the workflow for ${reportDate}.
+**提示：** 请查看 GitHub Actions 日志确认 Google 授权或 API 状态，修复后重新运行日报。
 `;
 }
 
@@ -1296,16 +1071,10 @@ function formatError(error) {
 }
 
 async function sendFeishu(markdown) {
-  const text = markdown.length > 3500 ? `${markdown.slice(0, 3500)}\n\n...` : markdown;
   const response = await fetch(process.env.FEISHU_WEBHOOK_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      msg_type: 'text',
-      content: {
-        text,
-      },
-    }),
+    body: JSON.stringify(buildFeishuCard(markdown)),
   });
 
   if (!response.ok) {
