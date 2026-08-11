@@ -22,14 +22,17 @@ The current release has no country pages. Country data is evidence for prioritiz
 
 ## Automated cadence
 
-The `Daily Analytics Report` workflow runs daily at 08:30 Asia/Shanghai. It retains the existing one-day English/site-wide sections and adds:
+The `Daily Analytics Report` workflow runs daily at 08:30 Asia/Shanghai. The Feishu message is a compact Simplified Chinese summary with:
 
-- 30-day and 90-day GA4 French traffic windows;
-- French organic landing sessions and homepage/category/product groupings;
-- `fr_quote_start` and `fr_quote_submit` attempts, successful-submit totals, and error-result totals;
-- controlled product category, product ID, buyer type, and result breakdowns;
-- 30-day and 90-day Search Console French page/query and country/query windows;
-- an explicit row for each priority French URL, including pages with zero clicks or impressions.
+- one-line GA4 traffic and Search Console totals;
+- top-five search terms, merged pages, and countries plus a compact device split;
+- one French-market section combining same-day activity with 30-day and 90-day user totals;
+- successful inquiries, contact actions, and up to three PDF filenames;
+- one deterministic interpretation sentence.
+
+The summary hides empty optional sections and contains no raw API field names or Markdown tables. GA4 and Search Console are collected as independent source groups: if one group fails, the report marks that source unavailable and still renders the healthy group. If both fail, the workflow writes and sends a short failure notice.
+
+The workflow stores the complete privacy-safe aggregate rows in a `.raw.json` artifact beside the compact Markdown summary. The raw artifact retains the 30-day and 90-day French traffic, organic landing, inquiry, controlled action, page/query, country/query, and priority-page evidence needed by the weekly review. It is the working evidence source; the Feishu card is only the daily summary.
 
 GA4 windows end on the requested report date. Search Console windows end three days earlier to avoid reporting on likely partial data. Both windows are inclusive: 30 days means the end date plus the preceding 29 days, and 90 days means the end date plus the preceding 89 days.
 
@@ -44,7 +47,7 @@ node scripts/daily-analytics-report.mjs --fixture
 node scripts/seo-geo-weekly-issue.mjs --fixture
 ```
 
-Each fixture validates required report sections before printing the deterministic Markdown. The two GitHub Actions workflows run the same fixture check before using credentials or creating an Issue.
+Each fixture validates required report sections before printing the deterministic Markdown. The daily formatter also has focused empty-data and partial-source tests through `npm run test:report`. The two GitHub Actions workflows run their fixture checks before using credentials or creating an Issue.
 
 ## GA4 event contract
 

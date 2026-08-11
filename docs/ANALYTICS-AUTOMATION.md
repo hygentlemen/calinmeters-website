@@ -127,19 +127,20 @@ Actions -> Daily Analytics Report -> Run workflow
 
 ## 6. Report contents
 
-Each report includes:
+The daily Feishu message and Markdown artifact are a compact Simplified Chinese summary. They include:
 
-- Active users
-- Sessions
-- Page views
-- Search keywords
-- Search countries
-- Website traffic by country
-- Most viewed pages
-- File downloads
-- Search landing pages
+- core GA4 traffic and Search Console totals;
+- up to five search terms, merged GA4/Search Console pages, and countries;
+- a compact device split;
+- one combined French-market section with same-day activity and 30/90-day user totals;
+- business conversions and up to three PDF filenames;
+- one deterministic daily interpretation sentence.
 
-Reports are uploaded as GitHub Actions artifacts under `reports/*.md`.
+Empty optional sections are hidden, raw API field names and Markdown tables are not sent to Feishu, and one unavailable source does not suppress the healthy source. The Feishu custom bot receives one blue interactive card.
+
+GitHub Actions uploads the compact Markdown file under `reports/*.md` and the complete privacy-safe aggregate response under `reports/*.raw.json`. The raw JSON preserves the detailed GA4 and Search Console rows for later analysis; it must continue to contain only aggregate analytics and controlled event dimensions.
+
+Run `npm run report:daily -- --fixture` for a deterministic local preview. Fixture mode does not use Google credentials, write report files, or call the Feishu webhook. Formatter edge cases run with `npm run test:report`.
 
 ## 7. French inquiry privacy
 
