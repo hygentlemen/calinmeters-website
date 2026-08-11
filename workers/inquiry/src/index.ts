@@ -142,6 +142,7 @@ export function createHandler(deps: Dependencies) {
 
       const deliveryPayload: InquiryPayload = {
         ...validation.value,
+        submittedAt: new Date().toISOString(),
         turnstileToken: '',
       };
       const delivery = await deps.sendInquiryEmail(deliveryPayload, env);

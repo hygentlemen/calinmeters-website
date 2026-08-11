@@ -1,6 +1,7 @@
 'use client';
 
 import { trackEvent } from '@/components/GoogleAnalytics';
+import { usePathname } from 'next/navigation';
 import { site } from '@/lib/site';
 
 interface InquiryCtaProps {
@@ -8,6 +9,7 @@ interface InquiryCtaProps {
   description: string;
   locale?: 'en' | 'fr';
   productId?: string;
+  productName?: string;
 }
 
 export function InquiryCta({
@@ -15,7 +17,9 @@ export function InquiryCta({
   description,
   locale = 'en',
   productId,
+  productName,
 }: InquiryCtaProps) {
+  const pathname = usePathname();
   const isFrench = locale === 'fr';
   const emailSubject = isFrench
     ? `Demande CalinMeters : ${topic}`
@@ -23,9 +27,11 @@ export function InquiryCta({
   const whatsappText = isFrench
     ? `Bonjour, je souhaite discuter de ${topic}.`
     : `Hello, I would like to discuss ${topic}.`;
-  const quoteHref = productId
-    ? `/fr/?product=${encodeURIComponent(productId)}#contact`
-    : '/fr/#contact';
+  const quoteParameters = new URLSearchParams();
+  if (productId) quoteParameters.set('product', productId);
+  quoteParameters.set('productName', productName ?? topic);
+  quoteParameters.set('source', pathname);
+  const quoteHref = `${isFrench ? '/fr/' : '/'}?${quoteParameters.toString()}#contact`;
 
   return (
     <section className="rounded-2xl bg-gradient-to-br from-primary-800 to-slate-950 px-6 py-10 text-white shadow-xl sm:px-10">
@@ -40,14 +46,17 @@ export function InquiryCta({
           <p className="mt-3 max-w-3xl leading-7 text-slate-200">{description}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-          {isFrench ? (
-            <a
-              href={quoteHref}
-              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-5 py-3 font-semibold text-primary-800 transition hover:bg-primary-50"
-            >
-              Demander un devis
-            </a>
-          ) : null}
+          <a
+            href={quoteHref}
+            onClick={() => trackEvent('inquiry_cta_click', {
+              interface_language: locale,
+              product_id: productId ?? 'not_selected',
+              source_page: pathname,
+            })}
+            className="inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-5 py-3 font-semibold text-primary-800 transition hover:bg-primary-50"
+          >
+            {isFrench ? 'Demander un devis' : 'Request a Quote'}
+          </a>
           <a
             href={`mailto:${site.email}?subject=${encodeURIComponent(emailSubject)}`}
             onClick={() => isFrench && trackEvent('fr_email_click', {
@@ -56,11 +65,7 @@ export function InquiryCta({
               source_context: 'catalog_cta',
               source_page: window.location.pathname,
             })}
-            className={`inline-flex min-h-12 items-center justify-center rounded-lg px-5 py-3 font-semibold transition ${
-              isFrench
-                ? 'border border-white/40 text-white hover:bg-white/10'
-                : 'bg-white text-primary-800 hover:bg-primary-50'
-            }`}
+            className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/40 px-5 py-3 font-semibold text-white transition hover:bg-white/10"
           >
             {isFrench ? 'Envoyer les exigences par e-mail' : 'Email product requirements'}
           </a>

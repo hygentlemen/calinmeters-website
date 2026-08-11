@@ -266,6 +266,7 @@ export function CategoryAuthorityPage({
         <div className="mb-12">
           <InquiryCta
             topic={seo.primaryKeyword}
+            productName={seo.primaryKeyword}
             locale={locale}
             description={isFrench
               ? 'Envoyez les conditions de service, le plan de communication, la quantité, les exigences de destination et les critères du pilote. CalinMeters pourra comparer ces éléments aux modèles publiés.'

@@ -14,6 +14,7 @@ const valid = {
   application: 'Comptage communautaire',
   estimatedQuantity: '300',
   technicalRequirements: 'DN20, vanne, CIU',
+  message: 'DN20, vanne, CIU',
   vendingStatus: 'needed',
   targetPeriod: 'T4 2026',
   notes: '',
@@ -25,12 +26,12 @@ const valid = {
 
 function env(rateAllowed = true): Env {
   return {
-    ALLOWED_ORIGINS: 'https://calinmeters.com',
-    INQUIRY_RECIPIENT: 'scott@szcalinmeter.com',
-    RESEND_FROM: 'CalinMeters Website <website@calinmeters.com>',
+    ALLOWED_ORIGINS: 'https://calinmeters.com,https://www.calinmeters.com',
+    INQUIRY_RECIPIENT: 'tom.qi@qq.com',
+    RESEND_FROM: 'Calin Meter Website <info@calinmeters.com>',
     LOCAL_TURNSTILE_TEST_MODE: 'false',
-    TURNSTILE_EXPECTED_ACTION: 'fr_inquiry',
-    TURNSTILE_EXPECTED_HOSTNAME: 'calinmeters.com',
+    TURNSTILE_EXPECTED_ACTION: 'fr_inquiry,en_inquiry',
+    TURNSTILE_EXPECTED_HOSTNAME: 'calinmeters.com,www.calinmeters.com',
     TURNSTILE_SECRET_KEY: 'turnstile-test-secret',
     RESEND_API_KEY: 'resend-test-secret',
     RATE_LIMIT_KEY_SECRET: 'rate-key-test-secret',
@@ -45,7 +46,7 @@ const deps = {
   sendInquiryEmail: vi.fn().mockResolvedValue({ ok: true }),
 };
 
-function request(body = valid, origin = 'https://calinmeters.com') {
+function request(body: unknown = valid, origin = 'https://calinmeters.com') {
   return new Request('https://worker.example/v1/inquiries', {
     method: 'POST',
     headers: {
@@ -67,6 +68,28 @@ describe('inquiry handler', () => {
     const response = await createHandler(deps)(request(), env());
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toEqual({ ok: true });
+    expect(deps.sendInquiryEmail).toHaveBeenCalledWith(expect.objectContaining({
+      sourcePage: 'https://calinmeters.com/fr/produits/compteur-eau-prepaye-sts/',
+      submittedAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T/),
+      turnstileToken: '',
+    }), expect.anything());
+  });
+
+  it('accepts an English contact inquiry', async () => {
+    const response = await createHandler(deps)(request({
+      contactName: 'John Smith',
+      email: 'john@example.com',
+      message: 'Please send a quotation.',
+      sourcePage: 'https://calinmeters.com/products/ca168-sts-prepaid-electricity-meter/',
+      language: 'en',
+      turnstileToken: 'token',
+      website: '',
+    }), env());
+    expect(response.status).toBe(200);
+    expect(deps.sendInquiryEmail).toHaveBeenCalledWith(expect.objectContaining({
+      language: 'en',
+      contactName: 'John Smith',
+    }), expect.anything());
   });
 
   it('rejects an unapproved origin', async () => {

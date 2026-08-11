@@ -19,6 +19,8 @@ export const PRODUCT_IDS = [
   'water-multi-jet-plastic',
   'water-multi-jet-brass',
   'water-ultrasonic',
+  'ct-meter',
+  'ca768-lorawan',
 ] as const;
 
 export const VENDING_STATUSES = ['existing', 'needed', 'unknown'] as const;
@@ -34,22 +36,31 @@ export interface InquiryPayload {
   contactName: string;
   jobRole: string;
   email: string;
+  phone: string;
   whatsapp: string;
-  buyerType: BuyerType;
-  productCategory: ProductCategory;
+  buyerType: BuyerType | '';
+  productCategory: ProductCategory | '';
   productId: ProductId | '';
+  productName: string;
+  productUrl: string;
+  subject: string;
+  message: string;
   application: string;
   estimatedQuantity: string;
+  quantity: string;
   technicalRequirements: string;
-  vendingStatus: VendingStatus;
+  vendingStatus: VendingStatus | '';
   targetPeriod: string;
   notes: string;
   sourcePage: string;
-  language: 'fr';
+  submittedAt: string;
+  language: 'en' | 'fr';
   turnstileToken: string;
   website: string;
 }
 
+export type ValidatedInquiryPayload = Omit<InquiryPayload, 'submittedAt'>;
+
 export type ValidationResult =
-  | { ok: true; value: InquiryPayload }
+  | { ok: true; value: ValidatedInquiryPayload }
   | { ok: false; code: 'invalid_payload'; fields: string[] };

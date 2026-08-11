@@ -52,6 +52,27 @@ type SubmitResult =
   | 'rate_limited'
   | 'server_error';
 
+function sourceContext() {
+  const parameters = new URLSearchParams(window.location.search);
+  const requestedSource = parameters.get('source');
+
+  try {
+    const resolved = new URL(requestedSource || window.location.pathname, site.url);
+    if (
+      resolved.protocol === 'https:'
+      && (resolved.hostname === 'calinmeters.com' || resolved.hostname === 'www.calinmeters.com')
+    ) {
+      resolved.hash = '';
+      resolved.search = '';
+      return resolved.toString();
+    }
+  } catch {
+    // Fall back to the current canonical site path below.
+  }
+
+  return new URL(window.location.pathname, site.url).toString();
+}
+
 declare global {
   interface Window {
     turnstile?: {
@@ -176,6 +197,7 @@ export default function FrenchInquiryForm() {
   const endpoint = process.env.NEXT_PUBLIC_INQUIRY_ENDPOINT;
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const formRef = useRef<HTMLFormElement>(null);
+  const submittingRef = useRef(false);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string>();
   const startedRef = useRef(false);
@@ -262,6 +284,8 @@ export default function FrenchInquiryForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submittingRef.current) return;
+
     setMessage('');
     setMessageKind(undefined);
 
@@ -274,6 +298,11 @@ export default function FrenchInquiryForm() {
 
     const formData = new FormData(event.currentTarget);
     const payload = Object.fromEntries(formData.entries());
+    const sourcePage = sourceContext();
+    const sourcePath = new URL(sourcePage).pathname;
+    const requestedProductName = new URLSearchParams(window.location.search).get('productName') ?? '';
+    const productName = requestedProductName.length <= 200 ? requestedProductName : '';
+    submittingRef.current = true;
     setSubmitting(true);
 
     try {
@@ -283,7 +312,10 @@ export default function FrenchInquiryForm() {
         signal: AbortSignal.timeout(15_000),
         body: JSON.stringify({
           ...payload,
-          sourcePage: window.location.pathname,
+          message: String(payload.technicalRequirements ?? ''),
+          productName,
+          productUrl: sourcePath.startsWith('/fr/produits/') ? sourcePage : '',
+          sourcePage,
           language: 'fr',
           productId: productId || undefined,
           turnstileToken,
@@ -331,6 +363,7 @@ export default function FrenchInquiryForm() {
       setMessage("Le service est momentanément indisponible. Conservez vos informations et utilisez le contact direct ci-dessous.");
       trackSubmit('server_error');
     } finally {
+      submittingRef.current = false;
       setSubmitting(false);
     }
   }

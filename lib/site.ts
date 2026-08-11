@@ -2,7 +2,7 @@ export const site = {
   url: 'https://calinmeters.com',
   name: 'CalinMeters',
   legalName: 'Shenzhen Calinmeter Co., Ltd.',
-  email: 'scott@szcalinmeter.com',
+  email: 'info@calinmeters.com',
   phone: '+8613713788753',
   whatsappUrl: 'https://wa.me/8613713788753',
   address: 'Floor 6, Bd A1, Qiaode Tech Park, Kelian Rd, Guang Ming District, Shenzhen, China',
