@@ -55,6 +55,17 @@ function parseInspectionUrls(value) {
     'https://calinmeters.com/products/sts-prepaid-electricity-meter/',
     'https://calinmeters.com/products/sts-prepaid-water-meter/',
     'https://calinmeters.com/products/sts-prepaid-gas-meter/',
+    'https://calinmeters.com/fr/',
+    'https://calinmeters.com/fr/produits/compteur-electricite-prepaye-sts/',
+    'https://calinmeters.com/fr/produits/compteur-eau-prepaye-sts/',
+    'https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-lorawan/',
+    'https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-gprs/',
+    'https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts/',
+    'https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-gprs/',
+    'https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-sts/',
+    'https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-plastique/',
+    'https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-laiton/',
+    'https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-ultrasonique/',
   ];
   const candidates = value
     ? value.split(/[\n,]/).map((item) => item.trim()).filter(Boolean)
