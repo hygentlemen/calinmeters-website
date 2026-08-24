@@ -293,6 +293,7 @@ function buildFrenchSummary(value, ga4Available) {
   const traffic30 = rows(french.traffic30)[0] || {};
   const traffic90 = rows(french.traffic90)[0] || {};
   const inquiry = summarizeInquiry(french.inquiryToday);
+  const inquiry30 = summarizeInquiry(french.inquiry30);
   const todayActions = summarizeActions(french.actionsToday);
   const actions30 = summarizeActions(french.actions30);
   const actions90 = summarizeActions(french.actions90);
@@ -301,9 +302,14 @@ function buildFrenchSummary(value, ga4Available) {
     todaySessions: number(todayTraffic.sessions),
     todayEngagementRate: number(todayTraffic.engagementRate),
     organicSessionsToday: sum(rows(french.organicLandingToday), 'sessions'),
+    inquiryStarts: inquiry.starts,
     inquirySuccesses: inquiry.successes,
     inquiryAttempts: inquiry.attempts,
     inquirySuccessKnown: inquiry.successKnown,
+    inquiryStarts30: inquiry30.starts,
+    inquiryAttempts30: inquiry30.attempts,
+    inquirySuccesses30: inquiry30.successes,
+    inquirySuccessKnown30: inquiry30.successKnown,
     whatsapp: todayActions.whatsapp,
     email: todayActions.email,
     pdf: todayActions.pdf,
@@ -326,6 +332,7 @@ function summarizeInquiry(value) {
   const summary = rows(data.rows).reduce(
     (result, row) => {
       const count = number(row.eventCount);
+      if (row.eventName === 'fr_quote_start') result.starts += count;
       if (row.eventName === 'fr_quote_submit') {
         result.attempts += count;
         if (cleanText(row.result).toLowerCase() === 'success') result.successes += count;
@@ -333,7 +340,7 @@ function summarizeInquiry(value) {
       }
       return result;
     },
-    { attempts: 0, successes: 0, errors: 0 },
+    { starts: 0, attempts: 0, successes: 0, errors: 0 },
   );
 
   return {
@@ -440,6 +447,18 @@ function renderFrench(value) {
   lines.push(value.organicSessionsToday > 0
     ? `- 法语自然搜索：${value.organicSessionsToday} 会话`
     : '- 法语自然搜索：暂无');
+
+  if (value.inquiryStarts > 0 || value.inquiryAttempts > 0) {
+    const success = value.inquirySuccessKnown && value.inquiryAttempts > 0
+      ? ` | 成功 ${value.inquirySuccesses}`
+      : '';
+    lines.push(`- 询盘漏斗（今日）：开始 ${value.inquiryStarts} | 提交 ${value.inquiryAttempts}${success}`);
+  } else if (value.inquiryStarts30 > 0 || value.inquiryAttempts30 > 0) {
+    const success = value.inquirySuccessKnown30 && value.inquiryAttempts30 > 0
+      ? ` | 成功 ${value.inquirySuccesses30}`
+      : '';
+    lines.push(`- 询盘漏斗（近30天）：开始 ${value.inquiryStarts30} | 提交 ${value.inquiryAttempts30}${success}`);
+  }
 
   const frenchConversions = value.inquirySuccesses + value.whatsapp + value.email + value.pdf;
   lines.push(frenchConversions > 0

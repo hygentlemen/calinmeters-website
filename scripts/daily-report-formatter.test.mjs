@@ -211,6 +211,41 @@ test('zero conversions collapse to one no-conversion sentence', () => {
   assert.doesNotMatch(report, /## PDF 下载/);
 });
 
+test('a 30-day French quote start remains visible when there is no daily submission', () => {
+  const report = render(makeRaw({
+    downloads: [],
+    french: {
+      inquiryToday: { controlledDimensionsAvailable: false, rows: [] },
+      inquiry30: {
+        controlledDimensionsAvailable: false,
+        rows: [{ eventName: 'fr_quote_start', eventCount: '1' }],
+      },
+      actionsToday: { controlledDimensionsAvailable: true, rows: [] },
+    },
+  }));
+
+  assert.match(report, /询盘漏斗（近30天）：开始 1 \| 提交 0/);
+  assert.match(report, /## 转化\n- 今日暂无询盘或下载转化/);
+});
+
+test('French quote starts and submits do not invent successes when result dimensions are unavailable', () => {
+  const report = render(makeRaw({
+    french: {
+      inquiryToday: {
+        controlledDimensionsAvailable: false,
+        rows: [
+          { eventName: 'fr_quote_start', eventCount: '2' },
+          { eventName: 'fr_quote_submit', eventCount: '1' },
+        ],
+      },
+      actionsToday: { controlledDimensionsAvailable: true, rows: [] },
+    },
+  }));
+
+  assert.match(report, /询盘漏斗（今日）：开始 2 \| 提交 1/);
+  assert.doesNotMatch(report, /询盘漏斗（今日）[^\n]*成功/);
+});
+
 test('GA4-only data hides unavailable GSC metrics and explains search availability', () => {
   const report = render(makeRaw({
     sourceStatus: { gsc: 'unavailable' },
