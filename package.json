@@ -13,7 +13,7 @@
     "verify:seo": "node scripts/verify-seo.mjs",
     "verify": "npm run verify:i18n && npm run typecheck && npm run build && npm run verify:seo",
     "report:daily": "node scripts/daily-analytics-report.mjs",
-    "test:report": "node --test scripts/daily-report-formatter.test.mjs",
+    "test:report": "node --test scripts/daily-report-formatter.test.mjs scripts/analytics-request-control.test.mjs",
     "gsc:inspect": "node scripts/search-console-url-inspection.mjs",
     "gsc:submit-sitemap": "node scripts/submit-search-console-sitemap.mjs",
     "seo-geo:weekly": "node scripts/seo-geo-weekly-issue.mjs"
