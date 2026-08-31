@@ -7,12 +7,19 @@ import {
   buildFeishuCard,
   formatDailyReport,
 } from './daily-report-formatter.mjs';
+import {
+  retryTransientRequest,
+  runWithConcurrency,
+} from './analytics-request-control.mjs';
 
 const FIXTURE_MODE = process.argv.includes('--fixture');
 const FRENCH_PREFIX = '/fr/';
 const SITE_ORIGIN = 'https://calinmeters.com';
 const FRENCH_SITE_PREFIX = `${SITE_ORIGIN}${FRENCH_PREFIX}`;
 const SEARCH_CONSOLE_DELAY_DAYS = 3;
+const GA_REPORT_CONCURRENCY = 3;
+const GA_REPORT_RETRY_ATTEMPTS = 3;
+const GA_REPORT_RETRY_BASE_DELAY_MS = 750;
 const FRENCH_INQUIRY_EVENTS = ['fr_quote_start', 'fr_quote_submit'];
 const FRENCH_ACTION_EVENTS = [
   'fr_whatsapp_click',
@@ -150,47 +157,47 @@ async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }
     frenchActionsToday,
     frenchActions30,
     frenchActions90,
-  ] = await Promise.all([
-    runGaReport({
+  ] = await runWithConcurrency([
+    () => runGaReport({
       analyticsData,
       gaProperty,
       metrics: ['activeUsers', 'sessions', 'screenPageViews', 'eventCount'],
     }),
-    runGaReport({
+    () => runGaReport({
       analyticsData,
       gaProperty,
       dimensions: ['deviceCategory'],
       metrics: ['activeUsers'],
       limit: 10,
     }),
-    runGaReport({
+    () => runGaReport({
       analyticsData,
       gaProperty,
       dimensions: ['country'],
       metrics: ['activeUsers', 'sessions', 'screenPageViews'],
       limit: 15,
     }),
-    runGaReport({
+    () => runGaReport({
       analyticsData,
       gaProperty,
       dimensions: ['pagePathPlusQueryString'],
       metrics: ['screenPageViews', 'activeUsers', 'averageSessionDuration'],
       limit: 20,
     }),
-    runDownloadsReport({ analyticsData, gaProperty }),
-    runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: gaToday }),
-    runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: ga30 }),
-    runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: ga90 }),
-    runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: gaToday }),
-    runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga30 }),
-    runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga90 }),
-    runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: gaToday }),
-    runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: ga30 }),
-    runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: ga90 }),
-    runFrenchActionReport({ analyticsData, gaProperty, dateRange: gaToday }),
-    runFrenchActionReport({ analyticsData, gaProperty, dateRange: ga30 }),
-    runFrenchActionReport({ analyticsData, gaProperty, dateRange: ga90 }),
-  ]);
+    () => runDownloadsReport({ analyticsData, gaProperty }),
+    () => runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: gaToday }),
+    () => runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: ga30 }),
+    () => runFrenchTrafficReport({ analyticsData, gaProperty, dateRange: ga90 }),
+    () => runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: gaToday }),
+    () => runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga30 }),
+    () => runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga90 }),
+    () => runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: gaToday }),
+    () => runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: ga30 }),
+    () => runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: ga90 }),
+    () => runFrenchActionReport({ analyticsData, gaProperty, dateRange: gaToday }),
+    () => runFrenchActionReport({ analyticsData, gaProperty, dateRange: ga30 }),
+    () => runFrenchActionReport({ analyticsData, gaProperty, dateRange: ga90 }),
+  ], { limit: GA_REPORT_CONCURRENCY });
 
   return {
     overview,
@@ -457,10 +464,16 @@ async function runGaReport({
     dimensionFilter,
   };
 
-  const response = await analyticsData.properties.runReport({
-    property: gaProperty,
-    requestBody,
-  });
+  const response = await retryTransientRequest(
+    () => analyticsData.properties.runReport({
+      property: gaProperty,
+      requestBody,
+    }),
+    {
+      attempts: GA_REPORT_RETRY_ATTEMPTS,
+      baseDelayMs: GA_REPORT_RETRY_BASE_DELAY_MS,
+    },
+  );
 
   return normalizeGaRows(response.data.rows || [], dimensions, metrics);
 }
