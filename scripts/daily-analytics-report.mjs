@@ -36,7 +36,7 @@ const localeRoutes = JSON.parse(
   await fs.readFile(new URL('../data/i18n-routes.json', import.meta.url), 'utf8'),
 );
 const FRENCH_PRIORITY_PAGES = localeRoutes.map(({ fr }) => new URL(fr, SITE_ORIGIN).toString());
-const FRENCH_EVENT_DIMENSIONS = [
+const SITE_EVENT_DIMENSIONS = [
   'eventName',
   'customEvent:product_category',
   'customEvent:product_id',
@@ -54,14 +54,14 @@ const reportDate = FIXTURE_MODE
   : process.env.REPORT_DATE || getYesterday(timeZone);
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
-if (FIXTURE_MODE) {
-  const report = formatDailyReport(buildDailyReportData(createFixtureData()));
-  assertFixtureReport(report);
-  console.log(report);
-  console.log('\nFixture validation passed.');
-} else {
-  await generateLiveReport();
-}
+  if (FIXTURE_MODE) {
+    const report = formatDailyReport(buildDailyReportData(createFixtureData()));
+    assertFixtureReport(report);
+    console.log(report);
+    console.log('\nFixture validation passed.');
+  } else {
+    await generateLiveReport();
+  }
 }
 
 async function generateLiveReport() {
@@ -584,7 +584,7 @@ async function runSiteInquiryReport({ analyticsData, gaProperty, dateRange }) {
     const rows = await runGaReport({
       analyticsData,
       gaProperty,
-      dimensions: FRENCH_EVENT_DIMENSIONS,
+      dimensions: SITE_EVENT_DIMENSIONS,
       metrics: ['eventCount'],
       limit: 100,
       dimensionFilter,
@@ -593,7 +593,7 @@ async function runSiteInquiryReport({ analyticsData, gaProperty, dateRange }) {
 
     return {
       controlledDimensionsAvailable: true,
-      rows: normalizeFrenchInquiryRows(rows),
+      rows: normalizeInquiryRows(rows),
     };
   } catch (error) {
     if (!isMissingCustomDimensionError(error)) throw error;
@@ -610,12 +610,12 @@ async function runSiteInquiryReport({ analyticsData, gaProperty, dateRange }) {
 
     return {
       controlledDimensionsAvailable: false,
-      rows: normalizeFrenchInquiryRows(rows),
+      rows: normalizeInquiryRows(rows),
     };
   }
 }
 
-function normalizeFrenchInquiryRows(rows) {
+function normalizeInquiryRows(rows) {
   return rows.map((row) => ({
     eventName: row.eventName,
     productCategory: row['customEvent:product_category'] || '',

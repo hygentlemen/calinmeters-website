@@ -401,3 +401,11 @@ test('report windows stay inclusive across month and year boundaries', async () 
   assert.deepEqual(makeWindow('2026-09-03', 30), { startDate: '2026-08-05', endDate: '2026-09-03', days: 30 });
   assert.equal(makeWindow('2024-03-01', 3).startDate, '2024-02-28');
 });
+
+test('recent all-site submit activity stays visible on a quiet day without inventing successes', () => {
+  const recent = { controlledDimensionsAvailable: false, rows: [{ eventName: 'contact_form_submit', eventCount: '17' }] };
+  const raw = makeRaw({ siteConversions: { inquiryToday: { controlledDimensionsAvailable: false, rows: [] }, inquiry30: recent, inquiry90: recent, actionsToday: { rows: [] } } });
+  assert.match(render(raw), /全站提交回执：近30天 17 \| 近90天 17/);
+  assert.match(render(raw), /近期成功回执：近30天 未知 \| 近90天 未知/);
+  assert.doesNotMatch(render(raw), /询盘：17/);
+});

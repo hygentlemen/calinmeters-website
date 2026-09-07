@@ -353,6 +353,8 @@ function buildConversions({ french, site, downloadCount, ga4Available }) {
   const actions = summarizeActions(site?.actionsToday);
   return {
     scope: site ? 'all' : 'french_only',
+    recent30: site ? summarizeInquiry(site.inquiry30) : null,
+    recent90: site ? summarizeInquiry(site.inquiry90) : null,
     inquiries: site ? (inquiry.successKnown ? inquiry.successes : null)
       : (french?.inquirySuccessKnown ? french.inquirySuccesses : null),
     starts: site ? inquiry.starts : null,
@@ -478,6 +480,10 @@ function renderConversions(data) {
   const lines = [];
   if (value.scope !== 'all') lines.push('- 历史数据仅含法语表单及联系点击，英语未知；PDF 为全站');
   if (value.starts > 0 || value.attempts > 0) lines.push(`- 全站表单：开始 ${value.starts} | 提交回执 ${value.attempts} | 错误 ${value.errors ?? '未知'}`);
+  if (!value.starts && !value.attempts && (value.recent30?.attempts > 0 || value.recent90?.attempts > 0)) {
+    lines.push(`- 全站提交回执：近30天 ${value.recent30.attempts} | 近90天 ${value.recent90.attempts}`);
+    lines.push(`- 近期成功回执：近30天 ${value.recent30.successKnown ? value.recent30.successes : '未知'} | 近90天 ${value.recent90.successKnown ? value.recent90.successes : '未知'}`);
+  }
   if (value.inquiries === null) lines.push('- 表单成功回执：未知（结果维度不可用或缺失）');
   for (const [label, count] of [['询盘', value.inquiries], ['WhatsApp', value.whatsapp], ['邮件点击', value.email], ['PDF 下载', value.downloads]]) {
     if (count > 0) lines.push(`- ${label}：${count}${label === '询盘' ? '（表单成功回执，待核对送达及质量）' : ''}`);
