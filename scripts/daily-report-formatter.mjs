@@ -24,12 +24,14 @@ export function buildDailyReportData(raw = {}) {
   const french = buildFrenchSummary(raw.french, sources.ga4);
   const conversions = buildConversions({
     french,
+    site: raw.siteConversions,
     downloadCount: downloads.total,
     ga4Available: sources.ga4,
   });
 
   const report = {
     date: cleanText(raw.date) || '日期未知',
+    searchDate: cleanText(raw.searchDate) || '历史报告未记录',
     sources,
     status: buildStatus(sources),
     traffic: sources.ga4
@@ -123,25 +125,7 @@ function getSearchOverview(raw) {
   const explicit = rows(raw.searchOverview)[0];
   if (explicit) return normalizeSearchSummary(explicit);
 
-  const candidates = [raw.searchPages, raw.searchCountries, raw.searchQueries];
-  const bestRows = candidates.map(rows).find((items) => items.length > 0) || [];
-  const summary = bestRows.reduce(
-    (result, row) => {
-      const impressions = number(row.impressions);
-      result.clicks += number(row.clicks);
-      result.impressions += impressions;
-      result.weightedPosition += number(row.position) * impressions;
-      return result;
-    },
-    { clicks: 0, impressions: 0, weightedPosition: 0 },
-  );
-
-  return {
-    clicks: summary.clicks,
-    impressions: summary.impressions,
-    ctr: summary.impressions > 0 ? summary.clicks / summary.impressions : 0,
-    position: summary.impressions > 0 ? summary.weightedPosition / summary.impressions : 0,
-  };
+  return null;
 }
 
 function normalizeSearchSummary(row) {
@@ -332,8 +316,8 @@ function summarizeInquiry(value) {
   const summary = rows(data.rows).reduce(
     (result, row) => {
       const count = number(row.eventCount);
-      if (row.eventName === 'fr_quote_start') result.starts += count;
-      if (row.eventName === 'fr_quote_submit') {
+      if (['fr_quote_start', 'contact_form_start'].includes(row.eventName)) result.starts += count;
+      if (['fr_quote_submit', 'contact_form_submit'].includes(row.eventName)) {
         result.attempts += count;
         if (cleanText(row.result).toLowerCase() === 'success') result.successes += count;
         if (FRENCH_ERROR_RESULTS.has(cleanText(row.result).toLowerCase())) result.errors += count;
@@ -345,7 +329,9 @@ function summarizeInquiry(value) {
 
   return {
     ...summary,
-    successKnown: data.controlledDimensionsAvailable === true,
+    successKnown: data.controlledDimensionsAvailable === true && rows(data.rows).every((row) =>
+      !['fr_quote_submit', 'contact_form_submit'].includes(row.eventName) ||
+      row.result === 'success' || FRENCH_ERROR_RESULTS.has(row.result)),
   };
 }
 
@@ -353,20 +339,28 @@ function summarizeActions(value) {
   const summary = { whatsapp: 0, email: 0, pdf: 0, languageSwitches: 0 };
   for (const row of rows(value?.rows)) {
     const count = number(row.eventCount);
-    if (row.eventName === 'fr_whatsapp_click') summary.whatsapp += count;
-    if (row.eventName === 'fr_email_click') summary.email += count;
+    if (['fr_whatsapp_click', 'whatsapp_click'].includes(row.eventName)) summary.whatsapp += count;
+    if (['fr_email_click', 'email_click'].includes(row.eventName)) summary.email += count;
     if (row.eventName === 'fr_specification_download') summary.pdf += count;
     if (row.eventName === 'language_switch') summary.languageSwitches += count;
   }
   return summary;
 }
 
-function buildConversions({ french, downloadCount, ga4Available }) {
+function buildConversions({ french, site, downloadCount, ga4Available }) {
   if (!ga4Available) return null;
+  const inquiry = summarizeInquiry(site?.inquiryToday);
+  const actions = summarizeActions(site?.actionsToday);
   return {
-    inquiries: french?.inquirySuccessKnown ? french.inquirySuccesses : 0,
-    whatsapp: french?.whatsapp || 0,
-    email: french?.email || 0,
+    scope: site ? 'all' : 'french_only',
+    inquiries: site ? (inquiry.successKnown ? inquiry.successes : null)
+      : (french?.inquirySuccessKnown ? french.inquirySuccesses : null),
+    starts: site ? inquiry.starts : null,
+    attempts: site ? inquiry.attempts : null,
+    errors: site && inquiry.successKnown ? inquiry.errors : null,
+    whatsapp: site ? actions.whatsapp : french?.whatsapp || 0,
+    email: site ? actions.email : french?.email || 0,
+    unclassifiedContacts: sum(rows(site?.actionsToday?.rows).filter((row) => row.eventName === 'contact_click'), 'eventCount'),
     downloads: downloadCount,
   };
 }
@@ -376,10 +370,10 @@ function buildHint(data) {
     return '部分数据源暂不可用，建议恢复后复核今日流量与搜索表现。';
   }
   if (data.conversions?.inquiries > 0) {
-    return `今日产生 ${data.conversions.inquiries} 次询盘，建议及时跟进来源页面与产品需求。`;
+    return `记录到 ${data.conversions.inquiries} 次表单成功回执，请核对邮件送达及有效询盘。`;
   }
   if (data.search?.impressions > 0 && data.search.clicks === 0) {
-    return '今日自然搜索已有曝光但尚未产生点击，建议继续观察排名与 CTR。';
+    return '搜索统计日已有曝光但尚未产生点击，建议继续观察排名与 CTR。';
   }
   if ((data.traffic?.views || 0) < 20) {
     return '当前网站流量仍处于早期阶段，建议结合 7 天和 28 天趋势观察变化。';
@@ -392,8 +386,10 @@ function renderCore(data) {
   if (data.traffic) {
     lines.push(`- 流量：用户 ${data.traffic.users} | 会话 ${data.traffic.sessions} | 浏览 ${data.traffic.views} | 事件 ${data.traffic.events}`);
   }
+  if (data.sources.gsc) lines.push(`- 搜索数据日期：${data.searchDate}（与流量日分开；GSC 通常延迟）`);
+  if (data.sources.gsc && !data.search) lines.push('- 搜索总量：暂无可用汇总，不能按零处理');
   if (data.search) {
-    lines.push(`- 搜索：点击 ${data.search.clicks} | 曝光 ${data.search.impressions} | CTR ${percent(data.search.ctr)} | 平均排名 ${position(data.search.position)}`);
+    lines.push(`- 搜索：点击 ${data.search.clicks} | 曝光 ${data.search.impressions} | CTR ${data.search.impressions > 0 ? percent(data.search.ctr) : "—"} | 平均排名 ${data.search.impressions > 0 ? position(data.search.position) : "—"}`);
   }
   return lines.length > 0 ? `## 核心指标\n${lines.join('\n')}` : '';
 }
@@ -462,8 +458,8 @@ function renderFrench(value) {
 
   const frenchConversions = value.inquirySuccesses + value.whatsapp + value.email + value.pdf;
   lines.push(frenchConversions > 0
-    ? `- 转化：询盘 ${value.inquirySuccesses} | WhatsApp ${value.whatsapp} | 邮件 ${value.email} | PDF ${value.pdf}`
-    : '- 转化：暂无');
+    ? `- 转化：成功回执 ${value.inquirySuccessKnown ? value.inquirySuccesses : "未知"} | WhatsApp ${value.whatsapp} | 邮件 ${value.email} | PDF ${value.pdf}`
+    : value.inquirySuccessKnown ? '- 转化：暂无记录' : '- 转化：提交结果未知；联系点击暂无记录');
 
   if (value.languageSwitchesToday > 0) {
     lines.push(`- 语言切换：${value.languageSwitchesToday} 次`);
@@ -477,16 +473,18 @@ function renderFrench(value) {
 }
 
 function renderConversions(data) {
-  if (!data.conversions) return '';
-  const entries = [
-    ['询盘', data.conversions.inquiries],
-    ['WhatsApp', data.conversions.whatsapp],
-    ['邮件点击', data.conversions.email],
-    ['PDF 下载', data.conversions.downloads],
-  ].filter(([, count]) => count > 0);
-
-  if (entries.length === 0) return '## 转化\n- 今日暂无询盘或下载转化';
-  return `## 转化\n${entries.map(([label, count]) => `- ${label}：${count}`).join('\n')}`;
+  const value = data.conversions;
+  if (!value) return '';
+  const lines = [];
+  if (value.scope !== 'all') lines.push('- 历史数据仅含法语表单及联系点击，英语未知；PDF 为全站');
+  if (value.starts > 0 || value.attempts > 0) lines.push(`- 全站表单：开始 ${value.starts} | 提交回执 ${value.attempts} | 错误 ${value.errors ?? '未知'}`);
+  if (value.inquiries === null) lines.push('- 表单成功回执：未知（结果维度不可用或缺失）');
+  for (const [label, count] of [['询盘', value.inquiries], ['WhatsApp', value.whatsapp], ['邮件点击', value.email], ['PDF 下载', value.downloads]]) {
+    if (count > 0) lines.push(`- ${label}：${count}${label === '询盘' ? '（表单成功回执，待核对送达及质量）' : ''}`);
+  }
+  if (value.unclassifiedContacts > 0) lines.push(`- 历史联系点击未分类：${value.unclassifiedContacts}（不计入 WhatsApp / 邮件）`);
+  if (lines.length === 0) lines.push('- 今日暂无询盘或下载转化');
+  return `## 转化\n${lines.join('\n')}`;
 }
 
 function renderDownloads(value) {

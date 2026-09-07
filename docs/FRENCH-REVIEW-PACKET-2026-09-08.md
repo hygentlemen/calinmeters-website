@@ -1,0 +1,3222 @@
+# French review packet — 2026-09-08
+
+Status: preparation only; professional sign-off is pending. Review against docs/FRENCH-COPY-REVIEW.md.
+Generated from the static export. English and French sections are adjacent, not assumed sentence-for-sentence translations. Source hashes identify this exact copy.
+
+Priority corrections to assess: the English SIM/STS FAQ now distinguishes local token entry from vending connectivity; the existing French FAQ must be reviewed against this clarification. New English buyer routes/FAQs are intentionally not translated automatically.
+
+For each route: mark terminology, facts/specifications, naturalness, buyer usefulness, and required correction; initial and date approval. English PDF labels must stay explicit.
+
+## /fr/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/
+HTML SHA256: 420824d73af97167df43bb612142718a9291e9f55fd0a7fbcce755edd8adc9a5
+
+- CalinMeters - STS Prepaid Electricity, Water and Gas Meters
+- Description: Shenzhen Calinmeter Co., Ltd. supplies STS prepaid electricity meters, STS prepaid water meters, STS prepaid gas meters, CIUs, DCUs and AMI project devices.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- STS Prepaid Electricity, Water and Gas Meter Solutions
+- Product selection for utility and metering projects
+- Product portfolio
+- Smart Metering Products
+- Explore prepaid energy, water and gas meters, plus AMI devices for data collection and network connectivity.
+- Energy Meter
+- Water Meter
+- Gas Meter
+- CIU (Customer Interface Unit)
+- DCU (Data Concentrator Unit)
+- Gateway
+- Energy Meter
+- 6
+- items
+- STS prepaid electricity meters for residential and commercial use
+- Single Phase / Three Phase / CT Meter
+- Explore the category guide
+- →
+- Water Meter
+- 3
+- items
+- Smart STS prepaid water meters with multiple communication options
+- Multi-Jet Water Meter (Plastic) / Multi-Jet Water Meter (Brass) / Ultrasonic Water Meter
+- Explore the category guide
+- →
+- Gas Meter
+- 1
+- items
+- Smart STS prepaid gas meters for residential and commercial applications
+- Gas Meter
+- Explore the category guide
+- →
+- CIU (Customer Interface Unit)
+- 1
+- items
+- Customer interface units for in-home display and token management
+- Customer Interface Unit
+- View products
+- DCU (Data Concentrator Unit)
+- 1
+- items
+- Data concentrators for AMI network data aggregation
+- Data Concentrator Unit
+- View products
+- Gateway
+- 1
+- items
+- LoRaWAN gateways for IoT meter connectivity
+- LoRaWAN Gateway
+- View products
+- Utility buyer guide
+- How to select prepaid meters by project market
+- These answers help utility buyers compare STS prepaid electricity meters, LoRaWAN smart water meters, prepaid gas meters, and AMI components before requesting specifications.
+- Prepaid meter for Africa
+- STS prepaid electricity meters, keypad water meters, CIU, and AMI devices
+- For African utility and sub-metering projects, CalinMeters usually recommends STS prepaid meters because 20-digit token recharge can work even where network coverage is inconsistent.
+- Use keypad STS electricity meters for basic prepaid rollout and token-based credit control.
+- Use split keypad or CIU configurations when meters are locked outdoors, mounted on poles, or installed in anti-tamper boxes.
+- Add GPRS, DCU, or LoRaWAN devices when the project also needs remote reading and AMI management.
+- Prepaid meter for Southeast Asia
+- LoRaWAN smart water meters, prepaid electricity meters, and prepaid gas meters
+- For Southeast Asia, CalinMeters usually matches the meter to building density, network availability, and utility operations: LoRaWAN is useful for clustered water meter reading, while STS prepaid electricity meters remain practical for token sales.
+- Use LoRaWAN smart water meters where many meters are installed in communities, compounds, or municipal service areas.
+- Use ultrasonic water meters when no moving parts and long-term measurement stability are more important than lowest upfront cost.
+- Use prepaid gas meters with LoRaWAN when operators need valve control, credit management, and remote reading.
+- Smart metering solution for utilities
+- AMI solution with meters, CIUs, DCUs, LoRaWAN gateways, and vending software
+- A smart metering solution for utilities should be planned as a system, not only as individual meters. Shenzhen Calinmeter Co., Ltd. combines STS prepaid meters, CIUs, DCUs, LoRaWAN gateways, and API-ready vending support for utility projects.
+- Use CIUs when customers need indoor token entry and balance checking.
+- Use DCUs or LoRaWAN gateways when many meters should report through shared network equipment.
+- Use API integration when the utility or partner already has payment, vending, or meter management software.
+- STS token workflow
+- How a token based prepaid meter works
+- A token based prepaid meter uses STS security to load credit before consumption. The same workflow can support standalone keypad meters, split keypad prepaid meters with a CIU, and AMI projects with remote management.
+- 1. Register meter
+- The utility or operator registers the STS prepaid meter number in a vending or meter management system.
+- 2. Sell credit
+- The customer buys electricity, water or gas credit through a sales point, mobile money channel or integrated payment system.
+- 3. Generate token
+- The vending system encrypts the credit into a secure 20-digit STS token linked to that meter.
+- 4. Recharge meter
+- The customer enters the token on the meter keypad or CIU. Remote recharge can be added when the project uses GPRS, LoRaWAN or AMI integration.
+- Choose a built-in keypad meter when the customer can access the meter directly.
+- Choose a split keypad prepaid meter or CIU when the meter is locked outdoors or mounted on a pole.
+- Choose API-ready vending support when the utility already has payment or customer management software.
+- Selected category
+- Energy Meter
+- STS prepaid electricity meters for residential and commercial use
+- Browse focused product groups below. Download links are available on products with published specifications.
+- Selection guide
+- How to choose an STS prepaid electricity meter
+- For utility and property projects, choose the meter by installation type, phase requirement and remote management needs. A keypad STS prepaid meter can work with 20-digit tokens without a network connection, while GPRS or LoRaWAN models support remote reading and AMI management.
+- Single phase meters fit residential users and small commercial loads.
+- Three phase and CT meters fit higher-current commercial or industrial sites.
+- DIN rail meters are often paired with a CIU when the meter is locked outdoors or mounted on a pole.
+- Three phase buyer guide
+- CA368 GPRS or standalone STS: which model fits the project?
+- Both CA368 models support STS prepaid electricity metering for three-phase service connections. The main selection decision is whether the project needs direct GPRS communication or only secure keypad token operation.
+- Model
+- Communication
+- Best fit
+- Token operation
+- CA368 Smart STS Prepaid Three Phase Energy Meter (GPRS)
+- GPRS
+- Utilities and commercial projects that need direct remote reading, monitoring, and meter management.
+- STS 20-digit token entry remains available while GPRS adds remote data and management functions.
+- CA368 STS Prepaid Three Phase Energy Meter
+- Standalone STS
+- Commercial or utility connections that need secure token prepayment without always-on remote communication.
+- Customers enter 20-digit STS tokens directly on the meter keypad.
+- Before requesting a quotation, provide the nominal voltage, maximum current or CT ratio, installation method, communication coverage, vending or API requirement, estimated quantity, and destination-market standards or utility specifications.
+- Single Phase Energy Meter
+- STS
+- LoRaWAN
+- DIN Rail
+- CA168 Smart STS Prepaid DIN Rail Energy Meter (LoRaWAN)
+- DIN rail STS prepaid energy meter with LoRaWAN communication for remote meter reading and token management.
+- Product details
+- Specification (PDF)
+- STS
+- GPRS
+- Prepaid
+- CA168 Smart STS Prepaid Energy Meter (GPRS)
+- STS prepaid single-phase meter with GPRS communication for remote monitoring and control.
+- Product details
+- Specification (PDF)
+- STS
+- Prepaid
+- CA168 STS Prepaid Energy Meter
+- Standard STS prepaid single-phase energy meter with keypad for token entry.
+- Product details
+- Three Phase Energy Meter
+- STS
+- GPRS
+- Prepaid
+- CA368 Smart STS Prepaid Three Phase Energy Meter (GPRS)
+- Three-phase STS prepaid electricity meter for commercial, industrial, and utility service connections, with GPRS communication for remote reading and management.
+- Product details
+- Specification (PDF)
+- STS
+- Prepaid
+- CA368 STS Prepaid Three Phase Energy Meter
+- Standalone three-phase STS prepaid electricity meter with keypad token entry for projects that do not require always-on remote communication.
+- Product details
+- Specification (PDF)
+- CT Meter
+- CT Operated Energy Meter
+- Transformer-operated (CT) energy meter for high-current commercial and industrial metering.
+- Product details
+- Metering solutions
+- Solutions for utility metering projects
+- Use these project scenarios to match prepaid meters, communication devices, and AMI components before requesting a quote.
+- Electricity utilities and property operators
+- STS prepaid electricity meter projects
+- CalinMeters STS prepaid electricity meters help utilities, landlords, and sub-metering operators collect payment before consumption while still supporting familiar 20-digit token workflows.
+- Single phase, three phase, DIN rail, and CT options cover residential, commercial, and high-current installations.
+- Keypad STS meters can operate without a live network connection for basic token recharge.
+- GPRS and LoRaWAN models support remote reading, remote monitoring, and AMI project management.
+- STS prepaid electricity meter
+- token based prepaid meter
+- split keypad prepaid meter
+- Water utilities and residential communities
+- LoRaWAN smart water meter deployments
+- LoRaWAN smart water meters are suitable for projects that need remote reading without placing a SIM card in every meter. Multi-jet and ultrasonic options support different budget, durability, and accuracy requirements.
+- Plastic multi-jet meters are practical for cost-sensitive residential rollouts.
+- Brass multi-jet meters are better for tougher installation environments.
+- Ultrasonic meters have no moving parts and are useful when long-term measurement stability matters.
+- LoRaWAN smart water meter
+- prepaid water meter
+- ultrasonic water meter
+- Remote reading and data collection
+- AMI metering solution architecture
+- An AMI metering solution typically combines smart meters, CIUs, DCUs or LoRaWAN gateways, and a back-end vending or meter management platform for token, reading, and device operations.
+- CIUs keep token entry and balance checks accessible when meters are locked outdoors or mounted on poles.
+- DCUs aggregate meter data for dense clusters such as villages, compounds, and utility service areas.
+- LoRaWAN gateways connect smart meters to the network where remote reading is required at scale.
+- AMI metering solution
+- data concentrator unit
+- LoRaWAN gateway
+- Residential and commercial gas metering
+- Prepaid gas meter applications
+- CalinMeters prepaid gas meters combine STS token security, valve control, and LoRaWAN communication for projects that need credit control and remote reading in gas applications.
+- STS prepayment supports secure token-based credit management.
+- LoRaWAN communication reduces dependence on individual cellular subscriptions.
+- Remote reading helps operators monitor consumption and reduce manual field collection.
+- prepaid gas meter
+- STS gas meter
+- smart gas meter
+- LoRaWAN water meter selection
+- Plastic, brass, or ultrasonic: which smart water meter fits the project?
+- Shenzhen Calinmeter Co., Ltd. supplies STS prepaid water meters for utility and community projects. Select the meter by measurement principle, body material, field conditions, communication coverage, lifecycle expectations, and destination-market requirements.
+- Meter type
+- Measurement principle
+- Communication
+- Best fit
+- Confirm before quotation
+- Plastic multi-jet prepaid water meter
+- Mechanical multi-jet
+- LoRaWAN
+- Cost-sensitive residential and community rollouts with standard installation conditions.
+- Confirm pipe size, flow range, water quality, installation orientation, valve requirement, and enclosure conditions.
+- Brass multi-jet prepaid water meter
+- Mechanical multi-jet
+- LoRaWAN
+- Projects that prefer a stronger metal body for tougher installation environments.
+- Confirm pipe size, flow range, water quality, body-material requirement, valve operation, and local compliance documents.
+- Ultrasonic prepaid water meter
+- Ultrasonic, no moving measuring parts
+- LoRaWAN or GPRS
+- Projects that prioritize no moving measuring parts and long-term measurement stability over the lowest initial cost.
+- Confirm flow range, installation conditions, keypad or CIU access, communication coverage, battery expectations, and pilot requirements.
+- For LoRaWAN projects, complete a site survey before rollout. Gateway placement, building materials, terrain, meter-box location, and local radio conditions affect practical coverage, so a pilot is more reliable than choosing equipment from a distance figure alone.
+- Request water meter configuration
+- Prepaid gas meter selection
+- What should a utility specify before buying a prepaid gas meter?
+- Shenzhen Calinmeter Co., Ltd. supplies the CA768 smart STS prepaid gas meter with LoRaWAN communication. A utility or system integrator should define the gas service, valve workflow, customer recharge method, network design, and destination-market requirements before requesting a final configuration.
+- Gas service and meter sizing
+- Define the gas type, service pressure, required meter size, expected flow range, installation orientation, and environmental conditions before selecting a configuration.
+- Prepayment and valve operation
+- Confirm the STS token workflow, credit rules, valve close and reopen process, emergency-credit policy, and the customer support procedure for failed recharge or valve events.
+- Customer recharge access
+- Specify how customers will receive and enter 20-digit STS tokens and whether the installation needs a separate customer interface for convenient indoor access.
+- LoRaWAN network design
+- Document meter density, building materials, meter location, gateway placement, backhaul, and expected reporting interval. Validate representative locations with a site survey and pilot.
+- Compliance and pilot acceptance
+- Identify destination-country standards, utility specifications, required approvals, test documents, installation rules, and pilot acceptance criteria before final model confirmation.
+- Do not select a gas meter from communication technology alone. Meter sizing, local installation rules, valve behavior, required approvals, and the operating procedure for customers and field teams must be confirmed together. A representative pilot should test token recharge, valve operation, radio coverage, and back-end data before mass rollout.
+- Request gas meter configuration
+- Africa utility procurement
+- What to specify before buying prepaid meters for Africa
+- Utilities and system integrators should define the electrical service, installation method, STS vending workflow, communication architecture, destination-market compliance, and pilot plan before requesting a final meter configuration.
+- Load and meter type
+- Specify single phase, three phase, DIN rail, or CT-operated metering according to the service connection and maximum current.
+- Installation and customer access
+- Choose a built-in keypad when the meter is accessible. Choose a split keypad prepaid meter or CIU when the meter is locked outdoors, mounted on a pole, or installed in an anti-tamper enclosure.
+- STS vending and payment
+- Confirm 20-digit STS token vending, sales-point workflow, mobile money integration, and whether an API is needed for an existing payment or customer platform.
+- Communication and AMI
+- Use standalone token meters for basic prepayment. Add GPRS, LoRaWAN, a DCU, or a gateway when remote reading, alarms, or device management are required.
+- Destination-market compliance
+- State the required national standards, utility specifications, type approvals, accuracy class, enclosure rating, and documentation before model selection. Requirements differ by country and project.
+- Pilot and rollout plan
+- Run a pilot with representative installation conditions, test token and payment workflows, verify communication coverage, and confirm field procedures before mass deployment.
+- Request project configuration
+- Buyer-focused information
+- Evaluate the product and the project together
+- Metering products must be matched to service conditions, customer workflows, communication architecture and destination requirements.
+- 1
+- Published Specifications
+- Compare parameters transcribed from the available product datasheets before confirming a model.
+- 2
+- Token Prepayment
+- Plan 20-digit STS token entry, customer access and vending responsibilities for each deployment.
+- 3
+- Communication Options
+- Select standalone, GPRS, LoRaWAN or other published options according to project coverage and operations.
+- 4
+- Project Configuration
+- Confirm destination standards, utility specifications and required documents before final model selection.
+- Company
+- About Shenzhen Calinmeter Co., Ltd.
+- Shenzhen Calinmeter Co., Ltd. (CalinMeters) supplies prepaid meters for electricity, water and gas projects, together with Customer Interface Units, data concentrators and LoRaWAN gateways.
+- Product selection is based on the service conditions, customer recharge workflow, communication coverage, system integration and destination utility requirements. Published datasheets are available on applicable model pages.
+- Electricity, Water & Gas
+- Prepaid metering product categories
+- Meters, CIUs & Network Devices
+- Components for project architecture
+- Frequently Asked Questions
+- Expert answers to common questions about our products
+- Product Selection
+- Technical Specifications
+- STS Tokens & Vending
+- Commercial Terms
+- CIU & DCU
+- Product Reliability
+- What should a solar mini-grid operator confirm before selecting prepaid meters?
+- Does STS token entry mean the entire vending system works offline?
+- What should a buyer send for a utility tender or local manufacturing discussion?
+- What is an STS prepaid water meter?
+- What is the difference between brass and plastic water meters?
+- Does a prepaid meter have to come with a SIM card?
+- What is an STS prepaid electricity meter?
+- When should a project use a three-phase prepaid electricity meter?
+- What is the difference between the CA368 GPRS and standalone STS models?
+- What information is needed for a CA368 three-phase meter quotation?
+- Which prepaid meter is suitable for Africa utility projects?
+- What information should a utility provide when requesting prepaid meters for Africa?
+- What compliance information is needed for an Africa prepaid meter project?
+- Which meter types are suitable for Southeast Asia smart metering projects?
+- How should a utility choose a prepaid gas meter?
+- Why use LoRaWAN for a prepaid gas meter project?
+- What information is needed for a prepaid gas meter quotation?
+- What is the expected battery lifetime for Calin meters?
+- Get in Touch
+- Ready to discuss your metering needs?
+- Contact Information
+- Address
+- Floor 6, Bd A1, Qiaode Tech Park, Kelian Rd, Guang Ming District, Shenzhen, China
+- Phone
+- +8613713788753
+- WhatsApp / WeChat
+- +8613713788753
+- Email
+- info@calinmeters.com
+- Send us a Message
+- Send your requirements securely. Required fields are marked with an asterisk.
+- Your Name
+- *
+- Your Email
+- *
+- Company
+- Country
+- Phone / WhatsApp
+- Estimated Quantity
+- Product
+- Your Message
+- *
+- Website
+- Send Inquiry
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA168-GPRS.pdf
+- https://calinmeters.com/specs/energy-meter/CA168-LoRaWAN.pdf
+- https://calinmeters.com/specs/energy-meter/CA368-GPRS.pdf
+- https://calinmeters.com/specs/energy-meter/CA368-STS.pdf
+
+### FR
+
+URL: https://calinmeters.com/fr/
+HTML SHA256: 20c9562fd5aecc95e4d711c078eb2a3c7a51a07206b7ca16d7d9b7a0e72d323d
+
+- Compteurs prépayés STS pour l’électricité et l’eau | CalinMeters
+- Description: Comparez des compteurs électriques et des compteurs d’eau prépayés STS pour les distributeurs, intégrateurs et projets de services publics.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Solutions de comptage prépayé
+- Compteurs prépayés STS pour les projets d’électricité et d’eau
+- Réponse directe
+- CalinMeters fournit des compteurs prépayés STS pour l’électricité et l’eau, avec des modèles monophasés, triphasés, multijets et ultrasoniques. Nous aidons les distributeurs et intégrateurs à comparer le raccordement, le courant ou le débit, l’accès au clavier, la communication et les exigences du projet avant le devis.
+- Comparer les compteurs
+- Demander un devis
+- Gamme de produits
+- Choisissez la famille de compteurs adaptée au projet
+- Comparez les caractéristiques publiées, puis confirmez les conditions de raccordement, de communication et d’exploitation avant de demander un devis.
+- Compteurs électriques prépayés STS
+- Modèles monophasés, triphasés et sur rail DIN, avec saisie locale du jeton ou options de communication selon le modèle.
+- Voir le guide et les modèles →
+- Compteurs d'eau prépayés STS
+- Modèles multijets en plastique ou en laiton et modèle ultrasonique, avec caractéristiques hydrauliques publiées à comparer.
+- Voir le guide et les modèles →
+- Préparer votre projet
+- Les informations qui permettent de choisir un modèle
+- 1
+- Définir le service
+- Indiquez le type de raccordement électrique ou le diamètre, le débit, la pression et la température de l'eau.
+- 2
+- Choisir l’accès client
+- Précisez si le client saisit le jeton sur le compteur ou sur une unité d'interface client (CIU).
+- 3
+- Planifier la communication
+- Décrivez le besoin de fonctionnement autonome, GPRS, LoRaWAN, PLC ou autre architecture prise en charge.
+- 4
+- Confirmer le déploiement
+- Fournissez la quantité, les conditions du pilote et les spécifications du service public ou du pays de destination.
+- Décisions techniques
+- Préparez les données qui orientent le devis
+- Une demande structurée permet de comparer les modèles publiés sans supposer la configuration finale.
+- Service et dimensionnement
+- Pour l'électricité : phase, tension, fréquence et courant. Pour l'eau : diamètre, débit, pression et température.
+- Installation et accès client
+- Précisez le câblage ou la tuyauterie, l'emplacement du compteur et la façon dont l'utilisateur saisira les jetons.
+- Communication
+- Indiquez si le projet fonctionne en mode autonome ou nécessite GPRS, LoRaWAN, PLC, RF ou une autre option publiée.
+- Vente de crédit STS
+- Décrivez le système existant, la gestion des clés, les canaux de vente et le besoin éventuel d'intégration.
+- Pilote et validation
+- Communiquez la quantité, le calendrier, les critères du pilote et les spécifications applicables à la destination.
+- Une sélection fondée sur les faits
+- Des pages produit reliées aux données techniques disponibles
+- Les valeurs affichées en français sont contrôlées par rapport aux caractéristiques anglaises publiées. Les choix définitifs restent à confirmer par écrit pour la configuration proposée.
+- Shenzhen Calinmeter Co., Ltd.
+- Fabricant basé à Shenzhen, en Chine. Les pages produit présentent les configurations publiées ; les paramètres définitifs et les documents applicables sont confirmés pour chaque projet.
+- Floor 6, Bd A1, Qiaode Tech Park, Kelian Rd, Guang Ming District, Shenzhen, China
+- Questions des acheteurs
+- Questions fréquentes
+- Qu'est-ce qu'un compteur électrique prépayé STS ?
+- Un compteur électrique prépayé STS utilise la spécification Standard Transfer Specification pour accepter des jetons sécurisés de recharge à 20 chiffres. Ce fonctionnement convient notamment aux services publics, bailleurs et gestionnaires immobiliers qui souhaitent contrôler le crédit par jeton sans maintenir chaque compteur connecté en permanence.
+- Un compteur prépayé doit-il utiliser une carte SIM ?
+- Non. Le fonctionnement prépayé STS repose sur un système sécurisé de messages qui ne nécessite pas Internet : le système de vente de crédit chiffre les informations pour produire un jeton à 20 chiffres, que l'utilisateur saisit au clavier. Une carte SIM n'est nécessaire que si la configuration choisie utilise un réseau cellulaire pour la relève ou la gestion à distance.
+- Qu'est-ce qu'un compteur d'eau prépayé STS ?
+- Un compteur d'eau prépayé STS utilise un jeton enregistré à 20 chiffres pour charger le crédit d'eau acheté. Le client saisit le jeton sur le clavier du compteur ou sur une unité d'interface client, puis le compteur applique ce crédit selon les règles configurées de vanne et de tarification. LoRaWAN ou une autre option prise en charge peut ajouter la relève à distance, mais le jeton STS et le réseau de communication remplissent des rôles distincts.
+- Quelles informations fournir pour un devis de compteurs d'eau LoRaWAN ?
+- Indiquez le diamètre, la plage de débit, la qualité et la température de l'eau, l'orientation de pose, le matériau du corps, le principe multijet ou ultrasonique, les besoins de vanne et de prépaiement STS, l'accès par clavier ou CIU, la communication, la densité de compteurs, le plan de passerelles et de liaison de collecte, la quantité et les exigences du service public de destination.
+- Demande de projet
+- Recevez une étude de configuration
+- Décrivez l’application, les paramètres techniques, la quantité, le pays ou la région et la période cible. Nous vérifierons ces éléments par rapport aux modèles publiés.
+- Le français écrit est traité avec assistance de traduction. Les paramètres techniques du devis doivent être validés par écrit.
+- Nom du contact
+- *
+- Fonction
+- *
+- Entreprise
+- *
+- E-mail professionnel
+- *
+- Numéro WhatsApp
+- *
+- Pays ou région
+- *
+- Type d'acheteur
+- *
+- Sélectionner
+- Distributeur
+- Intégrateur
+- Entreprise d'ingénierie
+- Service public
+- Gestionnaire immobilier
+- Client industriel
+- Autre
+- Produit recherché
+- *
+- Sélectionner
+- Compteur électrique prépayé STS
+- Compteur d'eau prépayé STS
+- Application
+- *
+- Quantité estimée
+- *
+- Période cible du pilote ou de l'achat
+- *
+- Phase/courant ou diamètre, communication et autres exigences
+- *
+- Système de vente de crédit STS
+- *
+- Sélectionner
+- Système existant
+- Système requis
+- À confirmer
+- Notes du projet (facultatif)
+- Site web
+- Envoyer la demande de devis
+- Les informations sont utilisées uniquement pour répondre à votre demande de projet.
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+
+## /fr/produits/compteur-electricite-prepaye-sts/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/products/sts-prepaid-electricity-meter/
+HTML SHA256: e9df0395f4e42a94f6448536b6405ccbe326ef9524cabd09315d3562ae568f6f
+
+- STS Prepaid Electricity Meters for Utility Projects | CalinMeters
+- Description: Compare CalinMeters single-phase, three-phase, DIN-rail and communication-ready STS prepaid electricity meters for utility and sub-metering projects.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- Home
+- /
+- Products
+- /
+- STS prepaid electricity meter
+- Electricity metering
+- STS Prepaid Electricity Meters for Utility Projects
+- Direct answer
+- An STS prepaid electricity meter measures energy and deducts credit loaded through a secure 20-digit token. Utilities can use standalone keypad models where continuous connectivity is not required, or select GPRS and LoRaWAN options for remote reading. The correct model depends on phase, current, installation, CIU access, vending integration and destination requirements.
+- Shenzhen Calinmeter Co., Ltd. (CalinMeters) supplies single-phase, three-phase and DIN-rail electricity meters for prepaid deployments. Use this page to compare the published models, understand the token and communication choices, and prepare the technical information needed for a quotation or pilot.
+- Plan your procurement
+- Start with your project role
+- Mini-grid developers and EPCs
+- Share the site count, connections per site, electrical service, vending platform and network coverage. Define local token recharge, remote reading and pilot acceptance separately, including loss of connectivity and credit recovery checks.
+- Discuss a mini-grid pilot
+- Utilities and tender procurement
+- Send the tender reference, technical schedules, quantities, destination requirements and submission deadline. Request a clause-by-clause review of the proposed model and supporting documents before treating it as compliant.
+- Discuss tender requirements
+- Local meter manufacturers and partners
+- Describe whether you need complete meters, components or an assembly partnership, plus annual volume, testing, firmware and branding requirements. The available supply scope and division of responsibilities must be confirmed for your project.
+- Discuss manufacturing requirements
+- Reference context:
+- STS system roles
+- and
+- REA DARES mini-grid programme
+- .
+- Use the applicable tender and programme documents to confirm your project requirements; these references do not establish approval of a CalinMeters model.
+- Published models
+- Compare available configurations
+- Open a model page for published specifications, application guidance, the current PDF and the project details that still need confirmation.
+- Single Phase Energy Meter
+- CA168 Smart STS Prepaid DIN Rail Energy Meter (LoRaWAN)
+- Model
+- CA168-S-NS06
+- DIN rail STS prepaid energy meter with LoRaWAN communication for remote meter reading and token management.
+- View product details
+- Single Phase Energy Meter
+- CA168 Smart STS Prepaid Energy Meter (GPRS)
+- Model
+- CA168-CS23
+- STS prepaid single-phase meter with GPRS communication for remote monitoring and control.
+- View product details
+- Single Phase Energy Meter
+- CA168 STS Prepaid Energy Meter
+- Model
+- CA168
+- Standard STS prepaid single-phase energy meter with keypad for token entry.
+- View product details
+- Three Phase Energy Meter
+- CA368 Smart STS Prepaid Three Phase Energy Meter (GPRS)
+- Model
+- CA368-WS23
+- Three-phase STS prepaid electricity meter for commercial, industrial, and utility service connections, with GPRS communication for remote reading and management.
+- View product details
+- Three Phase Energy Meter
+- CA368 STS Prepaid Three Phase Energy Meter
+- Model
+- CA368-WS21
+- Standalone three-phase STS prepaid electricity meter with keypad token entry for projects that do not require always-on remote communication.
+- View product details
+- CT Meter
+- CT Operated Energy Meter
+- Transformer-operated (CT) energy meter for high-current commercial and industrial metering.
+- View product details
+- Model comparison
+- Single-phase, three-phase, DIN-rail or CT-operated: which prepaid meter fits?
+- Choose a direct-connected single-phase model when the service voltage and current match the published configuration. Use a three-phase four-wire model for supported commercial or utility service connections. A DIN-rail meter with a separate Customer Interface Unit can keep the main meter inside a protected cabinet while the customer enters tokens indoors. Select standalone STS when local token entry is sufficient, or evaluate GPRS or LoRaWAN when the operator also needs remote reading.
+- Model and configuration
+- Published parameters
+- Buyer fit
+- Specification
+- CA168-S-NS06
+- Single Phase Energy Meter
+- Phase
+- :
+- Single phase
+- Nominal voltage
+- :
+- 230 V
+- Nominal frequency
+- :
+- 50-60 Hz
+- Residential and small commercial prepaid service connections
+- Download PDF
+- CA168-CS23
+- Single Phase Energy Meter
+- Phase
+- :
+- Single phase
+- Nominal voltage
+- :
+- 230 V
+- Nominal frequency
+- :
+- 50-60 Hz
+- Residential and small commercial prepaid connections
+- Download PDF
+- CA168
+- Single Phase Energy Meter
+- Residential prepaid service connections
+- Request current specification
+- CA368-WS23
+- Three Phase Energy Meter
+- Phase and wiring
+- :
+- Three phase, four wire
+- Nominal voltage
+- :
+- 3 x 230/240 V
+- Frequency
+- :
+- 50/60 Hz +/-5%
+- Commercial and utility three-phase service connections
+- Download PDF
+- CA368-WS21
+- Three Phase Energy Meter
+- Phase and wiring
+- :
+- Three phase, four wire
+- Nominal voltage
+- :
+- 3 x 230/240 V
+- Frequency
+- :
+- 50/60 Hz +/-5%
+- Commercial and utility three-phase prepaid connections
+- Download PDF
+- CT Operated Energy Meter
+- CT Meter
+- Commercial and industrial services that use external current transformers
+- Request current specification
+- Published values are transcribed from the current model datasheets. Confirm the final phase, voltage, current or CT ratio, wiring, communication option, installation conditions and destination requirements in the quotation and pilot.
+- Buyer selection guide
+- How to select an STS prepaid electricity meter
+- 1
+- Define the electrical service
+- Confirm single-phase or three-phase service, nominal voltage, frequency, maximum current and whether an external current transformer is required.
+- 2
+- Choose direct or split customer access
+- Use a built-in keypad where customers can reach the meter. Use a DIN-rail or protected meter with a Customer Interface Unit when the main meter is outside, locked or pole-mounted.
+- 3
+- Select the communication architecture
+- Standalone STS supports local token entry. GPRS can provide direct cellular connectivity, while LoRaWAN can aggregate many meters through shared gateways.
+- 4
+- Define vending and integration
+- Document the vending platform, key-management responsibilities, sales channels, mobile-money flow and any API connection to existing utility systems.
+- 5
+- Confirm compliance and pilot conditions
+- List the destination standards, utility specifications, test documents and representative pilot checks required before a production order.
+- STS workflow
+- How STS electricity token recharge works
+- The Standard Transfer Specification (STS) provides a token-based method for transferring prepaid credit to a registered meter. Network communication can add remote operations, but the basic keypad workflow does not require every meter to remain online.
+- 1. Register the meter
+- The operator records the meter identity and required vending configuration in the prepaid management system.
+- 2. Sell electricity credit
+- The customer purchases a selected credit amount through an approved sales or payment channel.
+- 3. Generate the token
+- The vending system produces a 20-digit token associated with that meter and transaction.
+- 4. Load and consume credit
+- The customer enters the token on the meter or CIU; the meter accepts valid credit and deducts it as electricity is consumed.
+- Quotation checklist
+- Information to send with your inquiry
+- Single-phase, three-phase or CT-operated service
+- Nominal voltage, frequency and maximum current or CT ratio
+- Wiring, enclosure and installation location
+- Built-in keypad or split Customer Interface Unit
+- Standalone STS, GPRS, LoRaWAN, PLC or other communication requirement
+- Vending platform, key management, payment channel and API scope
+- Estimated quantity, rollout schedule and pilot acceptance criteria
+- Destination standards, utility specifications and required documentation
+- Buyer questions
+- Frequently asked questions
+- What should a solar mini-grid operator confirm before selecting prepaid meters?
+- Start with the number of sites and connections, phase, voltage, current and meter installation. Then define vending, payment reconciliation, key-management responsibilities, customer token entry and remote reading. Test the proposed meter, CIU and communication configuration together in a representative pilot, including interrupted connectivity and power restoration. Project funding alone does not establish meter eligibility.
+- Does STS token entry mean the entire vending system works offline?
+- No. Local entry of a valid STS credit token and the systems that sell credit are separate. The meter can accept a token through its keypad or CIU without a continuous internet connection at the meter. Token generation, payment confirmation, vending access and reconciliation depend on the selected system architecture and must be confirmed and tested with the operator.
+- What should a buyer send for a utility tender or local manufacturing discussion?
+- For a tender, send the reference, technical schedules, required documents, quantities and deadline so the proposed configuration can be reviewed clause by clause. For local manufacturing, describe the intended supply scope, assembly and testing responsibilities, firmware and branding needs, and expected volume. Certification, tender compliance and manufacturing services must be confirmed against specific evidence and a written project scope.
+- What is an STS prepaid electricity meter?
+- An STS prepaid electricity meter is a meter that uses the Standard Transfer Specification to accept secure 20-digit recharge tokens. It is commonly used by utilities, landlords, and property operators that need token-based credit control without requiring every meter to stay online.
+- When should a project use a three-phase prepaid electricity meter?
+- A three-phase prepaid electricity meter is normally used for three-phase commercial, industrial, or utility service connections. The buyer should confirm the nominal voltage, maximum current or CT ratio, installation method, accuracy requirement, communication coverage, and destination-market standards before selecting a model.
+- What is the difference between the CA368 GPRS and standalone STS models?
+- Both CA368 models support STS 20-digit token prepayment for three-phase service connections. The CA368 GPRS model adds direct cellular communication for remote reading, monitoring, and meter management. The standalone CA368 STS model uses keypad token entry without requiring always-on remote communication, which is suitable when secure prepayment is needed but direct cellular management is not.
+- When should a utility choose a split keypad prepaid meter?
+- A split keypad prepaid meter is useful when the main meter is installed outdoors, locked in a cabinet, mounted on a pole, or placed where the customer should not access the wiring compartment. The CIU gives the customer an indoor keypad for token entry, balance checking, and consumption information while the main meter remains protected.
+- Does a prepaid meter have to come with a SIM card?
+- No. An STS keypad meter can accept a valid 20-digit credit token without a SIM card or a continuous internet connection at the meter. Remote reading may use cellular communication, LoRaWAN or another supported network, depending on the model. Token generation and payment services have their own connectivity requirements; confirm these separately from local token entry.
+- How does a token based prepaid meter work?
+- A token based prepaid meter uses STS security to load credit before consumption. The operator registers the meter in a vending system, the customer buys credit, the system generates a secure 20-digit token, and the customer enters that token on the meter keypad or CIU. Remote recharge can also be supported when the project uses GPRS, LoRaWAN, or AMI integration.
+- Project inquiry
+- Discuss STS prepaid electricity meter
+- Send the service conditions, communication plan, quantity, destination requirements and pilot criteria. CalinMeters can then review the published models against your project.
+- Request a Quote
+- Email product requirements
+- Contact on WhatsApp
+- Related prepaid meter categories
+- STS prepaid water meter
+- STS prepaid gas meter
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA168-GPRS.pdf
+- https://calinmeters.com/specs/energy-meter/CA168-LoRaWAN.pdf
+- https://calinmeters.com/specs/energy-meter/CA368-GPRS.pdf
+- https://calinmeters.com/specs/energy-meter/CA368-STS.pdf
+
+### FR
+
+URL: https://calinmeters.com/fr/produits/compteur-electricite-prepaye-sts/
+HTML SHA256: 162ab82d9a6034685487783f887cd0212f9f9f3c688dcb0b1f8d9be0044f74c3
+
+- Compteurs électriques prépayés STS pour projets | CalinMeters
+- Description: Comparez des compteurs électriques prépayés STS monophasés, triphasés, sur rail DIN, GPRS et LoRaWAN pour vos projets.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Accueil
+- /
+- Produits
+- /
+- compteur électrique prépayé STS
+- Comptage électrique prépayé
+- Compteurs électriques prépayés STS pour vos projets
+- Réponse directe
+- Un compteur électrique prépayé STS mesure l'énergie et déduit le crédit chargé au moyen d'un jeton sécurisé à 20 chiffres. Un projet peut utiliser un modèle autonome avec clavier lorsque la connexion permanente n'est pas nécessaire, ou une option GPRS ou LoRaWAN pour la relève à distance. Le choix dépend de la phase, du courant, de la pose, de l'accès par clavier ou CIU, du système de vente de crédit et des exigences de destination.
+- La gamme présentée comprend des compteurs monophasés, triphasés et sur rail DIN. Comparez uniquement les paramètres publiés, puis confirmez par écrit le raccordement, la communication, le périmètre du système de vente de crédit et les conditions du pilote avant la commande.
+- Modèles publiés
+- Comparer les configurations disponibles
+- Ouvrez une page modèle pour consulter les caractéristiques publiées, les applications, la fiche PDF actuelle et les paramètres qui restent à confirmer.
+- Compteurs monophasés
+- Compteur électrique prépayé STS CA168-S-NS06 sur rail DIN avec LoRaWAN
+- Modèle
+- CA168-S-NS06
+- Compteur électrique prépayé STS monophasé sur rail DIN avec communication LoRaWAN pour la relève centralisée et unité d'interface client (CIU) en option.
+- Voir les détails du produit
+- Compteurs monophasés
+- Compteur électrique prépayé STS CA168-CS23 avec communication GPRS
+- Modèle
+- CA168-CS23
+- Compteur électrique prépayé STS monophasé avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Voir les détails du produit
+- Compteurs monophasés
+- Compteur électrique prépayé STS monophasé CA168
+- Modèle
+- CA168
+- Compteur électrique prépayé STS monophasé avec clavier intégré pour saisir les jetons, sans connexion de données permanente.
+- Voir les détails du produit
+- Compteurs triphasés
+- Compteur électrique prépayé STS triphasé CA368-WS23 avec GPRS
+- Modèle
+- CA368-WS23
+- Compteur électrique prépayé STS triphasé quatre fils avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Voir les détails du produit
+- Compteurs triphasés
+- Compteur électrique prépayé STS triphasé CA368-WS21
+- Modèle
+- CA368-WS21
+- Compteur électrique prépayé STS triphasé quatre fils avec saisie des jetons au clavier, sans obligation de connexion cellulaire permanente.
+- Voir les détails du produit
+- Comparaison des modèles
+- Monophasé, triphasé ou rail DIN : quel compteur choisir ?
+- Choisissez un modèle monophasé pour un raccordement monophasé dont la tension et le courant correspondent à la configuration proposée. Utilisez un modèle triphasé quatre fils pour les services triphasés pris en charge. Un compteur sur rail DIN avec CIU séparée peut convenir lorsque le compteur principal doit rester dans un coffret protégé et que le client saisit ses jetons à l'intérieur.
+- Modèle et configuration
+- Paramètres publiés
+- Type d'application
+- Fiche technique
+- CA168-S-NS06
+- Compteurs monophasés
+- Phase
+- :
+- Monophasé
+- Tension nominale
+- :
+- 230 V
+- Fréquence nominale
+- :
+- 50–60 Hz
+- Raccordements prépayés résidentiels et petits commerces
+- Fiche technique en anglais (PDF)
+- CA168-CS23
+- Compteurs monophasés
+- Phase
+- :
+- Monophasé
+- Tension nominale
+- :
+- 230 V
+- Fréquence nominale
+- :
+- 50–60 Hz
+- Raccordements prépayés résidentiels et petits commerces
+- Fiche technique en anglais (PDF)
+- CA168
+- Compteurs monophasés
+- Raccordements résidentiels prépayés
+- Demander la fiche technique actuelle
+- CA368-WS23
+- Compteurs triphasés
+- Phase et câblage
+- :
+- Triphasé, quatre fils
+- Tension nominale
+- :
+- 3 × 230/240 V
+- Fréquence
+- :
+- 50/60 Hz ±5 %
+- Raccordements triphasés commerciaux et de services publics
+- Fiche technique en anglais (PDF)
+- CA368-WS21
+- Compteurs triphasés
+- Phase et câblage
+- :
+- Triphasé, quatre fils
+- Tension nominale
+- :
+- 3 × 230/240 V
+- Fréquence
+- :
+- 50/60 Hz ±5 %
+- Raccordements triphasés prépayés commerciaux et de services publics
+- Fiche technique en anglais (PDF)
+- Les valeurs publiées sont traduites à partir des fiches techniques actuelles. Confirmez dans le devis et le pilote la phase, la tension, le courant ou le rapport de transformation, le câblage, la communication, les conditions de pose et les exigences de destination.
+- Guide de sélection pour l'acheteur
+- Comment choisir un compteur électrique prépayé STS
+- 1
+- Définir le raccordement électrique
+- Confirmez le service monophasé ou triphasé, la tension nominale, la fréquence, le courant maximal et l'éventuel besoin d'un transformateur de courant externe.
+- 2
+- Choisir un accès direct ou séparé
+- Utilisez un clavier intégré lorsque le client peut atteindre le compteur. Prévoyez une unité d'interface client lorsque le compteur principal est à l'extérieur, fermé ou installé sur un poteau.
+- 3
+- Définir l'architecture de communication
+- Le fonctionnement STS autonome permet la saisie locale du jeton. Les options GPRS ou LoRaWAN ajoutent une communication distante selon le modèle et le réseau du projet.
+- 4
+- Décrire la vente de crédit et l’intégration
+- Précisez la plateforme de vente de crédit, la répartition des responsabilités de gestion des clés, les canaux de paiement et l'éventuelle API avec les systèmes existants.
+- 5
+- Confirmer les exigences et le pilote
+- Listez les spécifications du service public, les documents de test, les exigences de destination et les contrôles représentatifs à réaliser pendant le pilote.
+- Fonctionnement STS
+- Comment fonctionne la recharge d'électricité par jeton STS
+- La Standard Transfer Specification fournit une méthode de transfert du crédit prépayé vers un compteur enregistré. La communication réseau peut ajouter des fonctions distantes, mais la saisie du jeton au clavier n'oblige pas chaque compteur à rester connecté.
+- 1. Enregistrer le compteur
+- L'opérateur enregistre l'identité du compteur et la configuration requise dans le système de vente de crédit.
+- 2. Acheter le crédit d'électricité
+- Le client achète un montant de crédit par un canal de vente ou de paiement approuvé par le projet.
+- 3. Générer le jeton
+- Le système de vente de crédit produit un jeton à 20 chiffres associé au compteur et à la transaction.
+- 4. Charger et consommer le crédit
+- Le client saisit le jeton sur le compteur ou la CIU. Le compteur accepte le crédit valide et le déduit au fur et à mesure de la consommation d'électricité.
+- Liste pour le devis
+- Informations à joindre à votre demande
+- Raccordement monophasé, triphasé ou avec transformateur de courant
+- Tension nominale, fréquence et courant maximal ou rapport de transformation
+- Câblage, coffret et emplacement d'installation
+- Clavier intégré ou unité d'interface client séparée
+- Fonctionnement STS autonome, GPRS, LoRaWAN, PLC ou autre communication requise
+- Plateforme de vente de crédit, gestion des clés, canal de paiement et périmètre de l’API
+- Quantité estimée, calendrier de déploiement et critères d'acceptation du pilote
+- Spécifications du service public de destination et documents exigés
+- Questions des acheteurs
+- Questions fréquentes
+- Qu'est-ce qu'un compteur électrique prépayé STS ?
+- Un compteur électrique prépayé STS utilise la spécification Standard Transfer Specification pour accepter des jetons sécurisés de recharge à 20 chiffres. Ce fonctionnement convient notamment aux services publics, bailleurs et gestionnaires immobiliers qui souhaitent contrôler le crédit par jeton sans maintenir chaque compteur connecté en permanence.
+- Quand faut-il choisir un compteur électrique prépayé triphasé ?
+- Un compteur électrique prépayé triphasé est normalement utilisé pour un raccordement commercial, industriel ou de service public alimenté en triphasé. Avant de choisir un modèle, il faut confirmer la tension nominale, le courant maximal ou le rapport de transformateur de courant, le mode de pose, la classe de précision, la couverture de communication et les exigences du marché de destination.
+- Quelle est la différence entre les modèles CA368 GPRS et STS autonome ?
+- Les deux modèles CA368 prennent en charge le prépaiement STS par jeton à 20 chiffres pour les raccordements triphasés. Le modèle CA368 GPRS ajoute une communication cellulaire directe pour la relève, le suivi et la gestion à distance. Le CA368 STS autonome utilise la saisie du jeton au clavier sans exiger de communication distante permanente.
+- Quand faut-il choisir un compteur prépayé avec clavier séparé ?
+- Une configuration avec clavier séparé est utile lorsque le compteur principal est installé à l'extérieur, dans un coffret fermé, sur un poteau ou dans un emplacement où le client ne doit pas accéder au câblage. L'unité d'interface client (CIU) fournit alors un clavier intérieur pour saisir les jetons et consulter les informations disponibles.
+- Un compteur prépayé doit-il utiliser une carte SIM ?
+- Non. Le fonctionnement prépayé STS repose sur un système sécurisé de messages qui ne nécessite pas Internet : le système de vente de crédit chiffre les informations pour produire un jeton à 20 chiffres, que l'utilisateur saisit au clavier. Une carte SIM n'est nécessaire que si la configuration choisie utilise un réseau cellulaire pour la relève ou la gestion à distance.
+- Comment fonctionne un compteur prépayé à jeton ?
+- L'opérateur enregistre le compteur dans un système de vente de crédit. Après l'achat du crédit, le système génère un jeton STS sécurisé à 20 chiffres que le client saisit sur le compteur ou sur la CIU. Une architecture GPRS, LoRaWAN ou AMI peut ajouter des fonctions distantes lorsque le projet les prévoit.
+- Demande de projet
+- Étudier compteur électrique prépayé STS
+- Envoyez les conditions de service, le plan de communication, la quantité, les exigences de destination et les critères du pilote. CalinMeters pourra comparer ces éléments aux modèles publiés.
+- Demander un devis
+- Envoyer les exigences par e-mail
+- Contacter par WhatsApp
+- Catégories associées de compteurs prépayés
+- compteur d'eau prépayé STS
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA168-GPRS.pdf
+- https://calinmeters.com/specs/energy-meter/CA168-LoRaWAN.pdf
+- https://calinmeters.com/specs/energy-meter/CA368-GPRS.pdf
+- https://calinmeters.com/specs/energy-meter/CA368-STS.pdf
+
+## /fr/produits/compteur-eau-prepaye-sts/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/products/sts-prepaid-water-meter/
+HTML SHA256: 2cb7f15bf6a08f6f98ef8548936300e44912e709342fa833226328b5226d0fe7
+
+- STS Prepaid Water Meters for Utility Projects | CalinMeters
+- Description: Compare plastic and brass multi-jet and ultrasonic STS prepaid water meters, with LoRaWAN options and buyer-focused selection guidance.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- Home
+- /
+- Products
+- /
+- STS prepaid water meter
+- Water metering
+- STS Prepaid Water Meters for Utility and Community Projects
+- Direct answer
+- An STS prepaid water meter controls water credit through a 20-digit token entered on a keypad or Customer Interface Unit. CalinMeters offers multi-jet and ultrasonic configurations with optional remote reading. Selection depends on pipe size, flow range, body material, measurement principle, valve workflow, customer access, communications and local utility requirements.
+- The CalinMeters water range includes plastic-body and brass-body multi-jet configurations plus an ultrasonic model with no moving measuring parts. Compare only the published parameters below, then validate water conditions, communication coverage and operating procedures through a representative pilot.
+- Published models
+- Compare available configurations
+- Open a model page for published specifications, application guidance, the current PDF and the project details that still need confirmation.
+- Multi-Jet Water Meter (Plastic)
+- Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Plastic)
+- Model
+- CA568-R01
+- Plastic-body multi-jet water meter with STS prepayment and LoRaWAN communication for cost-sensitive residential and community rollouts.
+- View product details
+- Multi-Jet Water Meter (Brass)
+- Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Brass)
+- Model
+- CA568-R01
+- Brass-body multi-jet water meter with STS prepayment and LoRaWAN communication for projects that prefer a stronger metal enclosure in tougher installation environments.
+- View product details
+- Ultrasonic Water Meter
+- Smart STS Prepaid Ultrasonic Water Meter - LoRa WAN GPRS
+- Model
+- CA568-R22
+- STS prepaid ultrasonic water meter with no moving measuring parts and LoRaWAN or GPRS communication for remote utility metering projects.
+- View product details
+- Model comparison
+- Plastic, brass or ultrasonic: which prepaid water meter fits the project?
+- Choose the plastic multi-jet model for cost-sensitive residential or community installations in its published DN15-DN25 range. Choose the brass multi-jet model when the project specifies a metal body or sizes up to DN50. Choose the ultrasonic model when no moving measuring parts, a published R250 range ratio and remote-reading architecture matter more than the lowest initial cost.
+- Model and configuration
+- Published parameters
+- Buyer fit
+- Specification
+- CA568-R01
+- Multi-Jet Water Meter (Plastic)
+- Nominal sizes
+- :
+- DN15, DN20, or DN25
+- Permanent flow Q3
+- :
+- 2.5, 4, or 6.3 m3/h by size
+- Range ratio
+- :
+- R80 or R100 configuration
+- Cost-sensitive residential and community prepaid water projects
+- Download PDF
+- CA568-R01
+- Multi-Jet Water Meter (Brass)
+- Nominal sizes
+- :
+- DN15, DN20, DN25, DN32, DN40, or DN50
+- Permanent flow Q3
+- :
+- 2.5-25 m3/h depending on size
+- Range ratio
+- :
+- R80 or R100 configuration
+- Residential, community, and utility prepaid water projects
+- Download PDF
+- CA568-R22
+- Ultrasonic Water Meter
+- Nominal sizes
+- :
+- DN15, DN20, or DN25
+- Permanent flow Q3
+- :
+- 2.5, 4.0, or 6.3 m3/h by size
+- Range ratio
+- :
+- R250
+- Utility and community water projects requiring remote reading
+- Download PDF
+- Published values are transcribed from the current model datasheets. Confirm the final size, flow range, communication frequency, installation conditions and destination requirements in the quotation and pilot.
+- Buyer selection guide
+- How to select an STS prepaid water meter
+- 1
+- Define hydraulic requirements
+- Confirm nominal pipe size, expected minimum and permanent flow, pressure, water temperature, water quality and installation orientation.
+- 2
+- Choose the measurement principle
+- Multi-jet meters use a mechanical measuring mechanism. Ultrasonic meters have no moving measuring parts and should be evaluated against flow profile and lifecycle requirements.
+- 3
+- Choose body and customer access
+- Specify plastic or brass body, integrated keypad or separate CIU, meter-box access and any valve or back-flow requirement.
+- 4
+- Plan remote reading
+- Define LoRaWAN frequency, meter density, gateway locations, backhaul, reporting interval and remote-control scope, then test representative sites.
+- 5
+- Confirm documentation and rollout
+- List destination requirements, quantity, installation training, commissioning workflow and pilot acceptance tests before scale-up.
+- STS workflow
+- How STS water credit and remote reading fit together
+- STS prepayment and remote meter reading solve different parts of the operating workflow. The token transfers credit to the registered meter; LoRaWAN or another communication layer can carry readings and supported control messages to the operator.
+- 1. Configure the meter
+- The operator registers the meter, tariff rules, customer access method and any communication settings.
+- 2. Issue water credit
+- A vending system generates a 20-digit token after the customer purchases credit.
+- 3. Enter the token
+- The customer loads the token through the meter keypad or CIU according to the installation design.
+- 4. Read and manage remotely
+- Where configured, gateways and the back-end system collect readings and support the documented remote-management functions.
+- Quotation checklist
+- Information to send with your inquiry
+- Pipe size and expected minimum, permanent and overload flow
+- Water pressure, temperature, quality and installation orientation
+- Plastic or brass body preference
+- Multi-jet or ultrasonic measurement principle
+- Valve, back-flow and customer recharge workflow
+- Integrated keypad, CIU and meter-box access
+- LoRaWAN frequency, meter density, gateway and backhaul plan
+- Quantity, destination requirements and pilot acceptance criteria
+- Buyer questions
+- Frequently asked questions
+- What is an STS prepaid water meter?
+- An STS prepaid water meter uses a registered 20-digit token to load purchased water credit. The customer enters the token on the meter keypad or a Customer Interface Unit, and the meter applies the credit under the configured valve and tariff rules. LoRaWAN or another supported communication option can add remote reading, but the STS token workflow and the communications network perform separate roles.
+- What is the difference between brass and plastic water meters?
+- Brass provides a metal meter body and is often specified where buyers prefer higher impact resistance. Plastic reduces body weight and can suit cost-sensitive standard installations. The correct choice still depends on water conditions, pipe size, installation environment, utility specifications, lifecycle plan, and the exact body configuration offered for the model.
+- What is the difference between multi-jet and ultrasonic prepaid water meters?
+- A multi-jet water meter uses a mechanical measuring mechanism and is often selected for familiar operation and lower initial cost. Plastic-body models suit cost-sensitive standard installations, while brass-body models provide a stronger metal enclosure. An ultrasonic meter has no moving measuring parts and is selected when long-term measurement stability is more important than the lowest initial cost. All project choices should be confirmed against flow range, water quality, installation conditions, communication, battery, and destination-market requirements.
+- What information is needed for a LoRaWAN smart water meter quotation?
+- Provide the pipe size, expected flow range, water quality and temperature, installation orientation, plastic or brass body preference, multi-jet or ultrasonic preference, valve and STS prepayment requirement, keypad or CIU requirement, communication method, estimated meter density, gateway or backhaul plan, quantity, and required destination-country standards or utility specifications.
+- How should a utility plan LoRaWAN coverage for smart water meters?
+- Start with a site survey and pilot rather than relying only on a quoted maximum distance. Building materials, terrain, meter boxes, installation height, underground locations, local interference, gateway placement, and backhaul availability all affect practical coverage. Test representative meter locations before fixing the gateway quantity and rollout plan.
+- Can ultrasonic meters work without a CIU?
+- Yes, our ultrasonic meters can operate without a CIU as they have an integrated keypad. However, we recommend CIUs when meters are installed outdoors or enclosed in anti-tamper boxes, as the CIU significantly enhances accessibility and functionality in these scenarios.
+- Project inquiry
+- Discuss STS prepaid water meter
+- Send the service conditions, communication plan, quantity, destination requirements and pilot criteria. CalinMeters can then review the published models against your project.
+- Request a Quote
+- Email product requirements
+- Contact on WhatsApp
+- Related prepaid meter categories
+- STS prepaid electricity meter
+- STS prepaid gas meter
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/water-meter/Multi-Jet-Brass.pdf
+- https://calinmeters.com/specs/water-meter/Multi-Jet-Plastic.pdf
+- https://calinmeters.com/specs/water-meter/Ultrasonic.pdf
+
+### FR
+
+URL: https://calinmeters.com/fr/produits/compteur-eau-prepaye-sts/
+HTML SHA256: cffd245adcfe4e61c447148ce6135a84b40ed81e8cfd3a2f2263158c2cad386e
+
+- Compteurs d'eau prépayés STS pour projets | CalinMeters
+- Description: Comparez des compteurs d'eau prépayés STS multijets en plastique ou en laiton et un modèle ultrasonique pour vos projets.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Accueil
+- /
+- Produits
+- /
+- compteur d'eau prépayé STS
+- Comptage d'eau prépayé
+- Compteurs d'eau prépayés STS pour vos projets
+- Réponse directe
+- Un compteur d'eau prépayé STS gère le crédit d'eau au moyen d'un jeton à 20 chiffres saisi sur un clavier ou une unité d'interface client. La gamme présentée comprend des configurations multijets à corps en plastique ou en laiton et un modèle ultrasonique sans pièce mobile de mesure. Le choix dépend du diamètre, du débit, de la pression, de la température, du principe de mesure, de l'accès client, de la vanne, de la communication et des exigences du service public.
+- Comparez les dimensions et caractéristiques hydrauliques publiées pour les trois modèles, puis validez la qualité de l'eau, l'orientation de pose, le fonctionnement de la vanne, la couverture radio et les procédures d'exploitation au moyen d'un pilote représentatif.
+- Modèles publiés
+- Comparer les configurations disponibles
+- Ouvrez une page modèle pour consulter les caractéristiques publiées, les applications, la fiche PDF actuelle et les paramètres qui restent à confirmer.
+- Compteurs d'eau multijets en plastique
+- Compteur d'eau prépayé STS CA568-R01 multijet en plastique
+- Modèle
+- CA568-R01
+- Compteur d'eau multijet à corps en plastique avec prépaiement STS, clavier et communication LoRaWAN pour les projets résidentiels et communautaires sensibles au coût.
+- Voir les détails du produit
+- Compteurs d'eau multijets en laiton
+- Compteur d'eau prépayé STS CA568-R01 multijet en laiton
+- Modèle
+- CA568-R01
+- Compteur d'eau multijet à corps en laiton avec prépaiement STS, clavier et communication LoRaWAN pour les projets qui spécifient un corps métallique.
+- Voir les détails du produit
+- Compteurs d'eau ultrasoniques
+- Compteur d'eau prépayé STS ultrasonique CA568-R22
+- Modèle
+- CA568-R22
+- Compteur d'eau ultrasonique prépayé STS sans pièce mobile de mesure, avec communication LoRaWAN ou GPRS pour les projets de relève à distance.
+- Voir les détails du produit
+- Comparaison des modèles
+- Plastique, laiton ou ultrasonique : quel modèle choisir ?
+- Le modèle multijet en plastique couvre les diamètres publiés DN15 à DN25 et peut convenir aux installations sensibles au coût. Le multijet en laiton fournit un corps métallique et des diamètres publiés jusqu'au DN50. Le modèle ultrasonique utilise un principe de mesure sans pièce mobile et indique un rapport de plage R250. Le choix final doit suivre les conditions hydrauliques et les exigences du projet.
+- Modèle et configuration
+- Paramètres publiés
+- Type d'application
+- Fiche technique
+- CA568-R01
+- Compteurs d'eau multijets en plastique
+- Diamètres nominaux
+- :
+- DN15, DN20 ou DN25
+- Débit permanent Q3
+- :
+- 2,5, 4 ou 6,3 m³/h selon le diamètre
+- Rapport de plage
+- :
+- Configuration R80 ou R100
+- Projets résidentiels et communautaires de comptage d'eau prépayé sensibles au coût
+- Fiche technique en anglais (PDF)
+- CA568-R01
+- Compteurs d'eau multijets en laiton
+- Diamètres nominaux
+- :
+- DN15, DN20, DN25, DN32, DN40 ou DN50
+- Débit permanent Q3
+- :
+- 2,5 à 25 m³/h selon le diamètre
+- Rapport de plage
+- :
+- Configuration R80 ou R100
+- Projets résidentiels, communautaires et de services publics de comptage d'eau prépayé
+- Fiche technique en anglais (PDF)
+- CA568-R22
+- Compteurs d'eau ultrasoniques
+- Diamètres nominaux
+- :
+- DN15, DN20 ou DN25
+- Débit permanent Q3
+- :
+- 2,5, 4,0 ou 6,3 m³/h selon le diamètre
+- Rapport de plage
+- :
+- R250
+- Projets de services publics et communautaires nécessitant la relève d'eau à distance
+- Fiche technique en anglais (PDF)
+- Les valeurs publiées sont traduites à partir des fiches techniques actuelles. Confirmez dans le devis et le pilote le diamètre final, la plage de débit, la fréquence de communication, les conditions de pose et les exigences de destination.
+- Guide de sélection pour l'acheteur
+- Comment choisir un compteur d'eau prépayé STS
+- 1
+- Définir les conditions hydrauliques
+- Confirmez le diamètre nominal, les débits minimal et permanent prévus, la pression, la température et la qualité de l'eau ainsi que l'orientation de pose.
+- 2
+- Choisir le principe de mesure
+- Les compteurs multijets utilisent un mécanisme de mesure mécanique. Le modèle ultrasonique ne comporte pas de pièce mobile de mesure et doit être évalué selon le profil de débit et le plan de maintenance.
+- 3
+- Choisir le corps et l’accès client
+- Précisez le corps en plastique ou en laiton, le clavier intégré ou la CIU, l'accès au regard de compteur et les besoins de vanne ou de retour d'eau.
+- 4
+- Planifier la relève à distance
+- Définissez la fréquence LoRaWAN, la densité de compteurs, la position des passerelles, la liaison de collecte, les intervalles de relève et les fonctions distantes attendues, puis testez des sites représentatifs.
+- 5
+- Confirmer les documents et le déploiement
+- Listez les exigences de destination, la quantité, la formation à la pose, la mise en service et les critères d'acceptation du pilote avant le déploiement à grande échelle.
+- Fonctionnement STS
+- Comment s'articulent le crédit STS et la relève à distance
+- Le prépaiement STS et la relève distante répondent à deux besoins distincts. Le jeton transfère le crédit au compteur enregistré ; LoRaWAN ou une autre couche de communication prise en charge peut transmettre les relevés et les commandes prévues au système de l'opérateur.
+- 1. Configurer le compteur
+- L'opérateur enregistre le compteur, les règles de tarification, le mode d'accès du client et les paramètres de communication retenus.
+- 2. Émettre le crédit d'eau
+- Après l'achat du crédit, le système de vente génère un jeton à 20 chiffres pour le compteur enregistré.
+- 3. Saisir le jeton
+- Le client charge le jeton sur le clavier du compteur ou sur la CIU selon l'installation.
+- 4. Relever et gérer à distance
+- Lorsque la configuration le prévoit, les passerelles et le système de gestion collectent les relevés et exécutent les fonctions distantes documentées.
+- Liste pour le devis
+- Informations à joindre à votre demande
+- Diamètre et débits minimal, permanent et de surcharge attendus
+- Pression, température et qualité de l'eau ainsi qu'orientation de pose
+- Préférence pour un corps en plastique ou en laiton
+- Principe de mesure multijet ou ultrasonique
+- Vanne, retour d’eau et procédure de recharge du client
+- Clavier intégré, CIU et accès au regard de compteur
+- Fréquence LoRaWAN, densité de compteurs, passerelles et liaison de collecte
+- Quantité, exigences de destination et critères d'acceptation du pilote
+- Questions des acheteurs
+- Questions fréquentes
+- Qu'est-ce qu'un compteur d'eau prépayé STS ?
+- Un compteur d'eau prépayé STS utilise un jeton enregistré à 20 chiffres pour charger le crédit d'eau acheté. Le client saisit le jeton sur le clavier du compteur ou sur une unité d'interface client, puis le compteur applique ce crédit selon les règles configurées de vanne et de tarification. LoRaWAN ou une autre option prise en charge peut ajouter la relève à distance, mais le jeton STS et le réseau de communication remplissent des rôles distincts.
+- Quelle est la différence entre un compteur d'eau en laiton et en plastique ?
+- Le laiton offre un corps métallique et peut être retenu lorsque le projet privilégie une meilleure résistance aux chocs. Le plastique réduit le poids du corps et peut convenir aux installations standard sensibles au coût. Le choix dépend aussi des conditions de l'eau, du diamètre, du lieu de pose, des spécifications du service public, du plan de maintenance et de la configuration proposée.
+- Quelle est la différence entre un compteur d'eau multijet et ultrasonique ?
+- Un compteur multijet utilise un mécanisme de mesure mécanique et est souvent retenu pour son principe connu et son coût initial plus faible. Un corps en plastique convient aux installations standard sensibles au coût, tandis qu'un corps en laiton fournit une enveloppe métallique. Un compteur ultrasonique ne comporte pas de pièce mobile de mesure. Dans tous les cas, il faut confirmer le débit, la qualité de l'eau, la pose, la communication, la batterie et les exigences de destination.
+- Quelles informations fournir pour un devis de compteurs d'eau LoRaWAN ?
+- Indiquez le diamètre, la plage de débit, la qualité et la température de l'eau, l'orientation de pose, le matériau du corps, le principe multijet ou ultrasonique, les besoins de vanne et de prépaiement STS, l'accès par clavier ou CIU, la communication, la densité de compteurs, le plan de passerelles et de liaison de collecte, la quantité et les exigences du service public de destination.
+- Comment planifier la couverture LoRaWAN des compteurs d'eau ?
+- Commencez par une étude de site et un pilote au lieu de vous fier uniquement à une distance maximale annoncée. Les matériaux des bâtiments, le relief, les regards de compteur, la hauteur de pose, les emplacements enterrés, les interférences, la position des passerelles et la liaison de collecte influencent la couverture réelle. Testez des emplacements représentatifs avant de fixer le nombre de passerelles et le plan de déploiement.
+- Un compteur d'eau ultrasonique peut-il fonctionner sans CIU ?
+- Le modèle ultrasonique peut fonctionner sans CIU puisqu'il possède un clavier intégré. Une CIU peut toutefois faciliter l'accès lorsque le compteur est installé à l'extérieur ou dans un coffret protégé. La configuration finale doit préciser le lieu de pose et le mode d'accès du client.
+- Demande de projet
+- Étudier compteur d'eau prépayé STS
+- Envoyez les conditions de service, le plan de communication, la quantité, les exigences de destination et les critères du pilote. CalinMeters pourra comparer ces éléments aux modèles publiés.
+- Demander un devis
+- Envoyer les exigences par e-mail
+- Contacter par WhatsApp
+- Catégories associées de compteurs prépayés
+- compteur électrique prépayé STS
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/water-meter/Multi-Jet-Brass.pdf
+- https://calinmeters.com/specs/water-meter/Multi-Jet-Plastic.pdf
+- https://calinmeters.com/specs/water-meter/Ultrasonic.pdf
+
+## /fr/produits/ca168-compteur-electricite-prepaye-sts-lorawan/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/products/ca168-lorawan-sts-prepaid-electricity-meter/
+HTML SHA256: aded17ce6b6b664957e6cef0abad5d54f801cc3bc0b802e1eb86fcb95f78d33e
+
+- CA168-S-NS06 CA168 Smart STS Prepaid DIN Rail Energy Meter (LoRaWAN) | CalinMeters
+- Description: DIN rail STS prepaid energy meter with LoRaWAN communication for remote meter reading and token management.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- Home
+- /
+- Energy Meter
+- /
+- CA168-S-NS06
+- Single Phase Energy Meter
+- CA168 Smart STS Prepaid DIN Rail Energy Meter (LoRaWAN)
+- Model
+- CA168-S-NS06
+- Product summary
+- DIN rail STS prepaid energy meter with LoRaWAN communication for remote meter reading and token management.
+- Specification (PDF)
+- Compare category models
+- Product configuration
+- Published highlights
+- 35 mm DIN-rail format for compact meter enclosures
+- STS prepayment with a 20-digit token workflow
+- LoRaWAN communication for remote and centralized reading
+- Optional Customer Interface Unit (CIU) for indoor token entry
+- Typical buyer fit
+- Residential and small commercial prepaid service connections
+- Split installations where the meter and customer keypad are separated
+- LoRaWAN projects that require centralized meter reading
+- Datasheet values
+- Published specifications
+- Phase
+- Single phase
+- Nominal voltage
+- 230 V
+- Nominal frequency
+- 50-60 Hz
+- Current
+- 5 A basic; 60 A or 80 A maximum
+- Active energy accuracy
+- Class 1.0
+- Communication
+- LoRaWAN; optional CIU link by M-Bus, PLC, or RF
+- Meter case protection
+- IP54
+- Confirm before quotation
+- Maximum-current option and service wiring
+- CIU communication method and installation distance
+- LoRaWAN frequency plan, gateway coverage, and backhaul
+- Destination utility specifications and required documentation
+- Same product category
+- Related models
+- CA168-CS23
+- CA168 Smart STS Prepaid Energy Meter (GPRS)
+- STS prepaid single-phase meter with GPRS communication for remote monitoring and control.
+- View model details
+- →
+- CA168
+- CA168 STS Prepaid Energy Meter
+- Standard STS prepaid single-phase energy meter with keypad for token entry.
+- View model details
+- →
+- CA368-WS23
+- CA368 Smart STS Prepaid Three Phase Energy Meter (GPRS)
+- Three-phase STS prepaid electricity meter for commercial, industrial, and utility service connections, with GPRS communication for remote reading and management.
+- View model details
+- →
+- Project inquiry
+- Discuss CA168-S-NS06 for your metering project
+- Send the operating conditions, installation, communication, quantity and destination requirements. The published specifications can then be checked against the proposed project configuration.
+- Request a Quote
+- Email product requirements
+- Contact on WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA168-LoRaWAN.pdf
+
+### FR
+
+URL: https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-lorawan/
+HTML SHA256: 393d2e0cadfbb4e10862dd130aba5e8b1f64618c3a6da8292903c27a11b1fa4c
+
+- Compteur électrique prépayé STS CA168-S-NS06 sur rail DIN avec LoRaWAN | CalinMeters
+- Description: Compteur électrique prépayé STS monophasé sur rail DIN avec communication LoRaWAN pour la relève centralisée et unité d'interface client (CIU) en option.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Accueil
+- /
+- Compteurs d'électricité
+- /
+- CA168-S-NS06
+- Compteurs monophasés
+- Compteur électrique prépayé STS CA168-S-NS06 sur rail DIN avec LoRaWAN
+- Modèle
+- CA168-S-NS06
+- Résumé du produit
+- Compteur électrique prépayé STS monophasé sur rail DIN avec communication LoRaWAN pour la relève centralisée et unité d'interface client (CIU) en option.
+- Fiche technique en anglais (PDF)
+- Comparer les modèles de la catégorie
+- Configuration du produit
+- Points clés publiés
+- Format rail DIN de 35 mm pour les coffrets de comptage compacts
+- Prépaiement STS au moyen de jetons à 20 chiffres
+- Communication LoRaWAN pour la relève à distance et centralisée
+- Unité d'interface client (CIU) en option pour saisir les jetons à l'intérieur
+- Applications courantes
+- Raccordements prépayés résidentiels et petits commerces
+- Installations séparées où le compteur et le clavier client sont distincts
+- Projets LoRaWAN nécessitant une relève centralisée
+- Valeurs de la fiche technique
+- Caractéristiques publiées
+- Phase
+- Monophasé
+- Tension nominale
+- 230 V
+- Fréquence nominale
+- 50–60 Hz
+- Courant
+- 5 A de base ; 60 A ou 80 A maximum
+- Classe de précision de l'énergie active
+- Classe 1.0
+- Communication
+- LoRaWAN ; liaison CIU en option par M-Bus, PLC ou RF
+- Indice de protection du boîtier
+- IP54
+- À confirmer avant le devis
+- Courant maximal retenu et câblage du raccordement
+- Mode de communication de la CIU et distance d'installation
+- Plan de fréquences LoRaWAN, couverture des passerelles et liaison de collecte
+- Spécifications du service public de destination et documents exigés
+- Même catégorie de produits
+- Modèles associés
+- CA168-CS23
+- Compteur électrique prépayé STS CA168-CS23 avec communication GPRS
+- Compteur électrique prépayé STS monophasé avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Voir le modèle
+- →
+- CA168
+- Compteur électrique prépayé STS monophasé CA168
+- Compteur électrique prépayé STS monophasé avec clavier intégré pour saisir les jetons, sans connexion de données permanente.
+- Voir le modèle
+- →
+- CA368-WS23
+- Compteur électrique prépayé STS triphasé CA368-WS23 avec GPRS
+- Compteur électrique prépayé STS triphasé quatre fils avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Voir le modèle
+- →
+- Demande de projet
+- Étudier CA168-S-NS06 pour votre projet de comptage
+- Envoyez les conditions de fonctionnement, l'installation, la communication, la quantité et les exigences de destination. Les caractéristiques publiées pourront être comparées à la configuration proposée.
+- Demander un devis
+- Envoyer les exigences par e-mail
+- Contacter par WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA168-LoRaWAN.pdf
+
+## /fr/produits/ca168-compteur-electricite-prepaye-sts-gprs/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/products/ca168-gprs-sts-prepaid-electricity-meter/
+HTML SHA256: b686d45d74014aef76ef47c27ba9852b4f4e4198bfb24598068793c0c16a5337
+
+- CA168-CS23 CA168 Smart STS Prepaid Energy Meter (GPRS) | CalinMeters
+- Description: STS prepaid single-phase meter with GPRS communication for remote monitoring and control.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- Home
+- /
+- Energy Meter
+- /
+- CA168-CS23
+- Single Phase Energy Meter
+- CA168 Smart STS Prepaid Energy Meter (GPRS)
+- Model
+- CA168-CS23
+- Product summary
+- STS prepaid single-phase meter with GPRS communication for remote monitoring and control.
+- Specification (PDF)
+- Compare category models
+- Product configuration
+- Published highlights
+- Built-in keypad for direct STS token entry
+- Modular communication options for remote metering projects
+- Configurable prepaid or post-paid operation
+- Terminal-cover and meter event detection functions
+- Typical buyer fit
+- Residential and small commercial prepaid connections
+- Projects that need a built-in keypad and optional cellular reading
+- Utility deployments that may add a CIU or communication module
+- Datasheet values
+- Published specifications
+- Phase
+- Single phase
+- Nominal voltage
+- 230 V
+- Nominal frequency
+- 50-60 Hz
+- Current
+- 5 A basic; 60 A maximum, with 80 A or 100 A options
+- Active energy accuracy
+- Class 1.0
+- Communication options
+- PLC, GPRS, 3G, 4G, or RF module
+- Meter shell protection
+- IP54
+- Confirm before quotation
+- Required maximum current and communication module
+- Built-in keypad or split CIU configuration
+- Cellular operator coverage and data plan responsibility
+- Destination utility specifications and required documentation
+- Same product category
+- Related models
+- CA168-S-NS06
+- CA168 Smart STS Prepaid DIN Rail Energy Meter (LoRaWAN)
+- DIN rail STS prepaid energy meter with LoRaWAN communication for remote meter reading and token management.
+- View model details
+- →
+- CA168
+- CA168 STS Prepaid Energy Meter
+- Standard STS prepaid single-phase energy meter with keypad for token entry.
+- View model details
+- →
+- CA368-WS23
+- CA368 Smart STS Prepaid Three Phase Energy Meter (GPRS)
+- Three-phase STS prepaid electricity meter for commercial, industrial, and utility service connections, with GPRS communication for remote reading and management.
+- View model details
+- →
+- Project inquiry
+- Discuss CA168-CS23 for your metering project
+- Send the operating conditions, installation, communication, quantity and destination requirements. The published specifications can then be checked against the proposed project configuration.
+- Request a Quote
+- Email product requirements
+- Contact on WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA168-GPRS.pdf
+
+### FR
+
+URL: https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts-gprs/
+HTML SHA256: 2e2e50cc322e415d06e665b33b342fc22ec60748ba96bf93a8d6e0346a059aa9
+
+- Compteur électrique prépayé STS CA168-CS23 avec communication GPRS | CalinMeters
+- Description: Compteur électrique prépayé STS monophasé avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Accueil
+- /
+- Compteurs d'électricité
+- /
+- CA168-CS23
+- Compteurs monophasés
+- Compteur électrique prépayé STS CA168-CS23 avec communication GPRS
+- Modèle
+- CA168-CS23
+- Résumé du produit
+- Compteur électrique prépayé STS monophasé avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Fiche technique en anglais (PDF)
+- Comparer les modèles de la catégorie
+- Configuration du produit
+- Points clés publiés
+- Clavier intégré pour la saisie directe des jetons STS
+- Options de communication modulaires pour les projets de relève à distance
+- Fonctionnement prépayé ou postpayé configurable
+- Fonctions de détection d'événements du compteur et du cache-bornes
+- Applications courantes
+- Raccordements prépayés résidentiels et petits commerces
+- Projets nécessitant un clavier intégré et une relève cellulaire en option
+- Déploiements de services publics pouvant intégrer une CIU ou un module de communication
+- Valeurs de la fiche technique
+- Caractéristiques publiées
+- Phase
+- Monophasé
+- Tension nominale
+- 230 V
+- Fréquence nominale
+- 50–60 Hz
+- Courant
+- 5 A de base ; 60 A maximum, avec options 80 A ou 100 A
+- Classe de précision de l'énergie active
+- Classe 1.0
+- Options de communication
+- Module PLC, GPRS, 3G, 4G ou RF
+- Indice de protection du boîtier
+- IP54
+- À confirmer avant le devis
+- Courant maximal requis et module de communication
+- Configuration avec clavier intégré ou CIU séparée
+- Couverture de l'opérateur cellulaire et responsabilité du forfait de données
+- Spécifications du service public de destination et documents exigés
+- Même catégorie de produits
+- Modèles associés
+- CA168-S-NS06
+- Compteur électrique prépayé STS CA168-S-NS06 sur rail DIN avec LoRaWAN
+- Compteur électrique prépayé STS monophasé sur rail DIN avec communication LoRaWAN pour la relève centralisée et unité d'interface client (CIU) en option.
+- Voir le modèle
+- →
+- CA168
+- Compteur électrique prépayé STS monophasé CA168
+- Compteur électrique prépayé STS monophasé avec clavier intégré pour saisir les jetons, sans connexion de données permanente.
+- Voir le modèle
+- →
+- CA368-WS23
+- Compteur électrique prépayé STS triphasé CA368-WS23 avec GPRS
+- Compteur électrique prépayé STS triphasé quatre fils avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Voir le modèle
+- →
+- Demande de projet
+- Étudier CA168-CS23 pour votre projet de comptage
+- Envoyez les conditions de fonctionnement, l'installation, la communication, la quantité et les exigences de destination. Les caractéristiques publiées pourront être comparées à la configuration proposée.
+- Demander un devis
+- Envoyer les exigences par e-mail
+- Contacter par WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA168-GPRS.pdf
+
+## /fr/produits/ca168-compteur-electricite-prepaye-sts/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/products/ca168-sts-prepaid-electricity-meter/
+HTML SHA256: dadfd27c11e2ba12656a08e42c6188083e956e5ea1834e738757a7148e02256a
+
+- CA168 STS Prepaid Energy Meter | CalinMeters
+- Description: Standard STS prepaid single-phase energy meter with keypad for token entry.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- Home
+- /
+- Energy Meter
+- /
+- CA168
+- Single Phase Energy Meter
+- CA168 STS Prepaid Energy Meter
+- Model
+- CA168
+- Product summary
+- Standard STS prepaid single-phase energy meter with keypad for token entry.
+- Compare category models
+- Product configuration
+- Published highlights
+- Single-phase prepaid electricity metering
+- Built-in keypad for STS token entry
+- Standalone credit loading without an always-on data connection
+- Typical buyer fit
+- Residential prepaid service connections
+- Property and sub-metering projects using keypad token recharge
+- Configuration requires confirmation
+- A public specification sheet is not currently linked for this model. Send the project parameters below so the applicable configuration and documents can be confirmed.
+- Confirm before quotation
+- Nominal voltage, frequency, and maximum current
+- Installation and wiring arrangement
+- Vending-system and key-management requirements
+- Destination utility specifications and required documentation
+- Same product category
+- Related models
+- CA168-S-NS06
+- CA168 Smart STS Prepaid DIN Rail Energy Meter (LoRaWAN)
+- DIN rail STS prepaid energy meter with LoRaWAN communication for remote meter reading and token management.
+- View model details
+- →
+- CA168-CS23
+- CA168 Smart STS Prepaid Energy Meter (GPRS)
+- STS prepaid single-phase meter with GPRS communication for remote monitoring and control.
+- View model details
+- →
+- CA368-WS23
+- CA368 Smart STS Prepaid Three Phase Energy Meter (GPRS)
+- Three-phase STS prepaid electricity meter for commercial, industrial, and utility service connections, with GPRS communication for remote reading and management.
+- View model details
+- →
+- Project inquiry
+- Discuss CA168 for your metering project
+- Send the operating conditions, installation, communication, quantity and destination requirements. The published specifications can then be checked against the proposed project configuration.
+- Request a Quote
+- Email product requirements
+- Contact on WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+
+### FR
+
+URL: https://calinmeters.com/fr/produits/ca168-compteur-electricite-prepaye-sts/
+HTML SHA256: 5108080932783213fd787e199c971617ca4185d88bca188298dd05ccd6ae71e4
+
+- Compteur électrique prépayé STS monophasé CA168 | CalinMeters
+- Description: Compteur électrique prépayé STS monophasé avec clavier intégré pour saisir les jetons, sans connexion de données permanente.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Accueil
+- /
+- Compteurs d'électricité
+- /
+- CA168
+- Compteurs monophasés
+- Compteur électrique prépayé STS monophasé CA168
+- Modèle
+- CA168
+- Résumé du produit
+- Compteur électrique prépayé STS monophasé avec clavier intégré pour saisir les jetons, sans connexion de données permanente.
+- Comparer les modèles de la catégorie
+- Configuration du produit
+- Points clés publiés
+- Comptage prépayé d'électricité monophasée
+- Clavier intégré pour la saisie des jetons STS
+- Chargement autonome du crédit sans connexion de données permanente
+- Applications courantes
+- Raccordements résidentiels prépayés
+- Projets immobiliers et de sous-comptage avec recharge par jeton au clavier
+- Configuration à confirmer
+- Aucune fiche technique publique n'est actuellement liée à ce modèle. Envoyez les paramètres du projet afin de confirmer la configuration et les documents applicables.
+- À confirmer avant le devis
+- Tension nominale, fréquence et courant maximal
+- Disposition du câblage et conditions de pose
+- Exigences du système de vente de crédit et de gestion des clés
+- Spécifications du service public de destination et documents exigés
+- Même catégorie de produits
+- Modèles associés
+- CA168-S-NS06
+- Compteur électrique prépayé STS CA168-S-NS06 sur rail DIN avec LoRaWAN
+- Compteur électrique prépayé STS monophasé sur rail DIN avec communication LoRaWAN pour la relève centralisée et unité d'interface client (CIU) en option.
+- Voir le modèle
+- →
+- CA168-CS23
+- Compteur électrique prépayé STS CA168-CS23 avec communication GPRS
+- Compteur électrique prépayé STS monophasé avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Voir le modèle
+- →
+- CA368-WS23
+- Compteur électrique prépayé STS triphasé CA368-WS23 avec GPRS
+- Compteur électrique prépayé STS triphasé quatre fils avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Voir le modèle
+- →
+- Demande de projet
+- Étudier CA168 pour votre projet de comptage
+- Envoyez les conditions de fonctionnement, l'installation, la communication, la quantité et les exigences de destination. Les caractéristiques publiées pourront être comparées à la configuration proposée.
+- Demander un devis
+- Envoyer les exigences par e-mail
+- Contacter par WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+
+## /fr/produits/ca368-compteur-electricite-prepaye-triphase-gprs/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/products/ca368-gprs-sts-prepaid-three-phase-electricity-meter/
+HTML SHA256: 057764e58f032ec990b2b3a8ceac093b640d096fb1b893fc764ed0db679ebcb3
+
+- CA368-WS23 CA368 Smart STS Prepaid Three Phase Energy Meter (GPRS) | CalinMeters
+- Description: Three-phase STS prepaid electricity meter for commercial, industrial, and utility service connections, with GPRS communication for remote reading and management.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- Home
+- /
+- Energy Meter
+- /
+- CA368-WS23
+- Three Phase Energy Meter
+- CA368 Smart STS Prepaid Three Phase Energy Meter (GPRS)
+- Model
+- CA368-WS23
+- Product summary
+- Three-phase STS prepaid electricity meter for commercial, industrial, and utility service connections, with GPRS communication for remote reading and management.
+- Specification (PDF)
+- Compare category models
+- Product configuration
+- Published highlights
+- Three-phase four-wire prepaid electricity metering
+- Built-in keypad with STS token operation
+- Modular PLC, RF, GPRS, 3G, or 4G communication options
+- Optional split configuration with a Customer Interface Unit
+- Typical buyer fit
+- Commercial and utility three-phase service connections
+- Projects requiring direct cellular meter reading and management
+- Prepaid deployments that also need a customer-facing CIU
+- Datasheet values
+- Published specifications
+- Phase and wiring
+- Three phase, four wire
+- Nominal voltage
+- 3 x 230/240 V
+- Frequency
+- 50/60 Hz +/-5%
+- Current
+- 10 A basic; 100 A maximum
+- Accuracy
+- Class 1.0 active energy; Class 2.0 reactive energy
+- Communication options
+- PLC, RF, GPRS, 3G, or 4G module
+- Meter shell protection
+- IP54
+- Confirm before quotation
+- Service voltage, wiring, and maximum current
+- Communication module and cellular network availability
+- Built-in keypad or split CIU arrangement
+- Vending/API scope and destination utility requirements
+- Same product category
+- Related models
+- CA168-S-NS06
+- CA168 Smart STS Prepaid DIN Rail Energy Meter (LoRaWAN)
+- DIN rail STS prepaid energy meter with LoRaWAN communication for remote meter reading and token management.
+- View model details
+- →
+- CA168-CS23
+- CA168 Smart STS Prepaid Energy Meter (GPRS)
+- STS prepaid single-phase meter with GPRS communication for remote monitoring and control.
+- View model details
+- →
+- CA168
+- CA168 STS Prepaid Energy Meter
+- Standard STS prepaid single-phase energy meter with keypad for token entry.
+- View model details
+- →
+- Project inquiry
+- Discuss CA368-WS23 for your metering project
+- Send the operating conditions, installation, communication, quantity and destination requirements. The published specifications can then be checked against the proposed project configuration.
+- Request a Quote
+- Email product requirements
+- Contact on WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA368-GPRS.pdf
+
+### FR
+
+URL: https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-gprs/
+HTML SHA256: beae1cf70a11be9a55697a36edd5741c5e00ab1f1c683562db143e1c410fd48e
+
+- Compteur électrique prépayé STS triphasé CA368-WS23 avec GPRS | CalinMeters
+- Description: Compteur électrique prépayé STS triphasé quatre fils avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Accueil
+- /
+- Compteurs d'électricité
+- /
+- CA368-WS23
+- Compteurs triphasés
+- Compteur électrique prépayé STS triphasé CA368-WS23 avec GPRS
+- Modèle
+- CA368-WS23
+- Résumé du produit
+- Compteur électrique prépayé STS triphasé quatre fils avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Fiche technique en anglais (PDF)
+- Comparer les modèles de la catégorie
+- Configuration du produit
+- Points clés publiés
+- Comptage prépayé d'électricité triphasée quatre fils
+- Clavier intégré pour le fonctionnement par jeton STS
+- Options de communication modulaires PLC, RF, GPRS, 3G ou 4G
+- Configuration séparée en option avec unité d'interface client (CIU)
+- Applications courantes
+- Raccordements triphasés commerciaux et de services publics
+- Projets nécessitant la relève et la gestion directes par réseau cellulaire
+- Déploiements prépayés nécessitant également une CIU accessible au client
+- Valeurs de la fiche technique
+- Caractéristiques publiées
+- Phase et câblage
+- Triphasé, quatre fils
+- Tension nominale
+- 3 × 230/240 V
+- Fréquence
+- 50/60 Hz ±5 %
+- Courant
+- 10 A de base ; 100 A maximum
+- Classe de précision
+- Classe 1.0 en énergie active ; classe 2.0 en énergie réactive
+- Options de communication
+- Module PLC, RF, GPRS, 3G ou 4G
+- Indice de protection du boîtier
+- IP54
+- À confirmer avant le devis
+- Tension du service, câblage et courant maximal
+- Module de communication et disponibilité du réseau cellulaire
+- Configuration avec clavier intégré ou CIU séparée
+- Périmètre de la vente de crédit ou de l’API et exigences du service public de destination
+- Même catégorie de produits
+- Modèles associés
+- CA168-S-NS06
+- Compteur électrique prépayé STS CA168-S-NS06 sur rail DIN avec LoRaWAN
+- Compteur électrique prépayé STS monophasé sur rail DIN avec communication LoRaWAN pour la relève centralisée et unité d'interface client (CIU) en option.
+- Voir le modèle
+- →
+- CA168-CS23
+- Compteur électrique prépayé STS CA168-CS23 avec communication GPRS
+- Compteur électrique prépayé STS monophasé avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Voir le modèle
+- →
+- CA168
+- Compteur électrique prépayé STS monophasé CA168
+- Compteur électrique prépayé STS monophasé avec clavier intégré pour saisir les jetons, sans connexion de données permanente.
+- Voir le modèle
+- →
+- Demande de projet
+- Étudier CA368-WS23 pour votre projet de comptage
+- Envoyez les conditions de fonctionnement, l'installation, la communication, la quantité et les exigences de destination. Les caractéristiques publiées pourront être comparées à la configuration proposée.
+- Demander un devis
+- Envoyer les exigences par e-mail
+- Contacter par WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA368-GPRS.pdf
+
+## /fr/produits/ca368-compteur-electricite-prepaye-triphase-sts/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/products/ca368-sts-prepaid-three-phase-electricity-meter/
+HTML SHA256: e714337722d08d270a67b63b244499fcfe8db03f52a2b799d08c1effd82d6264
+
+- CA368-WS21 CA368 STS Prepaid Three Phase Energy Meter | CalinMeters
+- Description: Standalone three-phase STS prepaid electricity meter with keypad token entry for projects that do not require always-on remote communication.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- Home
+- /
+- Energy Meter
+- /
+- CA368-WS21
+- Three Phase Energy Meter
+- CA368 STS Prepaid Three Phase Energy Meter
+- Model
+- CA368-WS21
+- Product summary
+- Standalone three-phase STS prepaid electricity meter with keypad token entry for projects that do not require always-on remote communication.
+- Specification (PDF)
+- Compare category models
+- Product configuration
+- Published highlights
+- Three-phase four-wire prepaid electricity metering
+- 20-digit STS token operation with a built-in keypad
+- Optional PLC, RF, or cable link to a Customer Interface Unit
+- Standalone prepayment without an always-on cellular connection
+- Typical buyer fit
+- Commercial and utility three-phase prepaid connections
+- Sites that use secure keypad tokens without continuous cellular service
+- Protected meter installations using a separate indoor CIU
+- Datasheet values
+- Published specifications
+- Phase and wiring
+- Three phase, four wire
+- Nominal voltage
+- 3 x 230/240 V
+- Frequency
+- 50/60 Hz +/-5%
+- Current
+- 10 A basic; 100 A maximum
+- Accuracy
+- Class 1.0 active energy; Class 2.0 reactive energy
+- CIU communication options
+- PLC, RF, or cable
+- Meter shell protection
+- IP54
+- Confirm before quotation
+- Service voltage, wiring, and maximum current
+- Built-in keypad or split CIU arrangement
+- Vending-system and key-management requirements
+- Destination utility specifications and required documentation
+- Same product category
+- Related models
+- CA168-S-NS06
+- CA168 Smart STS Prepaid DIN Rail Energy Meter (LoRaWAN)
+- DIN rail STS prepaid energy meter with LoRaWAN communication for remote meter reading and token management.
+- View model details
+- →
+- CA168-CS23
+- CA168 Smart STS Prepaid Energy Meter (GPRS)
+- STS prepaid single-phase meter with GPRS communication for remote monitoring and control.
+- View model details
+- →
+- CA168
+- CA168 STS Prepaid Energy Meter
+- Standard STS prepaid single-phase energy meter with keypad for token entry.
+- View model details
+- →
+- Project inquiry
+- Discuss CA368-WS21 for your metering project
+- Send the operating conditions, installation, communication, quantity and destination requirements. The published specifications can then be checked against the proposed project configuration.
+- Request a Quote
+- Email product requirements
+- Contact on WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA368-STS.pdf
+
+### FR
+
+URL: https://calinmeters.com/fr/produits/ca368-compteur-electricite-prepaye-triphase-sts/
+HTML SHA256: b4dbaae80f2fe90c41fb1c9e66010019fb5486dc2956a36795536f61a5fa5ae4
+
+- Compteur électrique prépayé STS triphasé CA368-WS21 | CalinMeters
+- Description: Compteur électrique prépayé STS triphasé quatre fils avec saisie des jetons au clavier, sans obligation de connexion cellulaire permanente.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Accueil
+- /
+- Compteurs d'électricité
+- /
+- CA368-WS21
+- Compteurs triphasés
+- Compteur électrique prépayé STS triphasé CA368-WS21
+- Modèle
+- CA368-WS21
+- Résumé du produit
+- Compteur électrique prépayé STS triphasé quatre fils avec saisie des jetons au clavier, sans obligation de connexion cellulaire permanente.
+- Fiche technique en anglais (PDF)
+- Comparer les modèles de la catégorie
+- Configuration du produit
+- Points clés publiés
+- Comptage prépayé d'électricité triphasée quatre fils
+- Fonctionnement par jeton STS à 20 chiffres avec clavier intégré
+- Liaison PLC, RF ou filaire en option avec une unité d'interface client
+- Prépaiement autonome sans connexion cellulaire permanente
+- Applications courantes
+- Raccordements triphasés prépayés commerciaux et de services publics
+- Sites utilisant des jetons sécurisés au clavier sans service cellulaire permanent
+- Compteurs installés dans un emplacement protégé avec CIU séparée à l'intérieur
+- Valeurs de la fiche technique
+- Caractéristiques publiées
+- Phase et câblage
+- Triphasé, quatre fils
+- Tension nominale
+- 3 × 230/240 V
+- Fréquence
+- 50/60 Hz ±5 %
+- Courant
+- 10 A de base ; 100 A maximum
+- Classe de précision
+- Classe 1.0 en énergie active ; classe 2.0 en énergie réactive
+- Options de communication avec la CIU
+- PLC, RF ou câble
+- Indice de protection du boîtier
+- IP54
+- À confirmer avant le devis
+- Tension du service, câblage et courant maximal
+- Configuration avec clavier intégré ou CIU séparée
+- Exigences du système de vente de crédit et de gestion des clés
+- Spécifications du service public de destination et documents exigés
+- Même catégorie de produits
+- Modèles associés
+- CA168-S-NS06
+- Compteur électrique prépayé STS CA168-S-NS06 sur rail DIN avec LoRaWAN
+- Compteur électrique prépayé STS monophasé sur rail DIN avec communication LoRaWAN pour la relève centralisée et unité d'interface client (CIU) en option.
+- Voir le modèle
+- →
+- CA168-CS23
+- Compteur électrique prépayé STS CA168-CS23 avec communication GPRS
+- Compteur électrique prépayé STS monophasé avec clavier intégré et options de communication cellulaire pour la relève et la gestion à distance.
+- Voir le modèle
+- →
+- CA168
+- Compteur électrique prépayé STS monophasé CA168
+- Compteur électrique prépayé STS monophasé avec clavier intégré pour saisir les jetons, sans connexion de données permanente.
+- Voir le modèle
+- →
+- Demande de projet
+- Étudier CA368-WS21 pour votre projet de comptage
+- Envoyez les conditions de fonctionnement, l'installation, la communication, la quantité et les exigences de destination. Les caractéristiques publiées pourront être comparées à la configuration proposée.
+- Demander un devis
+- Envoyer les exigences par e-mail
+- Contacter par WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/energy-meter/CA368-STS.pdf
+
+## /fr/produits/ca568-compteur-eau-prepaye-multijet-plastique/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-plastic/
+HTML SHA256: 5a1cd238a50033d4b37b6406cad3f901469bf12da13f2b32ce0a5ebe846ad7cb
+
+- CA568-R01 Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Plastic) | CalinMeters
+- Description: Plastic-body multi-jet water meter with STS prepayment and LoRaWAN communication for cost-sensitive residential and community rollouts.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- Home
+- /
+- Water Meter
+- /
+- CA568-R01
+- Multi-Jet Water Meter (Plastic)
+- Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Plastic)
+- Model
+- CA568-R01
+- Product summary
+- Plastic-body multi-jet water meter with STS prepayment and LoRaWAN communication for cost-sensitive residential and community rollouts.
+- Specification (PDF)
+- Compare category models
+- Product configuration
+- Published highlights
+- Multi-jet measurement with a plastic-body configuration
+- Keypad entry for 20-digit STS recharge tokens
+- IP68 enclosure rating stated in the product datasheet
+- Optional expansion for concentrated meter reading
+- Typical buyer fit
+- Cost-sensitive residential and community prepaid water projects
+- Cold-water installations requiring DN15-DN25 sizes
+- Datasheet values
+- Published specifications
+- Nominal sizes
+- DN15, DN20, or DN25
+- Permanent flow Q3
+- 2.5, 4, or 6.3 m3/h by size
+- Range ratio
+- R80 or R100 configuration
+- Maximum pressure
+- 16 bar
+- Maximum water temperature
+- 50 C
+- Prepayment input
+- 20-digit STS token by keypad
+- Enclosure rating
+- IP68
+- Confirm before quotation
+- Pipe size, flow range, water pressure, and water temperature
+- Installation orientation, valve, and back-flow requirements
+- Keypad/CIU access and remote-reading communication
+- Destination utility specifications and required documentation
+- Same product category
+- Related models
+- CA568-R01
+- Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Brass)
+- Brass-body multi-jet water meter with STS prepayment and LoRaWAN communication for projects that prefer a stronger metal enclosure in tougher installation environments.
+- View model details
+- →
+- CA568-R22
+- Smart STS Prepaid Ultrasonic Water Meter - LoRa WAN GPRS
+- STS prepaid ultrasonic water meter with no moving measuring parts and LoRaWAN or GPRS communication for remote utility metering projects.
+- View model details
+- →
+- Project inquiry
+- Discuss CA568-R01 for your metering project
+- Send the operating conditions, installation, communication, quantity and destination requirements. The published specifications can then be checked against the proposed project configuration.
+- Request a Quote
+- Email product requirements
+- Contact on WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/water-meter/Multi-Jet-Plastic.pdf
+
+### FR
+
+URL: https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-plastique/
+HTML SHA256: ab6711190331af61f340b22bf4852ef4bbbdd4a8ec18884b3ce395cbe9f21165
+
+- Compteur d'eau prépayé STS CA568-R01 multijet en plastique | CalinMeters
+- Description: Compteur d'eau multijet à corps en plastique avec prépaiement STS, clavier et communication LoRaWAN pour les projets résidentiels et communautaires sensibles au coût.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Accueil
+- /
+- Compteurs d'eau
+- /
+- CA568-R01
+- Compteurs d'eau multijets en plastique
+- Compteur d'eau prépayé STS CA568-R01 multijet en plastique
+- Modèle
+- CA568-R01
+- Résumé du produit
+- Compteur d'eau multijet à corps en plastique avec prépaiement STS, clavier et communication LoRaWAN pour les projets résidentiels et communautaires sensibles au coût.
+- Fiche technique en anglais (PDF)
+- Comparer les modèles de la catégorie
+- Configuration du produit
+- Points clés publiés
+- Mesure multijet avec corps en plastique
+- Saisie au clavier des jetons de recharge STS à 20 chiffres
+- Indice de protection IP68 indiqué dans la fiche technique
+- Extension en option pour la relève concentrée des compteurs
+- Applications courantes
+- Projets résidentiels et communautaires de comptage d'eau prépayé sensibles au coût
+- Installations d'eau froide nécessitant les diamètres DN15 à DN25
+- Valeurs de la fiche technique
+- Caractéristiques publiées
+- Diamètres nominaux
+- DN15, DN20 ou DN25
+- Débit permanent Q3
+- 2,5, 4 ou 6,3 m³/h selon le diamètre
+- Rapport de plage
+- Configuration R80 ou R100
+- Pression maximale
+- 16 bar
+- Température maximale de l'eau
+- 50 °C
+- Saisie du prépaiement
+- Jeton STS à 20 chiffres saisi au clavier
+- Indice de protection
+- IP68
+- À confirmer avant le devis
+- Diamètre, plage de débit, pression et température de l'eau
+- Orientation de pose, vanne et exigences en matière de retour d'eau
+- Accès au clavier ou à la CIU et communication de relève à distance
+- Spécifications du service public d'eau de destination et documents exigés
+- Même catégorie de produits
+- Modèles associés
+- CA568-R01
+- Compteur d'eau prépayé STS CA568-R01 multijet en laiton
+- Compteur d'eau multijet à corps en laiton avec prépaiement STS, clavier et communication LoRaWAN pour les projets qui spécifient un corps métallique.
+- Voir le modèle
+- →
+- CA568-R22
+- Compteur d'eau prépayé STS ultrasonique CA568-R22
+- Compteur d'eau ultrasonique prépayé STS sans pièce mobile de mesure, avec communication LoRaWAN ou GPRS pour les projets de relève à distance.
+- Voir le modèle
+- →
+- Demande de projet
+- Étudier CA568-R01 pour votre projet de comptage
+- Envoyez les conditions de fonctionnement, l'installation, la communication, la quantité et les exigences de destination. Les caractéristiques publiées pourront être comparées à la configuration proposée.
+- Demander un devis
+- Envoyer les exigences par e-mail
+- Contacter par WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/water-meter/Multi-Jet-Plastic.pdf
+
+## /fr/produits/ca568-compteur-eau-prepaye-multijet-laiton/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-brass/
+HTML SHA256: e07cd79b783d7be1c4b2f10f39bbbc63c8811e5fc187bd18f2450e0deaea1a63
+
+- CA568-R01 Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Brass) | CalinMeters
+- Description: Brass-body multi-jet water meter with STS prepayment and LoRaWAN communication for projects that prefer a stronger metal enclosure in tougher installation environments.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- Home
+- /
+- Water Meter
+- /
+- CA568-R01
+- Multi-Jet Water Meter (Brass)
+- Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Brass)
+- Model
+- CA568-R01
+- Product summary
+- Brass-body multi-jet water meter with STS prepayment and LoRaWAN communication for projects that prefer a stronger metal enclosure in tougher installation environments.
+- Specification (PDF)
+- Compare category models
+- Product configuration
+- Published highlights
+- Multi-jet measurement with a brass-body configuration
+- Keypad entry for 20-digit STS recharge tokens
+- IP68 enclosure rating stated in the product datasheet
+- Size options from DN15 to DN50 in the datasheet
+- Typical buyer fit
+- Residential, community, and utility prepaid water projects
+- Installations that specify a metal meter body or sizes up to DN50
+- Datasheet values
+- Published specifications
+- Nominal sizes
+- DN15, DN20, DN25, DN32, DN40, or DN50
+- Permanent flow Q3
+- 2.5-25 m3/h depending on size
+- Range ratio
+- R80 or R100 configuration
+- Maximum pressure
+- 16 bar
+- Maximum water temperature
+- 50 C
+- Prepayment input
+- 20-digit STS token by keypad
+- Enclosure rating
+- IP68
+- Confirm before quotation
+- Pipe size, flow range, water pressure, and water temperature
+- Installation orientation, valve, and back-flow requirements
+- Keypad/CIU access and remote-reading communication
+- Destination utility specifications and required documentation
+- Same product category
+- Related models
+- CA568-R01
+- Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Plastic)
+- Plastic-body multi-jet water meter with STS prepayment and LoRaWAN communication for cost-sensitive residential and community rollouts.
+- View model details
+- →
+- CA568-R22
+- Smart STS Prepaid Ultrasonic Water Meter - LoRa WAN GPRS
+- STS prepaid ultrasonic water meter with no moving measuring parts and LoRaWAN or GPRS communication for remote utility metering projects.
+- View model details
+- →
+- Project inquiry
+- Discuss CA568-R01 for your metering project
+- Send the operating conditions, installation, communication, quantity and destination requirements. The published specifications can then be checked against the proposed project configuration.
+- Request a Quote
+- Email product requirements
+- Contact on WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/water-meter/Multi-Jet-Brass.pdf
+
+### FR
+
+URL: https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-multijet-laiton/
+HTML SHA256: 31838c97b70879129e72444679e814572d6167e71536d5b121cad8e7287aea49
+
+- Compteur d'eau prépayé STS CA568-R01 multijet en laiton | CalinMeters
+- Description: Compteur d'eau multijet à corps en laiton avec prépaiement STS, clavier et communication LoRaWAN pour les projets qui spécifient un corps métallique.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Accueil
+- /
+- Compteurs d'eau
+- /
+- CA568-R01
+- Compteurs d'eau multijets en laiton
+- Compteur d'eau prépayé STS CA568-R01 multijet en laiton
+- Modèle
+- CA568-R01
+- Résumé du produit
+- Compteur d'eau multijet à corps en laiton avec prépaiement STS, clavier et communication LoRaWAN pour les projets qui spécifient un corps métallique.
+- Fiche technique en anglais (PDF)
+- Comparer les modèles de la catégorie
+- Configuration du produit
+- Points clés publiés
+- Mesure multijet avec corps en laiton
+- Saisie au clavier des jetons de recharge STS à 20 chiffres
+- Indice de protection IP68 indiqué dans la fiche technique
+- Diamètres DN15 à DN50 indiqués dans la fiche technique
+- Applications courantes
+- Projets résidentiels, communautaires et de services publics de comptage d'eau prépayé
+- Installations spécifiant un corps métallique ou des diamètres jusqu'au DN50
+- Valeurs de la fiche technique
+- Caractéristiques publiées
+- Diamètres nominaux
+- DN15, DN20, DN25, DN32, DN40 ou DN50
+- Débit permanent Q3
+- 2,5 à 25 m³/h selon le diamètre
+- Rapport de plage
+- Configuration R80 ou R100
+- Pression maximale
+- 16 bar
+- Température maximale de l'eau
+- 50 °C
+- Saisie du prépaiement
+- Jeton STS à 20 chiffres saisi au clavier
+- Indice de protection
+- IP68
+- À confirmer avant le devis
+- Diamètre, plage de débit, pression et température de l'eau
+- Orientation de pose, vanne et exigences en matière de retour d'eau
+- Accès au clavier ou à la CIU et communication de relève à distance
+- Spécifications du service public d'eau de destination et documents exigés
+- Même catégorie de produits
+- Modèles associés
+- CA568-R01
+- Compteur d'eau prépayé STS CA568-R01 multijet en plastique
+- Compteur d'eau multijet à corps en plastique avec prépaiement STS, clavier et communication LoRaWAN pour les projets résidentiels et communautaires sensibles au coût.
+- Voir le modèle
+- →
+- CA568-R22
+- Compteur d'eau prépayé STS ultrasonique CA568-R22
+- Compteur d'eau ultrasonique prépayé STS sans pièce mobile de mesure, avec communication LoRaWAN ou GPRS pour les projets de relève à distance.
+- Voir le modèle
+- →
+- Demande de projet
+- Étudier CA568-R01 pour votre projet de comptage
+- Envoyez les conditions de fonctionnement, l'installation, la communication, la quantité et les exigences de destination. Les caractéristiques publiées pourront être comparées à la configuration proposée.
+- Demander un devis
+- Envoyer les exigences par e-mail
+- Contacter par WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/water-meter/Multi-Jet-Brass.pdf
+
+## /fr/produits/ca568-compteur-eau-prepaye-ultrasonique/
+
+- Reviewer / date / decision:
+- Corrections:
+
+### EN
+
+URL: https://calinmeters.com/products/sts-prepaid-ultrasonic-water-meter/
+HTML SHA256: 2b008643461b1801d9b2f05cbc8473bed9b76a89af9ceb12d93c4cf60b1b781c
+
+- CA568-R22 Smart STS Prepaid Ultrasonic Water Meter - LoRa WAN GPRS | CalinMeters
+- Description: STS prepaid ultrasonic water meter with no moving measuring parts and LoRaWAN or GPRS communication for remote utility metering projects.
+- Shenzhen Calinmeter Co., Ltd.
+- Home
+- Products
+- STS prepaid electricity meters for residential and commercial use
+- View category and models
+- Smart STS prepaid water meters with multiple communication options
+- View category and models
+- Smart STS prepaid gas meters for residential and commercial applications
+- View category and models
+- View all products and AMI devices
+- Solutions
+- About Us
+- FAQ
+- Contact
+- FR
+- Home
+- /
+- Water Meter
+- /
+- CA568-R22
+- Ultrasonic Water Meter
+- Smart STS Prepaid Ultrasonic Water Meter - LoRa WAN GPRS
+- Model
+- CA568-R22
+- Product summary
+- STS prepaid ultrasonic water meter with no moving measuring parts and LoRaWAN or GPRS communication for remote utility metering projects.
+- Specification (PDF)
+- Compare category models
+- Product configuration
+- Published highlights
+- Ultrasonic measurement with no moving measuring parts
+- Range ratio up to R250 in the product datasheet
+- LoRa or LoRaWAN communication with an AMI/AMR architecture
+- Customer Interface Unit for token and information-code entry
+- Typical buyer fit
+- Utility and community water projects requiring remote reading
+- Installations where a no-moving-parts measuring principle is preferred
+- LoRaWAN AMI deployments with gateways and a back-end system
+- Datasheet values
+- Published specifications
+- Nominal sizes
+- DN15, DN20, or DN25
+- Permanent flow Q3
+- 2.5, 4.0, or 6.3 m3/h by size
+- Range ratio
+- R250
+- Maximum operating pressure
+- 1.6 MPa
+- Maximum working temperature
+- 55 C
+- Communication
+- LoRa or LoRaWAN; datasheet also describes GPRS/3G reading options
+- Battery
+- 2 x ER26500, 3.6 V, 19000 mAh total stated capacity
+- Enclosure rating
+- IP68
+- Confirm before quotation
+- Pipe size, expected flow range, pressure, and temperature
+- Body material and installation orientation
+- CIU, valve, reporting interval, and remote-control workflow
+- LoRaWAN frequency, gateway plan, and destination requirements
+- Same product category
+- Related models
+- CA568-R01
+- Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Plastic)
+- Plastic-body multi-jet water meter with STS prepayment and LoRaWAN communication for cost-sensitive residential and community rollouts.
+- View model details
+- →
+- CA568-R01
+- Smart STS Prepaid Multi-Jet Water Meter - LoRa WAN (Brass)
+- Brass-body multi-jet water meter with STS prepayment and LoRaWAN communication for projects that prefer a stronger metal enclosure in tougher installation environments.
+- View model details
+- →
+- Project inquiry
+- Discuss CA568-R22 for your metering project
+- Send the operating conditions, installation, communication, quantity and destination requirements. The published specifications can then be checked against the proposed project configuration.
+- Request a Quote
+- Email product requirements
+- Contact on WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Prepaid electricity, water and gas meters, plus supporting AMI devices for project configuration.
+- Product guides
+- STS prepaid electricity meters for residential and commercial use
+- Smart STS prepaid water meters with multiple communication options
+- Smart STS prepaid gas meters for residential and commercial applications
+- All products and AMI devices
+- Company
+- Solutions
+- About
+- FAQ
+- Contact
+- Direct contact
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- All rights reserved.
+- Scan WeChat QR Code
+- Add me on WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/water-meter/Ultrasonic.pdf
+
+### FR
+
+URL: https://calinmeters.com/fr/produits/ca568-compteur-eau-prepaye-ultrasonique/
+HTML SHA256: f06a2b1c8dd46c125d9180a5188224b72a029ffcbcebd5d8d9428ca419fd4da8
+
+- Compteur d'eau prépayé STS ultrasonique CA568-R22 | CalinMeters
+- Description: Compteur d'eau ultrasonique prépayé STS sans pièce mobile de mesure, avec communication LoRaWAN ou GPRS pour les projets de relève à distance.
+- Shenzhen Calinmeter Co., Ltd.
+- Accueil
+- Produits
+- Compteurs électriques prépayés STS
+- Voir le guide et les modèles
+- Compteurs d'eau prépayés STS
+- Voir le guide et les modèles
+- Voir les produits présentés
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- EN
+- Accueil
+- /
+- Compteurs d'eau
+- /
+- CA568-R22
+- Compteurs d'eau ultrasoniques
+- Compteur d'eau prépayé STS ultrasonique CA568-R22
+- Modèle
+- CA568-R22
+- Résumé du produit
+- Compteur d'eau ultrasonique prépayé STS sans pièce mobile de mesure, avec communication LoRaWAN ou GPRS pour les projets de relève à distance.
+- Fiche technique en anglais (PDF)
+- Comparer les modèles de la catégorie
+- Configuration du produit
+- Points clés publiés
+- Mesure ultrasonique sans pièce mobile de mesure
+- Rapport de plage jusqu’à R250 indiqué dans la fiche technique
+- Communication LoRa ou LoRaWAN avec une architecture AMI/AMR
+- Unité d'interface client pour la saisie des jetons et des codes d'information
+- Applications courantes
+- Projets de services publics et communautaires nécessitant la relève d'eau à distance
+- Installations où un principe de mesure sans pièce mobile est privilégié
+- Déploiements AMI LoRaWAN avec passerelles et système de gestion
+- Valeurs de la fiche technique
+- Caractéristiques publiées
+- Diamètres nominaux
+- DN15, DN20 ou DN25
+- Débit permanent Q3
+- 2,5, 4,0 ou 6,3 m³/h selon le diamètre
+- Rapport de plage
+- R250
+- Pression maximale de service
+- 1,6 MPa
+- Température maximale de service
+- 55 °C
+- Communication
+- LoRa ou LoRaWAN ; la fiche technique décrit aussi des options de relève GPRS/3G
+- Batterie
+- 2 × ER26500, 3,6 V, capacité totale indiquée de 19 000 mAh
+- Indice de protection
+- IP68
+- À confirmer avant le devis
+- Diamètre, plage de débit prévue, pression et température
+- Matériau du corps et orientation de pose
+- CIU, vanne, intervalle de relève et procédure de commande à distance
+- Fréquence LoRaWAN, plan de passerelles et exigences de destination
+- Même catégorie de produits
+- Modèles associés
+- CA568-R01
+- Compteur d'eau prépayé STS CA568-R01 multijet en plastique
+- Compteur d'eau multijet à corps en plastique avec prépaiement STS, clavier et communication LoRaWAN pour les projets résidentiels et communautaires sensibles au coût.
+- Voir le modèle
+- →
+- CA568-R01
+- Compteur d'eau prépayé STS CA568-R01 multijet en laiton
+- Compteur d'eau multijet à corps en laiton avec prépaiement STS, clavier et communication LoRaWAN pour les projets qui spécifient un corps métallique.
+- Voir le modèle
+- →
+- Demande de projet
+- Étudier CA568-R22 pour votre projet de comptage
+- Envoyez les conditions de fonctionnement, l'installation, la communication, la quantité et les exigences de destination. Les caractéristiques publiées pourront être comparées à la configuration proposée.
+- Demander un devis
+- Envoyer les exigences par e-mail
+- Contacter par WhatsApp
+- Shenzhen Calinmeter Co., Ltd.
+- Compteurs prépayés STS d’électricité et d’eau, avec options de communication pour les projets de comptage.
+- Guides produits
+- Compteurs électriques prépayés STS
+- Compteurs d'eau prépayés STS
+- Produits présentés
+- Entreprise
+- Solutions
+- À propos
+- FAQ
+- Demander un devis
+- Contact direct
+- info@calinmeters.com
+- WhatsApp:
+- +8613713788753
+- LinkedIn
+- ©
+- 2026
+- Shenzhen Calinmeter Co., Ltd.
+- Tous droits réservés.
+- Scanner le code QR WeChat
+- Ajoutez-moi sur WeChat
+- info@calinmeters.com
+
+Source datasheets:
+- https://calinmeters.com/specs/water-meter/Ultrasonic.pdf
+
+## Dynamic form messages and shared controls
+
+Review the companion source-string appendix as well: conditional success/error/fallback text is not all present in the initial HTML.
+Sources: components/FrenchInquiryForm.tsx, Footer.tsx, SocialSidebar.tsx, catalog/InquiryCta.tsx, catalog/ProductPdfLink.tsx.

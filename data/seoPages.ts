@@ -12,6 +12,7 @@ export interface CategorySeoPage {
   h1: string;
   directAnswer: string;
   intro: string;
+  buyerPaths?: Array<{ id: string; title: string; text: string; action: string }>;
   comparisonTitle?: string;
   comparisonAnswer?: string;
   comparisonNote?: string;
@@ -38,6 +39,26 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'An STS prepaid electricity meter measures energy and deducts credit loaded through a secure 20-digit token. Utilities can use standalone keypad models where continuous connectivity is not required, or select GPRS and LoRaWAN options for remote reading. The correct model depends on phase, current, installation, CIU access, vending integration and destination requirements.',
     intro:
       'Shenzhen Calinmeter Co., Ltd. (CalinMeters) supplies single-phase, three-phase and DIN-rail electricity meters for prepaid deployments. Use this page to compare the published models, understand the token and communication choices, and prepare the technical information needed for a quotation or pilot.',
+    buyerPaths: [
+      {
+        id: 'mini_grid',
+        title: 'Mini-grid developers and EPCs',
+        text: 'Share the site count, connections per site, electrical service, vending platform and network coverage. Define local token recharge, remote reading and pilot acceptance separately, including loss of connectivity and credit recovery checks.',
+        action: 'Discuss a mini-grid pilot',
+      },
+      {
+        id: 'utility_tender',
+        title: 'Utilities and tender procurement',
+        text: 'Send the tender reference, technical schedules, quantities, destination requirements and submission deadline. Request a clause-by-clause review of the proposed model and supporting documents before treating it as compliant.',
+        action: 'Discuss tender requirements',
+      },
+      {
+        id: 'manufacturing_partner',
+        title: 'Local meter manufacturers and partners',
+        text: 'Describe whether you need complete meters, components or an assembly partnership, plus annual volume, testing, firmware and branding requirements. The available supply scope and division of responsibilities must be confirmed for your project.',
+        action: 'Discuss manufacturing requirements',
+      },
+    ],
     comparisonTitle:
       'Single-phase, three-phase, DIN-rail or CT-operated: which prepaid meter fits?',
     comparisonAnswer:
@@ -99,6 +120,9 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'Destination standards, utility specifications and required documentation',
     ],
     faqQuestions: [
+      'What should a solar mini-grid operator confirm before selecting prepaid meters?',
+      'Does STS token entry mean the entire vending system works offline?',
+      'What should a buyer send for a utility tender or local manufacturing discussion?',
       'What is an STS prepaid electricity meter?',
       'When should a project use a three-phase prepaid electricity meter?',
       'What is the difference between the CA368 GPRS and standalone STS models?',

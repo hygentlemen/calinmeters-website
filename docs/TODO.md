@@ -2,10 +2,10 @@
 
 ## P0 - Production Indexing and Measurement
 
-1. Deploy the 2026-07-17 authority/model page release through the existing GitHub Pages workflow.
+1. Done: English authority/model release is deployed. Week 1 changes dated 2026-09-08 require their own release verification.
 2. Verify the three authority pages, representative model pages, `robots.txt` and `sitemap.xml` on the production domain.
 3. Done 2026-07-21: reissued the production OAuth token with GA4 read-only and Search Console write scopes; `Submit Search Console Sitemap` run `29838520351` completed with zero errors and warnings.
-4. Request indexing for the three authority pages.
+4. Done: 2026-09-07 URL inspection reports all three English authority pages indexed. French indexing remains pending professional sign-off.
 5. Record the deployment date in the weekly SEO/GEO issue.
 6. Monitor the three primary query clusters by country, device and landing page for 4-8 weeks.
 
@@ -13,9 +13,9 @@
 
 1. Collect reviewable sources for any certification, test capability, production capacity, market coverage, warranty or customer project statement before publishing it.
 2. Create buyer evidence pages only from approved source documents and customer permissions.
-3. Replace the mail-client-only form with an approved reliable submission endpoint and keep direct email/WhatsApp fallbacks.
+3. Done: English/French forms use the Worker/Resend endpoint. Next: verify private delivery records and qualified-lead follow-up.
 4. Add missing model specification PDFs or keep the current honest confirmation state.
-5. Add real inquiry-click reporting to the daily analytics summary.
+5. Week 1: add all-site event reporting and missing English/footer clicks. Confirm GA4 result custom dimensions and validate the first processed production report.
 
 ## P2 - Demand-Led Content Expansion
 

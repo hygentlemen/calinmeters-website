@@ -13,6 +13,18 @@ export const faqCategories: FaqCategory[] = [
     topic: 'Product Selection',
     items: [
       {
+        question: 'What should a solar mini-grid operator confirm before selecting prepaid meters?',
+        answer: 'Start with the number of sites and connections, phase, voltage, current and meter installation. Then define vending, payment reconciliation, key-management responsibilities, customer token entry and remote reading. Test the proposed meter, CIU and communication configuration together in a representative pilot, including interrupted connectivity and power restoration. Project funding alone does not establish meter eligibility.',
+      },
+      {
+        question: 'Does STS token entry mean the entire vending system works offline?',
+        answer: 'No. Local entry of a valid STS credit token and the systems that sell credit are separate. The meter can accept a token through its keypad or CIU without a continuous internet connection at the meter. Token generation, payment confirmation, vending access and reconciliation depend on the selected system architecture and must be confirmed and tested with the operator.',
+      },
+      {
+        question: 'What should a buyer send for a utility tender or local manufacturing discussion?',
+        answer: 'For a tender, send the reference, technical schedules, required documents, quantities and deadline so the proposed configuration can be reviewed clause by clause. For local manufacturing, describe the intended supply scope, assembly and testing responsibilities, firmware and branding needs, and expected volume. Certification, tender compliance and manufacturing services must be confirmed against specific evidence and a written project scope.',
+      },
+      {
         question: 'What is an STS prepaid water meter?',
         answer: 'An STS prepaid water meter uses a registered 20-digit token to load purchased water credit. The customer enters the token on the meter keypad or a Customer Interface Unit, and the meter applies the credit under the configured valve and tariff rules. LoRaWAN or another supported communication option can add remote reading, but the STS token workflow and the communications network perform separate roles.',
       },
@@ -22,7 +34,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         question: 'Does a prepaid meter have to come with a SIM card?',
-        answer: 'No. The basic technology used in prepaid meters is STS (Standard Transfer Specification), a secure message system that does not require internet. The sales point encrypts credit information to generate a 20-digit token, which the user enters via the meter keypad to recharge. A SIM card is only needed for remote meter reading or remote management functions.',
+        answer: 'No. An STS keypad meter can accept a valid 20-digit credit token without a SIM card or a continuous internet connection at the meter. Remote reading may use cellular communication, LoRaWAN or another supported network, depending on the model. Token generation and payment services have their own connectivity requirements; confirm these separately from local token entry.',
       },
       {
         question: 'What is an STS prepaid electricity meter?',

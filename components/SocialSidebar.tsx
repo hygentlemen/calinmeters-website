@@ -19,8 +19,8 @@ export default function SocialSidebar({ locale = 'en' }: { locale?: 'en' | 'fr' 
         aria-label={isFrench ? 'Contacter CalinMeters sur WhatsApp' : 'Contact CalinMeters on WhatsApp'}
         className="bg-green-500 hover:bg-green-600 text-white p-3 flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer"
         title="WhatsApp"
-        onClick={() => isFrench && trackEvent('fr_whatsapp_click', {
-          interface_language: 'fr',
+        onClick={() => trackEvent(isFrench ? 'fr_whatsapp_click' : 'whatsapp_click', {
+          interface_language: locale,
           source_context: 'sidebar',
           source_page: window.location.pathname,
         })}
@@ -64,8 +64,8 @@ export default function SocialSidebar({ locale = 'en' }: { locale?: 'en' | 'fr' 
           aria-label={`Email ${site.email}`}
           className="bg-red-500 hover:bg-red-600 text-white p-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
           title="Email"
-          onClick={() => isFrench && trackEvent('fr_email_click', {
-            interface_language: 'fr',
+          onClick={() => trackEvent(isFrench ? 'fr_email_click' : 'email_click', {
+            interface_language: locale,
             source_context: 'sidebar',
             source_page: window.location.pathname,
           })}

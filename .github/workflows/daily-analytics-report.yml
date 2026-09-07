@@ -10,6 +10,11 @@ on:
         description: "Report date in YYYY-MM-DD. Defaults to yesterday in Asia/Shanghai."
         required: false
 
+      notify:
+        description: "Send the report to Feishu (scheduled runs always notify)."
+        type: boolean
+        default: true
+
 jobs:
   report:
     runs-on: ubuntu-latest
@@ -97,7 +102,12 @@ jobs:
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
           REPORT_DATE: ${{ github.event.inputs.report_date }}
           REPORT_TIMEZONE: Asia/Shanghai
-        run: npm run report:daily
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.notify }}" = "false" ]; then
+            npm run report:daily -- --no-notify
+          else
+            npm run report:daily
+          fi
 
       - name: Upload report artifact
         if: always()

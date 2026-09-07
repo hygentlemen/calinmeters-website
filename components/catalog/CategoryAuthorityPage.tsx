@@ -1,3 +1,4 @@
+import { BuyerInquiryLink } from '@/components/catalog/BuyerInquiryLink';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { FaqItem } from '@/data/faq';
@@ -115,6 +116,27 @@ export function CategoryAuthorityPage({
           </div>
         </div>
       </section>
+
+      {seo.buyerPaths && (
+        <section id="project-buyers" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary-700">Plan your procurement</p>
+          <h2 className="mt-2 text-3xl font-bold text-slate-950">Start with your project role</h2>
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {seo.buyerPaths.map((buyer) => (
+              <article key={buyer.id} className="flex flex-col rounded-2xl border border-slate-200 p-6">
+                <h3 className="text-xl font-bold text-slate-950">{buyer.title}</h3>
+                <p className="mb-6 mt-3 flex-1 leading-7 text-slate-600">{buyer.text}</p>
+                <BuyerInquiryLink buyer={buyer.id} label={buyer.action} topic={buyer.title} />
+              </article>
+            ))}
+          </div>
+          <p className="mt-6 text-sm leading-6 text-slate-600">
+            Reference context: <a className="underline hover:text-primary-700" href="https://www.sts.org.za/sts-introduction.html">STS system roles</a>
+            {' and '}<a className="underline hover:text-primary-700" href="https://www.dares.rea.gov.ng/mini-grid.html">REA DARES mini-grid programme</a>.
+            {' '}Use the applicable tender and programme documents to confirm your project requirements; these references do not establish approval of a CalinMeters model.
+          </p>
+        </section>
+      )}
 
       <section aria-labelledby="models-heading" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-3xl">

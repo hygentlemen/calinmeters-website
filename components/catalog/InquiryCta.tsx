@@ -59,8 +59,8 @@ export function InquiryCta({
           </a>
           <a
             href={`mailto:${site.email}?subject=${encodeURIComponent(emailSubject)}`}
-            onClick={() => isFrench && trackEvent('fr_email_click', {
-              interface_language: 'fr',
+            onClick={() => trackEvent(isFrench ? 'fr_email_click' : 'email_click', {
+              interface_language: locale,
               product_id: productId ?? 'not_selected',
               source_context: 'catalog_cta',
               source_page: window.location.pathname,
@@ -73,8 +73,8 @@ export function InquiryCta({
             href={`${site.whatsappUrl}?text=${encodeURIComponent(whatsappText)}`}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => isFrench && trackEvent('fr_whatsapp_click', {
-              interface_language: 'fr',
+            onClick={() => trackEvent(isFrench ? 'fr_whatsapp_click' : 'whatsapp_click', {
+              interface_language: locale,
               product_id: productId ?? 'not_selected',
               source_context: 'catalog_cta',
               source_page: window.location.pathname,
