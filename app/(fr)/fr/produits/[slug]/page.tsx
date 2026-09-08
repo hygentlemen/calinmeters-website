@@ -74,7 +74,7 @@ export function generateMetadata({
       title: seo.title,
       description: seo.description,
       alternates: { canonical: path, languages },
-      robots: { index: false, follow: true },
+      robots: { index: true, follow: true },
       openGraph: {
         title: seo.title,
         description: seo.description,
@@ -103,7 +103,7 @@ export function generateMetadata({
     title: entry.product.name,
     description: entry.product.description,
     alternates: { canonical: path, languages },
-    robots: { index: false, follow: true },
+    robots: { index: true, follow: true },
     openGraph: {
       title: entry.product.name,
       description: entry.product.description,

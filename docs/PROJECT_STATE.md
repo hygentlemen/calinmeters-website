@@ -2,7 +2,7 @@
 
 Last reviewed: 2026-09-08.
 
-Current implementation: 25 public HTML routes (14 English, 11 French). French routes remain noindex pending the professional review in FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present; direct contact remains available. Week 1 adds buyer entries to the electricity category and corrects all-site measurement; see MEASUREMENT-CONTRACT.md and weekly/2026-09-07.md for scope, evidence and pending release checks.
+Current implementation: 27 public HTML routes (16 English, 11 French). The owner authorized French `index,follow` on 2026-09-08 and waived professional copy review; see FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present. Week 1 fixes all-site measurement and adds buyer paths, two solution pages, real company media and the CA168-L01 / CA368-Z04 PDFs on existing model routes. Release scope and source limits are recorded in COMMERCIAL-RELEASE-2026-09-08.md.
 
 ## Current Status
 
@@ -54,7 +54,7 @@ npm run verify:seo
 Expected SEO verification summary:
 
 ```text
-SEO verification passed: 14 HTML pages, 14 sitemap URLs, 13 product routes.
+SEO verification passed: 27 HTML pages, 27 sitemap URLs, 13 product routes, 11 localized pairs.
 ```
 
 Recent Search Console daily artifacts contained no query or landing-page rows before the authority pages were added. Current traffic is very small and was previously concentrated on `/`, so ranking movement must be measured after indexing.
@@ -63,13 +63,13 @@ On 2026-07-21, the OAuth app was restored to In production and the repository re
 
 ## Not Implemented
 
-- Search Console URL Inspection on 2026-07-20 returned `URL is unknown to Google` for all three STS authority pages, with no crawl time, canonical or known sitemap yet. The sitemap was submitted on 2026-07-21; prioritize manual indexing requests and monitor the next inspection before expanding content.
+- The 2026-09-07 inspection reported all three English authority pages indexed; French pages need recrawling after the indexable release.
 - Individual URL indexing requests still require Search Console UI access; Google does not provide a general-purpose indexing API for ordinary product pages.
-- No reliable server-side contact submission exists; the form honestly opens the visitor's email app.
+- Private delivery verification and qualified-inquiry reporting still require the operator’s mail/CRM records; GA4 event counts alone do not establish lead quality.
 - No CMS/admin interface exists.
 - No ecommerce, price list, cart, payment, quotation database or CRM exists.
 - No country pages are published because current Search Console data does not yet support a specific country/topic priority.
-- No verified public certification, testing, production-capacity, market-coverage or customer-case evidence pages exist.
+- Manufacturing documentation now has scoped certificate summaries and a company factory photograph; no production-capacity, pass-rate or pilot-result claims have been established.
 - No real article/news library exists.
 - No link-acquisition or digital-PR campaign is part of the repository.
 
@@ -77,8 +77,8 @@ On 2026-07-21, the OAuth app was restored to In production and the repository re
 
 - A global Top 5 ranking cannot be guaranteed by on-site code. Indexing, query geography, competitors, domain authority, relevant backlinks and first-party evidence materially affect results.
 - Search performance needs a 4-8 week post-indexing baseline before expanding into country or supporting-topic pages.
-- Some catalog models do not have public PDF specifications; their pages intentionally list only current catalog facts and parameters to confirm.
-- The contact form depends on a local email client.
+- CA168-L01 and CA368-Z04 PDFs have current-table/nameplate-image discrepancies; pages state the table values and require final ordered-configuration confirmation.
+- Inquiry forms depend on the configured Worker/Resend endpoint and Turnstile; email and WhatsApp are fallback contact channels.
 - The daily report depends on Google authentication and GitHub Secrets.
 - `npm audit` reports advisories against the Next.js 14 package line. Production uses static files on GitHub Pages and does not run the affected Next.js server, middleware, image optimizer or WebSocket features; a future major-version upgrade should still be planned and tested separately.
 

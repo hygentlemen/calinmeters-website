@@ -1,5 +1,7 @@
 # Conditional and shared French copy — 2026-09-08
 
+Historical snapshot: the owner waived the professional review gate later on 2026-09-08. See [the current indexing decision](FRENCH-COPY-REVIEW.md). This packet predates the commercial release and is not a publication prerequisite.
+
 Review alongside the rendered packet. Includes literal source strings so hidden errors/success states are covered. Technical strings are retained for context.
 
 ## components/FrenchInquiryForm.tsx

@@ -33,7 +33,7 @@ export const frenchFaqTranslations = [
     sourceQuestion: 'Does a prepaid meter have to come with a SIM card?',
     question: 'Un compteur prépayé doit-il utiliser une carte SIM ?',
     answer:
-      "Non. Le fonctionnement prépayé STS repose sur un système sécurisé de messages qui ne nécessite pas Internet : le système de vente de crédit chiffre les informations pour produire un jeton à 20 chiffres, que l'utilisateur saisit au clavier. Une carte SIM n'est nécessaire que si la configuration choisie utilise un réseau cellulaire pour la relève ou la gestion à distance.",
+      "Non. Un compteur STS à clavier peut accepter un jeton valide à 20 chiffres sans carte SIM ni connexion Internet permanente au compteur. La relève à distance peut utiliser un réseau cellulaire, LoRaWAN ou une autre option prise en charge. La génération des jetons et les services de paiement ont leurs propres besoins de connexion, à confirmer séparément de la saisie locale du jeton.",
   },
   {
     sourceQuestion: 'How does a token based prepaid meter work?',

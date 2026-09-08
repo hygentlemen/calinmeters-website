@@ -1,6 +1,16 @@
-# French Technical Copy Review Gate
+# French Indexing Decision and Historical Review Gate
 
-The French pages are exported with `noindex,follow` until this gate is completed by a native or professional French reviewer who is comfortable with electricity and water metering terminology.
+## Current decision — 2026-09-08
+
+The site owner explicitly instructed that the French pages should be `index,follow` and that professional copy review is not required for this release. This supersedes the previous approval gate below. No professional reviewer sign-off is claimed.
+
+All 11 French routes retain self-canonicals, reciprocal hreflang and sitemap inclusion. Automated specification parity, route, metadata and link checks remain required. The French SIM/STS answer is aligned with the distinction between local token entry and vending/payment connectivity. The release also includes water buyer segments and owner-confirmed stock/support information.
+
+Publish after `npm run verify` and desktop/mobile checks, submit the sitemap, then inspect Google’s recorded state. URL Inspection reports can lag the live metadata; it does not request indexing.
+
+## Historical gate — superseded
+
+The remaining checklist and review packets record the earlier preparation only. They are not publication prerequisites.
 
 ## Review scope
 
@@ -25,7 +35,7 @@ The French pages are exported with `noindex,follow` until this gate is completed
 
 ## Indexation change after sign-off
 
-Only after final approval:
+Historical sequence before the owner waiver:
 
 1. Change French layout and route metadata from `index: false` to `index: true`.
 2. Run `npm run verify` and update the SEO assertion that currently enforces `noindex`.
@@ -41,4 +51,4 @@ Only after final approval:
 - Priority issue: review the French SIM/STS answer against the clarified English answer. Local token entry does not imply offline token vending or payment reconciliation, and LoRaWAN remote reading does not need a cellular SIM in every meter.
 - English buyer routes and the new mini-grid/tender/manufacturing FAQ need a separate reviewed translation before French publication.
 - Coordination owner: site owner (Scott), to nominate the professional reviewer. Reviewer not yet assigned; no sign-off is implied by this packet.
-- Next checkpoint: 2026-09-13. Keep the gate pending until a named reviewer records corrections and final approval above.
+- Superseded by the owner decision above; no reviewer assignment is needed for this release.

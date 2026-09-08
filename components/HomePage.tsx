@@ -13,6 +13,8 @@ import ProductsSection from '@/components/ProductsSection';
 import SocialSidebar from '@/components/SocialSidebar';
 import SolutionsSection from '@/components/SolutionsSection';
 import StructuredData from '@/components/StructuredData';
+import { ServiceSupport } from '@/components/ServiceSupport';
+import { ProjectSolutions } from '@/components/ProjectSolutions';
 import { frenchFaqItems } from '@/data/locales/fr/faq';
 import { frenchHome } from '@/data/locales/fr/home';
 import { absoluteUrl, site } from '@/lib/site';
@@ -170,6 +172,7 @@ function FrenchHomePage() {
           </div>
         </section>
 
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><ServiceSupport locale="fr" /></div>
         <section id="produits" aria-labelledby="french-products-heading" className="mx-auto max-w-7xl scroll-mt-24 px-4 py-16 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-primary-700">{frenchHome.productSection.eyebrow}</p>
@@ -207,6 +210,7 @@ function FrenchHomePage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-primary-700">{frenchHome.selection.eyebrow}</p>
             <h2 className="mt-2 max-w-4xl text-3xl font-bold text-slate-950 sm:text-4xl">{frenchHome.selection.title}</h2>
+            <div className="mt-8"><ProjectSolutions locale="fr" /></div>
             <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {frenchHome.selection.items.map((item, index) => (
                 <article key={item.title} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -308,6 +312,7 @@ export default function HomePage({ locale }: HomePageProps) {
       <Navbar languageHref="/fr/" />
       <main>
         <BannerCarousel />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><ServiceSupport /></div>
         <ProductsSection />
         <SolutionsSection />
         <FeaturesSection />

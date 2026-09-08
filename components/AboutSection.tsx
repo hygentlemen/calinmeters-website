@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutSection() {
   return (
@@ -12,8 +13,9 @@ export default function AboutSection() {
               Shenzhen Calinmeter Co., Ltd. (CalinMeters) supplies prepaid meters for electricity, water and gas projects, together with Customer Interface Units, data concentrators and LoRaWAN gateways.
             </p>
             <p className="mt-4 text-lg leading-8 text-slate-600">
-              Product selection is based on the service conditions, customer recharge workflow, communication coverage, system integration and destination utility requirements. Published datasheets are available on applicable model pages.
+              We offer established OEM, SKD and CKD manufacturing cooperation for local meter factories, alongside direct project supply. Our China headquarters provides technical support, with a service provider in Nigeria and cooperation being developed in additional countries.
             </p>
+            <Link href="/solutions/oem-skd-ckd-meter-manufacturing/" className="mt-5 inline-flex min-h-11 items-center font-semibold text-primary-700 underline">Explore manufacturing cooperation and documentation</Link>
             <div className="mt-7 grid gap-4 sm:grid-cols-2">
               <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
                 <div className="text-lg font-bold text-primary-700">Electricity, Water & Gas</div>

@@ -123,11 +123,21 @@ export const productCategories: ProductCategory[] = [
           {
             id: 'ca168-sts',
             slug: 'ca168-sts-prepaid-electricity-meter',
-            model: 'CA168',
-            name: 'CA168 STS Prepaid Energy Meter',
+            model: 'CA168-L01',
+            name: 'CA168-L01 STS Prepaid Single Phase Keypad Meter',
             description: 'Standard STS prepaid single-phase energy meter with keypad for token entry.',
             image: '/images/products/electricity/ca168-sts-1.jpg',
-            specs: [],
+            specs: [{ label: 'Specification (PDF)', pdf: '/specs/energy-meter/CA168-L01.pdf' }],
+            verifiedSpecs: [
+              { label: 'Phase', value: 'Single phase' },
+              { label: 'Nominal voltage', value: '230 V' },
+              { label: 'Nominal frequency', value: '50-60 Hz; +/-5%' },
+              { label: 'Current', value: '5 A basic; 80 A or 100 A maximum options' },
+              { label: 'Active energy accuracy', value: 'Class 1.0' },
+              { label: 'CIU communication options', value: 'PLC, RF, or M-Bus cable' },
+              { label: 'Meter shell protection', value: 'IP54' },
+              { label: 'Operating temperature', value: '-25 to +70 degrees C' },
+            ],
             highlights: [
               'Single-phase prepaid electricity metering',
               'Built-in keypad for STS token entry',
@@ -138,7 +148,7 @@ export const productCategories: ProductCategory[] = [
               'Property and sub-metering projects using keypad token recharge',
             ],
             confirmBeforeQuote: [
-              'Nominal voltage, frequency, and maximum current',
+              'Final maximum-current option: datasheet table lists 80/100 A; illustrative nameplate shows 60 A',
               'Installation and wiring arrangement',
               'Vending-system and key-management requirements',
               'Destination utility specifications and required documentation',
@@ -231,12 +241,22 @@ export const productCategories: ProductCategory[] = [
           {
             id: 'ct-meter',
             slug: 'ct-operated-electricity-meter',
-            name: 'CT Operated Energy Meter',
+            model: 'CA368-Z04',
+            name: 'CA368-Z04 Three Phase CT Operated Energy Meter',
             description: 'Transformer-operated (CT) energy meter for high-current commercial and industrial metering.',
             image: '/images/products/electricity/ct-meter.jpg',
-            specs: [],
+            specs: [{ label: 'Specification (PDF)', pdf: '/specs/energy-meter/CA368-Z04.pdf' }],
+            verifiedSpecs: [
+              { label: 'Phase and wiring', value: 'Three phase, four wire; CT operated' },
+              { label: 'Nominal voltage', value: '3 x 230/240 V' },
+              { label: 'Frequency', value: '50 Hz; +/-2%' },
+              { label: 'CT input current', value: '1 A basic; 10 A maximum (datasheet table)' },
+              { label: 'Accuracy', value: 'Class 0.5S active energy; Class 1.0 reactive energy (datasheet)' },
+              { label: 'Communication options', value: 'PLC, RF, GPRS, 3G, or 4G module; infrared and RS485 ports' },
+              { label: 'Meter shell protection', value: 'IP54' },
+            ],
             highlights: [
-              'Current-transformer-operated metering format',
+              'CT-operated three-phase metering with STS token support',
               'Intended for higher-current commercial and industrial connections',
             ],
             applications: [
@@ -244,7 +264,9 @@ export const productCategories: ProductCategory[] = [
             ],
             confirmBeforeQuote: [
               'CT ratio, voltage inputs, wiring, and accuracy requirement',
-              'Prepayment, communication, and installation requirements',
+              'Final CT secondary rating: table lists 1(10) A; illustrative nameplate shows a different configuration',
+              'Accuracy standard and class stated on the final nameplate and applicable test report',
+              'External load-control arrangement, communication module and CIU requirements',
               'Destination utility specifications and required documentation',
             ],
           },
@@ -420,9 +442,9 @@ export const productCategories: ProductCategory[] = [
               { label: 'Valve function', value: 'Optional valve-leakage warning described in the datasheet' },
             ],
             applications: [
-              'Residential and commercial prepaid gas service',
-              'Projects requiring token credit control and remote meter reading',
-              'Gas utility deployments using a separate customer interface where needed',
+              'Pipeline natural-gas distribution with the confirmed gas, pressure and flow configuration',
+              'Centralized residential gas supply for blocks, estates and communities',
+              'PAYG gas services linking payment, token credit and meter-reading records',
             ],
             confirmBeforeQuote: [
               'Gas type, meter size, flow range, and service pressure',

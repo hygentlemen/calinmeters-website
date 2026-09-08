@@ -1,5 +1,7 @@
 # French review packet — 2026-09-08
 
+Historical snapshot: the owner waived the professional review gate later on 2026-09-08. See [the current indexing decision](FRENCH-COPY-REVIEW.md). This packet predates the commercial release and is not a publication prerequisite.
+
 Status: preparation only; professional sign-off is pending. Review against docs/FRENCH-COPY-REVIEW.md.
 Generated from the static export. English and French sections are adjacent, not assumed sentence-for-sentence translations. Source hashes identify this exact copy.
 

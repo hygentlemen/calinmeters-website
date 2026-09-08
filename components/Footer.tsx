@@ -45,6 +45,8 @@ export default function Footer({ locale = 'en', categories }: FooterProps) {
             <h2 className="font-semibold">{isFrench ? 'Entreprise' : 'Company'}</h2>
             <ul className="mt-4 space-y-3 text-sm text-slate-400">
               <li><Link href={`${homeHref}#solutions`} className="hover:text-white">Solutions</Link></li>
+              <li><Link href="/solutions/solar-mini-grid-metering/" className="hover:text-white">{isFrench ? 'Mini-réseaux solaires (anglais)' : 'Solar mini-grid metering'}</Link></li>
+              <li><Link href="/solutions/oem-skd-ckd-meter-manufacturing/" className="hover:text-white">{isFrench ? 'Fabrication OEM / SKD / CKD (anglais)' : 'OEM / SKD / CKD cooperation'}</Link></li>
               <li><Link href={`${homeHref}#about`} className="hover:text-white">{isFrench ? 'À propos' : 'About'}</Link></li>
               <li><Link href={`${homeHref}#faq`} className="hover:text-white">FAQ</Link></li>
               <li><Link href={`${homeHref}#contact`} className="hover:text-white">{isFrench ? 'Demander un devis' : 'Contact'}</Link></li>

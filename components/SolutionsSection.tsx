@@ -1,3 +1,5 @@
+import { ProjectSolutions } from '@/components/ProjectSolutions';
+
 const solutions = [
   {
     title: 'STS prepaid electricity meter projects',
@@ -13,7 +15,7 @@ const solutions = [
   },
   {
     title: 'LoRaWAN smart water meter deployments',
-    eyebrow: 'Water utilities and residential communities',
+    eyebrow: 'Water operators, communities, properties and integrators',
     summary:
       'LoRaWAN smart water meters are suitable for projects that need remote reading without placing a SIM card in every meter. Multi-jet and ultrasonic options support different budget, durability, and accuracy requirements.',
     points: [
@@ -37,7 +39,7 @@ const solutions = [
   },
   {
     title: 'Prepaid gas meter applications',
-    eyebrow: 'Residential and commercial gas metering',
+    eyebrow: 'Pipeline natural gas, centralized residential supply and PAYG',
     summary:
       'CalinMeters prepaid gas meters combine STS token security, valve control, and LoRaWAN communication for projects that need credit control and remote reading in gas applications.',
     points: [
@@ -148,6 +150,7 @@ export default function SolutionsSection() {
           </p>
         </div>
 
+        <ProjectSolutions />
         <div className="grid gap-5 lg:grid-cols-2">
           {solutions.map((solution) => (
             <article key={solution.title} className="rounded-md border border-slate-200 bg-slate-50 p-6">

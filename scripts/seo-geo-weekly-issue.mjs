@@ -107,7 +107,7 @@ Keep CalinMeters SEO and GEO work moving every week. This issue is intentionally
 - [ ] Review 30-day and 90-day non-brand queries for French prepaid water-meter intent.
 - [ ] Map each material query to one existing canonical owner and record unanswered buyer questions as content gaps.
 - [ ] Improve an existing French owner page only when real queries expose a useful, factual gap.
-- [ ] Send changed French technical copy through native-French review before indexation.
+- [ ] Keep French pages indexable under the 2026-09-08 owner decision; check technical source parity and terminology without requiring native-French review.
 
 ## Internal Market Priorities
 
@@ -135,7 +135,7 @@ The current release has no country pages. A country/query row or one market sign
 
 - [ ] Record qualified-inquiry count by country for the rolling 90 days using aggregate CRM review only.
 - [ ] Record sustained non-brand organic query evidence, including query theme, impressions/clicks, and trend.
-- [ ] If the gate is passed, draft a proposal first; do not publish until unique factual value and native-French review are documented.
+- [ ] If the gate is passed, draft a proposal first; document unique factual value and follow the owner-authorized French indexing policy.
 
 ## French Inquiry Quality
 
@@ -157,7 +157,7 @@ The current release has no country pages. A country/query row or one market sign
 - [ ] Use precise entity names: Shenzhen Calinmeter Co., Ltd., CalinMeters, STS prepaid meter, LoRaWAN smart water meter, prepaid gas meter, AMI solution.
 - [ ] Add comparison or selection guidance for utility buyers where useful.
 - [ ] Keep facts specific and sourceable. Avoid vague claims like "world class" without evidence.
-- [ ] Verify native-French terminology and correct unnatural machine-translated phrasing.
+- [ ] Check French technical terminology against the source catalog and correct material ambiguities.
 
 ## Keyword Focus Pool
 
@@ -180,7 +180,7 @@ Choose 3-5 related queries this week and assign each to one canonical owner:
 ## Suggested Output
 
 - One merged improvement to an existing French or English owner page, or
-- One sourced content draft ready for native-language review, or
+- One source-backed buyer content improvement, or
 - One technical SEO/hreflang/indexing fix, or
 - One short memo explaining why evidence did not justify a content/code change this week.
 
@@ -190,7 +190,7 @@ Choose 3-5 related queries this week and assign each to one canonical owner:
 - [ ] 30-day and 90-day French acquisition/search findings are summarized in a comment.
 - [ ] Inquiry-quality findings contain aggregates only and no personal data.
 - [ ] Country-page gate outcome is recorded; no country page was created without meeting it.
-- [ ] Native-French corrections are merged or assigned with a clear owner.
+- [ ] Material French technical corrections are merged or assigned with a clear owner.
 - [ ] Next action is clear for the following week.
 `;
 }

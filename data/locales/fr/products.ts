@@ -144,7 +144,7 @@ export const frenchProducts = [
   {
     id: 'ca168-sts',
     slug: 'ca168-compteur-electricite-prepaye-sts',
-    name: 'Compteur électrique prépayé STS monophasé CA168',
+    name: 'Compteur électrique prépayé STS monophasé CA168-L01',
     description:
       'Compteur électrique prépayé STS monophasé avec clavier intégré pour saisir les jetons, sans connexion de données permanente.',
     categoryName: "Compteurs d'électricité",
@@ -154,13 +154,62 @@ export const frenchProducts = [
       'Clavier intégré pour la saisie des jetons STS',
       'Chargement autonome du crédit sans connexion de données permanente',
     ],
-    verifiedSpecs: [],
+    verifiedSpecs: [
+      {
+        "sourceLabel": "Phase",
+        "sourceValue": "Single phase",
+        "label": "Phase",
+        "value": "Monophasé"
+      },
+      {
+        "sourceLabel": "Nominal voltage",
+        "sourceValue": "230 V",
+        "label": "Tension nominale",
+        "value": "230 V"
+      },
+      {
+        "sourceLabel": "Nominal frequency",
+        "sourceValue": "50-60 Hz; +/-5%",
+        "label": "Fréquence nominale",
+        "value": "50–60 Hz ; ±5 %"
+      },
+      {
+        "sourceLabel": "Current",
+        "sourceValue": "5 A basic; 80 A or 100 A maximum options",
+        "label": "Courant",
+        "value": "5 A de base ; options maximales 80 A ou 100 A"
+      },
+      {
+        "sourceLabel": "Active energy accuracy",
+        "sourceValue": "Class 1.0",
+        "label": "Précision en énergie active",
+        "value": "Classe 1.0"
+      },
+      {
+        "sourceLabel": "CIU communication options",
+        "sourceValue": "PLC, RF, or M-Bus cable",
+        "label": "Communication avec la CIU",
+        "value": "PLC, RF ou câble M-Bus"
+      },
+      {
+        "sourceLabel": "Meter shell protection",
+        "sourceValue": "IP54",
+        "label": "Protection du boîtier",
+        "value": "IP54"
+      },
+      {
+        "sourceLabel": "Operating temperature",
+        "sourceValue": "-25 to +70 degrees C",
+        "label": "Température de fonctionnement",
+        "value": "−25 à +70 °C"
+      }
+    ],
     applications: [
       'Raccordements résidentiels prépayés',
       'Projets immobiliers et de sous-comptage avec recharge par jeton au clavier',
     ],
     confirmBeforeQuote: [
-      'Tension nominale, fréquence et courant maximal',
+      'Courant maximal à confirmer : tableau 80/100 A ; plaque illustrative 60 A',
       'Disposition du câblage et conditions de pose',
       'Exigences du système de vente de crédit et de gestion des clés',
       'Spécifications du service public de destination et documents exigés',
