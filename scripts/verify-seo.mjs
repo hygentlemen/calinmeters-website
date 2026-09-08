@@ -106,8 +106,8 @@ const pages = allFiles
   .filter((page) => page.route)
   .sort((a, b) => a.route.localeCompare(b.route));
 
-if (pages.length !== 25) {
-  failures.push(`expected exactly 25 public HTML pages, received ${pages.length}`);
+if (pages.length !== 27) {
+  failures.push(`expected exactly 27 public HTML pages, received ${pages.length}`);
 }
 
 for (const pair of localizedRoutePairs) {
@@ -204,8 +204,8 @@ for (const page of pages) {
     if (pageNode?.inLanguage !== 'fr-FR') {
       report(route, 'French webpage JSON-LD must declare inLanguage fr-FR');
     }
-    if (!/<meta\s+[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) {
-      report(route, 'French page must remain noindex until professional copy review');
+    if (!/<meta\s+[^>]*name=["']robots["'][^>]*content=["']index,\s*follow["']/i.test(html)) {
+      report(route, 'French page must be index,follow under the owner-authorized release');
     }
     for (const englishHeading of [
       'Verified specifications',
@@ -237,6 +237,10 @@ for (const slug of expectedProductSlugs) {
   const file = path.join(OUT_DIR, 'products', slug, 'index.html');
   if (!(await exists(file))) failures.push(`missing expected product route /products/${slug}/`);
 }
+for (const slug of ['solar-mini-grid-metering', 'oem-skd-ckd-meter-manufacturing']) {
+  const file = path.join(OUT_DIR, 'solutions', slug, 'index.html');
+  if (!(await exists(file))) failures.push(`missing expected solution route /solutions/${slug}/`);
+}
 for (const slug of expectedFrenchSlugs) {
   const file = path.join(OUT_DIR, 'fr', 'produits', slug, 'index.html');
   if (!(await exists(file))) failures.push(`missing expected French route /fr/produits/${slug}/`);
@@ -255,8 +259,8 @@ for (const page of pages) {
 if (sitemapUrls.length !== pages.length) {
   failures.push(`sitemap has ${sitemapUrls.length} URLs but export has ${pages.length} public HTML pages`);
 }
-if (sitemapUrls.length !== 25) {
-  failures.push(`expected exactly 25 sitemap URLs, received ${sitemapUrls.length}`);
+if (sitemapUrls.length !== 27) {
+  failures.push(`expected exactly 27 sitemap URLs, received ${sitemapUrls.length}`);
 }
 
 const sitemapEntries = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);

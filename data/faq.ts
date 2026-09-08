@@ -13,6 +13,58 @@ export const faqCategories: FaqCategory[] = [
     topic: 'Product Selection',
     items: [
       {
+        question: 'What support is available for a solar mini-grid metering project?',
+        answer: 'CalinMeters has a service provider in Nigeria and provides direct technical support from China headquarters. Headquarters responds within 2 hours during its working hours and within 12 hours outside working hours. These are response times; on-site attendance and resolution depend on the issue and agreed service scope. Service-provider cooperation is being developed in other countries.',
+      },
+      {
+        question: 'Are mini-grid meters kept in stock?',
+        answer: 'Yes. CalinMeters maintains stock for solar mini-grid metering products. Share the meter configuration, communication option, quantity and delivery destination so the available batch and dispatch schedule can be confirmed for your order.',
+      },
+      {
+        question: 'Does programme funding automatically qualify a meter for a mini-grid project?',
+        answer: 'No. A World Bank-funded or other programme-supported project still has its own technical schedules, procurement rules and acceptance requirements. CalinMeters can support a configuration and document review against those requirements; programme funding does not establish approval of a particular meter.',
+      },
+      {
+        question: 'What OEM, SKD and CKD supply formats does CalinMeters offer?',
+        answer: 'CalinMeters offers established manufacturing cooperation including complete OEM meters, SKD assemblies for local completion and CKD component supply for a broader local assembly scope. The cooperation package defines the model, bill of materials, branding, firmware, local operations, testing, training and production-release responsibilities.',
+      },
+      {
+        question: 'What information starts a local meter manufacturing quotation?',
+        answer: 'Send the target market and customer specification, preferred OEM, SKD or CKD format, expected volume, current assembly and test equipment, local-sourcing requirements, branding and firmware needs, and launch schedule. This allows the teams to agree the supply boundary, sample approval, tooling, training and acceptance plan.',
+      },
+      {
+        question: 'Does an existing certificate automatically cover an OEM or CKD configuration?',
+        answer: 'No. Check the legal manufacturer, model, hardware, firmware, communication profile and scope on the applicable document. Changes to branding, manufacturing arrangements or product configuration may require further assessment. Management-system certificates, protocol compliance and destination-market approval serve different purposes.',
+      },
+      {
+        question: 'How should a water operator reconcile prepaid collections and consumption?',
+        answer: 'Agree a workflow that links the customer account, meter ID, payment reference, issued credit and meter reading with timestamps. Review failed payments, repeated tokens, adjustments and replaced meters in a separate exception log. Reconcile collections and issued credit over the same period; purchased credit and measured consumption need not match within a single period because customers can carry a balance.',
+      },
+      {
+        question: 'What should a community water project test before rollout?',
+        answer: 'Test representative low and peak flows, available pressure, intermittent supply, meter-box conditions, token entry, low-credit behaviour, valve operation, reading coverage and payment exceptions. Agree the permitted water-service policy, customer assistance and maintenance access with the operator, then record the pilot observations against the acceptance criteria.',
+      },
+      {
+        question: 'What should properties and integrators plan for water-meter maintenance?',
+        answer: 'Record each meter location and account, provide access for reading and service, and define isolation, replacement and recommissioning responsibilities. Confirm battery configuration, valve checks and spare units for the selected model. On replacement, reconcile the final reading and credit balance, map the new meter and preserve an auditable handover record.',
+      },
+      {
+        question: 'Which gas applications does CalinMeters serve?',
+        answer: 'CalinMeters serves pipeline natural-gas metering, centralized residential gas supply and PAYG projects. PAYG describes the payment model, not a gas composition or pressure rating. Confirm the gas composition, service pressure, flow range, valve procedures and required local approvals for the proposed meter configuration.',
+      },
+      {
+        question: 'What should a solar mini-grid operator confirm before selecting prepaid meters?',
+        answer: 'Start with the number of sites and connections, phase, voltage, current and meter installation. Then define vending, payment reconciliation, key-management responsibilities, customer token entry and remote reading. Test the proposed meter, CIU and communication configuration together in a representative pilot, including interrupted connectivity and power restoration. Project funding alone does not establish meter eligibility.',
+      },
+      {
+        question: 'Does STS token entry mean the entire vending system works offline?',
+        answer: 'No. Local entry of a valid STS credit token and the systems that sell credit are separate. The meter can accept a token through its keypad or CIU without a continuous internet connection at the meter. Token generation, payment confirmation, vending access and reconciliation depend on the selected system architecture and must be confirmed and tested with the operator.',
+      },
+      {
+        question: 'What should a buyer send for a utility tender or local manufacturing discussion?',
+        answer: 'For a tender, send the reference, technical schedules, required documents, quantities and deadline so the proposed configuration can be reviewed clause by clause. CalinMeters offers OEM, SKD and CKD manufacturing cooperation. For a local factory project, describe the supply format, assembly and testing responsibilities, firmware and branding needs, and expected volume so the deliverables and applicable documentation can be defined in the project scope.',
+      },
+      {
         question: 'What is an STS prepaid water meter?',
         answer: 'An STS prepaid water meter uses a registered 20-digit token to load purchased water credit. The customer enters the token on the meter keypad or a Customer Interface Unit, and the meter applies the credit under the configured valve and tariff rules. LoRaWAN or another supported communication option can add remote reading, but the STS token workflow and the communications network perform separate roles.',
       },
@@ -22,7 +74,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         question: 'Does a prepaid meter have to come with a SIM card?',
-        answer: 'No. The basic technology used in prepaid meters is STS (Standard Transfer Specification), a secure message system that does not require internet. The sales point encrypts credit information to generate a 20-digit token, which the user enters via the meter keypad to recharge. A SIM card is only needed for remote meter reading or remote management functions.',
+        answer: 'No. An STS keypad meter can accept a valid 20-digit credit token without a SIM card or a continuous internet connection at the meter. Remote reading may use cellular communication, LoRaWAN or another supported network, depending on the model. Token generation and payment services have their own connectivity requirements; confirm these separately from local token entry.',
       },
       {
         question: 'What is an STS prepaid electricity meter?',

@@ -1,3 +1,4 @@
+import { TrackedContactLink } from '@/components/TrackedContactLink';
 import Link from 'next/link';
 import { targetProductCategories } from '@/lib/catalog';
 import { productPath, site } from '@/lib/site';
@@ -44,6 +45,8 @@ export default function Footer({ locale = 'en', categories }: FooterProps) {
             <h2 className="font-semibold">{isFrench ? 'Entreprise' : 'Company'}</h2>
             <ul className="mt-4 space-y-3 text-sm text-slate-400">
               <li><Link href={`${homeHref}#solutions`} className="hover:text-white">Solutions</Link></li>
+              <li><Link href="/solutions/solar-mini-grid-metering/" className="hover:text-white">{isFrench ? 'Mini-réseaux solaires (anglais)' : 'Solar mini-grid metering'}</Link></li>
+              <li><Link href="/solutions/oem-skd-ckd-meter-manufacturing/" className="hover:text-white">{isFrench ? 'Fabrication OEM / SKD / CKD (anglais)' : 'OEM / SKD / CKD cooperation'}</Link></li>
               <li><Link href={`${homeHref}#about`} className="hover:text-white">{isFrench ? 'À propos' : 'About'}</Link></li>
               <li><Link href={`${homeHref}#faq`} className="hover:text-white">FAQ</Link></li>
               <li><Link href={`${homeHref}#contact`} className="hover:text-white">{isFrench ? 'Demander un devis' : 'Contact'}</Link></li>
@@ -52,8 +55,8 @@ export default function Footer({ locale = 'en', categories }: FooterProps) {
           <div>
             <h2 className="font-semibold">{isFrench ? 'Contact direct' : 'Direct contact'}</h2>
             <ul className="mt-4 space-y-3 text-sm text-slate-400">
-              <li><a href={`mailto:${site.email}`} className="hover:text-white">{site.email}</a></li>
-              <li><a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">WhatsApp: {site.phone}</a></li>
+              <li><TrackedContactLink locale={locale} method="email" sourceContext="footer" href={`mailto:${site.email}`} className="hover:text-white">{site.email}</TrackedContactLink></li>
+              <li><TrackedContactLink locale={locale} method="whatsapp" sourceContext="footer" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">WhatsApp: {site.phone}</TrackedContactLink></li>
               <li><a href="https://www.linkedin.com/in/qiscott/" target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn</a></li>
             </ul>
           </div>

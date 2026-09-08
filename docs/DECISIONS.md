@@ -89,3 +89,9 @@
 - Daily reports use GA4 property ID and Search Console site URL from GitHub Secrets.
 - Download reporting should rely on GA4 enhanced `file_download`; custom product click tracking uses `specification_download`.
 - Product-page download events also include the source page path.
+
+## 2026-09-08 commercial release authorization
+
+The owner confirmed full OEM/SKD/CKD cooperation capability, mini-grid standing stock, a Nigeria service provider, direct China HQ support with response within 2 hours during its working hours / 12 hours outside its working hours, and gas use in pipeline natural gas, centralized residential supply and PAYG. Public wording uses “within 2 hours during China HQ working hours,” not a resolution or on-site attendance promise. Other-country providers remain a recruitment/development plan.
+
+The owner authorized use of the supplied meter material folders and waived the French professional review gate. Keep all 11 French URLs indexable and continue technical checks. Source-backed images/specifications and narrowly scoped certificate summaries are used; certificate originals and private customer records stay outside the public site. Suggested deployment, production and pilot procedures are identified as plans, not fabricated measured outcomes.

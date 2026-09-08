@@ -12,6 +12,7 @@ export interface CategorySeoPage {
   h1: string;
   directAnswer: string;
   intro: string;
+  buyerPaths?: Array<{ id: string; title: string; text: string; action: string; guideHref?: string }>;
   comparisonTitle?: string;
   comparisonAnswer?: string;
   comparisonNote?: string;
@@ -38,6 +39,28 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'An STS prepaid electricity meter measures energy and deducts credit loaded through a secure 20-digit token. Utilities can use standalone keypad models where continuous connectivity is not required, or select GPRS and LoRaWAN options for remote reading. The correct model depends on phase, current, installation, CIU access, vending integration and destination requirements.',
     intro:
       'Shenzhen Calinmeter Co., Ltd. (CalinMeters) supplies single-phase, three-phase and DIN-rail electricity meters for prepaid deployments. Use this page to compare the published models, understand the token and communication choices, and prepare the technical information needed for a quotation or pilot.',
+    buyerPaths: [
+      {
+        id: 'mini_grid',
+        title: 'Mini-grid developers and EPCs',
+        text: 'Share the site count, connections per site, electrical service, vending platform and network coverage. Define local token recharge, remote reading and pilot acceptance separately, including loss of connectivity and credit recovery checks.',
+        action: 'Discuss a mini-grid pilot',
+        guideHref: '/solutions/solar-mini-grid-metering/',
+      },
+      {
+        id: 'utility_tender',
+        title: 'Utilities and tender procurement',
+        text: 'Send the tender reference, technical schedules, quantities, destination requirements and submission deadline. Request a clause-by-clause review of the proposed model and supporting documents before treating it as compliant.',
+        action: 'Discuss tender requirements',
+      },
+      {
+        id: 'manufacturing_partner',
+        title: 'Local meter manufacturers and partners',
+        text: 'Build on established OEM, SKD and CKD manufacturing cooperation. Define the complete-meter, assembly or component supply format, annual volume, local operations, testing, firmware, branding and training requirements.',
+        action: 'Discuss manufacturing requirements',
+        guideHref: '/solutions/oem-skd-ckd-meter-manufacturing/',
+      },
+    ],
     comparisonTitle:
       'Single-phase, three-phase, DIN-rail or CT-operated: which prepaid meter fits?',
     comparisonAnswer:
@@ -99,6 +122,9 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'Destination standards, utility specifications and required documentation',
     ],
     faqQuestions: [
+      'What should a solar mini-grid operator confirm before selecting prepaid meters?',
+      'Does STS token entry mean the entire vending system works offline?',
+      'What should a buyer send for a utility tender or local manufacturing discussion?',
       'What is an STS prepaid electricity meter?',
       'When should a project use a three-phase prepaid electricity meter?',
       'What is the difference between the CA368 GPRS and standalone STS models?',
@@ -127,6 +153,32 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'An STS prepaid water meter controls water credit through a 20-digit token entered on a keypad or Customer Interface Unit. CalinMeters offers multi-jet and ultrasonic configurations with optional remote reading. Selection depends on pipe size, flow range, body material, measurement principle, valve workflow, customer access, communications and local utility requirements.',
     intro:
       'The CalinMeters water range includes plastic-body and brass-body multi-jet configurations plus an ultrasonic model with no moving measuring parts. Compare only the published parameters below, then validate water conditions, communication coverage and operating procedures through a representative pilot.',
+    buyerPaths: [
+      {
+        "id": "water_utility",
+        "title": "Water utilities and operators",
+        "text": "Plan the full collection cycle: tariffs, credit sales, customer accounts, meter readings and reconciliation. Match flow, pressure and water quality to the meter; define valve rules, reading intervals, exception handling and maintenance records across the service area.",
+        "action": "Discuss utility water metering"
+      },
+      {
+        "id": "community_water",
+        "title": "Community water supply",
+        "text": "For village networks and shared supply schemes, define who collects payment and assists customers. Check intermittent supply, low flows, meter-box access and recharge availability. Agree low-credit and valve rules, local maintenance and the daily collection-to-credit reconciliation workflow.",
+        "action": "Plan community water supply"
+      },
+      {
+        "id": "property_water",
+        "title": "Properties, estates and campuses",
+        "text": "Map tenant meters and common-area consumption separately. Define move-in and move-out readings, credit balances, valve access and maintenance visits. Plan accessible customer recharge, remote reading where available, and an auditable handover when occupants or meters change.",
+        "action": "Plan property water metering"
+      },
+      {
+        "id": "water_integrator",
+        "title": "Engineering and system integrators",
+        "text": "Bring the hydraulic schedule, installation drawings, valve requirements and platform interfaces. Define meter-to-account mapping, reading formats, payment and credit reconciliation, gateway coverage and commissioning tests. Include maintenance access, spare units and handover documentation in the scope.",
+        "action": "Discuss water-system integration"
+      }
+    ],
     comparisonTitle: 'Plastic, brass or ultrasonic: which prepaid water meter fits the project?',
     comparisonAnswer:
       'Choose the plastic multi-jet model for cost-sensitive residential or community installations in its published DN15-DN25 range. Choose the brass multi-jet model when the project specifies a metal body or sizes up to DN50. Choose the ultrasonic model when no moving measuring parts, a published R250 range ratio and remote-reading architecture matter more than the lowest initial cost.',
@@ -187,6 +239,9 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'Quantity, destination requirements and pilot acceptance criteria',
     ],
     faqQuestions: [
+      'How should a water operator reconcile prepaid collections and consumption?',
+      'What should a community water project test before rollout?',
+      'What should properties and integrators plan for water-meter maintenance?',
       'What is an STS prepaid water meter?',
       'What is the difference between brass and plastic water meters?',
       'What is the difference between multi-jet and ultrasonic prepaid water meters?',
@@ -212,6 +267,26 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'An STS prepaid gas meter deducts purchased credit and uses a 20-digit token for recharge. The CalinMeters CA768-K02 datasheet lists G1.6, G2.5 and G4 diaphragm-meter options plus optional LoRaWAN, NB-IoT, GPRS or 3G communication. Final selection requires the gas service, flow, pressure, valve workflow, customer interface and destination requirements.',
     intro:
       'The CA768-K02 combines a diaphragm gas meter, prepaid token entry, credit alerts and optional remote communication. Gas projects are safety- and market-specific, so this page separates published product facts from the service conditions, procedures and documentation that the buyer must confirm before a pilot.',
+    buyerPaths: [
+      {
+        "id": "pipeline_gas",
+        "title": "Pipeline natural gas",
+        "text": "Match the meter to gas composition, service pressure and household or commercial flow demand. Define tariff and credit handling, reading intervals, and the operator-approved valve and maintenance procedures for the distribution network.",
+        "action": "Discuss pipeline gas metering"
+      },
+      {
+        "id": "community_gas",
+        "title": "Centralized residential gas supply",
+        "text": "Plan customer-to-meter mapping across blocks or estates, accessible token entry and representative indoor radio tests. Define account changes, common-service responsibilities, valve-event response, maintenance access and reconciliation of customer credit sales.",
+        "action": "Plan residential gas metering"
+      },
+      {
+        "id": "payg_gas",
+        "title": "PAYG gas services",
+        "text": "Design the payment-to-credit journey, token delivery, failed-payment handling and reconciliation. PAYG is the commercial model; specify the actual gas supply, pressure and flow separately. Agree low-credit messages and valve procedures with the responsible gas operator.",
+        "action": "Discuss a PAYG gas project"
+      }
+    ],
     selectionTitle: 'How to specify an STS prepaid gas meter',
     selectionSteps: [
       {
@@ -267,6 +342,7 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'Destination utility specifications, approvals and required documentation',
     ],
     faqQuestions: [
+      'Which gas applications does CalinMeters serve?',
       'How should a utility choose a prepaid gas meter?',
       'Why use LoRaWAN for a prepaid gas meter project?',
       'What information is needed for a prepaid gas meter quotation?',

@@ -100,6 +100,32 @@ export const frenchCategorySeoPages: Record<string, FrenchCategorySeoPage> = {
       "Un compteur d'eau prépayé STS gère le crédit d'eau au moyen d'un jeton à 20 chiffres saisi sur un clavier ou une unité d'interface client. La gamme présentée comprend des configurations multijets à corps en plastique ou en laiton et un modèle ultrasonique sans pièce mobile de mesure. Le choix dépend du diamètre, du débit, de la pression, de la température, du principe de mesure, de l'accès client, de la vanne, de la communication et des exigences du service public.",
     intro:
       "Comparez les dimensions et caractéristiques hydrauliques publiées pour les trois modèles, puis validez la qualité de l'eau, l'orientation de pose, le fonctionnement de la vanne, la couverture radio et les procédures d'exploitation au moyen d'un pilote représentatif.",
+    buyerPaths: [
+      {
+        "id": "water_utility",
+        "title": "Services d’eau et exploitants",
+        "text": "Définissez les tarifs, ventes de crédit, comptes clients, relevés et rapprochements. Adaptez le compteur au débit, à la pression et à la qualité de l’eau. Prévoyez les règles de vanne, les intervalles de relève, le traitement des anomalies et le suivi de maintenance.",
+        "action": "Étudier le comptage du réseau d’eau"
+      },
+      {
+        "id": "community_water",
+        "title": "Approvisionnement communautaire",
+        "text": "Pour un réseau villageois ou partagé, identifiez les responsables des encaissements et de l’assistance client. Vérifiez les faibles débits, l’alimentation intermittente et l’accès au compteur. Définissez les règles de crédit et de vanne, la maintenance locale et le rapprochement quotidien des encaissements et crédits émis.",
+        "action": "Préparer un projet communautaire"
+      },
+      {
+        "id": "property_water",
+        "title": "Résidences, domaines et campus",
+        "text": "Distinguez les compteurs des occupants et les consommations communes. Prévoyez les relevés d’entrée et de sortie, les soldes de crédit, l’accès aux vannes et les visites de maintenance. Organisez la recharge, la relève et un historique vérifiable lors du changement d’occupant ou de compteur.",
+        "action": "Étudier le comptage immobilier"
+      },
+      {
+        "id": "water_integrator",
+        "title": "Bureaux d’études et intégrateurs",
+        "text": "Fournissez les données hydrauliques, plans de pose, exigences de vanne et interfaces de plateforme. Définissez l’association compteur-compte, les formats de relève, le rapprochement des paiements et crédits, la couverture radio et les essais de mise en service. Incluez les pièces de rechange et la documentation de maintenance.",
+        "action": "Discuter de l’intégration du système"
+      }
+    ],
     comparisonTitle: 'Plastique, laiton ou ultrasonique : quel modèle choisir ?',
     comparisonAnswer:
       "Le modèle multijet en plastique couvre les diamètres publiés DN15 à DN25 et peut convenir aux installations sensibles au coût. Le multijet en laiton fournit un corps métallique et des diamètres publiés jusqu'au DN50. Le modèle ultrasonique utilise un principe de mesure sans pièce mobile et indique un rapport de plage R250. Le choix final doit suivre les conditions hydrauliques et les exigences du projet.",

@@ -55,6 +55,8 @@ function parseInspectionUrls(value) {
     'https://calinmeters.com/products/sts-prepaid-electricity-meter/',
     'https://calinmeters.com/products/sts-prepaid-water-meter/',
     'https://calinmeters.com/products/sts-prepaid-gas-meter/',
+    'https://calinmeters.com/solutions/solar-mini-grid-metering/',
+    'https://calinmeters.com/solutions/oem-skd-ckd-meter-manufacturing/',
     'https://calinmeters.com/fr/',
     'https://calinmeters.com/fr/produits/compteur-electricite-prepaye-sts/',
     'https://calinmeters.com/fr/produits/compteur-eau-prepaye-sts/',

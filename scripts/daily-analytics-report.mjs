@@ -1,3 +1,5 @@
+import { pathToFileURL } from 'node:url';
+import { addIsoDays, makeWindow } from './analytics-report-windows.mjs';
 import { google } from 'googleapis';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -20,8 +22,11 @@ const SEARCH_CONSOLE_DELAY_DAYS = 3;
 const GA_REPORT_CONCURRENCY = 3;
 const GA_REPORT_RETRY_ATTEMPTS = 3;
 const GA_REPORT_RETRY_BASE_DELAY_MS = 750;
-const FRENCH_INQUIRY_EVENTS = ['fr_quote_start', 'fr_quote_submit'];
-const FRENCH_ACTION_EVENTS = [
+const SITE_INQUIRY_EVENTS = ['contact_form_start', 'contact_form_submit', 'fr_quote_start', 'fr_quote_submit'];
+const SITE_ACTION_EVENTS = [
+  'whatsapp_click',
+  'email_click',
+  'contact_click',
   'fr_whatsapp_click',
   'fr_email_click',
   'fr_specification_download',
@@ -31,7 +36,7 @@ const localeRoutes = JSON.parse(
   await fs.readFile(new URL('../data/i18n-routes.json', import.meta.url), 'utf8'),
 );
 const FRENCH_PRIORITY_PAGES = localeRoutes.map(({ fr }) => new URL(fr, SITE_ORIGIN).toString());
-const FRENCH_EVENT_DIMENSIONS = [
+const SITE_EVENT_DIMENSIONS = [
   'eventName',
   'customEvent:product_category',
   'customEvent:product_id',
@@ -48,13 +53,15 @@ const reportDate = FIXTURE_MODE
   ? '2026-08-09'
   : process.env.REPORT_DATE || getYesterday(timeZone);
 
-if (FIXTURE_MODE) {
-  const report = formatDailyReport(buildDailyReportData(createFixtureData()));
-  assertFixtureReport(report);
-  console.log(report);
-  console.log('\nFixture validation passed.');
-} else {
-  await generateLiveReport();
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  if (FIXTURE_MODE) {
+    const report = formatDailyReport(buildDailyReportData(createFixtureData()));
+    assertFixtureReport(report);
+    console.log(report);
+    console.log('\nFixture validation passed.');
+  } else {
+    await generateLiveReport();
+  }
 }
 
 async function generateLiveReport() {
@@ -76,13 +83,14 @@ async function generateLiveReport() {
   const ga30 = makeWindow(reportDate, 30);
   const ga90 = makeWindow(reportDate, 90);
   const gscEndDate = addIsoDays(reportDate, -SEARCH_CONSOLE_DELAY_DAYS);
+  const gscDay = makeWindow(gscEndDate, 1);
   const gsc30 = makeWindow(gscEndDate, 30);
   const gsc90 = makeWindow(gscEndDate, 90);
 
   try {
     const [ga4Result, gscResult] = await Promise.allSettled([
       collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }),
-      collectGscData({ searchConsole, gscSiteUrl, gsc30, gsc90 }),
+      collectGscData({ searchConsole, gscSiteUrl, gscDay, gsc30, gsc90 }),
     ]);
 
     if (ga4Result.status === 'rejected') {
@@ -101,6 +109,7 @@ async function generateLiveReport() {
     const rawData = buildRawReportData({
       ga4Result,
       gscResult,
+      gscDay,
       gaToday,
       ga30,
       ga90,
@@ -117,7 +126,7 @@ async function generateLiveReport() {
     console.log(`\nReport written to ${outFile}`);
     console.log(`Raw aggregate data written to ${rawFile}`);
 
-    if (process.env.FEISHU_WEBHOOK_URL) {
+    if (process.env.FEISHU_WEBHOOK_URL && !process.argv.includes('--no-notify')) {
       await sendFeishu(report);
     }
   } catch (error) {
@@ -126,7 +135,7 @@ async function generateLiveReport() {
     await writeReport(`daily-analytics-${reportDate}-failure.md`, message);
     console.error(message);
 
-    if (process.env.FEISHU_WEBHOOK_URL) {
+    if (process.env.FEISHU_WEBHOOK_URL && !process.argv.includes('--no-notify')) {
       try {
         await sendFeishu(message);
       } catch (feishuError) {
@@ -138,7 +147,7 @@ async function generateLiveReport() {
   }
 }
 
-async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }) {
+export async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }) {
   const [
     overview,
     devices,
@@ -151,12 +160,12 @@ async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }
     frenchOrganicLandingToday,
     frenchOrganicLanding30,
     frenchOrganicLanding90,
-    frenchInquiryToday,
-    frenchInquiry30,
-    frenchInquiry90,
-    frenchActionsToday,
-    frenchActions30,
-    frenchActions90,
+    siteInquiryToday,
+    siteInquiry30,
+    siteInquiry90,
+    siteActionsToday,
+    siteActions30,
+    siteActions90,
   ] = await runWithConcurrency([
     () => runGaReport({
       analyticsData,
@@ -191,12 +200,12 @@ async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }
     () => runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: gaToday }),
     () => runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga30 }),
     () => runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga90 }),
-    () => runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: gaToday }),
-    () => runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: ga30 }),
-    () => runFrenchInquiryReport({ analyticsData, gaProperty, dateRange: ga90 }),
-    () => runFrenchActionReport({ analyticsData, gaProperty, dateRange: gaToday }),
-    () => runFrenchActionReport({ analyticsData, gaProperty, dateRange: ga30 }),
-    () => runFrenchActionReport({ analyticsData, gaProperty, dateRange: ga90 }),
+    () => runSiteInquiryReport({ analyticsData, gaProperty, dateRange: gaToday }),
+    () => runSiteInquiryReport({ analyticsData, gaProperty, dateRange: ga30 }),
+    () => runSiteInquiryReport({ analyticsData, gaProperty, dateRange: ga90 }),
+    () => runSiteActionReport({ analyticsData, gaProperty, dateRange: gaToday }),
+    () => runSiteActionReport({ analyticsData, gaProperty, dateRange: ga30 }),
+    () => runSiteActionReport({ analyticsData, gaProperty, dateRange: ga90 }),
   ], { limit: GA_REPORT_CONCURRENCY });
 
   return {
@@ -205,6 +214,10 @@ async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }
     countries,
     pages,
     downloads,
+    siteConversions: {
+      inquiryToday: siteInquiryToday, inquiry30: siteInquiry30, inquiry90: siteInquiry90,
+      actionsToday: siteActionsToday, actions30: siteActions30, actions90: siteActions90,
+    },
     french: {
       trafficToday: frenchTrafficToday,
       traffic30: frenchTraffic30,
@@ -212,17 +225,17 @@ async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }
       organicLandingToday: frenchOrganicLandingToday,
       organicLanding30: frenchOrganicLanding30,
       organicLanding90: frenchOrganicLanding90,
-      inquiryToday: frenchInquiryToday,
-      inquiry30: frenchInquiry30,
-      inquiry90: frenchInquiry90,
-      actionsToday: frenchActionsToday,
-      actions30: frenchActions30,
-      actions90: frenchActions90,
+      inquiryToday: frenchOnly(siteInquiryToday),
+      inquiry30: frenchOnly(siteInquiry30),
+      inquiry90: frenchOnly(siteInquiry90),
+      actionsToday: frenchOnly(siteActionsToday),
+      actions30: frenchOnly(siteActions30),
+      actions90: frenchOnly(siteActions90),
     },
   };
 }
 
-async function collectGscData({ searchConsole, gscSiteUrl, gsc30, gsc90 }) {
+export async function collectGscData({ searchConsole, gscSiteUrl, gscDay, gsc30, gsc90 }) {
   const [
     searchOverview,
     searchQueries,
@@ -235,10 +248,10 @@ async function collectGscData({ searchConsole, gscSiteUrl, gsc30, gsc90 }) {
     frenchSearchCountryQuery30,
     frenchSearchCountryQuery90,
   ] = await Promise.all([
-    runSearchConsole({ searchConsole, gscSiteUrl, dimensions: [], rowLimit: 1 }),
-    runSearchConsole({ searchConsole, gscSiteUrl, dimensions: ['query'], rowLimit: 20 }),
-    runSearchConsole({ searchConsole, gscSiteUrl, dimensions: ['country'], rowLimit: 15 }),
-    runSearchConsole({ searchConsole, gscSiteUrl, dimensions: ['page'], rowLimit: 20 }),
+    runSearchConsole({ searchConsole, gscSiteUrl, dateRange: gscDay, dimensions: [], rowLimit: 1 }),
+    runSearchConsole({ searchConsole, gscSiteUrl, dateRange: gscDay, dimensions: ['query'], rowLimit: 20 }),
+    runSearchConsole({ searchConsole, gscSiteUrl, dateRange: gscDay, dimensions: ['country'], rowLimit: 15 }),
+    runSearchConsole({ searchConsole, gscSiteUrl, dateRange: gscDay, dimensions: ['page'], rowLimit: 20 }),
     runFrenchSearchReport({
       searchConsole,
       gscSiteUrl,
@@ -299,7 +312,7 @@ async function collectGscData({ searchConsole, gscSiteUrl, gsc30, gsc90 }) {
   };
 }
 
-function buildRawReportData({ ga4Result, gscResult, gaToday, ga30, ga90, gsc30, gsc90 }) {
+function buildRawReportData({ ga4Result, gscResult, gaToday, ga30, ga90, gscDay, gsc30, gsc90 }) {
   const ga4 = ga4Result.status === 'fulfilled' ? ga4Result.value : {};
   const gsc = gscResult.status === 'fulfilled' ? gscResult.value : {};
   const searchPage30 = gsc.french?.searchPage30 || [];
@@ -307,6 +320,8 @@ function buildRawReportData({ ga4Result, gscResult, gaToday, ga30, ga90, gsc30, 
 
   return {
     date: reportDate,
+    searchDate: gscDay.endDate,
+    siteConversions: ga4.siteConversions,
     sourceStatus: {
       ga4: ga4Result.status === 'fulfilled' ? 'available' : 'unavailable',
       gsc: gscResult.status === 'fulfilled' ? 'available' : 'unavailable',
@@ -348,6 +363,10 @@ function buildRawReportData({ ga4Result, gscResult, gaToday, ga30, ga90, gsc30, 
       priorityCoverage90: gscResult.status === 'fulfilled' ? buildPriorityCoverage(searchPage90) : [],
     },
   };
+}
+
+function frenchOnly(report) {
+  return { ...report, rows: report.rows.filter((row) => row.eventName.startsWith('fr_') || row.eventName === 'language_switch') };
 }
 
 function emptyControlledReport() {
@@ -395,20 +414,6 @@ function getYesterday(timeZoneName) {
   const localToday = new Date(formatter.format(now));
   localToday.setDate(localToday.getDate() - 1);
   return formatter.format(localToday);
-}
-
-function addIsoDays(value, days) {
-  const date = new Date(`${value}T00:00:00Z`);
-  date.setUTCDate(date.getUTCDate() + days);
-  return date.toISOString().slice(0, 10);
-}
-
-function makeWindow(endDate, days) {
-  return {
-    startDate: addIsoDays(endDate, -(days - 1)),
-    endDate,
-    days,
-  };
 }
 
 function parseServiceAccount(value) {
@@ -564,12 +569,12 @@ async function runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRa
   });
 }
 
-async function runFrenchInquiryReport({ analyticsData, gaProperty, dateRange }) {
+async function runSiteInquiryReport({ analyticsData, gaProperty, dateRange }) {
   const dimensionFilter = {
     filter: {
       fieldName: 'eventName',
       inListFilter: {
-        values: FRENCH_INQUIRY_EVENTS,
+        values: SITE_INQUIRY_EVENTS,
         caseSensitive: true,
       },
     },
@@ -579,7 +584,7 @@ async function runFrenchInquiryReport({ analyticsData, gaProperty, dateRange }) 
     const rows = await runGaReport({
       analyticsData,
       gaProperty,
-      dimensions: FRENCH_EVENT_DIMENSIONS,
+      dimensions: SITE_EVENT_DIMENSIONS,
       metrics: ['eventCount'],
       limit: 100,
       dimensionFilter,
@@ -588,7 +593,7 @@ async function runFrenchInquiryReport({ analyticsData, gaProperty, dateRange }) 
 
     return {
       controlledDimensionsAvailable: true,
-      rows: normalizeFrenchInquiryRows(rows),
+      rows: normalizeInquiryRows(rows),
     };
   } catch (error) {
     if (!isMissingCustomDimensionError(error)) throw error;
@@ -605,12 +610,12 @@ async function runFrenchInquiryReport({ analyticsData, gaProperty, dateRange }) 
 
     return {
       controlledDimensionsAvailable: false,
-      rows: normalizeFrenchInquiryRows(rows),
+      rows: normalizeInquiryRows(rows),
     };
   }
 }
 
-function normalizeFrenchInquiryRows(rows) {
+function normalizeInquiryRows(rows) {
   return rows.map((row) => ({
     eventName: row.eventName,
     productCategory: row['customEvent:product_category'] || '',
@@ -621,12 +626,12 @@ function normalizeFrenchInquiryRows(rows) {
   }));
 }
 
-async function runFrenchActionReport({ analyticsData, gaProperty, dateRange }) {
+async function runSiteActionReport({ analyticsData, gaProperty, dateRange }) {
   const dimensionFilter = {
     filter: {
       fieldName: 'eventName',
       inListFilter: {
-        values: FRENCH_ACTION_EVENTS,
+        values: SITE_ACTION_EVENTS,
         caseSensitive: true,
       },
     },
@@ -1045,8 +1050,8 @@ function assertFixtureReport(report) {
     throw new Error(`Fixture report contains banned technical output: ${present.join(', ')}`);
   }
 
-  if (report.split('\n').filter(Boolean).length > 45) {
-    throw new Error('Fixture report exceeds the 45-line summary target.');
+  if (report.split('\n').filter(Boolean).length > 50) {
+    throw new Error('Fixture report exceeds the 50-line summary target.');
   }
 }
 

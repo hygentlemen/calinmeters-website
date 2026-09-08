@@ -174,7 +174,7 @@ test('normal data becomes a compact Chinese summary with Top-N and normalized va
   assert.match(report, /WhatsApp：2/);
   assert.match(report, /邮件点击：1/);
   assert.match(report, /PDF 下载：5/);
-  assert.ok(report.split('\n').filter(Boolean).length <= 45);
+  assert.ok(report.split('\n').filter(Boolean).length <= 50);
   assert.doesNotMatch(report, /\| ---/);
   for (const field of rawFieldNames) assert.doesNotMatch(report, new RegExp(field));
 });
@@ -207,7 +207,8 @@ test('zero conversions collapse to one no-conversion sentence', () => {
     },
   }));
 
-  assert.match(report, /## 转化\n- 今日暂无询盘或下载转化/);
+  assert.match(report, /历史数据仅含法语表单及联系点击，英语未知/);
+  assert.doesNotMatch(report, /今日暂无询盘或下载转化/);
   assert.doesNotMatch(report, /## PDF 下载/);
 });
 
@@ -225,7 +226,8 @@ test('a 30-day French quote start remains visible when there is no daily submiss
   }));
 
   assert.match(report, /询盘漏斗（近30天）：开始 1 \| 提交 0/);
-  assert.match(report, /## 转化\n- 今日暂无询盘或下载转化/);
+  assert.match(report, /历史数据仅含法语表单及联系点击，英语未知/);
+  assert.doesNotMatch(report, /今日暂无询盘或下载转化/);
 });
 
 test('French quote starts and submits do not invent successes when result dimensions are unavailable', () => {
@@ -335,4 +337,75 @@ test('Feishu output is one blue interactive card containing the same summary', (
   assert.equal(payload.card.body.elements[0].tag, 'markdown');
   assert.match(payload.card.body.elements[0].content, /## 核心指标/);
   assert.doesNotMatch(payload.card.body.elements[0].content, /^# CalinMeters/m);
+});
+
+test('all-site totals combine English and French once and exclude failed submits', () => {
+  const raw = makeRaw({ siteConversions: {
+    inquiryToday: { controlledDimensionsAvailable: true, rows: [
+      { eventName: 'contact_form_start', eventCount: '5' },
+      { eventName: 'contact_form_submit', result: 'success', eventCount: '2' },
+      { eventName: 'fr_quote_submit', result: 'success', eventCount: '1' },
+      { eventName: 'fr_quote_submit', result: 'server_error', eventCount: '4' },
+    ] },
+    actionsToday: { rows: [
+      { eventName: 'whatsapp_click', eventCount: '3' },
+      { eventName: 'fr_whatsapp_click', eventCount: '2' },
+      { eventName: 'contact_click', eventCount: '7' },
+    ] },
+  } });
+  const result = buildDailyReportData(raw).conversions;
+  assert.equal(result.inquiries, 3);
+  assert.equal(result.errors, 4);
+  assert.equal(result.whatsapp, 5);
+  assert.equal(result.unclassifiedContacts, 7);
+  assert.equal(result.starts, 5);
+  assert.equal(result.attempts, 7);
+});
+
+test('unknown submit dimensions or unclassified results never mean zero successes', () => {
+  for (const controlledDimensionsAvailable of [true, false]) {
+    const raw = makeRaw({ siteConversions: {
+      inquiryToday: { controlledDimensionsAvailable, rows: [{ eventName: 'contact_form_submit', result: '(not set)', eventCount: '2' }] },
+      actionsToday: { rows: [] },
+    } });
+    assert.equal(buildDailyReportData(raw).conversions.inquiries, null);
+    assert.match(render(raw), /表单成功回执：未知/);
+    assert.doesNotMatch(render(raw), /今日暂无询盘或下载转化/);
+  }
+});
+
+test('empty property summary cannot be reconstructed from partial top page or query rows', () => {
+  const raw = makeRaw({ searchOverview: [], searchDate: '2026-08-06' });
+  assert.equal(buildDailyReportData(raw).search, null);
+  assert.match(render(raw), /搜索数据日期：2026-08-06/);
+  assert.match(render(raw), /搜索总量：暂无可用汇总/);
+  assert.doesNotMatch(render(raw), /搜索：点击/);
+});
+
+test('an explicit zero-impression row has no invented rank or CTR', () => {
+  const raw = makeRaw({ searchOverview: [{ clicks: 0, impressions: 0, position: 0, ctr: 0 }] });
+  assert.equal(buildDailyReportData(raw).search.impressions, 0);
+  assert.match(render(raw), /曝光 0 \| CTR — \| 平均排名 —/);
+});
+
+test('verified empty all-site events may be shown as no conversions', () => {
+  const raw = makeRaw({ downloads: [], siteConversions: {
+    inquiryToday: { controlledDimensionsAvailable: true, rows: [] }, actionsToday: { rows: [] },
+  } });
+  assert.match(render(raw), /今日暂无询盘或下载转化/);
+});
+
+test('report windows stay inclusive across month and year boundaries', async () => {
+  const { makeWindow, addIsoDays } = await import('./analytics-report-windows.mjs');
+  assert.equal(addIsoDays('2026-01-02', -3), '2025-12-30');
+  assert.deepEqual(makeWindow('2026-09-03', 30), { startDate: '2026-08-05', endDate: '2026-09-03', days: 30 });
+  assert.equal(makeWindow('2024-03-01', 3).startDate, '2024-02-28');
+});
+
+test('recent all-site submit activity stays visible on a quiet day without inventing successes', () => {
+  const recent = { controlledDimensionsAvailable: false, rows: [{ eventName: 'contact_form_submit', eventCount: '17' }] };
+  const raw = makeRaw({ siteConversions: { inquiryToday: { controlledDimensionsAvailable: false, rows: [] }, inquiry30: recent, inquiry90: recent, actionsToday: { rows: [] } } });
+  assert.match(render(raw), /全站提交回执：近30天 17 \| 近90天 17/);
+  assert.match(render(raw), /近期成功回执：近30天 未知 \| 近90天 未知/);
+  assert.doesNotMatch(render(raw), /询盘：17/);
 });

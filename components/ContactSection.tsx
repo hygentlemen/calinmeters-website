@@ -95,6 +95,7 @@ export default function ContactSection() {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const formRef = useRef<HTMLFormElement>(null);
   const submittingRef = useRef(false);
+  const startedRef = useRef(false);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string>();
   const [scriptReady, setScriptReady] = useState(false);
@@ -272,7 +273,7 @@ export default function ContactSection() {
                 </svg>
                 <div>
                   <h4 className="font-semibold">WhatsApp / WeChat</h4>
-                  <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('contact_click', { method: 'whatsapp', source_page: window.location.pathname })} className="text-primary-100 underline-offset-4 hover:underline">
+                  <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('whatsapp_click', { interface_language: 'en', source_context: 'contact_section', source_page: window.location.pathname })} className="text-primary-100 underline-offset-4 hover:underline">
                     {site.phone}
                   </a>
                 </div>
@@ -283,7 +284,7 @@ export default function ContactSection() {
                 </svg>
                 <div>
                   <h4 className="font-semibold">Email</h4>
-                  <a href={`mailto:${site.email}`} onClick={() => trackEvent('contact_click', { method: 'email', source_page: window.location.pathname })} className="text-primary-100 underline-offset-4 hover:underline">
+                  <a href={`mailto:${site.email}`} onClick={() => trackEvent('email_click', { interface_language: 'en', source_context: 'contact_section', source_page: window.location.pathname })} className="text-primary-100 underline-offset-4 hover:underline">
                     {site.email}
                   </a>
                 </div>
@@ -297,7 +298,11 @@ export default function ContactSection() {
             {formAvailable ? (
               <>
                 <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onLoad={() => setScriptReady(true)} />
-                <form ref={formRef} className="space-y-5" onSubmit={handleSubmit}>
+                <form onFocusCapture={() => {
+                  if (startedRef.current) return;
+                  startedRef.current = true;
+                  trackEvent('contact_form_start', { interface_language: 'en', source_page: new URL(sourceContext()).pathname });
+                }} ref={formRef} className="space-y-5" onSubmit={handleSubmit}>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field id="contactName" label="Your Name" required maxLength={120} autoComplete="name" />
                     <Field id="email" label="Your Email" type="email" required maxLength={254} autoComplete="email" />
