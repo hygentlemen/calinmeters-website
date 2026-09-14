@@ -13,6 +13,7 @@ export interface CategorySeoPage {
   directAnswer: string;
   intro: string;
   buyerPaths?: Array<{ id: string; title: string; text: string; action: string; guideHref?: string }>;
+  operationGuide?: { title: string; intro: string; steps: CategorySeoStep[] };
   comparisonTitle?: string;
   comparisonAnswer?: string;
   comparisonNote?: string;
@@ -184,6 +185,28 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'Choose the plastic multi-jet model for cost-sensitive residential or community installations in its published DN15-DN25 range. Choose the brass multi-jet model when the project specifies a metal body or sizes up to DN50. Choose the ultrasonic model when no moving measuring parts, a published R250 range ratio and remote-reading architecture matter more than the lowest initial cost.',
     comparisonNote:
       'Published values are transcribed from the current model datasheets. Confirm the final size, flow range, communication frequency, installation conditions and destination requirements in the quotation and pilot.',
+    operationGuide: {
+      "title": "Valve control, maintenance and reconciliation for prepaid water projects",
+      "intro": "A prepaid water project needs an agreed operating procedure as well as a meter. Specify the credit-control valve separately from back-flow protection, then test customer recharge, service restoration, maintenance and transaction records with the selected configuration.",
+      "steps": [
+        {
+          "title": "1. Specify the valve and water conditions",
+          "text": "Confirm pipe size, pressure, flow, sediment and installation conditions. State any ceramic-valve requirement explicitly and request the proposed valve specification. The CA568-R01 PDFs describe a non-return valve; they do not establish the material of the credit-control valve."
+        },
+        {
+          "title": "2. Agree credit and service rules",
+          "text": "Define low-credit warnings, any supported emergency-credit policy, closure and reopening conditions, and who assists customers. Test a valid token, a rejected or repeated token and loss of connectivity. Use the operator-approved water-service policy for the project."
+        },
+        {
+          "title": "3. Plan access and maintenance",
+          "text": "Choose a reachable keypad or a split CIU, then verify the link at the actual installation. Plan isolation, battery and valve checks, spare meters and authorised service access. Keep final readings and balance-transfer records when replacing a meter."
+        },
+        {
+          "title": "4. Reconcile events before scaling",
+          "text": "Match payment references, issued tokens, meter accounts and time-stamped readings. Track delayed data, failed recharge and valve-state exceptions separately. Agree observation periods and acceptance criteria, then retain the pilot logs and handover records."
+        }
+      ]
+    },
     selectionTitle: 'How to select an STS prepaid water meter',
     selectionSteps: [
       {
@@ -239,6 +262,10 @@ export const categorySeoPages: Record<string, CategorySeoPage> = {
       'Quantity, destination requirements and pilot acceptance criteria',
     ],
     faqQuestions: [
+      "What should I specify for a ceramic-valve prepaid water meter?",
+      "Can a split or standalone prepaid water meter work without continuous internet?",
+      "How should water-meter valve and credit exceptions be reconciled?",
+
       'How should a water operator reconcile prepaid collections and consumption?',
       'What should a community water project test before rollout?',
       'What should properties and integrators plan for water-meter maintenance?',

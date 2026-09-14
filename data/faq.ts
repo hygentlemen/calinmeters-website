@@ -13,6 +13,19 @@ export const faqCategories: FaqCategory[] = [
     topic: 'Product Selection',
     items: [
       {
+        "question": "What should I specify for a ceramic-valve prepaid water meter?",
+        "answer": "Specify the valve material, size, working pressure, water conditions, credit-control behaviour and acceptance tests. The published CA568-R01 multi-jet PDFs describe a non-return valve but do not identify ceramic material. A non-return valve prevents back-flow; credit-based shutoff is a separate function. Request written confirmation and applicable documentation for the valve in the proposed configuration."
+      },
+      {
+        "question": "Can a split or standalone prepaid water meter work without continuous internet?",
+        "answer": "Local entry of a valid STS token does not require continuous internet at the meter. A split arrangement places the customer keypad or CIU separately from the meter; standalone describes local operation and does not define the payment platform. Confirm the meter-to-CIU link, token-generation and payment connectivity, and any remote-reading network separately."
+      },
+      {
+        "question": "How should water-meter valve and credit exceptions be reconciled?",
+        "answer": "Link the meter ID, customer account, payment reference, token record, balance, reading and valve event with timestamps. Distinguish a command being sent from a confirmed valve state where feedback is supported. Keep failed recharge, delayed readings and service-restoration exceptions in a review log. After a meter replacement, record the final reading, agreed credit transfer and new account mapping."
+      },
+
+      {
         question: 'What support is available for a solar mini-grid metering project?',
         answer: 'CalinMeters has a service provider in Nigeria and provides direct technical support from China headquarters. Headquarters responds within 2 hours during its working hours and within 12 hours outside working hours. These are response times; on-site attendance and resolution depend on the issue and agreed service scope. Service-provider cooperation is being developed in other countries.',
       },

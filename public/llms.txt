@@ -45,6 +45,15 @@ https://calinmeters.com/
 - CA368-WS21 standalone STS prepaid three-phase electricity meter: https://calinmeters.com/products/ca368-sts-prepaid-three-phase-electricity-meter/
 - CA368-Z04 CT-operated electricity meter: https://calinmeters.com/products/ct-operated-electricity-meter/
 
+## Water Valve and Operating Guidance
+
+- Buyer guide: https://calinmeters.com/products/sts-prepaid-water-meter/#water-operations
+- Guide en français : https://calinmeters.com/fr/produits/compteur-eau-prepaye-sts/#water-operations
+- The CA568-R01 plastic and brass multi-jet PDFs describe a non-return valve. They do not identify ceramic valve material; request the proposed valve specification for a ceramic-valve requirement.
+- Back-flow protection, credit-based shutoff and remote valve commands are separate functions. Confirm the ordered configuration and operating procedure.
+- Split customer access, local STS token entry, vending/payment connectivity and remote reading must be specified separately.
+- Maintenance and reconciliation should preserve meter/account mapping, final readings, credit-transfer records and exceptions. Proposed acceptance checks are not measured pilot outcomes.
+
 ## Water Meter Model Pages
 
 - CA568-R01 plastic multi-jet STS prepaid water meter: https://calinmeters.com/products/sts-prepaid-multi-jet-water-meter-plastic/

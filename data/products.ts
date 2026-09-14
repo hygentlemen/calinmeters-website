@@ -307,6 +307,7 @@ export const productCategories: ProductCategory[] = [
               { label: 'Maximum water temperature', value: '50 C' },
               { label: 'Prepayment input', value: '20-digit STS token by keypad' },
               { label: 'Enclosure rating', value: 'IP68' },
+              { label: 'Back-flow feature', value: 'Non-return valve described in the datasheet' },
             ],
             applications: [
               'Cost-sensitive residential and community prepaid water projects',
@@ -348,6 +349,7 @@ export const productCategories: ProductCategory[] = [
               { label: 'Maximum water temperature', value: '50 C' },
               { label: 'Prepayment input', value: '20-digit STS token by keypad' },
               { label: 'Enclosure rating', value: 'IP68' },
+              { label: 'Back-flow feature', value: 'Non-return valve described in the datasheet' },
             ],
             applications: [
               'Residential, community, and utility prepaid water projects',

@@ -1,5 +1,6 @@
 import { copyFile, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { validatePageModified } from './page-modified.mjs';
 
 const SITE_URL = 'https://calinmeters.com';
 const OUT_DIR = path.resolve('out');
@@ -50,6 +51,11 @@ const routes = htmlFiles
   .filter(Boolean)
   .sort((a, b) => (a === '/' ? -1 : b === '/' ? 1 : a.localeCompare(b)));
 
+const pageModified = validatePageModified(
+  JSON.parse(await readFile(path.resolve('data/page-modified.json'), 'utf8')),
+  routes,
+);
+
 const urlEntries = routes
   .map((route) => {
     const pair = localizedRouteLookup.get(route);
@@ -66,6 +72,7 @@ const urlEntries = routes
     return [
       '  <url>',
       `    <loc>${escapeXml(new URL(route, SITE_URL).toString())}</loc>`,
+      pageModified[route] ? `    <lastmod>${pageModified[route]}</lastmod>` : '',
       alternates,
       '  </url>',
     ].filter(Boolean).join('\n');
