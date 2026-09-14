@@ -131,6 +131,28 @@ export const frenchCategorySeoPages: Record<string, FrenchCategorySeoPage> = {
       "Le modèle multijet en plastique couvre les diamètres publiés DN15 à DN25 et peut convenir aux installations sensibles au coût. Le multijet en laiton fournit un corps métallique et des diamètres publiés jusqu'au DN50. Le modèle ultrasonique utilise un principe de mesure sans pièce mobile et indique un rapport de plage R250. Le choix final doit suivre les conditions hydrauliques et les exigences du projet.",
     comparisonNote:
       'Les valeurs publiées sont traduites à partir des fiches techniques actuelles. Confirmez dans le devis et le pilote le diamètre final, la plage de débit, la fréquence de communication, les conditions de pose et les exigences de destination.',
+    operationGuide: {
+      "title": "Vanne, maintenance et rapprochement pour le comptage prépayé de l’eau",
+      "intro": "Définissez la procédure d’exploitation en même temps que le compteur. Distinguez la vanne de coupure liée au crédit du clapet anti-retour, puis vérifiez la recharge, le rétablissement du service, la maintenance et les transactions avec la configuration retenue.",
+      "steps": [
+        {
+          "title": "1. Préciser la vanne et les conditions de l’eau",
+          "text": "Confirmez diamètre, pression, débit, présence de sédiments et conditions de pose. Mentionnez toute exigence de vanne en céramique et demandez sa fiche. Les fiches CA568-R01 décrivent un clapet anti-retour sans établir le matériau de la vanne de coupure liée au crédit."
+        },
+        {
+          "title": "2. Définir les règles de crédit et de service",
+          "text": "Précisez les alertes de crédit faible, l’éventuel crédit de secours pris en charge, les conditions de fermeture et de réouverture et l’assistance client. Testez les jetons valides, refusés ou répétés et la perte de connexion selon les règles de service approuvées par l’exploitant."
+        },
+        {
+          "title": "3. Prévoir l’accès et la maintenance",
+          "text": "Choisissez un clavier accessible ou une CIU séparée et vérifiez la liaison sur le site. Organisez l’isolement, les contrôles de batterie et de vanne, les compteurs de rechange et l’accès des techniciens autorisés. Conservez les relevés finaux et les transferts de solde lors du remplacement."
+        },
+        {
+          "title": "4. Rapprocher les événements avant le déploiement",
+          "text": "Associez paiements, jetons émis, comptes compteurs et relevés horodatés. Suivez séparément les données retardées, les recharges échouées et les anomalies d’état de vanne. Fixez les périodes d’observation et critères d’acceptation, puis conservez les journaux et documents de remise du pilote."
+        }
+      ]
+    },
     selectionTitle: "Comment choisir un compteur d'eau prépayé STS",
     selectionSteps: [
       {
@@ -186,6 +208,10 @@ export const frenchCategorySeoPages: Record<string, FrenchCategorySeoPage> = {
       "Quantité, exigences de destination et critères d'acceptation du pilote",
     ],
     faqQuestions: [
+      "Que préciser pour un compteur d’eau prépayé avec vanne en céramique ?",
+      "Un compteur d’eau prépayé autonome ou à clavier séparé nécessite-t-il Internet en permanence ?",
+      "Comment rapprocher les anomalies de vanne et de crédit d’un compteur d’eau ?",
+
       "Qu'est-ce qu'un compteur d'eau prépayé STS ?",
       "Quelle est la différence entre un compteur d'eau en laiton et en plastique ?",
       "Quelle est la différence entre un compteur d'eau multijet et ultrasonique ?",

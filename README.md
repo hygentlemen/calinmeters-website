@@ -26,7 +26,7 @@ npm run verify
 npm run gsc:submit-sitemap
 ```
 
-`npm run build` exports the site, preserves `CNAME` and generates `out/sitemap.xml` from the exported HTML. `npm run verify:seo` validates route coverage, metadata, canonicals, H1s, JSON-LD, sitemap parity, internal links and local image/PDF references.
+`npm run build` exports the site, preserves `CNAME` and generates `out/sitemap.xml` from the exported HTML. `data/page-modified.json` supplies known significant content/indexability dates for sitemap `lastmod`; unknown dates are omitted, and build timestamps are never substituted. `npm run verify:seo` validates route coverage, metadata, canonicals, H1s, JSON-LD, sitemap/date parity, internal links and local image/PDF references.
 
 ## SEO/GEO Page Architecture
 
@@ -36,9 +36,9 @@ The homepage is the company and product-portfolio hub. Three canonical authority
 - `/products/sts-prepaid-water-meter/`
 - `/products/sts-prepaid-gas-meter/`
 
-Ten model pages are statically generated from the product catalog. Category and model routes are implemented in `app/products/[slug]/page.tsx` through `generateStaticParams`.
+Ten model pages are statically generated from the product catalog. English category and model routes are implemented in `app/(en)/products/[slug]/page.tsx` through `generateStaticParams`. Two solution pages cover solar mini-grid metering and OEM/SKD/CKD manufacturing cooperation. There are 27 public HTML routes in total.
 
-The French release adds `/fr/`, two authority pages and eight model pages under `/fr/produits/`. `data/i18n-routes.json` is the single registry for reciprocal language switching, metadata alternates and sitemap hreflang entries. French pages remain `noindex,follow` until the professional technical-copy review in `docs/FRENCH-COPY-REVIEW.md` is signed off.
+The French release adds `/fr/`, two authority pages and eight model pages under `/fr/produits/`. `data/i18n-routes.json` is the single registry for reciprocal language switching, metadata alternates and sitemap hreflang entries. All 11 French pages use `index,follow` under the owner's 2026-09-08 review waiver in `docs/FRENCH-COPY-REVIEW.md`. Source parity and technical checks remain required.
 
 ## Content Sources
 

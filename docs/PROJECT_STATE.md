@@ -1,10 +1,12 @@
 # Project State
 
-Last reviewed: 2026-09-08.
+Last reviewed: 2026-09-14.
 
 Current implementation: 27 public HTML routes (16 English, 11 French). The owner authorized French `index,follow` on 2026-09-08 and waived professional copy review; see FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present. Week 1 fixes all-site measurement and adds buyer paths, two solution pages, real company media and the CA168-L01 / CA368-Z04 PDFs on existing model routes. Release scope and source limits are recorded in COMMERCIAL-RELEASE-2026-09-08.md.
 
 ## Current Status
+
+The September 8 release is confirmed merged and deployed (PR #25; Pages run 34242798354). This week's water guidance and sitemap-date increment preserves the existing 27 routes and has passed local verification. Release evidence and operational follow-up are tracked in [weekly/2026-09-14.md](weekly/2026-09-14.md).
 
 CalinMeters is a static Next.js inquiry site for Shenzhen Calinmeter Co., Ltd. Production is `https://calinmeters.com/`, exported to `out/` and deployed from `main` through GitHub Pages.
 
@@ -54,7 +56,7 @@ npm run verify:seo
 Expected SEO verification summary:
 
 ```text
-SEO verification passed: 27 HTML pages, 27 sitemap URLs, 13 product routes, 11 localized pairs.
+SEO verification passed: 27 HTML pages, 27 sitemap URLs, 11 reciprocal locale pairs.
 ```
 
 Recent Search Console daily artifacts contained no query or landing-page rows before the authority pages were added. Current traffic is very small and was previously concentrated on `/`, so ranking movement must be measured after indexing.
@@ -63,7 +65,7 @@ On 2026-07-21, the OAuth app was restored to In production and the repository re
 
 ## Not Implemented
 
-- The 2026-09-07 inspection reported all three English authority pages indexed; French pages need recrawling after the indexable release.
+- The 2026-09-14 inspection reports all three English authority pages and both solution pages indexed. French records show six stale noindex crawls, four discovered/not indexed URLs and one URL unknown to Google; current French pages are indexable, but post-release recrawling is not established.
 - Individual URL indexing requests still require Search Console UI access; Google does not provide a general-purpose indexing API for ordinary product pages.
 - Private delivery verification and qualified-inquiry reporting still require the operator’s mail/CRM records; GA4 event counts alone do not establish lead quality.
 - No CMS/admin interface exists.

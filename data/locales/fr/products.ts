@@ -412,6 +412,7 @@ export const frenchProducts = [
         label: 'Indice de protection',
         value: 'IP68',
       },
+      { sourceLabel: 'Back-flow feature', sourceValue: 'Non-return valve described in the datasheet', label: 'Protection contre le retour d’eau', value: 'Clapet anti-retour décrit dans la fiche technique' },
     ],
     applications: [
       "Projets résidentiels et communautaires de comptage d'eau prépayé sensibles au coût",
@@ -481,6 +482,7 @@ export const frenchProducts = [
         label: 'Indice de protection',
         value: 'IP68',
       },
+      { sourceLabel: 'Back-flow feature', sourceValue: 'Non-return valve described in the datasheet', label: 'Protection contre le retour d’eau', value: 'Clapet anti-retour décrit dans la fiche technique' },
     ],
     applications: [
       "Projets résidentiels, communautaires et de services publics de comptage d'eau prépayé",

@@ -2,7 +2,15 @@
 
 生产站点为 `https://calinmeters.com/`，仓库 `hygentlemen/calinmeters-website`，生产分支 `main`。技术栈是 Next.js 14.2.35 + React 18 + TypeScript + Tailwind，`output: 'export'` 静态导出后部署到 GitHub Pages。不要切换到 Vercel；`public/CNAME` 必须保留。
 
-## 2026-07-17 SEO/GEO 架构
+## 2026-09-14 continuation
+
+PR #25 was merged and deployed on 2026-09-08. The current site has 27 public HTML routes (16 English, 11 French), including the mini-grid and OEM/SKD/CKD solution pages. French pages are indexable under the owner's 2026-09-08 review waiver; do not restore the earlier noindex gate.
+
+The 2026-09-14 increment adds English/French water operation guidance, three sourced FAQ pairs, non-return-valve details in four localized model tables, and manually recorded sitemap modification dates. The interrupted session's implementation has been preserved. See [this week's evidence and remaining operations](weekly/2026-09-14.md) and [implementation checklist](superpowers/plans/2026-09-14-weekly-seo.md).
+
+Only update `data/page-modified.json` for significant content, schema or indexability changes. Missing dates are intentional. Rebuild the sitemap and keep `public/sitemap.xml` synchronized with `out/sitemap.xml` when dates change. Keep the untracked local knowledge-base directory and private customer/certificate source files out of website commits and the public export.
+
+## SEO/GEO 架构
 
 首页现在是公司实体和产品组合入口，不再承担全部关键词。三个核心主题各有独立权威页：
 
@@ -32,7 +40,7 @@ npm run build
 npm run verify:seo
 ```
 
-当前预期结果：25 个 HTML 页面、25 个 sitemap URL、11 对 reciprocal hreflang，以及 13 个英文 `/products/` 路由和 10 个法语 `/fr/produits/` 路由全部通过。完成 UI 修改后还要检查 1440px 桌面和 390px 移动布局。
+当前预期结果：27 个 HTML 页面、27 个 sitemap URL、11 对 reciprocal hreflang，以及 13 个英文 `/products/` 路由、10 个法语 `/fr/produits/` 路由和 2 个 `/solutions/` 路由全部通过。完成 UI 修改后还要检查 1440px 桌面和 390px 移动布局。
 
 ## 联系和分析
 
@@ -68,7 +76,7 @@ Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动
 - Never log inquiry payloads or copy secret values into repository files.
 - Validate changes with `npm --prefix workers/inquiry run check`.
 
-Production provisioning remains an operator step:
+The Worker/Resend integration was released in August 2026. The following is the provisioning/recovery procedure, not a list of known missing production setup:
 
 1. Create a managed Turnstile widget named `CalinMeters Inquiry`, restrict it to `calinmeters.com` and `www.calinmeters.com`; the Worker accepts the `en_inquiry` and `fr_inquiry` actions.
 2. Verify the `calinmeters.com` sending domain in Resend before using `Calin Meter Website <info@calinmeters.com>`.

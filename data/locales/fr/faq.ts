@@ -77,6 +77,21 @@ export const frenchFaqTranslations = [
     answer:
       "Le modèle ultrasonique peut fonctionner sans CIU puisqu'il possède un clavier intégré. Une CIU peut toutefois faciliter l'accès lorsque le compteur est installé à l'extérieur ou dans un coffret protégé. La configuration finale doit préciser le lieu de pose et le mode d'accès du client.",
   },
+  {
+    "sourceQuestion": "What should I specify for a ceramic-valve prepaid water meter?",
+    "question": "Que préciser pour un compteur d’eau prépayé avec vanne en céramique ?",
+    "answer": "Précisez le matériau de la vanne, le diamètre, la pression, les conditions de l’eau, les règles de crédit et les essais d’acceptation. Les fiches CA568-R01 multijets décrivent un clapet anti-retour sans préciser un matériau céramique. Le clapet empêche le retour d’eau ; la coupure liée au crédit remplit une autre fonction. Demandez une confirmation écrite et les documents de la configuration proposée."
+  },
+  {
+    "sourceQuestion": "Can a split or standalone prepaid water meter work without continuous internet?",
+    "question": "Un compteur d’eau prépayé autonome ou à clavier séparé nécessite-t-il Internet en permanence ?",
+    "answer": "La saisie locale d’un jeton STS valide ne nécessite pas de connexion Internet permanente au compteur. Une configuration à clavier séparé place la CIU à distance du compteur ; le fonctionnement autonome ne définit pas la plateforme de paiement. Confirmez séparément la liaison compteur-CIU, la connexion nécessaire à la vente de crédit et aux paiements, ainsi que le réseau de relève distante."
+  },
+  {
+    "sourceQuestion": "How should water-meter valve and credit exceptions be reconciled?",
+    "question": "Comment rapprocher les anomalies de vanne et de crédit d’un compteur d’eau ?",
+    "answer": "Associez les identifiants du compteur et du compte client, la référence du paiement, le jeton, le solde, le relevé et l’événement de vanne avec leurs horodatages. Distinguez l’envoi d’une commande du retour d’état de la vanne, lorsque ce retour est disponible. Consignez les recharges échouées, relevés retardés et anomalies de rétablissement du service. Lors du remplacement, enregistrez le relevé final, le transfert de crédit convenu et le nouveau compteur."
+  },
 ] satisfies FrenchFaqTranslation[];
 
 export const frenchFaqItems: FaqItem[] = frenchFaqTranslations.map(

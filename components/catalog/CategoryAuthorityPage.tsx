@@ -224,6 +224,26 @@ export function CategoryAuthorityPage({
         </section>
       )}
 
+      {seo.operationGuide && <section id="water-operations" className="scroll-mt-24 border-t border-slate-200 bg-primary-50 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-sm font-semibold uppercase tracking-wider text-primary-700">{isFrench ? 'Exploitation et maintenance' : 'Operations and maintenance'}</p>
+          <h2 className="mt-3 max-w-4xl text-3xl font-bold text-slate-950">{seo.operationGuide.title}</h2>
+          <p className="mt-4 max-w-4xl leading-8 text-slate-700">{seo.operationGuide.intro}</p>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">{seo.operationGuide.steps.map(step => <article key={step.title} className="rounded-xl border border-primary-100 bg-white p-6">
+            <h3 className="text-xl font-bold text-slate-950">{step.title}</h3><p className="mt-3 leading-7 text-slate-600">{step.text}</p>
+          </article>)}</div>
+          <div className="my-8 rounded-xl border border-primary-100 bg-white p-6">
+            <h3 className="text-lg font-bold text-slate-950">{isFrench ? 'Vérifier les fiches des modèles' : 'Check the model datasheets'}</h3>
+            <p className="mt-2 text-sm leading-7 text-slate-600">{isFrench ? 'Confirmez la fonction et le matériau de la vanne pour la configuration commandée.' : 'Confirm the valve function and material for the ordered configuration.'}</p>
+            <ul className="mt-4 space-y-4">{products.map(({ product, subCategoryName }) => product.specs[0] && product.slug ? <li key={product.id} className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              <Link href={productHref(product.slug)} className="font-semibold text-primary-800 underline">{product.model} — {subCategoryName ?? product.name}</Link>
+              <ProductPdfLink productId={product.id} productName={product.name} href={product.specs[0].pdf} label={isFrench ? 'Fiche technique en anglais (PDF)' : 'Download PDF'} locale={locale} />
+            </li> : null)}</ul>
+          </div>
+          <InquiryCta topic={isFrench ? 'la vanne et l’exploitation de votre réseau d’eau' : 'water-meter valve and operating requirements'} locale={locale} description={isFrench ? 'Précisez le débit, la pression, la qualité de l’eau, le matériau de vanne demandé, les règles de crédit et la procédure de maintenance.' : 'Send flow, pressure, water quality, the required valve material, credit rules and maintenance workflow for a configuration review.'} />
+        </div>
+      </section>}
+
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary-700">{isFrench ? "Guide de sélection pour l'acheteur" : 'Buyer selection guide'}</p>

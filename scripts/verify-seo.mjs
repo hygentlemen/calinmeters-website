@@ -1,5 +1,6 @@
 import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
+import { validatePageModified } from './page-modified.mjs';
 
 const SITE_URL = 'https://calinmeters.com';
 const OUT_DIR = path.resolve('out');
@@ -264,6 +265,10 @@ if (sitemapUrls.length !== 27) {
 }
 
 const sitemapEntries = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
+const pageModified = validatePageModified(
+  JSON.parse(await readFile(path.resolve('data/page-modified.json'), 'utf8')),
+  pages.map(page => page.route),
+);
 for (const entry of sitemapEntries) {
   const loc = entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
   if (!loc) {
@@ -271,6 +276,11 @@ for (const entry of sitemapEntries) {
     continue;
   }
   const route = new URL(loc).pathname;
+  const modifiedTags = [...entry.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)];
+  const expectedModified = pageModified[route];
+  if (expectedModified ? modifiedTags.length !== 1 || modifiedTags[0][1] !== expectedModified : modifiedTags.length !== 0) {
+    failures.push(`sitemap ${loc} has a missing or incorrect significant-modification date`);
+  }
   const pair = localizedRouteLookup.get(route);
   const alternateTags = [...entry.matchAll(/<xhtml:link\s+[^>]*\/>/g)].map((match) => match[0]);
 

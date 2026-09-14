@@ -2,6 +2,8 @@
 
 This runbook governs measurement and weekly decisions for the first French release. It complements the existing English reporting and does not replace the site-wide daily metrics.
 
+The owner waived professional French copy review on 2026-09-08 and authorized `index,follow` for all 11 French URLs. This supersedes the original review gate. Source parity, terminology checks, canonical/hreflang validation and measured country-page criteria still apply; see `FRENCH-COPY-REVIEW.md`.
+
 ## Release scope
 
 The first release contains exactly 11 French URLs:
@@ -92,7 +94,7 @@ Review the 30-day window for current movement and the 90-day window for directio
 4. Record unanswered buyer questions as content gaps; do not create overlapping pages for keyword variants.
 5. Compare organic landing sessions, engaged sessions, quote starts, successful submissions, and controlled error results.
 6. Review aggregate inquiry quality and spam totals outside GA4.
-7. Route any edited French technical copy through native-French review before requesting indexing.
+7. Check edited French technical copy against the source catalog and correct material ambiguities; keep pages indexable under the owner's review waiver.
 
 Low-volume data should lead to measurement and improvement of existing owner pages, not speculative expansion. Do not infer demand from average position alone; consider impressions, clicks, query relevance, landing-page match, and consistency across the 90-day window.
 
@@ -116,7 +118,7 @@ Create a country-page proposal only when a country has either:
 
 and the team can add unique, factual value beyond changing the country name.
 
-Passing the numerical threshold permits a proposal, not automatic publication. The proposal must document the query/inquiry evidence, a distinct buyer need, unique factual content, an existing canonical-overlap review, and a native-French review path. If those are absent, improve the existing French category or product owner instead.
+Passing the numerical threshold permits a proposal, not automatic publication. The proposal must document the query/inquiry evidence, a distinct buyer need, unique factual content, an existing canonical-overlap review, and technical source/terminology checks under the owner-authorized French indexing policy. If those are absent, improve the existing French category or product owner instead.
 
 ## Authentication and secrets
 
