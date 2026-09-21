@@ -43,8 +43,8 @@
 
 ## Contact Handling
 
-- Public contact email: `info@calinmeters.com`.
-- English and French inquiry forms post to the separate Cloudflare Worker, which sends validated inquiries to `tom.qi@qq.com` through Resend.
+- Public contact email: `scott@szcalinmeter.com`.
+- English and French inquiry forms post to the separate Cloudflare Worker, which sends validated inquiries to `scott@szcalinmeter.com` through Resend.
 - The validated customer email is used only as Reply-To; Worker secrets remain outside the static site build.
 - No customer inquiry database exists.
 
@@ -99,3 +99,9 @@ The owner authorized use of the supplied meter material folders and waived the F
 ## 2026-09-14 significant page dates
 
 `data/page-modified.json` records known significant content or indexability changes, not build timestamps. The 2026-09-08 commercial release establishes the initial known dates for French indexability and the newly supplied commercial/model content. The 2026-09-14 water guide/model/FAQ increment updates only affected routes; unknown older dates are omitted. Update a route date when its main content, schema or indexability materially changes. Postbuild and SEO verification reject invalid, future or unexported dates and check sitemap agreement. See [Google sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
+
+## 2026-09-21 contact and inquiry recipient
+
+The owner requested `scott@szcalinmeter.com` for both public website contact and form delivery. `lib/site.ts` is the public identity source, including the quotation FAQ; `workers/inquiry/wrangler.jsonc` sets the Worker recipient. Resend continues using the existing verified `Calin Meter Website <info@calinmeters.com>` sender, and Reply-To remains the validated visitor email. Do not replace the authenticated sender with an unverified domain as a side effect of a recipient change.
+
+All 27 current pages receive September 21 modification dates: both homepages change their primary contact/Organization data, and every category, model and solution page changes its main inquiry email destination. This is the documented contact migration, not an automatic date refresh for a footer-only change or a build.

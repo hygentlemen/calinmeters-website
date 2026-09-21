@@ -54,7 +54,8 @@ Do not duplicate product names or PDF paths in route files. Do not add certifica
 
 - GA4 uses `NEXT_PUBLIC_GA_MEASUREMENT_ID` during the production build.
 - The English and French inquiry forms use the public repository variables `NEXT_PUBLIC_INQUIRY_ENDPOINT` and `NEXT_PUBLIC_TURNSTILE_SITE_KEY`.
-- The static site posts to the separate `workers/inquiry` Cloudflare Worker, which uses the official Resend SDK to deliver mail from `info@calinmeters.com` to `tom.qi@qq.com` with the validated customer email as Reply-To.
+- The static site posts to the separate `workers/inquiry` Cloudflare Worker, which uses the official Resend SDK to deliver mail from `info@calinmeters.com` to `scott@szcalinmeter.com` with the validated customer email as Reply-To.
+- Public contact links, fallback messages, FAQ and Organization metadata use `scott@szcalinmeter.com` from `lib/site.ts`. The authenticated Resend sender is a separate delivery setting; changing the public/recipient address does not require changing that sender.
 - `TURNSTILE_SECRET_KEY`, `RESEND_API_KEY` and `RATE_LIMIT_KEY_SECRET` exist only as Cloudflare Worker secrets; never expose them to the website build.
 - Specification clicks emit `specification_download` events.
 - Daily GA4/Search Console reporting runs through `.github/workflows/daily-analytics-report.yml`.

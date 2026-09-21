@@ -2,6 +2,10 @@
 
 生产站点为 `https://calinmeters.com/`，仓库 `hygentlemen/calinmeters-website`，生产分支 `main`。技术栈是 Next.js 14.2.35 + React 18 + TypeScript + Tailwind，`output: 'export'` 静态导出后部署到 GitHub Pages。不要切换到 Vercel；`public/CNAME` 必须保留。
 
+## 2026-09-21 contact update
+
+Public contact and the English/French inquiry recipient are now configured as `scott@szcalinmeter.com`. The Worker keeps the verified `info@calinmeters.com` Resend sender and the visitor's validated Reply-To. Both the GitHub Pages and Inquiry Worker deployments must succeed for this change. Current evidence and operational deferrals: [weekly/2026-09-21.md](weekly/2026-09-21.md); post-release run IDs and live configuration checks are recorded in [issue #28](https://github.com/hygentlemen/calinmeters-website/issues/28).
+
 ## 2026-09-14 continuation
 
 PR #25 was merged and deployed on 2026-09-08. The current site has 27 public HTML routes (16 English, 11 French), including the mini-grid and OEM/SKD/CKD solution pages. French pages are indexable under the owner's 2026-09-08 review waiver; do not restore the earlier noindex gate.
@@ -44,7 +48,7 @@ npm run verify:seo
 
 ## 联系和分析
 
-英文和法语询盘表单在生产 Worker 和 Turnstile 变量配置后都会安全提交；变量缺失时仅显示 email/WhatsApp 降级通道。公开邮箱 `info@calinmeters.com`，WhatsApp/WeChat `+8613713788753`。
+英文和法语询盘表单在生产 Worker 和 Turnstile 变量配置后都会安全提交；变量缺失时仅显示 email/WhatsApp 降级通道。公开邮箱 `scott@szcalinmeter.com`，WhatsApp/WeChat `+8613713788753`。
 
 GA4 使用 `NEXT_PUBLIC_GA_MEASUREMENT_ID`。英文 PDF 自定义事件是 `specification_download`；法语站另外记录受控的询盘、联系方式、PDF 与语言切换事件。日报和每周 SEO/GEO Issue 工作流包含 30/90 天法语分段。
 
@@ -68,7 +72,7 @@ Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动
 - Worker package: `workers/inquiry`
 - Public contract: `POST /v1/inquiries`
 - Allowed production origins: `https://calinmeters.com`, `https://www.calinmeters.com`
-- Delivery recipient: `tom.qi@qq.com`
+- Delivery recipient: `scott@szcalinmeter.com`
 - Resend sender: `Calin Meter Website <info@calinmeters.com>`
 - Reply-To: the validated customer email from each inquiry
 - Worker secrets live in Cloudflare: `TURNSTILE_SECRET_KEY`, `RESEND_API_KEY`, `RATE_LIMIT_KEY_SECRET`
