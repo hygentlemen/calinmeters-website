@@ -1,3 +1,5 @@
+import { site } from '@/lib/site';
+
 export interface FaqItem {
   question: string;
   answer: string;
@@ -226,7 +228,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         question: 'Can you share the price list?',
-        answer: 'Please contact us directly at info@calinmeters.com or via WhatsApp/WeChat at +8613713788753 and we will send a quote as soon as possible.',
+        answer: `Please contact us directly at ${site.email} or via WhatsApp/WeChat at +8613713788753 and we will send a quote as soon as possible.`,
       },
     ],
   },

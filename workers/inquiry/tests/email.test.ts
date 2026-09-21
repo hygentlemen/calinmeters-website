@@ -35,7 +35,7 @@ const inquiry: InquiryPayload = {
 const env = {
   RESEND_API_KEY: 're_test',
   RESEND_FROM: 'Calin Meter Website <info@calinmeters.com>',
-  INQUIRY_RECIPIENT: 'tom.qi@qq.com',
+  INQUIRY_RECIPIENT: 'scott@szcalinmeter.com',
 } satisfies Pick<Env, 'RESEND_API_KEY' | 'RESEND_FROM' | 'INQUIRY_RECIPIENT'>;
 
 describe('renderInquiryEmail', () => {
@@ -64,7 +64,7 @@ describe('sendInquiryEmail', () => {
     )).resolves.toEqual({ ok: true });
     expect(send).toHaveBeenCalledWith(expect.objectContaining({
       from: 'Calin Meter Website <info@calinmeters.com>',
-      to: ['tom.qi@qq.com'],
+      to: ['scott@szcalinmeter.com'],
       replyTo: 'jean@example.com',
       subject: 'New Website Inquiry | Example Bcc: attacker@example.com | Cameroun',
     }));

@@ -27,7 +27,7 @@ const valid = {
 function env(rateAllowed = true): Env {
   return {
     ALLOWED_ORIGINS: 'https://calinmeters.com,https://www.calinmeters.com',
-    INQUIRY_RECIPIENT: 'tom.qi@qq.com',
+    INQUIRY_RECIPIENT: 'scott@szcalinmeter.com',
     RESEND_FROM: 'Calin Meter Website <info@calinmeters.com>',
     LOCAL_TURNSTILE_TEST_MODE: 'false',
     TURNSTILE_EXPECTED_ACTION: 'fr_inquiry,en_inquiry',
