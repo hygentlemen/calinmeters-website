@@ -2,6 +2,10 @@
 
 生产站点为 `https://calinmeters.com/`，仓库 `hygentlemen/calinmeters-website`，生产分支 `main`。技术栈是 Next.js 14.2.35 + React 18 + TypeScript + Tailwind，`output: 'export'` 静态导出后部署到 GitHub Pages。不要切换到 Vercel；`public/CNAME` 必须保留。
 
+## 2026-09-28 weekly review
+
+[This week's evidence and decisions](weekly/2026-09-28.md) covers issue #30, GA4 September 21–27 and GSC September 18–24. The site and Worker configuration remain on the successful PR #29 release; all 27 live pages and 10 public PDFs passed the September 28 checks. This week updates operational records only, with no page-date refresh or new country/product content. GSC records still have six stale French noindex crawls and five discovered/unindexed pages despite live `index,follow`. GA4 controlled result/product/buyer dimensions are still unavailable. Scott/property administrators own manual recrawl, field CWV, dimension registration and private delivery/lead-quality verification. Next checkpoint: October 5; the completion evidence is in [issue #30](https://github.com/hygentlemen/calinmeters-website/issues/30).
+
 ## 2026-09-21 contact update
 
 Public contact and the English/French inquiry recipient are now configured as `scott@szcalinmeter.com`. The Worker keeps the verified `info@calinmeters.com` Resend sender and the visitor's validated Reply-To. Both the GitHub Pages and Inquiry Worker deployments must succeed for this change. Current evidence and operational deferrals: [weekly/2026-09-21.md](weekly/2026-09-21.md); post-release run IDs and live configuration checks are recorded in [issue #28](https://github.com/hygentlemen/calinmeters-website/issues/28).

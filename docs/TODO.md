@@ -2,10 +2,10 @@
 
 ## P0 - Production Indexing and Measurement
 
-1. Done: September 8 and 14 changes were merged and deployed in PRs #25 and #27. Current weekly contact/recipient update and release evidence: [2026-09-21](weekly/2026-09-21.md).
-2. Verify the three authority pages, representative model pages, `robots.txt` and `sitemap.xml` on the production domain.
+1. Done: September 8, 14 and 21 changes were merged and deployed in PRs #25, #27 and #29. Latest weekly review and explicit deferrals: [2026-09-28](weekly/2026-09-28.md).
+2. Done September 28: verified all 27 production pages, 11 language pairs, 10 PDFs, `robots.txt`, `llms.txt`, sitemap and the new public contact. Repeat at the October 5 checkpoint or after a material release.
 3. Done 2026-07-21: reissued the production OAuth token with GA4 read-only and Search Console write scopes; `Submit Search Console Sitemap` run `29838520351` completed with zero errors and warnings.
-4. Done: September 21 inspection confirms the three English authority pages and both solution pages indexed, including a September 20 water recrawl. French indexation was authorized September 8; six stale noindex records and five discovered/unindexed URLs still await fresh crawl evidence.
+4. Done: September 28 inspection confirms the three English authority pages and both solution pages indexed, including a September 27 water recrawl. French indexation was authorized September 8; six stale noindex records and five discovered/unindexed URLs still await fresh crawl evidence. Search Console owner: review the French homepage and two category pages first, then the eight models; field CWV and manual indexing remain UI follow-ups.
 5. Record the deployment date in the weekly SEO/GEO issue.
 6. Monitor the three primary query clusters by country, device and landing page for 4-8 weeks.
 
@@ -15,7 +15,7 @@
 2. Create buyer evidence pages only from approved source documents and customer permissions.
 3. Done: English/French forms use the Worker/Resend endpoint. Next: verify private delivery records and qualified-lead follow-up.
 4. CA168-L01 and CA368-Z04 specification PDFs added; resolve table/nameplate option differences during final quotation.
-5. Done: all-site event reporting and missing English/footer clicks are deployed and processed production reports succeed. GA4 result/product/buyer dimensions remain unavailable as of the September 21 report; the property admin must configure them before outcome breakdowns can be verified.
+5. Done: all-site event reporting and missing English/footer clicks are deployed and processed production reports succeed. GA4 result/product/buyer dimensions remain unavailable in the September 28 report; the property admin must configure event-scoped `result`, `product_category`, `product_id` and `buyer_type`, then verify future processed data. No historical outcome backfill is assumed.
 
 ## P2 - Demand-Led Content Expansion
 

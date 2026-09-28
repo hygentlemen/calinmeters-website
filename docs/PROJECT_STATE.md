@@ -1,12 +1,12 @@
 # Project State
 
-Last reviewed: 2026-09-21.
+Last reviewed: 2026-09-28.
 
 Current implementation: 27 public HTML routes (16 English, 11 French). The owner authorized French `index,follow` on 2026-09-08 and waived professional copy review; see FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present. Week 1 fixes all-site measurement and adds buyer paths, two solution pages, real company media and the CA168-L01 / CA368-Z04 PDFs on existing model routes. Release scope and source limits are recorded in COMMERCIAL-RELEASE-2026-09-08.md.
 
 ## Current Status
 
-The September 8 and 14 releases are merged and deployed (PRs #25 and #27). The September 21 work changes public contact and the inquiry recipient to `scott@szcalinmeter.com`, preserving the existing authenticated sender and 27 routes. Release evidence and operational follow-up are tracked in [weekly/2026-09-21.md](weekly/2026-09-21.md).
+The September 8, 14 and 21 releases are merged and deployed (PRs #25, #27 and #29). Public contact and the inquiry recipient are `scott@szcalinmeter.com`, preserving the existing authenticated sender and 27 routes. The September 28 weekly review verified the live site and retained the current content because returned queries expose no useful new factual gap. Latest evidence and operational follow-up: [weekly/2026-09-28.md](weekly/2026-09-28.md).
 
 CalinMeters is a static Next.js inquiry site for Shenzhen Calinmeter Co., Ltd. Production is `https://calinmeters.com/`, exported to `out/` and deployed from `main` through GitHub Pages.
 
@@ -65,7 +65,7 @@ On 2026-07-21, the OAuth app was restored to In production and the repository re
 
 ## Not Implemented
 
-- The 2026-09-21 inspection reports all three English authority pages and both solution pages indexed; the water authority was recrawled September 20. French records show six stale noindex crawls and five discovered/not indexed URLs. The previously unknown ultrasonic URL is now discovered. Current French pages are indexable, but post-release recrawling is not established.
+- The 2026-09-28 inspection reports all three English authority pages and both solution pages indexed; electricity, water, gas and mini-grid have post-September-21-release crawls. French records still show six stale noindex crawls and five discovered/not indexed URLs. All 11 live French pages remain indexable, but post-release French recrawling is not established.
 - Individual URL indexing requests still require Search Console UI access; Google does not provide a general-purpose indexing API for ordinary product pages.
 - Private delivery verification and qualified-inquiry reporting still require the operator’s mail/CRM records; GA4 event counts alone do not establish lead quality.
 - No CMS/admin interface exists.

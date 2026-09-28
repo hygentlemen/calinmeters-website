@@ -4,7 +4,7 @@ This is a rolling plan. Update it after reviewing actual Search Console and GA4 
 
 ## Week 1 After Deployment: Indexing Baseline
 
-- Confirm all 14 canonical URLs in the production sitemap.
+- Confirm all 27 canonical URLs (16 English and 11 French) in the production sitemap.
 - Submit the sitemap and request indexing for the three category authority pages.
 - Check GA4 specification-download and contact events.
 - Record deployment and first crawl dates in the weekly issue.
@@ -31,6 +31,8 @@ This is a rolling plan. Update it after reviewing actual Search Console and GA4 
 - Defer regional or supporting pages if the data is still too sparse.
 
 ## Monthly Review
+
+Latest checkpoint: [September 28, 2026](weekly/2026-09-28.md). The existing STS definition, electricity selection and water-operation answers cover the returned query themes. Further content expansion awaits useful query gaps or approved first-party evidence; the October 5 checkpoint prioritizes French recrawl, inquiry outcomes and delivery verification.
 
 - Top growing queries.
 - Queries with impressions but low CTR.
