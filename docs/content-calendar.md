@@ -32,7 +32,7 @@ This is a rolling plan. Update it after reviewing actual Search Console and GA4 
 
 ## Monthly Review
 
-Latest checkpoint: [September 28, 2026](weekly/2026-09-28.md). The existing STS definition, electricity selection and water-operation answers cover the returned query themes. Further content expansion awaits useful query gaps or approved first-party evidence; the October 5 checkpoint prioritizes French recrawl, inquiry outcomes and delivery verification.
+Latest checkpoint: [October 7, 2026, for the October 5 week](weekly/2026-10-05.md). The missing GSC day was recovered before comparison, and the current definition/selection/water-operation answers still cover returned themes. The October 12 checkpoint prioritizes French recrawl (including the now-unknown brass-water URL), a matched query/country/device/page decline breakdown, and inquiry measurement/delivery verification. Further content expansion awaits useful factual gaps or approved first-party evidence.
 
 - Top growing queries.
 - Queries with impressions but low CTR.

@@ -40,6 +40,20 @@ GA4 windows end on the requested report date. Search Console windows end three d
 
 The `Weekly SEO/GEO Execution` workflow runs each Monday at 09:15 Asia/Shanghai. Its GitHub Issue is the operating checklist for indexing, hreflang, content gaps, inquiry quality, native-French review, and the country-page decision gate.
 
+## Missing totals and quiet historical backfill
+
+Before a weekly comparison, inspect each raw artifact's `searchOverview` as well as `sourceStatus`. A successful workflow/API request can return an empty property-summary array. Treat that day as unavailable, never zero, and never rebuild its totals by adding capped page/query rows. Keep both comparison windows complete and equally long.
+
+Use a manual dispatch with notifications disabled to recover a missing historical day. `report_date` is the GA4 date; the GSC date is three calendar days earlier. For example, to re-query GSC September 30:
+
+```bash
+gh workflow run daily-analytics-report.yml --ref main -f report_date=2026-10-03 -f notify=false
+```
+
+Wait for the dispatched run to finish, download its `daily-analytics-report` artifact, and verify dates, source status and the property-summary row. Record both the original and replacement run IDs and any revised GA4 counts in the weekly memo. An ordinary rerun of the scheduled job retains notification behavior; use the explicit quiet dispatch for backfills. The October 7 recovery is documented in [the October 5 weekly record](weekly/2026-10-05.md).
+
+A later successful backfill proves that the initial snapshot lacked data; it does not establish why the upstream data was missing. If totals remain unavailable, label the comparison incomplete or use an explicitly matched set of observed days. Do not publish a seven-day percentage from six days or silently mix extraction snapshots. Re-query only the dates needed, preserving the existing GA4 concurrency/retry controls.
+
 ## Local deterministic checks
 
 These commands use synthetic aggregate data, require no Google credentials, do not call external services, and do not write report files:
