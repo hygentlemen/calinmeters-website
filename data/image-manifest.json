@@ -1,9 +1,9 @@
 {
   "/images/banners/banner-product.jpg": {
-    "width": 1400,
-    "height": 361,
-    "src": "/images/optimized/banner-product-720-c95051e74707.webp",
-    "srcSet": "/images/optimized/banner-product-160-e377d2bf6179.webp 160w, /images/optimized/banner-product-320-6d73681de316.webp 320w, /images/optimized/banner-product-480-50209a30c1dc.webp 480w, /images/optimized/banner-product-720-c95051e74707.webp 720w, /images/optimized/banner-product-1080-a3a27e61b7fd.webp 1080w, /images/optimized/banner-product-1400-1bda4d984814.webp 1400w"
+    "width": 2800,
+    "height": 1200,
+    "src": "/images/optimized/banner-product-720-bd21d0379f18.webp",
+    "srcSet": "/images/optimized/banner-product-160-393b5952c3b7.webp 160w, /images/optimized/banner-product-320-fdee5fe3b442.webp 320w, /images/optimized/banner-product-480-04d9795e1455.webp 480w, /images/optimized/banner-product-720-bd21d0379f18.webp 720w, /images/optimized/banner-product-1080-1e1f8d93c763.webp 1080w, /images/optimized/banner-product-1400-77f148ab791b.webp 1400w, /images/optimized/banner-product-1920-f6221d3d2b8e.webp 1920w, /images/optimized/banner-product-2560-facb766a8b6b.webp 2560w, /images/optimized/banner-product-2800-72069039240a.webp 2800w"
   },
   "/images/banners/banner-field.jpg": {
     "width": 1400,
@@ -107,11 +107,11 @@
     "src": "/images/optimized/ultrasonic-1-720-2425b0fc9cef.webp",
     "srcSet": "/images/optimized/ultrasonic-1-160-5be0425071ca.webp 160w, /images/optimized/ultrasonic-1-320-dc243614c8b1.webp 320w, /images/optimized/ultrasonic-1-480-051e4e8e95d0.webp 480w, /images/optimized/ultrasonic-1-720-2425b0fc9cef.webp 720w"
   },
-  "/images/products/gas/prepaid-gas-meter.jpg": {
-    "width": 4160,
-    "height": 4160,
-    "src": "/images/optimized/prepaid-gas-meter-720-cd3abd70bb89.webp",
-    "srcSet": "/images/optimized/prepaid-gas-meter-160-5dc809cd06d6.webp 160w, /images/optimized/prepaid-gas-meter-320-d78b27d57ca5.webp 320w, /images/optimized/prepaid-gas-meter-480-41e6e1d7f9f1.webp 480w, /images/optimized/prepaid-gas-meter-720-cd3abd70bb89.webp 720w, /images/optimized/prepaid-gas-meter-1080-973123b8eb66.webp 1080w, /images/optimized/prepaid-gas-meter-1440-44f0a68de492.webp 1440w"
+  "/images/products/gas/prepaid-gas-meter-front.jpg": {
+    "width": 1440,
+    "height": 1440,
+    "src": "/images/optimized/prepaid-gas-meter-front-720-d79f2c7b642c.webp",
+    "srcSet": "/images/optimized/prepaid-gas-meter-front-160-29d5c8b5355f.webp 160w, /images/optimized/prepaid-gas-meter-front-320-52bd78731a70.webp 320w, /images/optimized/prepaid-gas-meter-front-480-e5ed437e268d.webp 480w, /images/optimized/prepaid-gas-meter-front-720-d79f2c7b642c.webp 720w, /images/optimized/prepaid-gas-meter-front-1080-49a143d4dd96.webp 1080w, /images/optimized/prepaid-gas-meter-front-1440-710dbc66e9a0.webp 1440w"
   },
   "/images/products/gas/ca768-1.png": {
     "width": 1000,
@@ -138,9 +138,9 @@
     "srcSet": "/images/optimized/gateway-160-7d9e33e345cf.webp 160w, /images/optimized/gateway-320-24f786bbc921.webp 320w, /images/optimized/gateway-480-4af808e730e8.webp 480w, /images/optimized/gateway-720-75797634366f.webp 720w, /images/optimized/gateway-1000-6f6c848964f8.webp 1000w"
   },
   "/images/banners/banner-product-mobile.webp": {
-    "width": 740,
-    "height": 640,
-    "src": "/images/optimized/banner-product-mobile-720-c8d9c13fd986.webp",
-    "srcSet": "/images/optimized/banner-product-mobile-160-9481e9435794.webp 160w, /images/optimized/banner-product-mobile-320-4847fdd59fde.webp 320w, /images/optimized/banner-product-mobile-480-3a76281427ab.webp 480w, /images/optimized/banner-product-mobile-720-c8d9c13fd986.webp 720w, /images/optimized/banner-product-mobile-740-fa3dcd7954de.webp 740w"
+    "width": 1440,
+    "height": 1200,
+    "src": "/images/optimized/banner-product-mobile-720-fec06650ced5.webp",
+    "srcSet": "/images/optimized/banner-product-mobile-160-b2a7b67abe24.webp 160w, /images/optimized/banner-product-mobile-320-dd7cdd479e52.webp 320w, /images/optimized/banner-product-mobile-480-0c8412189cb0.webp 480w, /images/optimized/banner-product-mobile-720-fec06650ced5.webp 720w, /images/optimized/banner-product-mobile-1080-ec44d5f4968d.webp 1080w, /images/optimized/banner-product-mobile-1440-a95db2fddd49.webp 1440w"
   }
 }

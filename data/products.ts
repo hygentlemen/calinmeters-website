@@ -413,7 +413,7 @@ export const productCategories: ProductCategory[] = [
     name: 'Gas Meter',
     slug: 'sts-prepaid-gas-meter',
     description: 'Smart STS prepaid gas meters for residential and commercial applications',
-    image: '/images/products/gas/prepaid-gas-meter.jpg',
+    image: '/images/products/gas/prepaid-gas-meter-front.jpg',
     subCategories: [
       {
         name: 'Gas Meter',

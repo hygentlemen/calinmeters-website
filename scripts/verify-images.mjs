@@ -4,6 +4,13 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 const manifest = JSON.parse(await fs.readFile('data/image-manifest.json', 'utf8'));
+const productBanner = manifest['/images/banners/banner-product.jpg'];
+assert(productBanner.width >= 2800, 'Product banner must retain its high-resolution master');
+assert(productBanner.srcSet.endsWith('2800w'), 'Product banner must offer its full-resolution candidate');
+for (const name of ['banner-product', 'banner-field', 'banner-factory']) {
+  const asset = manifest[`/images/banners/${name}.jpg`];
+  assert.equal(asset.width * 3, asset.height * 7, `Carousel canvas must be 7:3: ${name}`);
+}
 const verified = new Map();
 for (const [source, asset] of Object.entries(manifest)) {
   const candidates = asset.srcSet.split(', ').map(candidate => {
@@ -69,5 +76,6 @@ for (const file of files) {
 const homepage = await fs.readFile('out/index.html', 'utf8');
 const renderedTags = [...homepage.matchAll(/<(?:img|source)\b[^>]*>/g)].map(match => match[0]).join('\n');
 assert(renderedTags.includes('banner-product-mobile'), 'Missing mobile art direction');
+assert(renderedTags.includes('prepaid-gas-meter-front-'), 'Homepage gas category must show the keypad-facing photo');
 assert(!renderedTags.includes('banner-field-') && !renderedTags.includes('banner-factory-'), 'Hidden carousel images load before first visit');
 console.log(`Image verification passed: ${Object.keys(manifest).length} families, ${verified.size} decoded candidates, ${imageCount} responsive images in ${files.length} HTML files; lossless screenshot and original water masters verified.`);

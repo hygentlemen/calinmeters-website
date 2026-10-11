@@ -13,18 +13,15 @@ const sources = [
   'products/electricity/ca368-gprs-1.png', 'products/electricity/ca368-sts-1.png',
   'products/electricity/ct-meter.jpg', 'products/water/prepaid-water-meter.jpg',
   'products/water/multi-jet-plastic-1.webp', 'products/water/multi-jet-brass-1.webp',
-  'products/water/ultrasonic-1.webp', 'products/gas/prepaid-gas-meter.jpg',
+  'products/water/ultrasonic-1.webp', 'products/gas/prepaid-gas-meter-front.jpg',
   'products/gas/ca768-1.png', 'products/ciu/ciu.png', 'products/dcu/dcu.png',
   'products/gateway/gateway.png',
 ];
 const outputDirectory = 'public/images/optimized';
 await fs.mkdir(outputDirectory, { recursive: true });
-const banner = await fs.readFile('assets/image-sources/banner-products-clean.png');
-// Art direction for narrow screens: the same seven photographed products, in two rows.
-const electricity = await sharp(banner).extract({ left: 100, top: 35, width: 688, height: 285 }).png().toBuffer();
-const waterGas = await sharp(banner).extract({ left: 795, top: 35, width: 510, height: 285 }).png().toBuffer();
-const mobileBanner = await sharp({ create: { width: 740, height: 640, channels: 3, background: '#ffffff' } })
-  .composite([{ input: electricity, left: 26, top: 20 }, { input: waterGas, left: 115, top: 335 }]).png().toBuffer();
+const banner = await fs.readFile('assets/image-sources/banner-products-desktop.png');
+// Both compositions are made from seven independent transparent product photos.
+const mobileBanner = await fs.readFile('assets/image-sources/banner-products-mobile.png');
 const manifest = {};
 const audit = [];
 const retained = new Set();
@@ -37,14 +34,15 @@ for (const source of [...sources, 'banners/banner-product-mobile.webp']) {
   const master = await sharp(input).rotate().png().toBuffer();
   const metadata = await sharp(master).metadata();
   const screenshot = source === 'projects/meter-platform.png';
-  const maxWidth = Math.min(metadata.width, screenshot ? 1920 : 1440);
-  const widths = [...new Set([160, 320, 480, 720, 1080, maxWidth].filter(width => width <= maxWidth))].sort((a, b) => a - b);
+  const productBanner = source === 'banners/banner-product.jpg';
+  const maxWidth = Math.min(metadata.width, productBanner ? 2800 : screenshot ? 1920 : 1440);
+  const widths = [...new Set([160, 320, 480, 720, 1080, ...(productBanner ? [1400, 1920, 2560] : []), maxWidth].filter(width => width <= maxWidth))].sort((a, b) => a - b);
   const variants = [];
   for (const width of widths) {
     const encoded = source.endsWith('.webp') && !mobile && width === metadata.width
       ? input // Keep the already optimized water masters; avoid lossy recompression.
       : await sharp(master).resize({ width, withoutEnlargement: true })
-        .webp({ quality: source.includes('products/') ? 86 : 82, effort: 6, lossless: screenshot }).toBuffer();
+        .webp({ quality: productBanner || mobile ? 90 : source.includes('products/') ? 86 : 82, effort: 6, lossless: screenshot }).toBuffer();
     const hash = createHash('sha256').update(encoded).digest('hex').slice(0, 12);
     const filename = `${path.parse(source).name}-${width}-${hash}.webp`;
     await fs.writeFile(path.join(outputDirectory, filename), encoded);
