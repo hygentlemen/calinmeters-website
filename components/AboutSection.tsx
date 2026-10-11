@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/StaticImage';
 import Link from 'next/link';
 
 export default function AboutSection() {
@@ -30,9 +30,9 @@ export default function AboutSection() {
           <div className="relative h-96 overflow-hidden rounded-2xl shadow-xl">
             <Image
               src="/images/company/factory.jpg"
-              alt="CalinMeters facility interior"
+              alt="Exterior of the CalinMeters factory building"
               fill
-              sizes="(min-width: 768px) 50vw, 100vw"
+              sizes="(min-width: 1280px) 584px, (min-width: 768px) 46vw, 92vw"
               className="object-cover"
             />
           </div>

@@ -4,6 +4,10 @@ Last reviewed: 2026-10-11.
 
 Current implementation: 27 public HTML routes (16 English, 11 French). The owner authorized French `index,follow` on 2026-09-08 and waived professional copy review; see FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present. Week 1 fixes all-site measurement and adds buyer paths, two solution pages, real company media and the CA168-L01 / CA368-Z04 PDFs on existing model routes. Release scope and source limits are recorded in COMMERCIAL-RELEASE-2026-09-08.md.
 
+## 2026-10-11 image optimization
+
+The site now serves static responsive WebP candidates for 23 existing images plus a mobile product banner. Compositor removed baked-in banner lettering; mobile/French layouts show all seven products. Largest delivered candidates total 88.2% fewer bytes than the original 23 files. Original URLs, screenshot masking, catalog data and Pages hosting are preserved. Reproduction and validation: [IMAGE-OPTIMIZATION-2026-10-11.md](IMAGE-OPTIMIZATION-2026-10-11.md).
+
 ## Current Status
 
 The September 8, 14 and 21 releases are merged and deployed (PRs #25, #27 and #29). Public contact and the inquiry recipient are `scott@szcalinmeter.com`, preserving the existing authenticated sender and 27 routes. The October 7 review recovered a missing GSC day through a quiet backfill, verified the live site and retained current content because no useful new factual gap or live technical defect was established. Current complete-week GSC totals are 517 impressions / 16 clicks, versus 632 / 27. Latest evidence, comparison limits and operational follow-up: [weekly/2026-10-05.md](weekly/2026-10-05.md).

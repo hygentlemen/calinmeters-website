@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
+import Image from '@/components/StaticImage';
 
 const slides = [
   {
@@ -22,43 +22,59 @@ const slides = [
 
 export default function BannerCarousel() {
   const [current, setCurrent] = useState(0);
+  const [visited, setVisited] = useState([0]);
+  const [paused, setPaused] = useState(false);
 
   const goTo = useCallback((i: number) => {
+    setPaused(true);
+    setVisited((previous) => previous.includes(i) ? previous : [...previous, i]);
     setCurrent(i);
   }, []);
 
   const goNext = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % slides.length);
-  }, []);
+    goTo((current + 1) % slides.length);
+  }, [current, goTo]);
 
   const goPrev = useCallback(() => {
-    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
-  }, []);
+    goTo((current - 1 + slides.length) % slides.length);
+  }, [current, goTo]);
 
-  // Autoplay
+  // Keep the chosen photograph still after a visitor uses the controls.
   useEffect(() => {
-    const timer = setInterval(goNext, 5000);
+    if (paused) return;
+    const timer = setInterval(() => {
+      const next = (current + 1) % slides.length;
+      setVisited((previous) => previous.includes(next) ? previous : [...previous, next]);
+      setCurrent(next);
+    }, 5000);
     return () => clearInterval(timer);
-  }, [goNext]);
+  }, [current, paused]);
 
   return (
-    <section id="home" aria-label="CalinMeters product overview" className="relative h-[400px] w-full overflow-hidden bg-gray-100 md:h-[600px]">
+    <section id="home" aria-label="CalinMeters product overview" className="relative h-[520px] w-full overflow-hidden bg-[#f5f8fb] md:h-[600px]">
       {/* Slides */}
       {slides.map((slide, i) => (
         <div
           key={slide.image}
+          aria-hidden={i !== current}
           className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
             i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}
         >
-          <Image
-            src={slide.image}
-            alt={slide.alt}
-            fill
-            priority={i === 0}
-            sizes="100vw"
-            className="object-cover"
-          />
+          {visited.includes(i) && (
+            <div className={i === 0 ? 'absolute inset-x-4 bottom-14 top-40 md:inset-x-8 md:bottom-16 md:top-44' : 'absolute inset-0'}>
+              <Image
+                src={slide.image}
+                mobileSrc={i === 0 ? '/images/banners/banner-product-mobile.webp' : undefined}
+                alt={slide.alt}
+                fill
+                priority={i === 0}
+                loading="eager"
+                sizes={i === 0 ? '(min-width: 768px) 95vw, 92vw' : '100vw'}
+                className={i === 0 ? 'object-contain' : 'object-cover'}
+              />
+            </div>
+          )}
           {slide.headline && (
             <div className="absolute inset-x-0 top-0 z-10 h-32 md:h-44 bg-gradient-to-b from-[#f8fafc] via-[#f8fafc]/95 to-[#f8fafc]/0">
               <div className="mx-auto mt-5 md:mt-9 w-[min(92vw,760px)] text-center">
@@ -78,7 +94,7 @@ export default function BannerCarousel() {
       <button
         type="button"
         onClick={goPrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition"
+        className="absolute bottom-5 left-4 z-20 md:bottom-auto md:top-1/2 md:-translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition"
         aria-label="Previous slide"
       >
         <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -88,7 +104,7 @@ export default function BannerCarousel() {
       <button
         type="button"
         onClick={goNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition"
+        className="absolute bottom-5 right-4 z-20 md:bottom-auto md:top-1/2 md:-translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition"
         aria-label="Next slide"
       >
         <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,7 +126,7 @@ export default function BannerCarousel() {
             <span
               aria-hidden="true"
               className={`h-3 w-3 rounded-full transition-all ${
-                i === current ? 'scale-110 bg-white' : 'bg-white/40 group-hover:bg-white/60'
+                i === current ? 'scale-110 bg-primary-700 ring-2 ring-white' : 'bg-slate-500/60 ring-1 ring-white group-hover:bg-slate-700'
               }`}
             />
           </button>

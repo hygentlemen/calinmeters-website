@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import Image from '@/components/StaticImage';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
@@ -43,7 +43,7 @@ export default function SolutionPage({ params }: { params: { slug: string } }) {
             <a href="#project-inquiry" className="mt-7 inline-flex min-h-12 items-center rounded-lg bg-primary-700 px-6 py-3 font-semibold text-white hover:bg-primary-800">Discuss your project</a>
           </div>
           <figure>
-            <Image src={page.image} alt={page.imageAlt} width={1080} height={1080} priority className="h-[420px] w-full rounded-2xl object-cover shadow-lg" />
+            <Image src={page.image} alt={page.imageAlt} width={1080} sizes="(min-width: 1280px) 550px, (min-width: 1024px) 44vw, 92vw" priority className="h-[420px] w-full rounded-2xl object-cover shadow-lg" />
             <figcaption className="mt-3 text-xs leading-5 text-slate-500">{page.imageCaption}</figcaption>
           </figure>
         </div>
@@ -60,7 +60,7 @@ export default function SolutionPage({ params }: { params: { slug: string } }) {
         {!manufacturing && <section className="border-t border-slate-200 py-14">
           <h2 className="text-3xl font-bold text-slate-950">Vending and operations in one working view</h2>
           <p className="mt-4 max-w-4xl leading-7 text-slate-600">The supplied platform view shows token generation and records, remote operations, reporting and account management. Plan user roles, payment interfaces and reconciliation outputs with the project team.</p>
-          <figure className="mt-8"><Image src="/images/projects/meter-platform.png" alt="Anonymized metering platform dashboard with token, remote-operation and reporting navigation" width={1920} height={869} className="h-auto w-full rounded-xl border border-slate-200" /><figcaption className="mt-3 text-sm text-slate-500">Company-supplied platform screenshot, with the account identity masked in the supplied image. Displayed dashboard figures illustrate the interface and are not a claim about your project’s expected results.</figcaption></figure>
+          <figure className="mt-8"><Image src="/images/projects/meter-platform.png" alt="Anonymized metering platform dashboard with token, remote-operation and reporting navigation" width={1920} sizes="(min-width: 1280px) 1216px, 92vw" className="h-auto w-full rounded-xl border border-slate-200" /><figcaption className="mt-3 text-sm text-slate-500">Company-supplied platform screenshot, with the account identity masked in the supplied image. Displayed dashboard figures illustrate the interface and are not a claim about your project’s expected results.</figcaption></figure>
           <div className="mt-7"><InquiryCta topic="service-provider cooperation" description="Tell us your country, installation and maintenance coverage, team experience and the metering services you can provide." /></div>
         </section>}
         {manufacturing && <section id="documentation" className="scroll-mt-24 border-t border-slate-200 py-14">
