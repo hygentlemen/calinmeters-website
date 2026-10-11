@@ -84,3 +84,11 @@ docs/                   Project state, decisions, plans and handoff
 3. Push to `main` to deploy through GitHub Pages.
 4. Confirm production canonical URLs and `sitemap.xml`.
 5. Submit the sitemap and request indexing for the three authority pages in Google Search Console.
+
+## Static image optimization
+
+GitHub Pages does not run an image optimizer. `components/StaticImage.tsx` uses the checked-in `data/image-manifest.json` and content-hashed files in `public/images/optimized/` to serve real responsive `srcset` candidates. Original public URLs remain available for existing links and structured data.
+
+After changing an image, register its original path in `scripts/optimize-images.mjs`, then run `npm run images:optimize` and `npm run verify`. Commit the generated files and manifest together. Normal builds do not need an external drive or Compositor. Source dimensions determine the HTML aspect ratio; use CSS for the display box and set `sizes` to its rendered width. Below-fold images are lazy by default; use `priority` for a hero.
+
+The product banner's text-free Compositor export is retained in `assets/image-sources/`. The mobile arrangement uses the same seven photographed products. See [image optimization evidence](docs/IMAGE-OPTIMIZATION-2026-10-11.md) for provenance, measurements and verification.

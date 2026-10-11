@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/StaticImage';
 import Link from 'next/link';
 import type { CatalogProduct } from '@/lib/catalog';
 import { productPath } from '@/lib/site';
@@ -45,7 +45,6 @@ export function ProductDetailPage({
                 src={product.image}
                 alt={isFrench ? `Vue du produit ${product.name}` : `${product.name} product view`}
                 width={800}
-                height={640}
                 priority
                 sizes="(min-width: 1024px) 44vw, 90vw"
                 className="h-auto max-h-[500px] w-full object-contain"

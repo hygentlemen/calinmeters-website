@@ -1,5 +1,5 @@
 import { BuyerInquiryLink } from '@/components/catalog/BuyerInquiryLink';
-import Image from 'next/image';
+import Image from '@/components/StaticImage';
 import Link from 'next/link';
 import type { FaqItem } from '@/data/faq';
 import { categorySeoPages, type CategorySeoPage } from '@/data/seoPages';
@@ -38,7 +38,6 @@ function ProductCard({
           src={product.image}
           alt={locale === 'fr' ? `Vue du produit ${product.name}` : `${product.name} product view`}
           width={640}
-          height={480}
           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
           className="h-full w-full object-contain"
         />
@@ -106,7 +105,6 @@ export function CategoryAuthorityPage({
                   src={heroImage}
                   alt={isFrench ? `${seo.primaryKeyword} CalinMeters` : `${seo.primaryKeyword} from CalinMeters`}
                   width={720}
-                  height={540}
                   priority
                   sizes="(min-width: 1024px) 36vw, 90vw"
                   className="h-auto max-h-[360px] w-full object-contain"

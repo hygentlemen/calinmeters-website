@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from '@/components/StaticImage';
 import Link from 'next/link';
 import AboutSection from '@/components/AboutSection';
 import BannerCarousel from '@/components/BannerCarousel';
@@ -160,10 +160,9 @@ function FrenchHomePage() {
             </div>
             <div className="rounded-2xl bg-white p-8 shadow-2xl">
               <Image
-                src="/images/banners/banner-product.jpg"
-                alt="Compteurs prépayés STS d'électricité et d'eau CalinMeters"
+                src="/images/banners/banner-product-mobile.webp"
+                alt="Compteurs prépayés STS d'électricité, d'eau et de gaz CalinMeters"
                 width={900}
-                height={680}
                 priority
                 sizes="(min-width: 1024px) 38vw, 90vw"
                 className="h-auto max-h-[470px] w-full object-contain"
@@ -192,7 +191,7 @@ function FrenchHomePage() {
             ].map((category) => (
               <article key={category.href} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                 <div className="flex min-h-64 items-center justify-center bg-slate-50 p-8">
-                  <Image src={category.image} alt={category.title} width={720} height={480} className="h-56 w-full object-contain" />
+                  <Image src={category.image} alt={category.title} width={720} sizes="(min-width: 1024px) 40vw, 90vw" className="h-56 w-full object-contain" />
                 </div>
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-slate-950">{category.title}</h3>

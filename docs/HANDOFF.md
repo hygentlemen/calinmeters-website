@@ -2,6 +2,10 @@
 
 生产站点为 `https://calinmeters.com/`，仓库 `hygentlemen/calinmeters-website`，生产分支 `main`。技术栈是 Next.js 14.2.35 + React 18 + TypeScript + Tailwind，`output: 'export'` 静态导出后部署到 GitHub Pages。不要切换到 Vercel；`public/CNAME` 必须保留。
 
+## 2026-10-11 image optimization
+
+The site now serves static responsive WebP candidates for 23 existing images plus a mobile product banner. Compositor removed baked-in banner lettering; mobile/French layouts show all seven products. Largest delivered candidates total 88.2% fewer bytes than the original 23 files. Original URLs, screenshot masking, catalog data and Pages hosting are preserved. Reproduction and validation: [IMAGE-OPTIMIZATION-2026-10-11.md](IMAGE-OPTIMIZATION-2026-10-11.md).
+
 ## 2026-10-11 French indexing recovery
 
 [Operation record](FRENCH-INDEXING-2026-10-11.md): all 11 French URLs passed real Google live tests (crawl allowed, successful fetch, indexing allowed, matching self-canonical), and every indexing request received priority-queue confirmation. Six historical noindex exclusions have **Validation started**, with 6 pending and 0 failed. The canonical robots.txt recrawl request was also accepted. Sitemap status is Success with 27 pages; manual actions/security issues show no issues, and crawl stats through October 6 show no host problems. No present technical indexing defect justified changing the working site or weakening Cloudflare security.

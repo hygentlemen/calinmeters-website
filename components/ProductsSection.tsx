@@ -1,17 +1,11 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import Image from 'next/image';
+import Image from '@/components/StaticImage';
 import Link from 'next/link';
 import { productCategories, type ProductVariant, type ProductCategory } from '@/data/products';
 import { trackEvent } from '@/components/GoogleAnalytics';
 import { productPath } from '@/lib/site';
-
-const imageVersion = '20260529';
-
-function versionedImage(src: string) {
-  return `${src}?v=${imageVersion}`;
-}
 
 function getCategoryCount(category: ProductCategory) {
   if (category.subCategories) {
@@ -271,12 +265,11 @@ function VariantCard({ variant }: { variant: ProductVariant }) {
       <div className="h-60 overflow-hidden bg-slate-50 flex items-center justify-center p-2">
         {!imgError ? (
           <Image
-            src={versionedImage(variant.image)}
+            src={variant.image}
             alt={variant.name}
             width={640}
-            height={480}
             sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-            className="h-full w-full scale-[1.35] object-contain transition duration-300 group-hover:scale-[1.45]"
+            className="h-full w-full object-contain"
             onError={() => setImgError(true)}
           />
         ) : (
@@ -360,12 +353,11 @@ function CategoryOverviewCard({
         <div className="flex h-64 w-full items-center justify-center overflow-hidden bg-slate-50 p-2">
           {!imgError ? (
             <Image
-              src={versionedImage(category.image)}
+              src={category.image}
               alt={category.name}
               width={640}
-              height={480}
               sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-              className="h-full w-full scale-[1.25] object-contain transition duration-300 group-hover:scale-[1.35]"
+              className="h-full w-full object-contain"
               onError={() => setImgError(true)}
             />
           ) : (
@@ -406,10 +398,10 @@ function ProductDetailSection({ category }: { category: ProductCategory }) {
           <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white p-2">
           {!imgError ? (
             <Image
-              src={versionedImage(category.image)}
+              src={category.image}
               alt={category.name}
               width={160}
-              height={160}
+              sizes="64px"
               className="h-full w-full object-contain"
               onError={() => setImgError(true)}
             />

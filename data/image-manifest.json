@@ -1,0 +1,146 @@
+{
+  "/images/banners/banner-product.jpg": {
+    "width": 1400,
+    "height": 361,
+    "src": "/images/optimized/banner-product-720-c95051e74707.webp",
+    "srcSet": "/images/optimized/banner-product-160-e377d2bf6179.webp 160w, /images/optimized/banner-product-320-6d73681de316.webp 320w, /images/optimized/banner-product-480-50209a30c1dc.webp 480w, /images/optimized/banner-product-720-c95051e74707.webp 720w, /images/optimized/banner-product-1080-a3a27e61b7fd.webp 1080w, /images/optimized/banner-product-1400-1bda4d984814.webp 1400w"
+  },
+  "/images/banners/banner-field.jpg": {
+    "width": 1400,
+    "height": 600,
+    "src": "/images/optimized/banner-field-720-217735058d2d.webp",
+    "srcSet": "/images/optimized/banner-field-160-effc0a60657b.webp 160w, /images/optimized/banner-field-320-fce0ee7c501d.webp 320w, /images/optimized/banner-field-480-708c5fdd44bc.webp 480w, /images/optimized/banner-field-720-217735058d2d.webp 720w, /images/optimized/banner-field-1080-1d0b5df8a583.webp 1080w, /images/optimized/banner-field-1400-0a5e28077032.webp 1400w"
+  },
+  "/images/banners/banner-factory.jpg": {
+    "width": 1400,
+    "height": 600,
+    "src": "/images/optimized/banner-factory-720-9e1bcc4d0b44.webp",
+    "srcSet": "/images/optimized/banner-factory-160-249e41d5141e.webp 160w, /images/optimized/banner-factory-320-654672b71a7a.webp 320w, /images/optimized/banner-factory-480-7e70bc2de3ae.webp 480w, /images/optimized/banner-factory-720-9e1bcc4d0b44.webp 720w, /images/optimized/banner-factory-1080-218a7cc77a58.webp 1080w, /images/optimized/banner-factory-1400-894ac309ef5b.webp 1400w"
+  },
+  "/images/company/factory.jpg": {
+    "width": 2736,
+    "height": 3648,
+    "src": "/images/optimized/factory-720-2249b69a9bfc.webp",
+    "srcSet": "/images/optimized/factory-160-3d038f7b0cd6.webp 160w, /images/optimized/factory-320-770c681aa558.webp 320w, /images/optimized/factory-480-66faf3b83ef7.webp 480w, /images/optimized/factory-720-2249b69a9bfc.webp 720w, /images/optimized/factory-1080-ed2abd040c96.webp 1080w, /images/optimized/factory-1440-a40120d1826b.webp 1440w"
+  },
+  "/images/manufacturing/board-inspection.jpg": {
+    "width": 3072,
+    "height": 4096,
+    "src": "/images/optimized/board-inspection-720-2aacfff2500d.webp",
+    "srcSet": "/images/optimized/board-inspection-160-9a10640ecae8.webp 160w, /images/optimized/board-inspection-320-dce1d05f79c7.webp 320w, /images/optimized/board-inspection-480-0f520877d5e5.webp 480w, /images/optimized/board-inspection-720-2aacfff2500d.webp 720w, /images/optimized/board-inspection-1080-66b9088eeb79.webp 1080w, /images/optimized/board-inspection-1440-6a89dc9def25.webp 1440w"
+  },
+  "/images/projects/meter-installation.jpeg": {
+    "width": 1080,
+    "height": 1080,
+    "src": "/images/optimized/meter-installation-720-ba7e3104b3f1.webp",
+    "srcSet": "/images/optimized/meter-installation-160-02eb0c206787.webp 160w, /images/optimized/meter-installation-320-7cf0b71370e9.webp 320w, /images/optimized/meter-installation-480-bfd8e3813a0d.webp 480w, /images/optimized/meter-installation-720-ba7e3104b3f1.webp 720w, /images/optimized/meter-installation-1080-46d1bd121b42.webp 1080w"
+  },
+  "/images/projects/meter-platform.png": {
+    "width": 1920,
+    "height": 869,
+    "src": "/images/optimized/meter-platform-720-559a9ebcbb55.webp",
+    "srcSet": "/images/optimized/meter-platform-160-2a48d3a100d1.webp 160w, /images/optimized/meter-platform-320-5842af43e0b8.webp 320w, /images/optimized/meter-platform-480-69d48cf9e7be.webp 480w, /images/optimized/meter-platform-720-559a9ebcbb55.webp 720w, /images/optimized/meter-platform-1080-4a8423a7e4b4.webp 1080w, /images/optimized/meter-platform-1920-99011e351c7a.webp 1920w"
+  },
+  "/images/products/electricity/single-phase.jpg": {
+    "width": 2000,
+    "height": 2000,
+    "src": "/images/optimized/single-phase-720-5887f67701c6.webp",
+    "srcSet": "/images/optimized/single-phase-160-76717b0df251.webp 160w, /images/optimized/single-phase-320-4a1fdd9fb99f.webp 320w, /images/optimized/single-phase-480-049cdd58a341.webp 480w, /images/optimized/single-phase-720-5887f67701c6.webp 720w, /images/optimized/single-phase-1080-13763adcdb78.webp 1080w, /images/optimized/single-phase-1440-5cfd8365c9e6.webp 1440w"
+  },
+  "/images/products/electricity/ca168-lorawan-1.png": {
+    "width": 1000,
+    "height": 1000,
+    "src": "/images/optimized/ca168-lorawan-1-720-086b674ef4ac.webp",
+    "srcSet": "/images/optimized/ca168-lorawan-1-160-790c4b110457.webp 160w, /images/optimized/ca168-lorawan-1-320-22bd3f825ea6.webp 320w, /images/optimized/ca168-lorawan-1-480-3b248da13a47.webp 480w, /images/optimized/ca168-lorawan-1-720-086b674ef4ac.webp 720w, /images/optimized/ca168-lorawan-1-1000-c77b0c56c569.webp 1000w"
+  },
+  "/images/products/electricity/ca168-gprs-1.png": {
+    "width": 1000,
+    "height": 1000,
+    "src": "/images/optimized/ca168-gprs-1-720-e28065d20ffc.webp",
+    "srcSet": "/images/optimized/ca168-gprs-1-160-31f22e5de0dc.webp 160w, /images/optimized/ca168-gprs-1-320-eee425473259.webp 320w, /images/optimized/ca168-gprs-1-480-f1a5284d6619.webp 480w, /images/optimized/ca168-gprs-1-720-e28065d20ffc.webp 720w, /images/optimized/ca168-gprs-1-1000-b833632c4eef.webp 1000w"
+  },
+  "/images/products/electricity/ca168-sts-1.jpg": {
+    "width": 1000,
+    "height": 1000,
+    "src": "/images/optimized/ca168-sts-1-720-c3b32ff3b880.webp",
+    "srcSet": "/images/optimized/ca168-sts-1-160-aef5786d194a.webp 160w, /images/optimized/ca168-sts-1-320-81098bccd1c7.webp 320w, /images/optimized/ca168-sts-1-480-46fc3f9dcce6.webp 480w, /images/optimized/ca168-sts-1-720-c3b32ff3b880.webp 720w, /images/optimized/ca168-sts-1-1000-9eaab1514fe9.webp 1000w"
+  },
+  "/images/products/electricity/ca368-gprs-1.png": {
+    "width": 1000,
+    "height": 1000,
+    "src": "/images/optimized/ca368-gprs-1-720-edf41a7d560b.webp",
+    "srcSet": "/images/optimized/ca368-gprs-1-160-97c19f0a0676.webp 160w, /images/optimized/ca368-gprs-1-320-3f30295bd042.webp 320w, /images/optimized/ca368-gprs-1-480-4295d3a1f0b6.webp 480w, /images/optimized/ca368-gprs-1-720-edf41a7d560b.webp 720w, /images/optimized/ca368-gprs-1-1000-d74e84366095.webp 1000w"
+  },
+  "/images/products/electricity/ca368-sts-1.png": {
+    "width": 1000,
+    "height": 1000,
+    "src": "/images/optimized/ca368-sts-1-720-567263aedc90.webp",
+    "srcSet": "/images/optimized/ca368-sts-1-160-796d05a4f1cb.webp 160w, /images/optimized/ca368-sts-1-320-56c72e23c691.webp 320w, /images/optimized/ca368-sts-1-480-c6855bd843e0.webp 480w, /images/optimized/ca368-sts-1-720-567263aedc90.webp 720w, /images/optimized/ca368-sts-1-1000-3e9c9860a73e.webp 1000w"
+  },
+  "/images/products/electricity/ct-meter.jpg": {
+    "width": 3072,
+    "height": 4096,
+    "src": "/images/optimized/ct-meter-720-1f5718253982.webp",
+    "srcSet": "/images/optimized/ct-meter-160-ba5533133b05.webp 160w, /images/optimized/ct-meter-320-2f576a6a6669.webp 320w, /images/optimized/ct-meter-480-dcb568b45f1f.webp 480w, /images/optimized/ct-meter-720-1f5718253982.webp 720w, /images/optimized/ct-meter-1080-337071d5d214.webp 1080w, /images/optimized/ct-meter-1440-1bb17beb9b6b.webp 1440w"
+  },
+  "/images/products/water/prepaid-water-meter.jpg": {
+    "width": 4160,
+    "height": 4160,
+    "src": "/images/optimized/prepaid-water-meter-720-8cc337eb4d31.webp",
+    "srcSet": "/images/optimized/prepaid-water-meter-160-6b9c3cd1c199.webp 160w, /images/optimized/prepaid-water-meter-320-a1a8e7cf33e1.webp 320w, /images/optimized/prepaid-water-meter-480-e6c1a4106f92.webp 480w, /images/optimized/prepaid-water-meter-720-8cc337eb4d31.webp 720w, /images/optimized/prepaid-water-meter-1080-759f6ba8a7a4.webp 1080w, /images/optimized/prepaid-water-meter-1440-efc16fb95c54.webp 1440w"
+  },
+  "/images/products/water/multi-jet-plastic-1.webp": {
+    "width": 720,
+    "height": 720,
+    "src": "/images/optimized/multi-jet-plastic-1-720-ec32652e7351.webp",
+    "srcSet": "/images/optimized/multi-jet-plastic-1-160-9f77d369a61e.webp 160w, /images/optimized/multi-jet-plastic-1-320-438660983078.webp 320w, /images/optimized/multi-jet-plastic-1-480-d1ecde4aa04e.webp 480w, /images/optimized/multi-jet-plastic-1-720-ec32652e7351.webp 720w"
+  },
+  "/images/products/water/multi-jet-brass-1.webp": {
+    "width": 720,
+    "height": 720,
+    "src": "/images/optimized/multi-jet-brass-1-720-8878a2aeb7da.webp",
+    "srcSet": "/images/optimized/multi-jet-brass-1-160-eb47fc110e6f.webp 160w, /images/optimized/multi-jet-brass-1-320-eafb3344bd6b.webp 320w, /images/optimized/multi-jet-brass-1-480-42ed6d9abc4e.webp 480w, /images/optimized/multi-jet-brass-1-720-8878a2aeb7da.webp 720w"
+  },
+  "/images/products/water/ultrasonic-1.webp": {
+    "width": 720,
+    "height": 720,
+    "src": "/images/optimized/ultrasonic-1-720-2425b0fc9cef.webp",
+    "srcSet": "/images/optimized/ultrasonic-1-160-5be0425071ca.webp 160w, /images/optimized/ultrasonic-1-320-dc243614c8b1.webp 320w, /images/optimized/ultrasonic-1-480-051e4e8e95d0.webp 480w, /images/optimized/ultrasonic-1-720-2425b0fc9cef.webp 720w"
+  },
+  "/images/products/gas/prepaid-gas-meter.jpg": {
+    "width": 4160,
+    "height": 4160,
+    "src": "/images/optimized/prepaid-gas-meter-720-cd3abd70bb89.webp",
+    "srcSet": "/images/optimized/prepaid-gas-meter-160-5dc809cd06d6.webp 160w, /images/optimized/prepaid-gas-meter-320-d78b27d57ca5.webp 320w, /images/optimized/prepaid-gas-meter-480-41e6e1d7f9f1.webp 480w, /images/optimized/prepaid-gas-meter-720-cd3abd70bb89.webp 720w, /images/optimized/prepaid-gas-meter-1080-973123b8eb66.webp 1080w, /images/optimized/prepaid-gas-meter-1440-44f0a68de492.webp 1440w"
+  },
+  "/images/products/gas/ca768-1.png": {
+    "width": 1000,
+    "height": 1000,
+    "src": "/images/optimized/ca768-1-720-e9130da26972.webp",
+    "srcSet": "/images/optimized/ca768-1-160-1624a25c7d0e.webp 160w, /images/optimized/ca768-1-320-a6151d09f8b8.webp 320w, /images/optimized/ca768-1-480-231bf6363593.webp 480w, /images/optimized/ca768-1-720-e9130da26972.webp 720w, /images/optimized/ca768-1-1000-cba8c4a56567.webp 1000w"
+  },
+  "/images/products/ciu/ciu.png": {
+    "width": 1000,
+    "height": 1000,
+    "src": "/images/optimized/ciu-720-bbbd1bc5dd0f.webp",
+    "srcSet": "/images/optimized/ciu-160-1e50e2f2efc3.webp 160w, /images/optimized/ciu-320-1e866de1ea7c.webp 320w, /images/optimized/ciu-480-a30fc73ec670.webp 480w, /images/optimized/ciu-720-bbbd1bc5dd0f.webp 720w, /images/optimized/ciu-1000-8c34861afc3b.webp 1000w"
+  },
+  "/images/products/dcu/dcu.png": {
+    "width": 1000,
+    "height": 1000,
+    "src": "/images/optimized/dcu-720-1f039c084ddb.webp",
+    "srcSet": "/images/optimized/dcu-160-1896e3e8c049.webp 160w, /images/optimized/dcu-320-332226a34bac.webp 320w, /images/optimized/dcu-480-975c4e715781.webp 480w, /images/optimized/dcu-720-1f039c084ddb.webp 720w, /images/optimized/dcu-1000-b13f3a0b9aa8.webp 1000w"
+  },
+  "/images/products/gateway/gateway.png": {
+    "width": 1000,
+    "height": 1000,
+    "src": "/images/optimized/gateway-720-75797634366f.webp",
+    "srcSet": "/images/optimized/gateway-160-7d9e33e345cf.webp 160w, /images/optimized/gateway-320-24f786bbc921.webp 320w, /images/optimized/gateway-480-4af808e730e8.webp 480w, /images/optimized/gateway-720-75797634366f.webp 720w, /images/optimized/gateway-1000-6f6c848964f8.webp 1000w"
+  },
+  "/images/banners/banner-product-mobile.webp": {
+    "width": 740,
+    "height": 640,
+    "src": "/images/optimized/banner-product-mobile-720-c8d9c13fd986.webp",
+    "srcSet": "/images/optimized/banner-product-mobile-160-9481e9435794.webp 160w, /images/optimized/banner-product-mobile-320-4847fdd59fde.webp 320w, /images/optimized/banner-product-mobile-480-3a76281427ab.webp 480w, /images/optimized/banner-product-mobile-720-c8d9c13fd986.webp 720w, /images/optimized/banner-product-mobile-740-fa3dcd7954de.webp 740w"
+  }
+}
