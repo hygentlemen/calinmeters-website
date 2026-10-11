@@ -1,12 +1,14 @@
 # Project State
 
-Last reviewed: 2026-10-07.
+Last reviewed: 2026-10-11.
 
 Current implementation: 27 public HTML routes (16 English, 11 French). The owner authorized French `index,follow` on 2026-09-08 and waived professional copy review; see FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present. Week 1 fixes all-site measurement and adds buyer paths, two solution pages, real company media and the CA168-L01 / CA368-Z04 PDFs on existing model routes. Release scope and source limits are recorded in COMMERCIAL-RELEASE-2026-09-08.md.
 
 ## Current Status
 
 The September 8, 14 and 21 releases are merged and deployed (PRs #25, #27 and #29). Public contact and the inquiry recipient are `scott@szcalinmeter.com`, preserving the existing authenticated sender and 27 routes. The October 7 review recovered a missing GSC day through a quiet backfill, verified the live site and retained current content because no useful new factual gap or live technical defect was established. Current complete-week GSC totals are 517 impressions / 16 clicks, versus 632 / 27. Latest evidence, comparison limits and operational follow-up: [weekly/2026-10-05.md](weekly/2026-10-05.md).
+
+On October 11, all 11 French URLs passed Google's live inspection and their indexing requests were accepted into the priority crawl queue. The six historical noindex exclusions now have repair validation started (6 pending, 0 failed). A fresh canonical robots.txt crawl was also requested. Sitemap processing, manual actions, security issues and recorded host health show no blocking issue. This completes the previously deferred UI operations, while actual indexing remains unconfirmed. [Per-URL evidence and next check](FRENCH-INDEXING-2026-10-11.md).
 
 CalinMeters is a static Next.js inquiry site for Shenzhen Calinmeter Co., Ltd. Production is `https://calinmeters.com/`, exported to `out/` and deployed from `main` through GitHub Pages.
 
@@ -65,8 +67,8 @@ On 2026-07-21, the OAuth app was restored to In production and the repository re
 
 ## Not Implemented
 
-- The October 5 inspection reports all three English authority pages and both solution pages indexed; the October 7 supplement confirms the English homepage indexed with an October 2 crawl. French records show six stale noindex crawls, four discovered/not indexed URLs and the brass-water URL now unknown to Google, reconfirmed October 7. All 11 live French pages remain indexable with valid discovery links, but post-release French recrawling is not established.
-- Individual URL indexing requests still require Search Console UI access; Google does not provide a general-purpose indexing API for ordinary product pages.
+- The October 11 inspection confirms all three English authority pages and both solution pages indexed. The pre-request French baseline is six stale noindex crawls and five discovered/not indexed URLs; brass is discovered again. All 11 passed Google live tests and received indexing-request confirmations on October 11, but subsequent indexing and selected canonicals must still be checked.
+- Individual URL indexing requests use Search Console UI; the October 11 batch is complete. The read-only inspection workflow cannot submit requests, and Google does not provide a general-purpose indexing API for ordinary product pages.
 - Private delivery verification and qualified-inquiry reporting still require the operator’s mail/CRM records; GA4 event counts alone do not establish lead quality.
 - No CMS/admin interface exists.
 - No ecommerce, price list, cart, payment, quotation database or CRM exists.
