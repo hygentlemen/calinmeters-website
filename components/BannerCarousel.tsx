@@ -51,7 +51,7 @@ export default function BannerCarousel() {
   }, [current, paused]);
 
   return (
-    <section id="home" aria-label="CalinMeters product overview" className="relative h-[520px] w-full overflow-hidden bg-[#f5f8fb] md:h-[600px]">
+    <section id="home" aria-label="CalinMeters product overview" className="relative h-[520px] w-full overflow-hidden bg-white md:h-auto md:aspect-[7/3]">
       {/* Slides */}
       {slides.map((slide, i) => (
         <div
@@ -62,7 +62,7 @@ export default function BannerCarousel() {
           }`}
         >
           {visited.includes(i) && (
-            <div className={i === 0 ? 'absolute inset-x-4 bottom-14 top-40 md:inset-x-8 md:bottom-16 md:top-44' : 'absolute inset-0'}>
+            <div className={i === 0 ? 'absolute inset-x-4 bottom-14 top-40 md:inset-0' : 'absolute inset-0'}>
               <Image
                 src={slide.image}
                 mobileSrc={i === 0 ? '/images/banners/banner-product-mobile.webp' : undefined}
@@ -70,15 +70,15 @@ export default function BannerCarousel() {
                 fill
                 priority={i === 0}
                 loading="eager"
-                sizes={i === 0 ? '(min-width: 768px) 95vw, 92vw' : '100vw'}
-                className={i === 0 ? 'object-contain' : 'object-cover'}
+                sizes="100vw"
+                className={i === 0 ? 'object-contain md:object-cover' : 'object-cover'}
               />
             </div>
           )}
           {slide.headline && (
-            <div className="absolute inset-x-0 top-0 z-10 h-32 md:h-44 bg-gradient-to-b from-[#f8fafc] via-[#f8fafc]/95 to-[#f8fafc]/0">
-              <div className="mx-auto mt-5 md:mt-9 w-[min(92vw,760px)] text-center">
-                <h1 className="text-2xl md:text-4xl font-semibold leading-tight text-slate-950 drop-shadow-[0_1px_0_rgba(255,255,255,0.85)]">
+            <div className="absolute inset-x-0 top-0 z-10">
+              <div className="mx-auto mt-5 md:mt-[3vw] w-[min(92vw,760px)] text-center">
+                <h1 className="text-2xl md:text-[clamp(1.5rem,2.5vw,2.5rem)] font-semibold leading-tight text-slate-950">
                   {slide.headline}
                 </h1>
                 <p className="mt-1 md:mt-2 text-sm md:text-base font-medium text-slate-600">

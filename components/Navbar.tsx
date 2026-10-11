@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { trackEvent } from '@/components/GoogleAnalytics';
 import { targetProductCategories } from '@/lib/catalog';
@@ -24,6 +24,32 @@ export default function Navbar({
   categories,
 }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const productsMenu = useRef<HTMLDetailsElement>(null);
+  const productsTrigger = useRef<HTMLElement>(null);
+
+  function closeProductsMenu() {
+    if (productsMenu.current) productsMenu.current.open = false;
+  }
+
+  useEffect(() => {
+    function closeOnOutsidePointer(event: PointerEvent) {
+      if (event.target instanceof Node && !productsMenu.current?.contains(event.target)) {
+        closeProductsMenu();
+      }
+    }
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === 'Escape' && productsMenu.current?.open) {
+        closeProductsMenu();
+        productsTrigger.current?.focus();
+      }
+    }
+    document.addEventListener('pointerdown', closeOnOutsidePointer);
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.removeEventListener('pointerdown', closeOnOutsidePointer);
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, []);
   const isFrench = locale === 'fr';
   const homeHref = isFrench ? '/fr/' : '/';
   const sectionLinks = isFrench
@@ -65,8 +91,17 @@ export default function Navbar({
 
           <div className="hidden items-center gap-7 md:flex">
             <Link href={homeHref} className="text-sm font-medium text-slate-700 hover:text-primary-700">{isFrench ? 'Accueil' : 'Home'}</Link>
-            <details className="group relative">
-              <summary className="flex cursor-pointer list-none items-center gap-1 py-5 text-sm font-medium text-slate-700 marker:content-none hover:text-primary-700">
+            <details
+              ref={productsMenu}
+              className="group relative"
+              onPointerLeave={(event) => {
+                if (event.pointerType === 'mouse') closeProductsMenu();
+              }}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) closeProductsMenu();
+              }}
+            >
+              <summary ref={productsTrigger} className="flex cursor-pointer list-none items-center gap-1 py-5 text-sm font-medium text-slate-700 marker:content-none hover:text-primary-700">
                 {isFrench ? 'Produits' : 'Products'}
                 <svg aria-hidden="true" className="h-4 w-4 transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -77,6 +112,7 @@ export default function Navbar({
                   <Link
                     key={category.href}
                     href={category.href}
+                    onClick={closeProductsMenu}
                     className="block rounded-lg px-4 py-3 hover:bg-primary-50"
                   >
                     <span className="block text-sm font-semibold text-slate-950">{category.description}</span>
@@ -85,7 +121,7 @@ export default function Navbar({
                     </span>
                   </Link>
                 ))}
-                <Link href={allProductsHref} className="mt-1 block rounded-lg px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50 hover:text-primary-700">
+                <Link href={allProductsHref} onClick={closeProductsMenu} className="mt-1 block rounded-lg px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50 hover:text-primary-700">
                   {isFrench ? 'Voir les produits présentés' : 'View all products and AMI devices'}
                 </Link>
               </div>

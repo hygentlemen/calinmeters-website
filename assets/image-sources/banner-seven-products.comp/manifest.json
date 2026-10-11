@@ -1,0 +1,196 @@
+{
+  "activeLayerID" : "8F6E0CF9-42E8-4BCB-99A2-92390E17D994",
+  "colorSpace" : "sRGB",
+  "documentID" : "805BEFF3-A6AC-4156-8FAC-14E0FFD174F5",
+  "format" : "com.compositor.project",
+  "height" : 1200,
+  "layers" : [
+    {
+      "blendMode" : "Normal",
+      "id" : "B6863D8C-033F-4DB0-8A83-9B45C07B2999",
+      "imageFile" : "B6863D8C-033F-4DB0-8A83-9B45C07B2999.png",
+      "isGroup" : false,
+      "isVisible" : true,
+      "name" : "Background",
+      "opacity" : 1,
+      "transform" : {
+        "flipX" : false,
+        "flipY" : false,
+        "origin" : [
+          0,
+          0
+        ],
+        "rotation" : 0,
+        "sampling" : "High quality",
+        "size" : [
+          2800,
+          1200
+        ]
+      }
+    },
+    {
+      "blendMode" : "Normal",
+      "id" : "D99B6642-0341-4D48-B287-6ADBF02C3A4D",
+      "imageFile" : "D99B6642-0341-4D48-B287-6ADBF02C3A4D.png",
+      "isGroup" : false,
+      "isVisible" : true,
+      "name" : "1-ca168-din",
+      "opacity" : 1,
+      "transform" : {
+        "flipX" : false,
+        "flipY" : false,
+        "origin" : [
+          0,
+          0
+        ],
+        "rotation" : 0,
+        "sampling" : "High quality",
+        "size" : [
+          2800,
+          1200
+        ]
+      }
+    },
+    {
+      "blendMode" : "Normal",
+      "id" : "F069C5ED-119E-41BA-9E1C-28ADAF051754",
+      "imageFile" : "F069C5ED-119E-41BA-9E1C-28ADAF051754.png",
+      "isGroup" : false,
+      "isVisible" : true,
+      "name" : "2-ca168-gprs",
+      "opacity" : 1,
+      "transform" : {
+        "flipX" : false,
+        "flipY" : false,
+        "origin" : [
+          0,
+          0
+        ],
+        "rotation" : 0,
+        "sampling" : "High quality",
+        "size" : [
+          2800,
+          1200
+        ]
+      }
+    },
+    {
+      "blendMode" : "Normal",
+      "id" : "B363F9BB-08FD-465D-A4F8-972B2DFEB25D",
+      "imageFile" : "B363F9BB-08FD-465D-A4F8-972B2DFEB25D.png",
+      "isGroup" : false,
+      "isVisible" : true,
+      "name" : "3-ca168-sts",
+      "opacity" : 1,
+      "transform" : {
+        "flipX" : false,
+        "flipY" : false,
+        "origin" : [
+          0,
+          0
+        ],
+        "rotation" : 0,
+        "sampling" : "High quality",
+        "size" : [
+          2800,
+          1200
+        ]
+      }
+    },
+    {
+      "blendMode" : "Normal",
+      "id" : "311B2D68-37EB-428B-8E1F-1EBFB1800096",
+      "imageFile" : "311B2D68-37EB-428B-8E1F-1EBFB1800096.png",
+      "isGroup" : false,
+      "isVisible" : true,
+      "name" : "4-ca368-gprs",
+      "opacity" : 1,
+      "transform" : {
+        "flipX" : false,
+        "flipY" : false,
+        "origin" : [
+          0,
+          0
+        ],
+        "rotation" : 0,
+        "sampling" : "High quality",
+        "size" : [
+          2800,
+          1200
+        ]
+      }
+    },
+    {
+      "blendMode" : "Normal",
+      "id" : "736FDDDC-B54D-4FD7-AD05-02442A7D4F9B",
+      "imageFile" : "736FDDDC-B54D-4FD7-AD05-02442A7D4F9B.png",
+      "isGroup" : false,
+      "isVisible" : true,
+      "name" : "5-brass-water",
+      "opacity" : 1,
+      "transform" : {
+        "flipX" : false,
+        "flipY" : false,
+        "origin" : [
+          0,
+          0
+        ],
+        "rotation" : 0,
+        "sampling" : "High quality",
+        "size" : [
+          2800,
+          1200
+        ]
+      }
+    },
+    {
+      "blendMode" : "Normal",
+      "id" : "37F259BB-95CB-4FBA-80D8-F6B72ED991E9",
+      "imageFile" : "37F259BB-95CB-4FBA-80D8-F6B72ED991E9.png",
+      "isGroup" : false,
+      "isVisible" : true,
+      "name" : "6-ultrasonic-water",
+      "opacity" : 1,
+      "transform" : {
+        "flipX" : false,
+        "flipY" : false,
+        "origin" : [
+          0,
+          0
+        ],
+        "rotation" : 0,
+        "sampling" : "High quality",
+        "size" : [
+          2800,
+          1200
+        ]
+      }
+    },
+    {
+      "blendMode" : "Normal",
+      "id" : "8F6E0CF9-42E8-4BCB-99A2-92390E17D994",
+      "imageFile" : "8F6E0CF9-42E8-4BCB-99A2-92390E17D994.png",
+      "isGroup" : false,
+      "isVisible" : true,
+      "name" : "7-ca768-gas",
+      "opacity" : 1,
+      "transform" : {
+        "flipX" : false,
+        "flipY" : false,
+        "origin" : [
+          0,
+          0
+        ],
+        "rotation" : 0,
+        "sampling" : "High quality",
+        "size" : [
+          2800,
+          1200
+        ]
+      }
+    }
+  ],
+  "resolution" : 72,
+  "version" : 11,
+  "width" : 2800
+}
