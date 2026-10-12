@@ -38,6 +38,8 @@ The homepage is the company and product-portfolio hub. Three canonical authority
 
 Ten model pages are statically generated from the product catalog. English category and model routes are implemented in `app/(en)/products/[slug]/page.tsx` through `generateStaticParams`. Two solution pages cover solar mini-grid metering and OEM/SKD/CKD manufacturing cooperation. There are 27 public HTML routes in total.
 
+Model pages use `WebPage` and `BreadcrumbList` JSON-LD. This is a quote-only catalog without published price/review evidence; do not emit `Product` rich-result markup or invent its required commercial/rating fields. See [the Product snippets decision](docs/PRODUCT-SNIPPETS-2026-10-12.md).
+
 The French release adds `/fr/`, two authority pages and eight model pages under `/fr/produits/`. `data/i18n-routes.json` is the single registry for reciprocal language switching, metadata alternates and sitemap hreflang entries. All 11 French pages use `index,follow` under the owner's 2026-09-08 review waiver in `docs/FRENCH-COPY-REVIEW.md`. Source parity and technical checks remain required.
 
 ## Content Sources

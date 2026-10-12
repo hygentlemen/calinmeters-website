@@ -206,26 +206,10 @@ function productStructuredData(entry: FrenchCatalogProduct) {
         url: pageUrl,
         name: product.name,
         description: product.description,
+        image: [absoluteUrl(product.image)],
         inLanguage: 'fr-FR',
         isPartOf: { '@id': `${site.url}/fr/#website` },
-        mainEntity: { '@id': `${pageUrl}#product` },
-      },
-      {
-        '@type': 'Product',
-        '@id': `${pageUrl}#product`,
-        url: pageUrl,
-        name: product.name,
-        model: product.model,
-        description: product.description,
-        image: [absoluteUrl(product.image)],
-        category: category.name,
-        brand: { '@type': 'Brand', name: site.name },
-        manufacturer: { '@id': `${site.url}/#organization` },
-        additionalProperty: product.verifiedSpecs?.map((spec) => ({
-          '@type': 'PropertyValue',
-          name: spec.label,
-          value: spec.value,
-        })),
+        // Product rich-result markup awaits genuine published offer/review data.
       },
       breadcrumbSchema([
         { name: 'Accueil', path: '/fr/' },

@@ -40,6 +40,14 @@ const expectedFrenchSlugs = [
   'ca568-compteur-eau-prepaye-multijet-laiton',
   'ca568-compteur-eau-prepaye-ultrasonique',
 ];
+const categorySlugs = new Set([
+  'sts-prepaid-electricity-meter', 'sts-prepaid-water-meter', 'sts-prepaid-gas-meter',
+  'compteur-electricite-prepaye-sts', 'compteur-eau-prepaye-sts',
+]);
+const quoteOnlyModelRoutes = new Set([
+  ...expectedProductSlugs.filter((slug) => !categorySlugs.has(slug)).map((slug) => `/products/${slug}/`),
+  ...expectedFrenchSlugs.filter((slug) => !categorySlugs.has(slug)).map((slug) => `/fr/produits/${slug}/`),
+]);
 const forbiddenClaims = [
   /STS certified/i,
   /multiple product certifications/i,
@@ -82,6 +90,12 @@ function extractAttribute(tag, name) {
 
 function report(route, message) {
   failures.push(`${route}: ${message}`);
+}
+
+function structuredNodes(value) {
+  if (Array.isArray(value)) return value.flatMap(structuredNodes);
+  if (!value || typeof value !== 'object') return [];
+  return [value, ...Object.values(value).flatMap(structuredNodes)];
 }
 
 function routeTarget(value) {
@@ -192,6 +206,34 @@ for (const page of pages) {
       parsedJsonLd.push(JSON.parse(json));
     } catch (error) {
       report(route, `invalid JSON-LD: ${error.message}`);
+    }
+  }
+
+  // The current catalog has no published offer/review evidence. Do not reintroduce
+  // ineligible Product markup, including nested nodes or alternate Product types.
+  const allNodes = structuredNodes(parsedJsonLd);
+  for (const node of allNodes) {
+    const types = [node['@type']].flat();
+    if (types.some((type) => ['Product', 'ProductGroup', 'ProductModel', 'IndividualProduct',
+      'Offer', 'AggregateOffer', 'Review', 'AggregateRating'].includes(type))) {
+      report(route, 'quote-only catalog must not emit product rich-result, offer or review markup without published evidence');
+    }
+  }
+  if (quoteOnlyModelRoutes.has(route)) {
+    const pageNodes = allNodes.filter((node) => node['@type'] === 'WebPage');
+    const pageNode = pageNodes[0];
+    if (pageNodes.length !== 1 || pageNode?.url !== expectedCanonical
+      || pageNode?.['@id'] !== `${expectedCanonical}#webpage`
+      || pageNode?.inLanguage !== (expectedLanguage === 'fr' ? 'fr-FR' : 'en')
+      || !pageNode?.name || !pageNode?.description || !pageNode?.image?.length) {
+      report(route, 'model page requires one canonical WebPage with language, name, description and image');
+    }
+    const breadcrumbs = allNodes.filter((node) => node['@type'] === 'BreadcrumbList');
+    if (breadcrumbs.length !== 1 || breadcrumbs[0].itemListElement?.at(-1)?.item !== expectedCanonical) {
+      report(route, 'model page requires breadcrumbs ending at its canonical URL');
+    }
+    if (allNodes.some((node) => node['@id'] === `${expectedCanonical}#product`)) {
+      report(route, 'model page must not retain a dangling product entity reference');
     }
   }
 
