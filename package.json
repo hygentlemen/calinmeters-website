@@ -18,7 +18,8 @@
     "gsc:submit-sitemap": "node scripts/submit-search-console-sitemap.mjs",
     "seo-geo:weekly": "node scripts/seo-geo-weekly-issue.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
-    "verify:images": "node scripts/verify-images.mjs"
+    "verify:images": "node scripts/verify-images.mjs",
+    "test:inquiry-events": "node --import ./scripts/register-test-tsx.mjs --test scripts/inquiry-events.test.tsx"
   },
   "dependencies": {
     "googleapis": "^172.0.0",
@@ -27,12 +28,14 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@types/jsdom": "21.1.7",
     "@types/node": "20.11.0",
     "@types/react": "18.2.47",
     "@types/react-dom": "18.2.18",
     "autoprefixer": "10.4.16",
     "eslint": "8.56.0",
     "eslint-config-next": "^14.2.35",
+    "jsdom": "26.1.0",
     "postcss": "8.4.33",
     "sharp": "0.34.5",
     "tailwindcss": "3.4.1",

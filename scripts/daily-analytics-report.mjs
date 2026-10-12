@@ -126,6 +126,11 @@ async function generateLiveReport() {
     console.log(`\nReport written to ${outFile}`);
     console.log(`Raw aggregate data written to ${rawFile}`);
 
+    if (process.env.INCLUDE_WEEKLY === 'true') {
+      const weekly = await collectWeeklyData({ analyticsData, gaProperty, searchConsole, gscSiteUrl, endDate: reportDate });
+      await writeRawReport(`weekly-analytics-${reportDate}.raw.json`, weekly);
+    }
+
     if (process.env.FEISHU_WEBHOOK_URL && !process.argv.includes('--no-notify')) {
       await sendFeishu(report);
     }
@@ -148,6 +153,7 @@ async function generateLiveReport() {
 }
 
 export async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30, ga90 }) {
+  const dimensionStatus = await getEventDimensionStatus({ analyticsData, gaProperty, dateRange: gaToday });
   const [
     overview,
     devices,
@@ -200,12 +206,12 @@ export async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30,
     () => runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: gaToday }),
     () => runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga30 }),
     () => runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRange: ga90 }),
-    () => runSiteInquiryReport({ analyticsData, gaProperty, dateRange: gaToday }),
-    () => runSiteInquiryReport({ analyticsData, gaProperty, dateRange: ga30 }),
-    () => runSiteInquiryReport({ analyticsData, gaProperty, dateRange: ga90 }),
-    () => runSiteActionReport({ analyticsData, gaProperty, dateRange: gaToday }),
-    () => runSiteActionReport({ analyticsData, gaProperty, dateRange: ga30 }),
-    () => runSiteActionReport({ analyticsData, gaProperty, dateRange: ga90 }),
+    () => runSiteInquiryReport({ analyticsData, gaProperty, dimensionStatus, dateRange: gaToday }),
+    () => runSiteInquiryReport({ analyticsData, gaProperty, dimensionStatus, dateRange: ga30 }),
+    () => runSiteInquiryReport({ analyticsData, gaProperty, dimensionStatus, dateRange: ga90 }),
+    () => runSiteActionReport({ analyticsData, gaProperty, dimensionStatus, dateRange: gaToday }),
+    () => runSiteActionReport({ analyticsData, gaProperty, dimensionStatus, dateRange: ga30 }),
+    () => runSiteActionReport({ analyticsData, gaProperty, dimensionStatus, dateRange: ga90 }),
   ], { limit: GA_REPORT_CONCURRENCY });
 
   return {
@@ -233,6 +239,37 @@ export async function collectGa4Data({ analyticsData, gaProperty, gaToday, ga30,
       actions90: frenchOnly(siteActions90),
     },
   };
+}
+
+export async function collectWeeklyData({ analyticsData, gaProperty, searchConsole, gscSiteUrl, endDate }) {
+  const periods = {};
+  for (const [label, offset] of [['current', 0], ['previous', -7]]) {
+    const gaWindow = makeWindow(addIsoDays(endDate, offset), 7);
+    const gscWindow = makeWindow(addIsoDays(gaWindow.endDate, -SEARCH_CONSOLE_DELAY_DAYS), 7);
+    const tasks = {
+      gaOverview: () => runGaReport({ analyticsData, gaProperty, dateRange: gaWindow,
+        metrics: ['activeUsers', 'sessions', 'screenPageViews', 'eventCount'], includeQuality: true }),
+      gaDaily: () => runGaReport({ analyticsData, gaProperty, dateRange: gaWindow,
+        dimensions: ['date'], metrics: ['screenPageViews', 'eventCount'], limit: 100, includeQuality: true }),
+      gaChannels: () => runGaReport({ analyticsData, gaProperty, dateRange: gaWindow,
+        dimensions: ['sessionDefaultChannelGroup'], metrics: ['sessions'], limit: 100, includeQuality: true }),
+      gaEvents: () => runGaReport({ analyticsData, gaProperty, dateRange: gaWindow,
+        dimensions: ['eventName'], metrics: ['eventCount'], limit: 100, includeQuality: true,
+        dimensionFilter: { filter: { fieldName: 'eventName', inListFilter: { values: [...SITE_INQUIRY_EVENTS, ...SITE_ACTION_EVENTS, 'file_download'] } } } }),
+      gscOverview: () => runSearchConsole({ searchConsole, gscSiteUrl, dateRange: gscWindow, dimensions: [], rowLimit: 1 }),
+      gscMatched: () => runSearchConsole({ searchConsole, gscSiteUrl, dateRange: gscWindow,
+        dimensions: ['query', 'country', 'device', 'page'], rowLimit: 25000, includeQuality: true }),
+    };
+    const entries = await runWithConcurrency(Object.entries(tasks).map(([name, run]) => async () => {
+      try { return [name, { status: 'available', data: await run() }]; }
+      catch { return [name, { status: 'unavailable' }]; }
+    }), { limit: GA_REPORT_CONCURRENCY });
+    periods[label] = { gaWindow, gscWindow, ...Object.fromEntries(entries) };
+  }
+  return { date: endDate, gaProperty, searchSite: gscSiteUrl, periods,
+    caveats: ['GA4 uses the property time zone; GSC uses Pacific dates, three days earlier.',
+      'GSC query rows omit anonymized queries and are not an additive attribution of property totals.',
+      'No historical custom-dimension backfill or private inquiry quality is inferred.'] };
 }
 
 export async function collectGscData({ searchConsole, gscSiteUrl, gscDay, gsc30, gsc90 }) {
@@ -457,30 +494,62 @@ async function runGaReport({
   limit = 10,
   dimensionFilter,
   dateRange = { startDate: reportDate, endDate: reportDate },
+  includeQuality = false,
 }) {
   const requestBody = {
     dateRanges: [{ startDate: dateRange.startDate, endDate: dateRange.endDate }],
     dimensions: dimensions.map((name) => ({ name })),
     metrics: metrics.map((name) => ({ name })),
     limit: String(limit),
-    orderBys: metrics[0]
+    orderBys: includeQuality
+      ? dimensions.map((dimensionName) => ({ dimension: { dimensionName } }))
+      : metrics[0]
       ? [{ metric: { metricName: metrics[0] }, desc: true }]
       : undefined,
     dimensionFilter,
   };
 
-  const response = await retryTransientRequest(
-    () => analyticsData.properties.runReport({
-      property: gaProperty,
-      requestBody,
-    }),
-    {
-      attempts: GA_REPORT_RETRY_ATTEMPTS,
-      baseDelayMs: GA_REPORT_RETRY_BASE_DELAY_MS,
-    },
-  );
+  const allRows = [];
+  const quality = {
+    rowCount: 0, returnedRows: 0, truncated: false,
+    subjectToThresholding: false, dataLossFromOtherRow: false,
+    sampled: false, dataTruncated: false, dataTruncationReasons: [], emptyReason: '', timeZone: '',
+  };
+  do {
+    const response = await retryTransientRequest(
+      () => analyticsData.properties.runReport({
+        property: gaProperty,
+        requestBody: includeQuality ? { ...requestBody, offset: String(allRows.length) } : requestBody,
+      }),
+      {
+        attempts: GA_REPORT_RETRY_ATTEMPTS,
+        baseDelayMs: GA_REPORT_RETRY_BASE_DELAY_MS,
+      },
+    );
 
-  return normalizeGaRows(response.data.rows || [], dimensions, metrics);
+    const page = response.data.rows || [];
+    if (!includeQuality) return normalizeGaRows(page, dimensions, metrics);
+    allRows.push(...page);
+    const metadata = response.data.metadata || {};
+    quality.rowCount = Number(response.data.rowCount ?? allRows.length);
+    quality.returnedRows = allRows.length;
+    quality.subjectToThresholding ||= metadata.subjectToThresholding === true;
+    quality.dataLossFromOtherRow ||= metadata.dataLossFromOtherRow === true;
+    quality.sampled ||= (metadata.samplingMetadatas || []).length > 0;
+    quality.dataTruncated ||= (metadata.dataTruncationReasons || []).length > 0;
+    for (const reason of metadata.dataTruncationReasons || []) {
+      if (!quality.dataTruncationReasons.some(existing => JSON.stringify(existing) === JSON.stringify(reason))) {
+        quality.dataTruncationReasons.push(reason);
+      }
+    }
+    quality.emptyReason ||= metadata.emptyReason || '';
+    quality.timeZone ||= metadata.timeZone || '';
+    quality.truncated = allRows.length < quality.rowCount;
+    if (!quality.truncated || page.length === 0 || allRows.length >= 10000) break;
+  } while (true);
+  quality.countsReliable = !quality.truncated && !quality.subjectToThresholding
+    && !quality.dataLossFromOtherRow && !quality.sampled && !quality.dataTruncated && !quality.emptyReason;
+  return { rows: normalizeGaRows(allRows, dimensions, metrics), quality };
 }
 
 async function runDownloadsReport({ analyticsData, gaProperty }) {
@@ -569,50 +638,83 @@ async function runFrenchOrganicLandingReport({ analyticsData, gaProperty, dateRa
   });
 }
 
-async function runSiteInquiryReport({ analyticsData, gaProperty, dateRange }) {
-  const dimensionFilter = {
-    filter: {
-      fieldName: 'eventName',
-      inListFilter: {
-        values: SITE_INQUIRY_EVENTS,
-        caseSensitive: true,
-      },
-    },
-  };
-
-  try {
-    const rows = await runGaReport({
-      analyticsData,
-      gaProperty,
-      dimensions: SITE_EVENT_DIMENSIONS,
-      metrics: ['eventCount'],
-      limit: 100,
-      dimensionFilter,
-      dateRange,
-    });
-
-    return {
-      controlledDimensionsAvailable: true,
-      rows: normalizeInquiryRows(rows),
-    };
-  } catch (error) {
-    if (!isMissingCustomDimensionError(error)) throw error;
-
-    const rows = await runGaReport({
-      analyticsData,
-      gaProperty,
-      dimensions: ['eventName'],
-      metrics: ['eventCount'],
-      limit: 20,
-      dimensionFilter,
-      dateRange,
-    });
-
-    return {
-      controlledDimensionsAvailable: false,
-      rows: normalizeInquiryRows(rows),
-    };
+async function probeEventDimensions({ analyticsData, gaProperty, dateRange, dimensions }) {
+  const available = [];
+  const missing = [];
+  // Validate one dimension at a time, so a stale or unavailable metadata response
+  // cannot cause an unrelated, valid result dimension to be discarded.
+  for (const dimension of dimensions) {
+    try {
+      await runGaReport({ analyticsData, gaProperty, dateRange,
+        dimensions: ['eventName', dimension], metrics: ['eventCount'], limit: 1,
+        dimensionFilter: { filter: { fieldName: 'eventName', inListFilter: { values: SITE_INQUIRY_EVENTS } } },
+      });
+      available.push(dimension);
+    } catch (error) {
+      if (!isMissingCustomDimensionError(error)) throw error;
+      missing.push(dimension);
+    }
   }
+  return { lookupStatus: 'query_validated', available, missing };
+}
+
+async function getEventDimensionStatus({ analyticsData, gaProperty, dateRange }) {
+  const expected = SITE_EVENT_DIMENSIONS.filter((name) => name.startsWith('customEvent:'));
+  try {
+    const response = await retryTransientRequest(() => analyticsData.properties.getMetadata({
+      name: `${gaProperty}/metadata`,
+    }));
+    if (!Array.isArray(response.data.dimensions)) throw new Error('Missing metadata response');
+    const names = new Set(response.data.dimensions.map(({ apiName }) => apiName));
+    return {
+      lookupStatus: 'available',
+      available: expected.filter((name) => names.has(name)),
+      missing: expected.filter((name) => !names.has(name)),
+    };
+  } catch {
+    // A metadata failure alone says nothing about definition availability.
+    // Independently validate each dimension through the reporting endpoint.
+    return probeEventDimensions({ analyticsData, gaProperty, dateRange, dimensions: expected });
+  }
+}
+
+async function runControlledEventReport({ analyticsData, gaProperty, dimensionStatus, dateRange, events, customDimensions }) {
+  let selected = customDimensions.filter((name) => dimensionStatus.available.includes(name));
+  const options = {
+    analyticsData, gaProperty, dateRange,
+    metrics: ['eventCount'], limit: 100, includeQuality: true,
+    dimensionFilter: { filter: { fieldName: 'eventName', inListFilter: { values: events, caseSensitive: true } } },
+  };
+  let report;
+  let lookupStatus = dimensionStatus.lookupStatus;
+  try {
+    report = await runGaReport({ ...options, dimensions: ['eventName', ...selected] });
+  } catch (error) {
+    if (!isMissingCustomDimensionError(error) || selected.length === 0) throw error;
+    const verified = await probeEventDimensions({ analyticsData, gaProperty, dateRange, dimensions: selected });
+    selected = verified.available;
+    lookupStatus = verified.lookupStatus;
+    report = await runGaReport({ ...options, dimensions: ['eventName', ...selected] });
+  }
+  return {
+    controlledDimensionsAvailable: selected.length === customDimensions.length,
+    resultDimensionAvailable: selected.includes('customEvent:result'),
+    dimensionStatus: {
+      lookupStatus,
+      available: selected,
+      missing: customDimensions.filter((name) => !selected.includes(name)),
+    },
+    quality: report.quality,
+    rows: report.rows,
+  };
+}
+
+async function runSiteInquiryReport(options) {
+  const report = await runControlledEventReport({
+    ...options, events: SITE_INQUIRY_EVENTS,
+    customDimensions: SITE_EVENT_DIMENSIONS.filter((name) => name !== 'eventName'),
+  });
+  return { ...report, rows: normalizeInquiryRows(report.rows) };
 }
 
 function normalizeInquiryRows(rows) {
@@ -626,64 +728,24 @@ function normalizeInquiryRows(rows) {
   }));
 }
 
-async function runSiteActionReport({ analyticsData, gaProperty, dateRange }) {
-  const dimensionFilter = {
-    filter: {
-      fieldName: 'eventName',
-      inListFilter: {
-        values: SITE_ACTION_EVENTS,
-        caseSensitive: true,
-      },
-    },
+async function runSiteActionReport(options) {
+  const report = await runControlledEventReport({
+    ...options, events: SITE_ACTION_EVENTS, customDimensions: ['customEvent:product_id'],
+  });
+  return {
+    ...report,
+    rows: report.rows.map((row) => ({
+      eventName: row.eventName,
+      productId: row['customEvent:product_id'] || '',
+      eventCount: row.eventCount || '0',
+    })),
   };
-
-  try {
-    const rows = await runGaReport({
-      analyticsData,
-      gaProperty,
-      dimensions: ['eventName', 'customEvent:product_id'],
-      metrics: ['eventCount'],
-      limit: 100,
-      dimensionFilter,
-      dateRange,
-    });
-    return {
-      controlledDimensionsAvailable: true,
-      rows: rows.map((row) => ({
-        eventName: row.eventName,
-        productId: row['customEvent:product_id'] || '',
-        eventCount: row.eventCount || '0',
-      })),
-    };
-  } catch (error) {
-    if (!isMissingCustomDimensionError(error)) throw error;
-    const rows = await runGaReport({
-      analyticsData,
-      gaProperty,
-      dimensions: ['eventName'],
-      metrics: ['eventCount'],
-      limit: 20,
-      dimensionFilter,
-      dateRange,
-    });
-    return {
-      controlledDimensionsAvailable: false,
-      rows: rows.map((row) => ({
-        eventName: row.eventName,
-        productId: '',
-        eventCount: row.eventCount || '0',
-      })),
-    };
-  }
 }
 
 function isMissingCustomDimensionError(error) {
+  const status = Number(error?.response?.status ?? error?.status ?? error?.code);
   const message = formatError(error).toLowerCase();
-  return (
-    message.includes('customevent:') ||
-    message.includes('custom dimension') ||
-    message.includes('not a valid dimension')
-  );
+  return status === 400 && /custom.?dimension|customevent:|not a valid dimension/.test(message);
 }
 
 function normalizeGaRows(rows, dimensions, metrics) {
@@ -706,20 +768,28 @@ async function runSearchConsole({
   rowLimit,
   dateRange = { startDate: reportDate, endDate: reportDate },
   dimensionFilterGroups,
+  includeQuality = false,
 }) {
-  const response = await searchConsole.searchanalytics.query({
-    siteUrl: gscSiteUrl,
-    requestBody: {
-      startDate: dateRange.startDate,
-      endDate: dateRange.endDate,
-      dimensions,
-      dimensionFilterGroups,
-      rowLimit,
-      startRow: 0,
-    },
-  });
+  const allRows = [];
+  let page;
+  do {
+    const response = await searchConsole.searchanalytics.query({
+      siteUrl: gscSiteUrl,
+      requestBody: {
+        startDate: dateRange.startDate,
+        endDate: dateRange.endDate,
+        dimensions,
+        dimensionFilterGroups,
+        rowLimit,
+        startRow: allRows.length,
+        dataState: 'final',
+      },
+    });
 
-  return (response.data.rows || []).map((row) => {
+    page = response.data.rows || [];
+    allRows.push(...page);
+  } while (includeQuality && page.length === rowLimit && allRows.length < 50000);
+  const rows = allRows.map((row) => {
     const item = {
       clicks: row.clicks || 0,
       impressions: row.impressions || 0,
@@ -731,6 +801,10 @@ async function runSearchConsole({
     });
     return item;
   });
+  return includeQuality ? { rows, quality: {
+    returnedRows: rows.length, capped: page.length === rowLimit && allRows.length >= 50000,
+    queryAnonymization: dimensions.includes('query'), dataState: 'final', timeZone: 'America/Los_Angeles',
+  } } : rows;
 }
 
 async function runFrenchSearchReport({

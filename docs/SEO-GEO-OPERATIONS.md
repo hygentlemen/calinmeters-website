@@ -71,8 +71,8 @@ Only these inquiry event names are included in the French funnel:
 
 | Event | When emitted |
 | --- | --- |
-| `fr_quote_start` | The visitor first engages with the French quote form. |
-| `fr_quote_submit` | A form submission attempt returns a controlled outcome. |
+| `fr_quote_start` | First form focus per component mount; submitting or failing native validation also ensures this event is recorded once. It is not a unique person/session count. |
+| `fr_quote_submit` | A controlled outcome, including client validation/challenge failures and server responses. It is not necessarily an HTTP request or a successful inquiry. Native invalid fields are coalesced to one outcome per validation pass. |
 
 The event payload may contain only these controlled analytical dimensions:
 
@@ -83,7 +83,9 @@ The event payload may contain only these controlled analytical dimensions:
 | `buyer_type` | Event | A fixed form selection such as distributor, integrator, engineering company, or utility. |
 | `result` | Event | A fixed submit outcome: `success`, `validation_error`, `challenge_error`, `rate_limited`, or `server_error`. |
 
-Create these four event-scoped custom dimensions in GA4 Admin before expecting breakdown tables to populate. If they are not registered, the daily report falls back to event totals and prints a clear warning; authentication and the rest of the report continue to work.
+Create these four event-scoped custom dimensions in GA4 Admin before expecting all breakdowns to populate. The collector discovers the available dimensions once using the existing read-only Data API access, retains any available breakdowns, and reports the specific missing definitions. `resultDimensionAvailable` controls outcome classification independently of product/buyer definitions. `controlledDimensionsAvailable=false` alone does not mean all four definitions are absent. If metadata lookup fails or a previously discovered dimension is rejected, the collector validates each dimension independently through runReport. Only an explicit invalid-dimension response marks a definition missing; other request failures remain source failures. Event reports paginate and retain threshold/sampling/truncation flags; affected totals remain unverified.
+
+`success` means a browser-observed positive API response, after excluding client-visible honeypot drops. The Worker accepts a normal request after Resend accepts it, but this is not inbox delivery, a unique buyer, or a qualified lead. Pre-fix historical successes can include honeypot false acknowledgements. Do not join starts/submits as if they were unique sessions or add derived success events to the original outcome counts. See [October 11 audit, exact GA4 setup and metric definitions](INQUIRY-MEASUREMENT-2026-10-11.md). Use a new post-deployment baseline for the expanded validation coverage.
 
 Never send or copy a visitor's name, email address, phone/WhatsApp number, company name, country entered in free text, project notes, IP address, Turnstile token, or message content into GA4. Never place those values in report artifacts or GitHub Issues. Inquiry quality and spam reporting must use aggregate counts from an authorized CRM/mailbox review.
 
@@ -153,3 +155,13 @@ For a manual historical run, dispatch `Daily Analytics Report` with `report_date
 - No French rows: confirm the French release is deployed, GA4 is receiving page views, the Search Console property matches the canonical domain, and the report window follows the deployment/crawl dates.
 - Priority page shows zero: check sitemap presence, canonical/hreflang output, URL Inspection, crawl status, and page/query data before editing content.
 - A sudden increase in errors or spam: inspect Worker/Turnstile and mailbox aggregates without copying personal fields into analytics or GitHub.
+
+## Optional complete-week export
+
+For a Monday review, use the Sunday GA date and the existing three-day GSC lag:
+
+```bash
+gh workflow run daily-analytics-report.yml --ref main -f report_date=2026-10-11 -f notify=false -f include_weekly=true
+```
+
+The additional `weekly-analytics-<date>.raw.json` contains current/previous seven-day GA4 cohorts (including unique users queried over the whole week), daily reconciliation, channels/events and property-level GSC totals plus query × country × device × page rows. It preserves each query's source status. GA4 event/cohort queries paginate with quality flags; matched GSC rows paginate to a 50,000-row safety cap with an explicit capped flag. GSC final data and anonymized-query omissions still apply: an uncapped export is not every search and must not replace property totals. Do not compare incomplete or differently dated cohorts. Weekly collection is opt-in and uses existing read-only analytics access; it sends no additional notifications.

@@ -409,3 +409,35 @@ test('recent all-site submit activity stays visible on a quiet day without inven
   assert.match(render(raw), /近期成功回执：近30天 未知 \| 近90天 未知/);
   assert.doesNotMatch(render(raw), /询盘：17/);
 });
+
+
+test('success classification only needs the result dimension, not product dimensions', () => {
+  const data = buildDailyReportData(makeRaw({ siteConversions: { inquiryToday: {
+    controlledDimensionsAvailable: false, resultDimensionAvailable: true,
+    quality: { countsReliable: true },
+    dimensionStatus: { lookupStatus: 'available', missing: ['customEvent:buyer_type'] },
+    rows: [{ eventName: 'fr_quote_submit', result: 'success', eventCount: '2' }],
+  } } }));
+  assert.equal(data.conversions.inquiries, 2);
+  assert.match(formatDailyReport(data), /buyer_type/);
+});
+
+test('thresholded, sampled or truncated counts cannot become known success totals', () => {
+  const data = buildDailyReportData(makeRaw({ siteConversions: { inquiryToday: {
+    resultDimensionAvailable: true, quality: { countsReliable: false },
+    rows: [{ eventName: 'fr_quote_submit', result: 'success', eventCount: '2' }],
+  } } }));
+  assert.equal(data.conversions.inquiries, null);
+  assert.match(formatDailyReport(data), /不计算完整转化率/);
+});
+
+test('rolling-window quality limits stay visible even when today is complete', () => {
+  const raw = makeRaw({ siteConversions: {
+    inquiryToday: { resultDimensionAvailable: true, quality: { countsReliable: true }, rows: [] },
+    inquiry90: { resultDimensionAvailable: true, quality: { countsReliable: false }, rows: [
+      { eventName: 'contact_form_submit', result: 'success', eventCount: '3' },
+    ] },
+  } });
+  assert.match(render(raw), /近90天询盘数据受阈值、抽样或截断等限制/);
+  assert.match(render(raw), /近90天 未知/);
+});

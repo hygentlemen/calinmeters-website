@@ -2,6 +2,10 @@
 
 生产站点为 `https://calinmeters.com/`，仓库 `hygentlemen/calinmeters-website`，生产分支 `main`。技术栈是 Next.js 14.2.35 + React 18 + TypeScript + Tailwind，`output: 'export'` 静态导出后部署到 GitHub Pages。不要切换到 Vercel；`public/CNAME` 必须保留。
 
+## 2026-10-12 inquiry measurement and weekly review
+
+The four event-scoped GA4 definitions (`result`, `product_category`, `product_id`, `buyer_type`) were absent and were created October 12 in the verified production stream. Both forms now record native validation failures once, exclude honeypot false successes and initialize Turnstile through Script `onReady` on remount. Reporting retains each available dimension even during metadata failures or definition changes, paginates and carries quality limits. An optional quiet weekly export queries complete GA4 cohorts and matched GSC query/country/device/page rows. Local validation: 38 report tests, 18 form scenarios and full production verification. Historical context: [October 11 audit](INQUIRY-MEASUREMENT-2026-10-11.md). Release and new-data evidence belong to [weekly issue #37](https://github.com/hygentlemen/calinmeters-website/issues/37); do not infer production delivery or historical outcome recovery from configuration alone.
+
 ## 2026-10-11 image optimization
 
 The site now serves static responsive WebP candidates for 23 existing images plus a mobile product banner. Compositor removed baked-in banner lettering; mobile/French layouts show all seven products. Largest delivered candidates total 88.2% fewer bytes than the original 23 files. Original URLs, screenshot masking, catalog data and Pages hosting are preserved. Reproduction and validation: [IMAGE-OPTIMIZATION-2026-10-11.md](IMAGE-OPTIMIZATION-2026-10-11.md).
