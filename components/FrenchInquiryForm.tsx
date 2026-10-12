@@ -201,6 +201,7 @@ export default function FrenchInquiryForm() {
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string>();
   const startedRef = useRef(false);
+  const invalidReportedRef = useRef(false);
   const [scriptReady, setScriptReady] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState('');
   const [productId, setProductId] = useState('');
@@ -275,6 +276,16 @@ export default function FrenchInquiryForm() {
     });
   }
 
+  function trackInvalid() {
+    // Native validation stops onSubmit and emits one invalid event per field.
+    // Count one rejected attempt per validation pass, without field values.
+    if (invalidReportedRef.current) return;
+    invalidReportedRef.current = true;
+    setTimeout(() => { invalidReportedRef.current = false; }, 0);
+    trackStart();
+    trackSubmit('validation_error');
+  }
+
   function resetChallenge() {
     setTurnstileToken('');
     if (window.turnstile && widgetIdRef.current) {
@@ -285,6 +296,7 @@ export default function FrenchInquiryForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submittingRef.current) return;
+    trackStart();
 
     setMessage('');
     setMessageKind(undefined);
@@ -297,6 +309,7 @@ export default function FrenchInquiryForm() {
     }
 
     const formData = new FormData(event.currentTarget);
+    const honeypotFilled = Boolean(String(formData.get('website') ?? '').trim());
     const payload = Object.fromEntries(formData.entries());
     const sourcePage = sourceContext();
     const sourcePath = new URL(sourcePage).pathname;
@@ -334,7 +347,8 @@ export default function FrenchInquiryForm() {
         setBuyerType('');
         setMessageKind('success');
         setMessage('Votre demande a été envoyée. Nous vous répondrons par e-mail.');
-        trackSubmit('success');
+        // The Worker intentionally returns ok for honeypot drops without sending email.
+        if (!honeypotFilled) trackSubmit('success');
         resetChallenge();
         return;
       }
@@ -387,12 +401,13 @@ export default function FrenchInquiryForm() {
       <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
         strategy="afterInteractive"
-        onLoad={() => setScriptReady(true)}
+        onReady={() => setScriptReady(true)}
       />
       <form
         ref={formRef}
         onSubmit={handleSubmit}
         onFocusCapture={trackStart}
+        onInvalidCapture={trackInvalid}
         className="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg sm:p-8"
       >
         <div className="grid gap-5 sm:grid-cols-2">

@@ -96,6 +96,7 @@ export default function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null);
   const submittingRef = useRef(false);
   const startedRef = useRef(false);
+  const invalidReportedRef = useRef(false);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string>();
   const [scriptReady, setScriptReady] = useState(false);
@@ -146,13 +147,29 @@ export default function ContactSection() {
     }
   }
 
+  function trackStart() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackEvent('contact_form_start', { interface_language: 'en', source_page: new URL(sourceContext()).pathname });
+  }
+
+  function trackInvalid() {
+    if (invalidReportedRef.current) return;
+    invalidReportedRef.current = true;
+    setTimeout(() => { invalidReportedRef.current = false; }, 0);
+    trackStart();
+    trackEvent('contact_form_submit', { result: 'validation_error', source_page: new URL(sourceContext()).pathname });
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submittingRef.current) return;
+    trackStart();
 
     setStatus('');
     setStatusKind(undefined);
     const formData = new FormData(event.currentTarget);
+    const honeypotFilled = Boolean(String(formData.get('website') ?? '').trim());
     const contactName = String(formData.get('contactName') ?? '').trim();
     const email = String(formData.get('email') ?? '').trim();
     const message = String(formData.get('message') ?? '').trim();
@@ -160,16 +177,19 @@ export default function ContactSection() {
     if (!contactName || !email || !message) {
       setStatusKind('error');
       setStatus('Please complete your name, email, and message before sending.');
+      trackInvalid();
       return;
     }
     if (!EMAIL_PATTERN.test(email)) {
       setStatusKind('error');
       setStatus('Please enter a valid email address.');
+      trackInvalid();
       return;
     }
     if (!turnstileToken) {
       setStatusKind('error');
       setStatus('Please complete the security verification.');
+      trackEvent('contact_form_submit', { result: 'challenge_error', source_page: new URL(sourceContext()).pathname });
       return;
     }
 
@@ -207,14 +227,17 @@ export default function ContactSection() {
         formRef.current?.reset();
         setStatusKind('success');
         setStatus('Thank you for your inquiry. Our team will contact you shortly.');
-        trackEvent('contact_form_submit', { result: 'success', source_page: sourcePath });
+        if (!honeypotFilled) trackEvent('contact_form_submit', { result: 'success', source_page: sourcePath });
         resetChallenge();
         return;
       }
 
       resetChallenge();
       setStatusKind('error');
-      if (response.status === 429 || result?.code === 'rate_limited') {
+      if (result?.code === 'turnstile_failed' || result?.code === 'turnstile_unavailable') {
+        setStatus('Security verification failed. Please try again.');
+        trackEvent('contact_form_submit', { result: 'challenge_error', source_page: sourcePath });
+      } else if (response.status === 429 || result?.code === 'rate_limited') {
         setStatus(`Too many attempts. Please try again later or email us at ${site.email}.`);
         trackEvent('contact_form_submit', { result: 'rate_limited', source_page: sourcePath });
       } else if (response.status === 400 || result?.code === 'invalid_payload') {
@@ -297,12 +320,8 @@ export default function ContactSection() {
             <p className="mb-6 text-sm leading-6 text-primary-100">Send your requirements securely. Required fields are marked with an asterisk.</p>
             {formAvailable ? (
               <>
-                <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onLoad={() => setScriptReady(true)} />
-                <form onFocusCapture={() => {
-                  if (startedRef.current) return;
-                  startedRef.current = true;
-                  trackEvent('contact_form_start', { interface_language: 'en', source_page: new URL(sourceContext()).pathname });
-                }} ref={formRef} className="space-y-5" onSubmit={handleSubmit}>
+                <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onReady={() => setScriptReady(true)} />
+                <form onFocusCapture={trackStart} onInvalidCapture={trackInvalid} ref={formRef} className="space-y-5" onSubmit={handleSubmit}>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field id="contactName" label="Your Name" required maxLength={120} autoComplete="name" />
                     <Field id="email" label="Your Email" type="email" required maxLength={254} autoComplete="email" />
