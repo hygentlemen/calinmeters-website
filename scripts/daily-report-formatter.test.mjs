@@ -430,3 +430,14 @@ test('thresholded, sampled or truncated counts cannot become known success total
   assert.equal(data.conversions.inquiries, null);
   assert.match(formatDailyReport(data), /不计算完整转化率/);
 });
+
+test('rolling-window quality limits stay visible even when today is complete', () => {
+  const raw = makeRaw({ siteConversions: {
+    inquiryToday: { resultDimensionAvailable: true, quality: { countsReliable: true }, rows: [] },
+    inquiry90: { resultDimensionAvailable: true, quality: { countsReliable: false }, rows: [
+      { eventName: 'contact_form_submit', result: 'success', eventCount: '3' },
+    ] },
+  } });
+  assert.match(render(raw), /近90天询盘数据受阈值、抽样或截断等限制/);
+  assert.match(render(raw), /近90天 未知/);
+});

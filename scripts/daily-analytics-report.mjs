@@ -260,10 +260,10 @@ export async function collectWeeklyData({ analyticsData, gaProperty, searchConso
       gscMatched: () => runSearchConsole({ searchConsole, gscSiteUrl, dateRange: gscWindow,
         dimensions: ['query', 'country', 'device', 'page'], rowLimit: 25000, includeQuality: true }),
     };
-    const entries = await Promise.all(Object.entries(tasks).map(async ([name, run]) => {
+    const entries = await runWithConcurrency(Object.entries(tasks).map(([name, run]) => async () => {
       try { return [name, { status: 'available', data: await run() }]; }
       catch { return [name, { status: 'unavailable' }]; }
-    }));
+    }), { limit: GA_REPORT_CONCURRENCY });
     periods[label] = { gaWindow, gscWindow, ...Object.fromEntries(entries) };
   }
   return { date: endDate, gaProperty, searchSite: gscSiteUrl, periods,

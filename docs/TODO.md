@@ -15,7 +15,7 @@
 2. Create buyer evidence pages only from approved source documents and customer permissions.
 3. Done: English/French forms use the Worker/Resend endpoint. Next: verify private delivery records and qualified-lead follow-up.
 4. CA168-L01 and CA368-Z04 specification PDFs added; resolve table/nameplate option differences during final quotation.
-5. October 12: inspected the production GA4 stream and created all four missing event-scoped definitions. Inquiry/report fixes are covered by 37 report tests and 18 English/French form scenarios; track release verification on issue #37. Check newly processed outcome data after 24–48 hours (October 13–14), with `(not set)` retained as unknown. Configuration does not backfill prior outcomes or prove receipt. Private delivery, qualified/unqualified/duplicate/spam/unreviewed totals remain a separate operational review.
+5. October 12: inspected the production GA4 stream and created all four missing event-scoped definitions. Inquiry/report fixes are covered by 38 report tests and 18 English/French form scenarios; track release verification on issue #37. Check newly processed outcome data after 24–48 hours (October 13–14), with `(not set)` retained as unknown. Configuration does not backfill prior outcomes or prove receipt. Private delivery, qualified/unqualified/duplicate/spam/unreviewed totals remain a separate operational review.
 
 ## P2 - Demand-Led Content Expansion
 
