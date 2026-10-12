@@ -1,6 +1,6 @@
 # Project State
 
-Last reviewed: 2026-10-11.
+Last reviewed: 2026-10-12.
 
 Current implementation: 27 public HTML routes (16 English, 11 French). The owner authorized French `index,follow` on 2026-09-08 and waived professional copy review; see FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present. Week 1 fixes all-site measurement and adds buyer paths, two solution pages, real company media and the CA168-L01 / CA368-Z04 PDFs on existing model routes. Release scope and source limits are recorded in COMMERCIAL-RELEASE-2026-09-08.md.
 
@@ -32,7 +32,7 @@ The site now has a crawlable SEO/GEO architecture for the three primary topics:
 - Page-specific title, description, self-referencing canonical, Open Graph and Twitter metadata.
 - Homepage `Organization`, `WebSite` and category `ItemList` JSON-LD.
 - Category `CollectionPage`, `BreadcrumbList`, `ItemList` and visible FAQ JSON-LD.
-- Product `Product` and `BreadcrumbList` JSON-LD without invented offers, prices, ratings or availability.
+- Quote-only model `WebPage` and `BreadcrumbList` JSON-LD; incomplete `Product` rich-result markup removed on October 12 without inventing offers, prices, ratings or availability. See [Product snippets repair](PRODUCT-SNIPPETS-2026-10-12.md).
 - Crawlable homepage, navigation, footer, category and related-model links.
 - Published specification tables transcribed conservatively from existing product PDFs.
 - Buyer selection, STS workflow, quotation checklist, FAQ and inquiry content for each primary category.

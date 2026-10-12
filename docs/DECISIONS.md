@@ -70,7 +70,7 @@
 - Structured data should stay aligned with visible content.
 - Prefer factual descriptions over broad claims such as "world class" unless evidence is added.
 - Category pages use `CollectionPage`, `BreadcrumbList`, `ItemList` and visible FAQ markup.
-- Model pages use a single `Product` entity plus `BreadcrumbList`; do not add price, offer, rating or availability data that is not present.
+- Model pages use `WebPage` plus `BreadcrumbList` as of October 12, 2026. The earlier bare `Product` strategy was valid generic vocabulary but ineligible for Google's product snippets without a genuine published offer/review/rating; see the October 12 decision below.
 - Build output is the source for the production sitemap; `scripts/postbuild.mjs` generates `out/sitemap.xml`.
 - `npm run verify:seo` is required before deployment.
 - Country and regional pages require Search Console demand evidence and first-party value.
@@ -105,3 +105,9 @@ The owner authorized use of the supplied meter material folders and waived the F
 The owner requested `scott@szcalinmeter.com` for both public website contact and form delivery. `lib/site.ts` is the public identity source, including the quotation FAQ; `workers/inquiry/wrangler.jsonc` sets the Worker recipient. Resend continues using the existing verified `Calin Meter Website <info@calinmeters.com>` sender, and Reply-To remains the validated visitor email. Do not replace the authenticated sender with an unverified domain as a side effect of a recipient change.
 
 All 27 current pages receive September 21 modification dates: both homepages change their primary contact/Organization data, and every category, model and solution page changes its main inquiry email destination. This is the documented contact migration, not an automatic date refresh for a footer-only change or a build.
+
+## 2026-10-12 quote-only product structured data
+
+Search Console reports eight invalid French Product items missing `offers`, `review` or `aggregateRating`. Current catalog pages request quotations and publish no source-backed prices or reviews. Emit ordinary `WebPage` metadata and existing `BreadcrumbList` for all 18 English/French model pages, instead of emitting incomplete Product rich-result markup. Preserve visible specifications, product images, PDFs, URLs, canonical and hreflang links. Do not invent a zero price, rating, stock status or substitute another Product subtype to evade validation.
+
+This resolves ineligible markup by withdrawing it; it does not make these pages eligible for product price/rating rich results. Reintroduce Product markup only when genuine visible offer/review evidence satisfies [Google's requirements](https://developers.google.com/search/docs/appearance/structured-data/product-snippet). Only the 18 model schema modification dates advance to October 12. Search Console needs a subsequent crawl/validation before stored errors disappear.

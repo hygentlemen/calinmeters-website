@@ -172,21 +172,16 @@ function productStructuredData(entry: CatalogProduct) {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Product',
-        '@id': `${pageUrl}#product`,
+        // Quote-only catalog: publish page metadata until genuine offer/review
+        // evidence can support Google's Product rich-result requirements.
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
         url: pageUrl,
         name: product.name,
-        model: product.model,
         description: product.description,
         image: [absoluteUrl(product.image)],
-        category: category.name,
-        brand: { '@type': 'Brand', name: site.name },
-        manufacturer: { '@id': `${site.url}/#organization` },
-        additionalProperty: product.verifiedSpecs?.map((spec) => ({
-          '@type': 'PropertyValue',
-          name: spec.label,
-          value: spec.value,
-        })),
+        inLanguage: 'en',
+        isPartOf: { '@id': `${site.url}/#website` },
       },
       breadcrumbSchema([
         { name: 'Home', path: '/' },
