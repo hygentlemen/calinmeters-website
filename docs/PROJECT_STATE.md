@@ -1,6 +1,6 @@
 # Project State
 
-Last reviewed: 2026-10-12.
+Last reviewed: 2026-10-13.
 
 Current implementation: 27 public HTML routes (16 English, 11 French). The owner authorized French `index,follow` on 2026-09-08 and waived professional copy review; see FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present. Week 1 fixes all-site measurement and adds buyer paths, two solution pages, real company media and the CA168-L01 / CA368-Z04 PDFs on existing model routes. Release scope and source limits are recorded in COMMERCIAL-RELEASE-2026-09-08.md.
 
@@ -9,6 +9,8 @@ Current implementation: 27 public HTML routes (16 English, 11 French). The owner
 The site now serves static responsive WebP candidates for 23 existing images plus a mobile product banner. Compositor removed baked-in banner lettering; mobile/French layouts show all seven products. Largest delivered candidates total 88.2% fewer bytes than the original 23 files. Original URLs, screenshot masking, catalog data and Pages hosting are preserved. Reproduction and validation: [IMAGE-OPTIMIZATION-2026-10-11.md](IMAGE-OPTIMIZATION-2026-10-11.md).
 
 ## Current Status
+
+October 13 browser follow-up: PR #40's pending-script navigation fix is deployed (`f9d2f0b`, Pages run `38272341403`). Production Turnstile automatically succeeds on English and French initial visits and returns through language links. No inquiry was sent. GSC CWV has insufficient field data on both device types; HTTPS reports no issues. The final French category and Product-snippets validation are still awaiting Google processing. [Follow-up evidence](weekly/2026-10-12.md#october-13-unlocked-browser-follow-up).
 
 October 12 weekly execution: 10/11 French URLs are now indexed; the electricity category still has an August noindex snapshot. Four missing GA4 event dimensions were created and are visible to the Data API. Inquiry validation/honeypot/remount fixes and per-dimension, paginated, quality-aware reporting are in PR #39. Fresh weekly totals: GSC 615 impressions/24 clicks vs 517/16; GA4 views 114 vs 75 (re-queried cohorts replace old daily snapshots). Evidence, processing limitations and release receipt: [weekly/2026-10-12.md](weekly/2026-10-12.md).
 

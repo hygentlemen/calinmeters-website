@@ -2,6 +2,10 @@
 
 生产站点为 `https://calinmeters.com/`，仓库 `hygentlemen/calinmeters-website`，生产分支 `main`。技术栈是 Next.js 14.2.35 + React 18 + TypeScript + Tailwind，`output: 'export'` 静态导出后部署到 GitHub Pages。不要切换到 Vercel；`public/CNAME` 必须保留。
 
+## 2026-10-13 browser verification completed
+
+After the owner unlocked the Mac, native Chrome verified production Turnstile auto-success through EN → FR → EN → FR, including fresh widgets on both returns. No inquiry was sent. PR #40's shared script-load listener is deployed as `f9d2f0b` (Pages run `38272341403`); it complements `onReady` for navigation while the first script request is pending. GSC field CWV was checked: both device types have insufficient usage data, so neither a pass nor a failure is established. HTTPS has no reported issues. The remaining French electricity category retains its August crawl, and Product-snippets validation remains Started. These checks supersede the earlier lock-related deferrals. See [October 13 follow-up evidence](weekly/2026-10-12.md#october-13-unlocked-browser-follow-up).
+
 ## 2026-10-12 inquiry measurement and weekly review
 
 The four event-scoped GA4 definitions (`result`, `product_category`, `product_id`, `buyer_type`) were absent and were created October 12 in the verified production stream. Both forms now record native validation failures once, exclude honeypot false successes and initialize Turnstile through Script `onReady` on remount. Reporting retains each available dimension even during metadata failures or definition changes, paginates and carries quality limits. An optional quiet weekly export queries complete GA4 cohorts and matched GSC query/country/device/page rows. Local validation: 38 report tests, 18 form scenarios, a regression for rapid navigation during script loading, and full production verification. PR #39 is deployed; production report run 38271675659 recognizes all four dimensions and identifies the August 12 completeness cutoff for 90-day custom-dimension queries. Historical context: [October 11 audit](INQUIRY-MEASUREMENT-2026-10-11.md). Release and new-data evidence belong to [weekly issue #37](https://github.com/hygentlemen/calinmeters-website/issues/37); do not infer production delivery or historical outcome recovery from configuration alone.
@@ -52,7 +56,7 @@ Only update `data/page-modified.json` for significant content, schema or indexab
 
 - 首页：Organization、WebSite、三个品类 URL 的 ItemList。
 - 品类页：CollectionPage、BreadcrumbList、真实型号 URL 的 ItemList、与可见问题一致的 FAQPage。
-- 型号页：单个 Product 和 BreadcrumbList；无 Offer、价格、库存、评分或评论。
+- 型号页：WebPage 和 BreadcrumbList；10 月 12 日已移除不完整的 Product 富结果标记，不虚构 Offer、价格、库存、评分或评论。
 - `public/llms.txt` 列出全部 canonical 页面。
 - `scripts/postbuild.mjs` 从 `out/**/*.html` 生成生产 `out/sitemap.xml` 并保留 CNAME。
 - `scripts/verify-seo.mjs` 检查导出页面、元数据、canonical、H1、JSON-LD、内部链接、资源和 sitemap 一致性。
