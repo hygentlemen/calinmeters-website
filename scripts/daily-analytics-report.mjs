@@ -513,7 +513,7 @@ async function runGaReport({
   const quality = {
     rowCount: 0, returnedRows: 0, truncated: false,
     subjectToThresholding: false, dataLossFromOtherRow: false,
-    sampled: false, dataTruncated: false, emptyReason: '', timeZone: '',
+    sampled: false, dataTruncated: false, dataTruncationReasons: [], emptyReason: '', timeZone: '',
   };
   do {
     const response = await retryTransientRequest(
@@ -537,6 +537,11 @@ async function runGaReport({
     quality.dataLossFromOtherRow ||= metadata.dataLossFromOtherRow === true;
     quality.sampled ||= (metadata.samplingMetadatas || []).length > 0;
     quality.dataTruncated ||= (metadata.dataTruncationReasons || []).length > 0;
+    for (const reason of metadata.dataTruncationReasons || []) {
+      if (!quality.dataTruncationReasons.some(existing => JSON.stringify(existing) === JSON.stringify(reason))) {
+        quality.dataTruncationReasons.push(reason);
+      }
+    }
     quality.emptyReason ||= metadata.emptyReason || '';
     quality.timeZone ||= metadata.timeZone || '';
     quality.truncated = allRows.length < quality.rowCount;

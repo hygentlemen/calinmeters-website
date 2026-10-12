@@ -332,6 +332,7 @@ function summarizeInquiry(value) {
     resultDimensionAvailable: data.resultDimensionAvailable ?? data.controlledDimensionsAvailable === true,
     dimensionStatus: data.dimensionStatus,
     countsReliable: data.quality?.countsReliable ?? null,
+    quality: data.quality,
     successKnown: (data.resultDimensionAvailable ?? data.controlledDimensionsAvailable === true)
       && data.quality?.countsReliable !== false && rows(data.rows).every((row) =>
       !['fr_quote_submit', 'contact_form_submit'].includes(row.eventName) ||
@@ -496,7 +497,10 @@ function renderConversions(data) {
   } else if (value.dimensionStatus && !['available', 'query_validated'].includes(value.dimensionStatus.lookupStatus)) {
     lines.push('- 维度配置核查暂不可用；不能据此认定维度未注册');
   }
-  if (value.countsReliable === false) lines.push('- 返回计数受阈值、抽样或截断等限制；不计算完整转化率');
+  if (value.countsReliable === false) lines.push('- 当日返回计数受阈值、抽样或截断等限制；不计算完整转化率');
+  for (const [label, summary] of [['近30天', value.recent30], ['近90天', value.recent90]]) {
+    if (summary?.countsReliable === false) lines.push(`- ${label}询盘数据受阈值、抽样或截断等限制；分类总数待核实`);
+  }
   for (const [label, count] of [['询盘', value.inquiries], ['WhatsApp', value.whatsapp], ['邮件点击', value.email], ['PDF 下载', value.downloads]]) {
     if (count > 0) lines.push(`- ${label}：${count}${label === '询盘' ? '（表单成功回执，待核对送达及质量）' : ''}`);
   }
