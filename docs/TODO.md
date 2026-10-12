@@ -2,12 +2,12 @@
 
 ## P0 - Production Indexing and Measurement
 
-1. Done: September 8, 14 and 21 changes were merged and deployed in PRs #25, #27 and #29. Latest weekly review and explicit deferrals: [2026-10-05, executed October 7](weekly/2026-10-05.md).
-2. Done October 7: verified all 27 production pages, 11 language pairs, 10 HTML-linked PDFs plus the gateway/DCU PDFs, `robots.txt`, `llms.txt`, sitemap and public contact. Quietly recovered the missing September 30 GSC data before comparing complete weeks. Repeat at the October 12 checkpoint or after a material release.
+1. Done: September 8, 14 and 21 changes were merged and deployed in PRs #25, #27 and #29. Latest weekly review and explicit deferrals: [2026-10-12](weekly/2026-10-12.md).
+2. Done October 7: verified all 27 production pages, 11 language pairs, 10 HTML-linked PDFs plus the gateway/DCU PDFs, `robots.txt`, `llms.txt`, sitemap and public contact. Quietly recovered the missing September 30 GSC data before comparing complete weeks. October 12 repeated all 27 live HTML/locale checks; final PDF and deployed-chunk receipts are on issue #37.
 3. Done 2026-07-21: reissued the production OAuth token with GA4 read-only and Search Console write scopes; `Submit Search Console Sitemap` run `29838520351` completed with zero errors and warnings.
 4. Done October 11: all 11 French URLs passed separate Google live tests and received successful indexing-request confirmations. Started repair validation for all six historical noindex pages (6 pending, 0 failed) and requested a fresh canonical robots.txt crawl. Sitemap, security/manual-action and host-health checks pass. October 12 API inspection confirms 10 of 11 French pages submitted/indexed, with matching Google-selected canonicals. Only the electricity category retains the August 12 noindex snapshot; compare its next crawl and verdict; do not repeat accepted requests merely because the stored report has not updated. [Full operation record](FRENCH-INDEXING-2026-10-11.md). Field CWV remains a separate follow-up.
 5. Record the deployment date in the weekly SEO/GEO issue.
-6. Obtain a matched query × country × device × page GSC export for the two complete weeks; focus on Nigeria and homepage/electricity. Existing capped marginal rows cannot establish the cause of the decline. Monitor the three primary clusters through the October 12 checkpoint.
+6. Done October 12: added and obtained a paginated matched query × country × device × page export for both complete weeks. Current rows cover only 2/24 property clicks, so anonymized-query limits still prevent causal attribution. Reuse the optional weekly export at the October 19 checkpoint.
 
 ## P1 - Evidence and Conversion
 
