@@ -19,7 +19,7 @@
     "seo-geo:weekly": "node scripts/seo-geo-weekly-issue.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
     "verify:images": "node scripts/verify-images.mjs",
-    "test:inquiry-events": "node --import ./scripts/register-test-tsx.mjs --test scripts/inquiry-events.test.tsx"
+    "test:inquiry-events": "node --import ./scripts/register-test-tsx.mjs --test scripts/inquiry-events.test.tsx scripts/inquiry-remount.test.tsx"
   },
   "dependencies": {
     "googleapis": "^172.0.0",

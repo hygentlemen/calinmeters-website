@@ -10,6 +10,7 @@ import {
 } from 'react';
 import { trackEvent } from '@/components/GoogleAnalytics';
 import { site } from '@/lib/site';
+import { TURNSTILE_SCRIPT_URL, useTurnstileReady } from '@/components/useTurnstileReady';
 
 const BUYER_TYPES = [
   ['distributor', 'Distributeur'],
@@ -202,7 +203,7 @@ export default function FrenchInquiryForm() {
   const widgetIdRef = useRef<string>();
   const startedRef = useRef(false);
   const invalidReportedRef = useRef(false);
-  const [scriptReady, setScriptReady] = useState(false);
+  const { scriptReady, markReady } = useTurnstileReady();
   const [turnstileToken, setTurnstileToken] = useState('');
   const [productId, setProductId] = useState('');
   const [productCategory, setProductCategory] = useState<ProductCategory>('');
@@ -399,9 +400,9 @@ export default function FrenchInquiryForm() {
   return (
     <>
       <Script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+        src={TURNSTILE_SCRIPT_URL}
         strategy="afterInteractive"
-        onReady={() => setScriptReady(true)}
+        onReady={markReady}
       />
       <form
         ref={formRef}
