@@ -10,6 +10,7 @@ import {
 } from 'react';
 import { trackEvent } from '@/components/GoogleAnalytics';
 import { site } from '@/lib/site';
+import { TURNSTILE_SCRIPT_URL, useTurnstileReady } from '@/components/useTurnstileReady';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -99,7 +100,7 @@ export default function ContactSection() {
   const invalidReportedRef = useRef(false);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string>();
-  const [scriptReady, setScriptReady] = useState(false);
+  const { scriptReady, markReady } = useTurnstileReady();
   const [turnstileToken, setTurnstileToken] = useState('');
   const [productName, setProductName] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -320,7 +321,7 @@ export default function ContactSection() {
             <p className="mb-6 text-sm leading-6 text-primary-100">Send your requirements securely. Required fields are marked with an asterisk.</p>
             {formAvailable ? (
               <>
-                <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onReady={() => setScriptReady(true)} />
+                <Script src={TURNSTILE_SCRIPT_URL} strategy="afterInteractive" onReady={markReady} />
                 <form onFocusCapture={trackStart} onInvalidCapture={trackInvalid} ref={formRef} className="space-y-5" onSubmit={handleSubmit}>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field id="contactName" label="Your Name" required maxLength={120} autoComplete="name" />
