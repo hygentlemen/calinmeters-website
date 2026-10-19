@@ -2,6 +2,10 @@
 
 生产站点为 `https://calinmeters.com/`，仓库 `hygentlemen/calinmeters-website`，生产分支 `main`。技术栈是 Next.js 14.2.35 + React 18 + TypeScript + Tailwind，`output: 'export'` 静态导出后部署到 GitHub Pages。不要切换到 Vercel；`public/CNAME` 必须保留。
 
+## 2026-10-19 weekly execution
+
+[Weekly evidence](weekly/2026-10-19.md): GSC Oct 9–15 has 613 impressions/22 clicks versus 615/24. French page rows now total 39 impressions/3 clicks, and fresh inspection `39251108244` confirms 10/11 French URLs indexed after brass changed from the morning unindexed snapshot. The electricity category still has an August crawl but passes the October 19 live test. Product validation is Looking good with 1 pending, 0 failed and 7 other; no completed-validation claim. All 27 live pages, 12 PDFs and discovery files passed. Four GA4 event definitions work and the fresh rolling query has two classified success responses; historical/quality-limited outcomes and private delivery remain unknown. GA4's October 18 summary is absent, so the weekly 87-view total is provisional. The reporting correction preserves missing totals as unknown instead of showing zero; 41 report tests and full production verification pass. No new public copy or page-modification dates are needed.
+
 ## 2026-10-13 browser verification completed
 
 After the owner unlocked the Mac, native Chrome verified production Turnstile auto-success through EN → FR → EN → FR, including fresh widgets on both returns. No inquiry was sent. PR #40's shared script-load listener is deployed as `f9d2f0b` (Pages run `38272341403`); it complements `onReady` for navigation while the first script request is pending. GSC field CWV was checked: both device types have insufficient usage data, so neither a pass nor a failure is established. HTTPS has no reported issues. The remaining French electricity category retains its August crawl, and Product-snippets validation remains Started. These checks supersede the earlier lock-related deferrals. See [October 13 follow-up evidence](weekly/2026-10-12.md#october-13-unlocked-browser-follow-up).

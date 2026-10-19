@@ -32,7 +32,7 @@ This is a rolling plan. Update it after reviewing actual Search Console and GA4 
 
 ## Monthly Review
 
-Latest checkpoint: [October 7, 2026, for the October 5 week](weekly/2026-10-05.md). The missing GSC day was recovered before comparison, and the current definition/selection/water-operation answers still cover returned themes. The October 12 checkpoint prioritizes French recrawl (including the now-unknown brass-water URL), a matched query/country/device/page decline breakdown, and inquiry measurement/delivery verification. Further content expansion awaits useful factual gaps or approved first-party evidence.
+Latest checkpoint: [October 19, 2026](weekly/2026-10-19.md). French page rows now show search visibility and fresh inspection confirms 10/11 indexed URLs; the electricity category and one old Product-snippets item still await Google processing. The existing definition, selection, vending and water-operation answers cover the returned query themes. This week's improvement corrects missing GA4 totals being displayed as zero. At the October 26 review, re-query both acquisition windows, check the missing latest-day GA4 data and new controlled inquiry outcomes, and revisit the pending crawl/validation states. Further copy or country-page expansion requires a sourced factual gap and demand evidence.
 
 - Top growing queries.
 - Queries with impressions but low CTR.

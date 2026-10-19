@@ -198,6 +198,39 @@ test('a legacy artifact without property totals does not invent GSC zeroes', () 
   assert.match(report, /## 热门搜索词\n- 暂无数据/);
 });
 
+test('an absent GA4 overview stays unknown while independent evidence remains visible', () => {
+  const raw = makeRaw({ overview: [] });
+  const data = buildDailyReportData(raw);
+  const report = formatDailyReport(data);
+
+  assert.equal(data.traffic, null);
+  assert.equal(data.sources.ga4, true);
+  assert.match(report, /流量总量：暂无可用汇总，不能按零处理/);
+  assert.match(report, /部分汇总暂无数据/);
+  assert.match(report, /搜索：点击 3 \| 曝光 60/);
+  assert.match(report, /法语用户：近30天 8 \| 近90天 14/);
+  assert.match(report, /CA368-GPRS\.pdf \| 2 次/);
+  assert.match(data.hint, /汇总暂无数据/);
+  assert.doesNotMatch(report, /流量：用户 0|流量仍处于早期阶段|流量运行平稳/);
+});
+
+test('an explicit zero-valued GA4 overview remains a measured zero', () => {
+  const data = buildDailyReportData(makeRaw({
+    overview: [{ activeUsers: '0', sessions: '0', screenPageViews: '0', eventCount: '0' }],
+  }));
+  assert.deepEqual(data.traffic, { users: 0, sessions: 0, views: 0, events: 0 });
+  const report = formatDailyReport(data);
+  assert.match(report, /流量：用户 0 \| 会话 0 \| 浏览 0 \| 事件 0/);
+  assert.doesNotMatch(report, /流量总量：暂无可用汇总/);
+});
+
+test('both missing summaries are visible without treating connected APIs as complete data', () => {
+  const report = render(makeRaw({ overview: [], searchOverview: [] }));
+  assert.match(report, /流量总量：暂无可用汇总，不能按零处理/);
+  assert.match(report, /搜索总量：暂无可用汇总，不能按零处理/);
+  assert.doesNotMatch(report, /✅ GA4 \/ GSC 正常|流量：用户|搜索：点击/);
+});
+
 test('zero conversions collapse to one no-conversion sentence', () => {
   const report = render(makeRaw({
     downloads: [],

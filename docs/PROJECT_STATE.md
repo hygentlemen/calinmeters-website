@@ -1,6 +1,6 @@
 # Project State
 
-Last reviewed: 2026-10-13.
+Last reviewed: 2026-10-19.
 
 Current implementation: 27 public HTML routes (16 English, 11 French). The owner authorized French `index,follow` on 2026-09-08 and waived professional copy review; see FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present. Week 1 fixes all-site measurement and adds buyer paths, two solution pages, real company media and the CA168-L01 / CA368-Z04 PDFs on existing model routes. Release scope and source limits are recorded in COMMERCIAL-RELEASE-2026-09-08.md.
 
@@ -9,6 +9,8 @@ Current implementation: 27 public HTML routes (16 English, 11 French). The owner
 The site now serves static responsive WebP candidates for 23 existing images plus a mobile product banner. Compositor removed baked-in banner lettering; mobile/French layouts show all seven products. Largest delivered candidates total 88.2% fewer bytes than the original 23 files. Original URLs, screenshot masking, catalog data and Pages hosting are preserved. Reproduction and validation: [IMAGE-OPTIMIZATION-2026-10-11.md](IMAGE-OPTIMIZATION-2026-10-11.md).
 
 ## Current Status
+
+October 19 weekly execution: GSC 613 impressions/22 clicks versus 615/24; French page rows show 39 impressions/3 clicks. Fresh inspection confirms 10/11 French URLs indexed, superseding the morning 9/11 snapshot; the remaining category passes today's live test. Product-snippets validation has one pending item. GA4 returns two classified success responses but October 18 traffic is missing, so the 87-view weekly query is provisional. The formatter now distinguishes an absent traffic summary from an explicit zero row. [Evidence and outstanding operations](weekly/2026-10-19.md).
 
 October 13 browser follow-up: PR #40's pending-script navigation fix is deployed (`f9d2f0b`, Pages run `38272341403`). Production Turnstile automatically succeeds on English and French initial visits and returns through language links. No inquiry was sent. GSC CWV has insufficient field data on both device types; HTTPS reports no issues. The final French category and Product-snippets validation are still awaiting Google processing. [Follow-up evidence](weekly/2026-10-12.md#october-13-unlocked-browser-follow-up).
 
