@@ -44,6 +44,8 @@ The `Weekly SEO/GEO Execution` workflow runs each Monday at 09:15 Asia/Shanghai.
 
 Before a weekly comparison, inspect each raw artifact's `searchOverview` as well as `sourceStatus`. A successful workflow/API request can return an empty property-summary array. Treat that day as unavailable, never zero, and never rebuild its totals by adding capped page/query rows. Keep both comparison windows complete and equally long.
 
+Apply the same rule to GA4 `overview`. An empty array does not establish zero users, sessions, views or events. The daily formatter labels the total unavailable while retaining independent sections; a returned row with explicit zero values remains zero. Query-quality flags do not establish processing maturity. If the newest requested day is absent from both its daily overview and weekly date breakdown, label the weekly GA4 result provisional and avoid a settled traffic-decline claim until subsequent data resolves the gap. See [October 19 evidence and correction](weekly/2026-10-19.md).
+
 Use a manual dispatch with notifications disabled to recover a missing historical day. `report_date` is the GA4 date; the GSC date is three calendar days earlier. For example, to re-query GSC September 30:
 
 ```bash

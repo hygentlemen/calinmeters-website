@@ -18,7 +18,7 @@ export function buildDailyReportData(raw = {}) {
     ga4: isSourceAvailable(raw.sourceStatus?.ga4),
     gsc: isSourceAvailable(raw.sourceStatus?.gsc),
   };
-  const overview = rows(raw.overview)[0] || {};
+  const overview = rows(raw.overview)[0] || null;
   const searchOverview = getSearchOverview(raw);
   const downloads = buildDownloads(raw.downloads);
   const french = buildFrenchSummary(raw.french, sources.ga4);
@@ -33,8 +33,11 @@ export function buildDailyReportData(raw = {}) {
     date: cleanText(raw.date) || '日期未知',
     searchDate: cleanText(raw.searchDate) || '历史报告未记录',
     sources,
-    status: buildStatus(sources),
-    traffic: sources.ga4
+    status: buildStatus(sources, {
+      ga4: Boolean(overview),
+      gsc: Boolean(searchOverview) && raw.searchOverviewAvailable !== false,
+    }),
+    traffic: sources.ga4 && overview
       ? {
           users: number(overview.activeUsers),
           sessions: number(overview.sessions),
@@ -114,8 +117,12 @@ function isSourceAvailable(state) {
   return !FAILED_SOURCE_STATES.has(String(state || 'available').toLowerCase());
 }
 
-function buildStatus(sources) {
-  if (sources.ga4 && sources.gsc) return '✅ GA4 / GSC 正常';
+function buildStatus(sources, summaries) {
+  if (sources.ga4 && sources.gsc) {
+    return summaries.ga4 && summaries.gsc
+      ? '✅ GA4 / GSC 正常'
+      : '⚠️ GA4 / GSC 已返回；部分汇总暂无数据';
+  }
   if (sources.ga4) return '⚠️ GA4 正常 / GSC 暂不可用';
   if (sources.gsc) return '⚠️ GA4 暂不可用 / GSC 正常';
   return '❌ GA4 / GSC 均不可用';
@@ -378,6 +385,9 @@ function buildHint(data) {
   if (!data.sources.ga4 || !data.sources.gsc) {
     return '部分数据源暂不可用，建议恢复后复核今日流量与搜索表现。';
   }
+  if (!data.traffic || !data.search) {
+    return '部分汇总暂无数据，不能按零处理；请在数据更新后复核。';
+  }
   if (data.conversions?.inquiries > 0) {
     return `记录到 ${data.conversions.inquiries} 次表单成功回执，请核对邮件送达及有效询盘。`;
   }
@@ -395,6 +405,7 @@ function renderCore(data) {
   if (data.traffic) {
     lines.push(`- 流量：用户 ${data.traffic.users} | 会话 ${data.traffic.sessions} | 浏览 ${data.traffic.views} | 事件 ${data.traffic.events}`);
   }
+  if (data.sources.ga4 && !data.traffic) lines.push('- 流量总量：暂无可用汇总，不能按零处理');
   if (data.sources.gsc) lines.push(`- 搜索数据日期：${data.searchDate}（与流量日分开；GSC 通常延迟）`);
   if (data.sources.gsc && !data.search) lines.push('- 搜索总量：暂无可用汇总，不能按零处理');
   if (data.search) {
