@@ -2,6 +2,10 @@
 
 生产站点为 `https://calinmeters.com/`，仓库 `hygentlemen/calinmeters-website`，生产分支 `main`。技术栈是 Next.js 14.2.35 + React 18 + TypeScript + Tailwind，`output: 'export'` 静态导出后部署到 GitHub Pages。不要切换到 Vercel；`public/CNAME` 必须保留。
 
+## 2026-10-26 weekly execution and recipient separation
+
+[Weekly evidence](weekly/2026-10-26.md): GSC 676 impressions/25 clicks versus 613/22; fresh GA4 124 views versus the recovered 94-view previous cohort. October 18 now returns seven views. French remains 10/11 indexed; Product-snippets validation is now Passed with zero invalid items. French 30-day search page rows total 85 impressions/4 clicks; one classified French success exists, without establishing delivery or lead quality. The owner changed only the shared English/French Worker recipient to `tom.qi@qq.com`; all public contact remains `scott@szcalinmeter.com`, with the verified sender and visitor Reply-To preserved. Worker checks (32 tests), report checks (41) and full website verification pass. Release receipts are on issue #44. Next checkpoint November 2. [Cloud Codex assessment](CLOUD-CODEX-OPERATIONS.md) documents a suitable repository/Actions-based handoff and remaining local/private access needs; no new cloud setup or automation was activated.
+
 ## 2026-10-19 weekly execution
 
 [Weekly evidence](weekly/2026-10-19.md): GSC Oct 9–15 has 613 impressions/22 clicks versus 615/24. French page rows now total 39 impressions/3 clicks, and fresh inspection `39251108244` confirms 10/11 French URLs indexed after brass changed from the morning unindexed snapshot. The electricity category still has an August crawl but passes the October 19 live test. Product validation is Looking good with 1 pending, 0 failed and 7 other; no completed-validation claim. All 27 live pages, 12 PDFs and discovery files passed. Four GA4 event definitions work and the fresh rolling query has two classified success responses; historical/quality-limited outcomes and private delivery remain unknown. GA4's October 18 summary is absent, so the weekly 87-view total is provisional. The reporting correction preserves missing totals as unknown instead of showing zero; 41 report tests and full production verification pass. No new public copy or page-modification dates are needed.
@@ -102,7 +106,7 @@ Search Console sitemap 可通过 `Submit Search Console Sitemap` 工作流手动
 - Worker package: `workers/inquiry`
 - Public contract: `POST /v1/inquiries`
 - Allowed production origins: `https://calinmeters.com`, `https://www.calinmeters.com`
-- Delivery recipient: `scott@szcalinmeter.com`
+- Delivery recipient: `tom.qi@qq.com` (owner change October 26, 2026); public contact remains `scott@szcalinmeter.com`
 - Resend sender: `Calin Meter Website <info@calinmeters.com>`
 - Reply-To: the validated customer email from each inquiry
 - Worker secrets live in Cloudflare: `TURNSTILE_SECRET_KEY`, `RESEND_API_KEY`, `RATE_LIMIT_KEY_SECRET`

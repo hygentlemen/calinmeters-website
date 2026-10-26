@@ -44,7 +44,7 @@
 ## Contact Handling
 
 - Public contact email: `scott@szcalinmeter.com`.
-- English and French inquiry forms post to the separate Cloudflare Worker, which sends validated inquiries to `scott@szcalinmeter.com` through Resend.
+- English and French inquiry forms post to the separate Cloudflare Worker, which sends validated inquiries to `tom.qi@qq.com` through Resend (owner decision October 26, 2026).
 - The validated customer email is used only as Reply-To; Worker secrets remain outside the static site build.
 - No customer inquiry database exists.
 
@@ -111,3 +111,7 @@ All 27 current pages receive September 21 modification dates: both homepages cha
 Search Console reports eight invalid French Product items missing `offers`, `review` or `aggregateRating`. Current catalog pages request quotations and publish no source-backed prices or reviews. Emit ordinary `WebPage` metadata and existing `BreadcrumbList` for all 18 English/French model pages, instead of emitting incomplete Product rich-result markup. Preserve visible specifications, product images, PDFs, URLs, canonical and hreflang links. Do not invent a zero price, rating, stock status or substitute another Product subtype to evade validation.
 
 This resolves ineligible markup by withdrawing it; it does not make these pages eligible for product price/rating rich results. Reintroduce Product markup only when genuine visible offer/review evidence satisfies [Google's requirements](https://developers.google.com/search/docs/appearance/structured-data/product-snippet). Only the 18 model schema modification dates advance to October 12. Search Console needs a subsequent crawl/validation before stored errors disappear.
+
+## October 26, 2026: separate form recipient from public contact
+
+The owner requested `tom.qi@qq.com` as the destination for both English and French form submissions. Public contact, mailto links, fallback messages and Organization/FAQ identity remain `scott@szcalinmeter.com`. Only the shared Worker recipient changes; the existing verified Resend sender and visitor Reply-To remain in place. Tests mock delivery; deployment confirmation is distinct from inbox receipt. See [weekly evidence](weekly/2026-10-26.md).

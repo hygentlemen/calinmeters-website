@@ -1,6 +1,6 @@
 # Project State
 
-Last reviewed: 2026-10-19.
+Last reviewed: 2026-10-26.
 
 Current implementation: 27 public HTML routes (16 English, 11 French). The owner authorized French `index,follow` on 2026-09-08 and waived professional copy review; see FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present. Week 1 fixes all-site measurement and adds buyer paths, two solution pages, real company media and the CA168-L01 / CA368-Z04 PDFs on existing model routes. Release scope and source limits are recorded in COMMERCIAL-RELEASE-2026-09-08.md.
 
@@ -10,13 +10,15 @@ The site now serves static responsive WebP candidates for 23 existing images plu
 
 ## Current Status
 
+October 26: public contact remains `scott@szcalinmeter.com`; the shared English/French form recipient is changed to `tom.qi@qq.com`. Product-snippets validation Passed (zero invalid); French indexing stays 10/11. GSC 676/25 versus 613/22; GA4 124 views versus the recovered 94-view prior cohort. One classified French success is visible, while private delivery/quality remains unverified. [Weekly evidence](weekly/2026-10-26.md) and [cloud operations assessment](CLOUD-CODEX-OPERATIONS.md). No cloud migration or new schedule was activated.
+
 October 19 weekly execution: GSC 613 impressions/22 clicks versus 615/24; French page rows show 39 impressions/3 clicks. Fresh inspection confirms 10/11 French URLs indexed, superseding the morning 9/11 snapshot; the remaining category passes today's live test. Product-snippets validation has one pending item. GA4 returns two classified success responses but October 18 traffic is missing, so the 87-view weekly query is provisional. The formatter now distinguishes an absent traffic summary from an explicit zero row. [Evidence and outstanding operations](weekly/2026-10-19.md).
 
 October 13 browser follow-up: PR #40's pending-script navigation fix is deployed (`f9d2f0b`, Pages run `38272341403`). Production Turnstile automatically succeeds on English and French initial visits and returns through language links. No inquiry was sent. GSC CWV has insufficient field data on both device types; HTTPS reports no issues. The final French category and Product-snippets validation are still awaiting Google processing. [Follow-up evidence](weekly/2026-10-12.md#october-13-unlocked-browser-follow-up).
 
 October 12 weekly execution: 10/11 French URLs are now indexed; the electricity category still has an August noindex snapshot. Four missing GA4 event dimensions were created and are visible to the Data API. Inquiry validation/honeypot/remount fixes and per-dimension, paginated, quality-aware reporting are in PR #39. Fresh weekly totals: GSC 615 impressions/24 clicks vs 517/16; GA4 views 114 vs 75 (re-queried cohorts replace old daily snapshots). Evidence, processing limitations and release receipt: [weekly/2026-10-12.md](weekly/2026-10-12.md).
 
-The September 8, 14 and 21 releases are merged and deployed (PRs #25, #27 and #29). Public contact and the inquiry recipient are `scott@szcalinmeter.com`, preserving the existing authenticated sender and 27 routes. The October 7 review recovered a missing GSC day through a quiet backfill, verified the live site and retained current content because no useful new factual gap or live technical defect was established. Current complete-week GSC totals are 517 impressions / 16 clicks, versus 632 / 27. Latest evidence, comparison limits and operational follow-up: [weekly/2026-10-05.md](weekly/2026-10-05.md).
+The September 8, 14 and 21 releases are merged and deployed (PRs #25, #27 and #29). Those releases set public contact and the then-current inquiry recipient to `scott@szcalinmeter.com`, preserving the authenticated sender and 27 routes; the October 26 recipient-only change supersedes that delivery destination. The October 7 review recovered a missing GSC day through a quiet backfill, verified the live site and retained current content because no useful new factual gap or live technical defect was established. Current complete-week GSC totals are 517 impressions / 16 clicks, versus 632 / 27. Latest evidence, comparison limits and operational follow-up: [weekly/2026-10-05.md](weekly/2026-10-05.md).
 
 On October 11, all 11 French URLs passed Google's live inspection and their indexing requests were accepted into the priority crawl queue. The six historical noindex exclusions now have repair validation started (6 pending, 0 failed). A fresh canonical robots.txt crawl was also requested. Sitemap processing, manual actions, security issues and recorded host health show no blocking issue. This completed the previously deferred UI operations; the October 12 inspection above subsequently confirms 10/11 indexed URLs. [Per-URL evidence and next check](FRENCH-INDEXING-2026-10-11.md).
 
