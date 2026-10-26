@@ -32,7 +32,7 @@ This is a rolling plan. Update it after reviewing actual Search Console and GA4 
 
 ## Monthly Review
 
-Latest checkpoint: [October 19, 2026](weekly/2026-10-19.md). French page rows now show search visibility and fresh inspection confirms 10/11 indexed URLs; the electricity category and one old Product-snippets item still await Google processing. The existing definition, selection, vending and water-operation answers cover the returned query themes. This week's improvement corrects missing GA4 totals being displayed as zero. At the October 26 review, re-query both acquisition windows, check the missing latest-day GA4 data and new controlled inquiry outcomes, and revisit the pending crawl/validation states. Further copy or country-page expansion requires a sourced factual gap and demand evidence.
+Latest checkpoint: [October 26, 2026](weekly/2026-10-26.md). French page rows show 85 impressions/4 clicks across the rolling windows and inspection confirms 10/11 indexed URLs. Product-snippets validation is Passed with zero invalid items; only the electricity category retains its old noindex crawl. October 18 GA4 data has recovered, giving a 94-view previous cohort versus 124 current views. Existing definition, selection, vending and water-operation answers cover the five focus queries. At the November 2 review, re-query both acquisition windows and check the final French crawl, controlled inquiry outcomes and private delivery evidence. Further copy or country-page expansion requires a sourced factual gap and demand evidence.
 
 - Top growing queries.
 - Queries with impressions but low CTR.
