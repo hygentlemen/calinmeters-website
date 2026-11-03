@@ -158,12 +158,14 @@ For a manual historical run, dispatch `Daily Analytics Report` with `report_date
 - Priority page shows zero: check sitemap presence, canonical/hreflang output, URL Inspection, crawl status, and page/query data before editing content.
 - A sudden increase in errors or spam: inspect Worker/Turnstile and mailbox aggregates without copying personal fields into analytics or GitHub.
 
-## Optional complete-week export
+## Complete-week export
 
-For a Monday review, use the Sunday GA date and the existing three-day GSC lag:
+The existing Daily Analytics Report workflow also refreshes complete-week evidence quietly every Tuesday at 15:00 Asia/Shanghai, before the 16:00 cloud review. It anchors GA4 to the preceding Sunday and keeps the existing three-day GSC lag; daily 08:30 reporting/notifications are unchanged. The later weekly refresh gives Sunday data more processing time, but does not guarantee final GA4 counts. Verify the actual run and raw quality/date fields, especially after delayed or missed schedules.
+
+For an ad hoc review or recovery, use the Sunday GA date and disable notifications:
 
 ```bash
 gh workflow run daily-analytics-report.yml --ref main -f report_date=2026-10-11 -f notify=false -f include_weekly=true
 ```
 
-The additional `weekly-analytics-<date>.raw.json` contains current/previous seven-day GA4 cohorts (including unique users queried over the whole week), daily reconciliation, channels/events and property-level GSC totals plus query × country × device × page rows. It preserves each query's source status. GA4 event/cohort queries paginate with quality flags; matched GSC rows paginate to a 50,000-row safety cap with an explicit capped flag. GSC final data and anonymized-query omissions still apply: an uncapped export is not every search and must not replace property totals. Do not compare incomplete or differently dated cohorts. Weekly collection is opt-in and uses existing read-only analytics access; it sends no additional notifications.
+The additional `weekly-analytics-<date>.raw.json` contains current/previous seven-day GA4 cohorts (including unique users queried over the whole week), daily reconciliation, channels/events and property-level GSC totals plus query × country × device × page rows. It preserves each query's source status. GA4 event/cohort queries paginate with quality flags; matched GSC rows paginate to a 50,000-row safety cap with an explicit capped flag. GSC final data and anonymized-query omissions still apply: an uncapped export is not every search and must not replace property totals. Do not compare incomplete or differently dated cohorts. Manual weekly collection remains opt-in; the Tuesday refresh enables it automatically with existing read-only analytics access and no extra Feishu notification.

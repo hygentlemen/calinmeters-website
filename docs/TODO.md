@@ -1,5 +1,14 @@
 # TODO
 
+## Current checkpoint — November 3, 2026
+
+- Completed acquisition, French, live-link and build review for [November 2–8](weekly/2026-11-02.md): 616 impressions/38 clicks, 140 GA4 views, 10/11 French URLs indexed; six classified rolling 30-day successes, private quality still unknown.
+- November 9: re-query both complete cohorts; use the revised 95-session prior baseline, retain the September 3 cutoff on 90-day controlled-query data, and recheck the final French category's crawl/verdict plus the parameter-homepage canonical classification.
+- Inquiry operations: verify delivery in `tom.qi@qq.com` and classify private lead aggregates. Public contact stays Scott. Do not send unsolicited synthetic inquiries or report unknown counts as zero.
+- Cloud handoff: execute the [configuration plan](superpowers/plans/2026-11-03-cloud-operations.md), retain the [operating prompt](CLOUD-CODEX-RUN-PROMPT.md), and verify actual publication, artifact access and schedule results under [cloud status](CLOUD-CODEX-OPERATIONS.md).
+
+The dated records below retain the earlier decision history; the current weekly evidence takes precedence for measured totals and pending actions.
+
 ## P0 - Production Indexing and Measurement
 
 1. Done: September 8, 14 and 21 changes were merged and deployed in PRs #25, #27 and #29. Latest weekly review and explicit deferrals: [2026-10-26](weekly/2026-10-26.md).
@@ -35,4 +44,4 @@
 
 ## Cloud operations assessment
 
-[Recommended handoff](CLOUD-CODEX-OPERATIONS.md): repository/Actions-based checks, analysis and scoped repair PRs are suitable for cloud Codex. Actual setup, cloud access verification and scheduling are not yet requested or activated. Preserve explicit browser/private-data follow-ups.
+[Cloud handoff and current status](CLOUD-CODEX-OPERATIONS.md): the owner requested direct configuration on November 3. Repository/Actions-based checks, analysis and scoped repair PRs are suitable for cloud Codex; use the recorded publication, artifact-access and scheduling receipts rather than the earlier assessment-only state. Preserve explicit browser/private-data follow-ups.

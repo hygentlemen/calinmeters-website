@@ -119,6 +119,8 @@ The workflow runs every day at:
 08:30 Asia/Shanghai
 ```
 
+The same workflow also runs a quiet complete-week refresh on Tuesday at 15:00 Asia/Shanghai, anchored to the preceding Sunday, for the 16:00 [cloud review](CLOUD-SCHEDULED-REVIEW.md). It enables weekly raw cohorts and uses `--no-notify`; the normal daily schedule still sends its configured Feishu report. The extra weekly export needs no new credentials. Schedules may be delayed, so consumers must verify the actual run and date coverage.
+
 You can also run it manually in GitHub:
 
 ```text
