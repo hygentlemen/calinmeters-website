@@ -5,7 +5,7 @@
 - Completed acquisition, French, live-link and build review for [November 2–8](weekly/2026-11-02.md): 616 impressions/38 clicks, 140 GA4 views, 10/11 French URLs indexed; six classified rolling 30-day successes, private quality still unknown.
 - November 9: re-query both complete cohorts; use the revised 95-session prior baseline, retain the September 3 cutoff on 90-day controlled-query data, and recheck the final French category's crawl/verdict plus the parameter-homepage canonical classification.
 - Inquiry operations: verify delivery in `tom.qi@qq.com` and classify private lead aggregates. Public contact stays Scott. Do not send unsolicited synthetic inquiries or report unknown counts as zero.
-- Cloud handoff: execute the [configuration plan](superpowers/plans/2026-11-03-cloud-operations.md), retain the [operating prompt](CLOUD-CODEX-RUN-PROMPT.md), and verify actual publication, artifact access and schedule results under [cloud status](CLOUD-CODEX-OPERATIONS.md).
+- Cloud handoff: private repository environment published and real artifact/build access verified. Tuesday 15:00 quiet weekly export and 16:00 cloud review are configured; the first future clock-triggered review is November 10. Verify that first receipt under [cloud status](CLOUD-CODEX-OPERATIONS.md). Scheduled repository-runtime inheritance is unsupported in the tested path; code tasks use the separate [operating prompt](CLOUD-CODEX-RUN-PROMPT.md).
 
 The dated records below retain the earlier decision history; the current weekly evidence takes precedence for measured totals and pending actions.
 

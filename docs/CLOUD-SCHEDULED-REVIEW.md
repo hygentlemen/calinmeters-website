@@ -7,9 +7,9 @@ This is the supported **cloud review** path, separate from an interactive task i
 - Existing daily collection: 08:30 Asia/Shanghai, with its normal notification behavior.
 - Existing Monday URL Inspection/checklist jobs remain unchanged.
 - Complete-week refresh: Tuesday 15:00 Asia/Shanghai, in the existing Daily Analytics Report workflow, anchored to the preceding Sunday, `INCLUDE_WEEKLY=true`, `--no-notify`.
-- Target cloud review: Tuesday 16:00 Asia/Shanghai. The tested one-time review is currently paused; final recurring-task save/activation awaits access to the unlocked browser. First intended future checkpoint is November 10, 2026. Check the activation receipt on issue #46 and actual collector completion/source windows rather than assuming a clock time proves readiness.
+- Cloud review: **enabled**, Tuesday 16:00 Asia/Shanghai, titled **CalinMeters 每周 SEO/GEO 云端复核**. The tested ordinary review was updated in place, not duplicated. November 3 tool readback confirmed the enabled rule/timezone and saved prompt; the web UI independently lists it under enabled tasks and confirms the next run as **November 10, 2026, 16:00 GMT+8**. The separate repository-inheritance test remains paused. Check actual collector completion/source windows rather than assuming a clock time proves readiness.
 
-The November 3 manual acceptance verified the review's artifact path, not a future clock-triggered run. The new weekly collector's schedule selection, Sunday/date-boundary calculation and quiet/daily/manual command branches were checked locally; its underlying complete-week collection had already succeeded in quiet run 41642616773. Record the first real scheduled receipts at the November 10 checkpoint.
+The November 3 immediate-run acceptance verified the review's artifact path, not a future clock-triggered run. The new weekly collector's schedule selection, Sunday/date-boundary calculation and quiet/daily/manual command branches were checked locally. Its underlying complete-week collection succeeded in quiet run 41642616773 and again after release in run 41650540598, with identical weekly data. Record the first real clock-triggered receipts at the November 10 checkpoint.
 
 ## Saved operating instructions
 
