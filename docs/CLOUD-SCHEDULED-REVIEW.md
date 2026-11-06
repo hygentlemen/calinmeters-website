@@ -4,6 +4,8 @@ This is the supported **cloud review** path, separate from an interactive task i
 
 ## Cadence and dependencies
 
+Dot can coordinate follow-through under [DOT-CLOUD-OPERATIONS](DOT-CLOUD-OPERATIONS.md) when the result is brought to it; automatic schedule-to-Dot delivery is not connected. This existing schedule remains the sole complete weekly review. Record actionable technical findings with affected URL/component, source/run, expected behavior and acceptance criteria on the existing weekly issue so Dot can deduplicate and dispatch them. The independent daily 16:30 inspection reuses this result instead of duplicating it. The scheduled context itself still must not claim a repository build or automatic environment inheritance.
+
 - Existing daily collection: 08:30 Asia/Shanghai, with its normal notification behavior.
 - Existing Monday URL Inspection/checklist jobs remain unchanged.
 - Complete-week refresh: Tuesday 15:00 Asia/Shanghai, in the existing Daily Analytics Report workflow, anchored to the preceding Sunday, `INCLUDE_WEEKLY=true`, `--no-notify`.

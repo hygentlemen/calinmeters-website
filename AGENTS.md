@@ -34,6 +34,10 @@ Run `npm run build` before pushing. Check desktop/mobile for UI edits. Inspect w
 
 Use existing Tailwind/component patterns. Keep `data/products.ts` and `data/faq.ts` as source of truth. Copy must be factual and buyer-oriented.
 
+## Operations routing
+
+For recurring operations or a task delegated by Dot, read `docs/DOT-CLOUD-OPERATIONS.md`. Dot owns oversight and deduplicated work orders; the published `calinmeters-website` cloud environment owns repository implementation. Existing Actions collection and the single Tuesday weekly review remain in place. Prepare scoped PRs with evidence; production releases and commercial/form/access changes need their recorded specific authorization.
+
 ## Forbidden
 
 - Do not switch deployment to Vercel unless asked.

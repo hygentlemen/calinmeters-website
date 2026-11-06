@@ -1,10 +1,14 @@
 # Project State
 
+## Operations configuration — November 6, 2026
+
+[Dot/Codex operating agreement and receipts](DOT-CLOUD-OPERATIONS.md): Dot has acknowledged the scoped operating responsibility, parsed a genuine daily artifact and successfully dispatched a read-only task into the published cloud repository environment (41 report tests passed). Independent daily cloud inspection is enabled at 16:30 Asia/Shanghai; the existing Tuesday 16:00 weekly review remains the sole complete weekly report. Scheduled results do not automatically wake Dot with the currently exposed tools/UI; bring exceptions to Dot for the tested technical dispatch route. No site/application behavior, collector schedule, secret or form address changed in this configuration.
+
 ## Latest review — November 3, 2026
 
 The November 2–8 operating review is [documented here](weekly/2026-11-02.md), starting from PR #45 (`7f134e5`), with form recipient `tom.qi@qq.com` and public contact `scott@szcalinmeter.com`. GSC final Oct 23–29 is 616 impressions/38 clicks; GA4 Oct 26–Nov 1 is 140 views/89 sessions. French remains 10/11 indexed; live technical checks pass. The private cloud environment is published, its real artifact/build access verified, and Tuesday quiet weekly collection is configured. Scheduled artifact review works but repository-runtime inheritance does not; the Tuesday 16:00 recurring review is enabled and the UI confirms November 10 as its first scheduled date. [Cloud status](CLOUD-CODEX-OPERATIONS.md), [scheduled review](CLOUD-SCHEDULED-REVIEW.md) and [repository run prompt](CLOUD-CODEX-RUN-PROMPT.md) supply the handoff. Do not infer scheduling or inbox delivery from code/build success.
 
-Last reviewed: 2026-11-03. The dated entries below preserve earlier operating and release history; use the latest review and linked cloud status for current readiness.
+Last operating configuration review: 2026-11-06; latest full weekly review: 2026-11-03. The dated entries below preserve earlier operating and release history; use the latest entries and linked cloud status for current readiness.
 
 Current implementation: 27 public HTML routes (16 English, 11 French). The owner authorized French `index,follow` on 2026-09-08 and waived professional copy review; see FRENCH-COPY-REVIEW.md. Both inquiry forms use the separate Worker/Resend endpoint when public configuration is present. Week 1 fixes all-site measurement and adds buyer paths, two solution pages, real company media and the CA168-L01 / CA368-Z04 PDFs on existing model routes. Release scope and source limits are recorded in COMMERCIAL-RELEASE-2026-09-08.md.
 

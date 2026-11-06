@@ -63,6 +63,7 @@ Do not duplicate product names or PDF paths in route files. Do not add certifica
 - Daily GA4/Search Console reporting runs through `.github/workflows/daily-analytics-report.yml`.
 - The weekly SEO/GEO work item runs through `.github/workflows/seo-geo-weekly.yml`.
 - Cloud operating readiness and access limits are recorded in [the cloud handoff](docs/CLOUD-CODEX-OPERATIONS.md); use [the weekly operating prompt](docs/CLOUD-CODEX-RUN-PROMPT.md) for repository tasks. Environment publication, report access and scheduled execution must each be verified.
+- [Dot and Codex Cloud responsibilities](docs/DOT-CLOUD-OPERATIONS.md) define independent daily cloud inspection, Dot coordination, tested dispatch to the published repository environment, duplicate prevention and review before release. Automatic scheduled-result delivery to Dot remains unconnected. Keep the existing Tuesday review as the single weekly report.
 - Sitemap submission is available through the manually dispatched `.github/workflows/search-console-submit.yml` workflow. Its OAuth refresh token must include `https://www.googleapis.com/auth/webmasters`; the read-only scope used for reports cannot submit a sitemap.
 
 Production report workflows use GitHub Secrets documented in `docs/ANALYTICS-AUTOMATION.md`. Never commit OAuth credentials, webhook URLs, keys or tokens.

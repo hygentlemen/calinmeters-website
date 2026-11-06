@@ -1,4 +1,8 @@
-# Cloud Codex operations — updated November 3, 2026
+# Cloud Codex operations — updated November 6, 2026
+
+## Dot coordination
+
+The owner has requested [Dot as the ongoing operator and Codex Cloud as the technical implementer](DOT-CLOUD-OPERATIONS.md). Reuse the existing published `calinmeters-website` environment, collectors and single Tuesday 16:00 review. November 6 verified Dot's explicit dispatch into that environment and the return of 41 passing report tests. An independent daily 16:30 cloud inspection is enabled, but automatic delivery/wake-up to Dot is not connected; actionable findings must be brought to Dot. That explicit dispatch route is separate from the ordinary schedule's failed environment inheritance below. New tasks read current main's AGENTS and the operating agreement, which records the actual receipts and limitations.
 
 ## Recommendation
 
