@@ -44,4 +44,6 @@ The dated records below retain the earlier decision history; the current weekly 
 
 ## Cloud operations assessment
 
+November 6: [Dot/Codex division and actual acceptance](DOT-CLOUD-OPERATIONS.md) now records successful explicit cloud dispatch and a separate enabled daily inspection. Automatic scheduled-result delivery/wake-up to Dot remains an external product capability gap, not a completed handoff. Preserve the existing weekly review and do not create a second daily/weekly plan while pursuing that gap. Verify the first actual daily clock-triggered run on November 7 and weekly run on November 10. Cross-check French `priorityCoverage30/90` fallback zeros with original returned page rows before any repair proposal; no additional repair was started during configuration.
+
 [Cloud handoff and current status](CLOUD-CODEX-OPERATIONS.md): the owner requested direct configuration on November 3. Repository/Actions-based checks, analysis and scoped repair PRs are suitable for cloud Codex; use the recorded publication, artifact-access and scheduling receipts rather than the earlier assessment-only state. Preserve explicit browser/private-data follow-ups.
