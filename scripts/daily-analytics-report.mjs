@@ -1,5 +1,5 @@
 import { pathToFileURL } from 'node:url';
-import { addIsoDays, makeWindow } from './analytics-report-windows.mjs';
+import { addIsoDays, makeWindow, resolveReportDates } from './analytics-report-windows.mjs';
 import { google } from 'googleapis';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -48,10 +48,15 @@ const scopes = [
   'https://www.googleapis.com/auth/webmasters.readonly',
 ];
 
-const timeZone = process.env.REPORT_TIMEZONE || 'Asia/Shanghai';
-const reportDate = FIXTURE_MODE
-  ? '2026-08-09'
-  : process.env.REPORT_DATE || getYesterday(timeZone);
+const { reportDate, weeklyDate } = FIXTURE_MODE
+  ? { reportDate: '2026-08-09', weeklyDate: null }
+  : resolveReportDates({
+    timeZone: process.env.REPORT_TIMEZONE || 'Asia/Shanghai',
+    reportDate: process.env.REPORT_DATE,
+    eventName: process.env.GITHUB_EVENT_NAME,
+    schedule: process.env.REPORT_SCHEDULE,
+    includeWeekly: process.env.INCLUDE_WEEKLY,
+  });
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
   if (FIXTURE_MODE) {
@@ -126,9 +131,10 @@ async function generateLiveReport() {
     console.log(`\nReport written to ${outFile}`);
     console.log(`Raw aggregate data written to ${rawFile}`);
 
-    if (process.env.INCLUDE_WEEKLY === 'true') {
-      const weekly = await collectWeeklyData({ analyticsData, gaProperty, searchConsole, gscSiteUrl, endDate: reportDate });
-      await writeRawReport(`weekly-analytics-${reportDate}.raw.json`, weekly);
+    if (weeklyDate) {
+      const weekly = await collectWeeklyData({ analyticsData, gaProperty, searchConsole, gscSiteUrl, endDate: weeklyDate });
+      const weeklyFile = await writeRawReport(`weekly-analytics-${weeklyDate}.raw.json`, weekly);
+      console.log(`Weekly aggregate data written to ${weeklyFile} (anchor ${weeklyDate})`);
     }
 
     if (process.env.FEISHU_WEBHOOK_URL && !process.argv.includes('--no-notify')) {
@@ -266,7 +272,7 @@ export async function collectWeeklyData({ analyticsData, gaProperty, searchConso
     }), { limit: GA_REPORT_CONCURRENCY });
     periods[label] = { gaWindow, gscWindow, ...Object.fromEntries(entries) };
   }
-  return { date: endDate, gaProperty, searchSite: gscSiteUrl, periods,
+  return { date: endDate, collectedAt: new Date().toISOString(), gaProperty, searchSite: gscSiteUrl, periods,
     caveats: ['GA4 uses the property time zone; GSC uses Pacific dates, three days earlier.',
       'GSC query rows omit anonymized queries and are not an additive attribution of property totals.',
       'No historical custom-dimension backfill or private inquiry quality is inferred.'] };
@@ -410,17 +416,18 @@ function emptyControlledReport() {
   return { controlledDimensionsAvailable: false, rows: [] };
 }
 
-function buildPriorityCoverage(rows) {
+export function buildPriorityCoverage(rows) {
   const grouped = new Map(
     FRENCH_PRIORITY_PAGES.map((page) => [
       normalizeCanonical(page),
-      { page, clicks: 0, impressions: 0, weightedPosition: 0 },
+      { page, clicks: 0, impressions: 0, weightedPosition: 0, returnedRows: 0 },
     ]),
   );
 
   for (const row of rows) {
     const group = grouped.get(normalizeCanonical(row.page));
     if (!group) continue;
+    group.returnedRows += 1;
     const impressions = Number(row.impressions || 0);
     group.clicks += Number(row.clicks || 0);
     group.impressions += impressions;
@@ -429,28 +436,16 @@ function buildPriorityCoverage(rows) {
 
   return [...grouped.values()].map((row) => ({
     page: row.page,
-    clicks: row.clicks,
-    impressions: row.impressions,
-    ctr: row.impressions > 0 ? row.clicks / row.impressions : 0,
-    position: row.impressions > 0 ? row.weightedPosition / row.impressions : 0,
+    status: row.returnedRows > 0 ? 'returned' : 'not_returned',
+    clicks: row.returnedRows > 0 ? row.clicks : null,
+    impressions: row.returnedRows > 0 ? row.impressions : null,
+    ctr: row.impressions > 0 ? row.clicks / row.impressions : null,
+    position: row.impressions > 0 ? row.weightedPosition / row.impressions : null,
   }));
 }
 
 function normalizeCanonical(value = '') {
   return value.endsWith('/') ? value : `${value}/`;
-}
-
-function getYesterday(timeZoneName) {
-  const formatter = new Intl.DateTimeFormat('en-CA', {
-    timeZone: timeZoneName,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  });
-  const now = new Date();
-  const localToday = new Date(formatter.format(now));
-  localToday.setDate(localToday.getDate() - 1);
-  return formatter.format(localToday);
 }
 
 function parseServiceAccount(value) {

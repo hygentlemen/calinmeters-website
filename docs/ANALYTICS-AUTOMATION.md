@@ -119,7 +119,9 @@ The workflow runs every day at:
 08:30 Asia/Shanghai
 ```
 
-The same workflow also runs a quiet complete-week refresh on Tuesday at 15:00 Asia/Shanghai, anchored to the preceding Sunday, for the 16:00 [cloud review](CLOUD-SCHEDULED-REVIEW.md). It enables weekly raw cohorts and uses `--no-notify`; the normal daily schedule still sends its configured Feishu report. The extra weekly export needs no new credentials. Schedules may be delayed, so consumers must verify the actual run and date coverage.
+The same workflow schedules a quiet complete-week refresh on Monday at 23:17 Asia/Shanghai, anchored to the preceding completed Sunday, for the Tuesday 16:00 [cloud review](CLOUD-SCHEDULED-REVIEW.md). Every scheduled daily run also refreshes that weekly cohort; daily files retain yesterday's date and weekly files have their own Sunday date. Manual runs remain opt-in through `include_weekly=true` and retain the explicit `report_date`. The quiet refresh uses `--no-notify`; normal daily delivery is unchanged. No new credentials are required. Each scheduled run adds the existing 12 logical weekly source queries (plus pagination/retries when needed).
+
+Cron is not a deadline guarantee. Locate `weekly-analytics-YYYY-MM-DD.raw.json` for the expected Sunday across recent completed runs, then inspect both periods, seven actual GA4 date rows, property time zone, source status and quality flags. A Monday refresh may still contain processing gaps: prefer a later matching collection, retain revisions and never equate file existence with final data. Keep daily 30/90-day evidence explicitly dated; it may have a different anchor from the weekly file. See the [November 17 incident and acceptance](COLLECTOR-READINESS-2026-11-17.md); these code changes require merge before the new schedule takes effect.
 
 You can also run it manually in GitHub:
 
