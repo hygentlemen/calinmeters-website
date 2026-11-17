@@ -24,7 +24,7 @@ The accompanying daily file has separate 30/90-day windows. Its French raw searc
 
 ## Proposed repair and release boundary
 
-The changes are prepared on `codex/report-readiness-2026-11-17`; they are **not merged or active on main** at this receipt.
+The changes are prepared in [PR #53](https://github.com/hygentlemen/calinmeters-website/pull/53), branch `codex/report-readiness-2026-11-17`; they are **not merged or active on main** at this receipt.
 
 1. Move the quiet trigger to **Monday 23:17 Asia/Shanghai**, away from the top of the hour and with more lead time. This improves the margin; it does not guarantee timely execution.
 2. Refresh the latest completed Sunday cohort in **every scheduled daily run**, independently of the daily file's date. Keep manual weekly export opt-in. No new job, credential or notification destination is added. This adds 12 existing logical weekly source queries per scheduled run, plus bounded retries/pagination.
@@ -42,5 +42,7 @@ The existing Tuesday 16:00 cloud review and daily 16:30 inspection have not been
 - Inquiry tests: **2 passed**.
 - `npm run verify`: i18n, TypeScript, production export, SEO and image checks passed; **27 HTML routes / 27 sitemap URLs / 11 reciprocal locale pairs**.
 - `npm run lint`: passed without warnings.
+- Workflow YAML parsed and 30 local documentation links verified.
+- Live quiet branch [run 44107357805](https://github.com/hygentlemen/calinmeters-website/actions/runs/44107357805), code commit `d5096d88db12c6ce8a65f8ffd693a12cddaeab75`, completed successfully. Artifact **14338193836** (9,653 bytes; SHA-256 `6bc72f75ec2116278e4c125f4faaacaa8dabaa8c6fb646332222ff0022090444`) was downloaded and parsed. The expected Sunday weekly file and collection timestamp exist; both cohorts contain seven dates and reconcile to whole-window views. French coverage retains 11 URLs with 3/2 `not_returned` rows for 30/90 days, all four missing metrics null. The 90-day truncation/counts-unreliable flags remain intact. This is manual branch acceptance, not a future scheduled-run receipt.
 
 Release requires the owner's specific approval under AGENTS and the operating agreement. After merge, verify a real scheduled daily run and inspect its Sunday weekly file. Do not close the recurring operations issue merely because this repair PR exists.
