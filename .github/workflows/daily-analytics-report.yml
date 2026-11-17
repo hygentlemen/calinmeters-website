@@ -4,8 +4,9 @@ on:
   schedule:
     # 08:30 Asia/Shanghai every day.
     - cron: "30 0 * * *"
-    # Tuesday 15:00 Asia/Shanghai: quiet complete-week refresh before cloud review.
-    - cron: "0 7 * * 2"
+    # Monday 23:17 Asia/Shanghai: quiet refresh with lead time for delayed schedules.
+    # Every daily scheduled run also refreshes the completed Sunday cohort.
+    - cron: "17 15 * * 1"
   workflow_dispatch:
     inputs:
       report_date:
@@ -42,6 +43,9 @@ jobs:
 
       - name: Validate deterministic report fixture
         run: npm run report:daily -- --fixture
+
+      - name: Validate report collection and date boundaries
+        run: npm run test:report
 
       - name: Check report configuration
         env:
@@ -111,16 +115,7 @@ jobs:
           INCLUDE_WEEKLY: ${{ inputs.include_weekly }}
           REPORT_SCHEDULE: ${{ github.event.schedule }}
         run: |
-          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ "$REPORT_SCHEDULE" = "0 7 * * 2" ]; then
-            export REPORT_DATE="$(node --input-type=module -e '
-              const today = new Intl.DateTimeFormat("en-CA", {
-                timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit"
-              }).format(new Date());
-              const end = new Date(today + "T00:00:00Z");
-              end.setUTCDate(end.getUTCDate() - (end.getUTCDay() || 7));
-              console.log(end.toISOString().slice(0, 10));
-            ')"
-            export INCLUDE_WEEKLY=true
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ "$REPORT_SCHEDULE" = "17 15 * * 1" ]; then
             npm run report:daily -- --no-notify
           elif [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] && [ "${{ inputs.notify }}" = "false" ]; then
             npm run report:daily -- --no-notify
@@ -136,4 +131,4 @@ jobs:
           path: |
             reports/*.md
             reports/*.json
-          if-no-files-found: ignore
+          if-no-files-found: error

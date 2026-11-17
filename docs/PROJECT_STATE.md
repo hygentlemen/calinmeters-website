@@ -1,5 +1,9 @@
 # Project State
 
+## Collector follow-up — November 17, 2026
+
+[Incident, quiet backfill and proposed repair](COLLECTOR-READINESS-2026-11-17.md): the November 10 weekly artifact arrived at 23:22, after the 16:00 review, so the earlier gap was temporary. November 17's 16:09 run was daily-only. Manual quiet run `44103625996` recovered the expected November 15 weekly artifact with two seven-date GA4 cohorts. A scoped branch improves scheduling/date selection and French missing-row semantics; it is not merged or deployed. Automatic Dot wake-up remains unverified.
+
 ## Operations configuration — November 6, 2026
 
 [Dot/Codex operating agreement and receipts](DOT-CLOUD-OPERATIONS.md): Dot has acknowledged the scoped operating responsibility, parsed a genuine daily artifact and successfully dispatched a read-only task into the published cloud repository environment (41 report tests passed). Independent daily cloud inspection is enabled at 16:30 Asia/Shanghai; the existing Tuesday 16:00 weekly review remains the sole complete weekly report. Scheduled results do not automatically wake Dot with the currently exposed tools/UI; bring exceptions to Dot for the tested technical dispatch route. No site/application behavior, collector schedule, secret or form address changed in this configuration.

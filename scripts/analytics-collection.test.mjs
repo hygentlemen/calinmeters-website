@@ -195,3 +195,54 @@ test('weekly source failure remains unavailable without dropping the successful 
   assert.equal(data.periods.current.gaOverview.status, 'unavailable');
   assert.equal(data.periods.current.gscOverview.status, 'available');
 });
+
+test('scheduled catch-up keeps daily dates separate from completed Sunday cohorts', async () => {
+  const { resolveReportDates } = await import('./analytics-report-windows.mjs');
+  for (const [now, reportDate, weeklyDate] of [
+    ['2026-11-17T08:09:59Z', '2026-11-16', '2026-11-15'],
+    ['2026-11-18T08:00:00Z', '2026-11-17', '2026-11-15'],
+    ['2026-11-15T15:59:59Z', '2026-11-14', '2026-11-08'],
+    ['2026-11-15T16:00:00Z', '2026-11-15', '2026-11-15'],
+    ['2027-01-01T00:00:00Z', '2026-12-31', '2026-12-27'],
+  ]) {
+    assert.deepEqual(resolveReportDates({ now: new Date(now), eventName: 'schedule' }), { reportDate, weeklyDate });
+  }
+});
+
+test('quiet refresh uses Sunday for both artifacts even after a delayed trigger', async () => {
+  const { resolveReportDates } = await import('./analytics-report-windows.mjs');
+  for (const now of ['2026-11-16T15:17:00Z', '2026-11-17T23:17:00Z']) {
+    assert.deepEqual(resolveReportDates({ now: new Date(now), eventName: 'schedule', schedule: '17 15 * * 1' }),
+      { reportDate: '2026-11-15', weeklyDate: '2026-11-15' });
+  }
+});
+
+test('manual reports remain opt-in and preserve explicit historical dates', async () => {
+  const { resolveReportDates } = await import('./analytics-report-windows.mjs');
+  const options = { now: new Date('2026-11-17T08:00:00Z'), eventName: 'workflow_dispatch' };
+  assert.deepEqual(resolveReportDates(options), { reportDate: '2026-11-16', weeklyDate: null });
+  assert.deepEqual(resolveReportDates({ ...options, reportDate: '2026-11-08', includeWeekly: 'true' }),
+    { reportDate: '2026-11-08', weeklyDate: '2026-11-08' });
+});
+
+test('French coverage retains 11 URLs without converting missing rows to zero', async () => {
+  const { buildPriorityCoverage } = await import('./daily-analytics-report.mjs');
+  const missing = buildPriorityCoverage([]);
+  assert.equal(missing.length, 11);
+  assert.ok(missing.every(row => row.status === 'not_returned' && row.clicks === null
+    && row.impressions === null && row.ctr === null && row.position === null));
+  const coverage = buildPriorityCoverage([
+    { page: missing[0].page, clicks: 0, impressions: 0, position: 0 },
+    { page: missing[1].page.replace(/\/$/, ''), clicks: 1, impressions: 4, position: 2 },
+    { page: missing[1].page, clicks: 2, impressions: 6, position: 4 },
+  ]);
+  assert.equal(coverage[0].status, 'returned');
+  assert.equal(coverage[0].impressions, 0);
+  assert.equal(coverage[0].position, null);
+  assert.equal(coverage[0].ctr, null);
+  assert.equal(coverage[1].clicks, 3);
+  assert.equal(coverage[1].impressions, 10);
+  assert.equal(coverage[1].ctr, 0.3);
+  assert.equal(coverage[1].position, 3.2);
+  assert.deepEqual(coverage.slice(2), missing.slice(2));
+});
