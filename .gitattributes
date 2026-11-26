@@ -1,0 +1,2 @@
+# Wrangler's generated-type freshness check requires LF on Windows too.
+workers/inquiry/worker-configuration.d.ts text eol=lf
